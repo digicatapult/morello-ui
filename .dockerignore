@@ -1,0 +1,12 @@
+.git/
+node_modules/
+build
+
+scripts
+
+.env
+.eslintignore
+.eslintrc
+.gitignore
+.prettierrc
+README.md
