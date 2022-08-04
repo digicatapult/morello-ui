@@ -1,4 +1,5 @@
 ignores: [
   "webpack",
+  "webpack-cli",
   "@babel/preset-react"
 ]

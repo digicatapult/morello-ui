@@ -64,31 +64,27 @@ jobs:
       - name: Dependency Check
         run: npm run depcheck
 
-  tests:
-    name: Run tests
-    runs-on: ubuntu-latest
+  integration:
+    runs-on: ubuntu-20.04
     steps:
-      - uses: actions/checkout@master
-      - uses: actions/setup-node@master
+      - name: Checkout
+        uses: actions/checkout@v1
+      - name: Set Node.js 16.x
+        uses: actions/setup-node@v2
         with:
           node-version: 16.x
-      - name: Cache Node.js modules
-        uses: actions/cache@v1
-        with:
-          path: ~/.npm # npm cache files are stored in `~/.npm` on Linux/macOS
-          key: ${{ runner.OS }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.OS }}-node-
-            ${{ runner.OS }}-
-      - name: Install Packages
+      - name: Install dependencies
         run: npm ci
-      - name: Sleep
-        uses: kibertoad/wait-action@1.0.1
+      - name: Run cypress integration tests
+        uses: cypress-io/github-action@v2
         with:
-          time: '30s'
-      - name: Run integration tests
-        run: npm run test:integration
-
+          browser: chrome
+          record: false
+          headless: true
+          build: npm run build
+          start: npm start
+          wait-on: 'http://localhost:3000'
+          
   check-version:
     name: 'Check version'
     runs-on: ubuntu-latest
