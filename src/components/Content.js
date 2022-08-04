@@ -12,7 +12,7 @@ function MainMenu(props) {
   return (
     <Container>
       {scenarios.map((details, i) =>
-        <Item size={2.5} onClick={(e) => {
+        <Item size={2.3} onClick={(e) => {
           e.preventDefault()
           nav(`/demo${i + 1}`, { replace: true })
         }}>

@@ -3,8 +3,9 @@ import React from 'react'
 export const scenarios = [
   {
     path: 'demo1',
-    title: '__title_placeholder',
-    description: '__description_placeholder',
+    title: 'Do you believe your password is safe?',
+    description: 'Bug type: Out of Bounds write / Out of Bounds read. CWE Score 65.93',
+    color: '#384D6C',
     assets: [ /* this could contain icons, other react comps, images and etc if needfefd */ ],
     other: {},  
     fn1: () => {},

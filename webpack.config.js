@@ -1,30 +1,30 @@
-const path = require("path");
+const path = require('path')
 const dotenv = require('dotenv')
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const { DefinePlugin } = require("webpack");
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const { DefinePlugin } = require('webpack')
 
 const env = dotenv.config().parsed
 
 module.exports = {
-  entry: "./src/index.js",
+  entry: './src/index.js',
   output: {
     publicPath: '/',
-    path: path.join(__dirname, "/build"),
-    filename: "bundle.[contenthash].js",
+    path: path.join(__dirname, '/build'),
+    filename: 'bundle.[contenthash].js',
     clean: true,
   },
   devServer: {
     historyApiFallback: true,
     port: 3000,
   },
-  devtool: "source-map",
+  devtool: 'source-map',
   module: {
     rules: [
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: {
-          loader: "babel-loader",
+          loader: 'babel-loader',
         },
       },
       {
@@ -33,7 +33,7 @@ module.exports = {
       },
       {
         test: /\.css$/i,
-        use: ["style-loader", "css-loader"],
+        use: ['style-loader', 'css-loader'],
       },
     ],
   },
@@ -43,7 +43,7 @@ module.exports = {
       return out
     }, {})),
     new HtmlWebpackPlugin({
-      template: "src/index.html",
+      template: 'src/index.html',
     }),
   ],
 }

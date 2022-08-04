@@ -1,5 +1,5 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from 'react'
+import ReactDOM from 'react-dom'
 
 import { ContextProvider } from './context'
 import App from './components/App'
@@ -14,6 +14,5 @@ const Root = () => (
     </ContextProvider>
   </React.StrictMode>
 )
-
 
 ReactDOM.render(<Root />, document.getElementById('root'));
