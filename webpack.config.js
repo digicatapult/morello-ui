@@ -5,7 +5,6 @@ const { DefinePlugin } = require("webpack");
 
 const env = dotenv.config().parsed
 
-console.log({ env })
 
 module.exports = {
   entry: "./src/index.js",
@@ -34,7 +33,7 @@ module.exports = {
     ],
   },
   plugins: [
-    new DefinePlugin(Object.keys(env).reduce((out, next) => {
+    new DefinePlugin(Object.keys(env || []).reduce((out, next) => {
       out[`process.env.${next}`] = JSON.stringify(env[next])
       return out
     }, {})),
