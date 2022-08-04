@@ -1,7 +1,5 @@
 import React from 'react'
 
-const A = () => <h1>hello and buye </h1>
-
 export const scenarios = [
   {
     path: 'demo1',
@@ -11,7 +9,7 @@ export const scenarios = [
     other: {},  
     fn1: () => {},
     fn2: () => {},
-    Element: (props) => <A  {...props} /> 
+    Element: (props) => <h1>test</h1>,
   },
   {
     path: 'demo2',
