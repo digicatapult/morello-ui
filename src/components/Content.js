@@ -14,7 +14,7 @@ function MainMenu(props) {
       {SCENARIOS.map((details, i) => 
         <Item size={2.5} onClick={(e) => {
           e.preventDefault()
-          nav(`/demo/${i}`, { replace: true })
+          nav(`/demo/${i + 1}`, { replace: true })
         }}>
           <Card {...details} />
         </Item>

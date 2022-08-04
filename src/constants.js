@@ -1,3 +1,7 @@
+import React from 'react'
+
+const A = () => <h1>hello and buye </h1>
+
 export const SCENARIOS = [
   {
     path: '/demo/1',
@@ -7,7 +11,7 @@ export const SCENARIOS = [
     other: {},  
     fn1: () => {},
     fn2: () => {},
-    Element: () => <div>somee demo1 content</div> // main element
+    Element: (props) => <A  {...props} /> 
   },
   {
     path: '/demo/2',
