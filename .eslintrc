@@ -4,7 +4,7 @@
     "plugin:react/recommended",
     "prettier"
   ],
-  "plugins": ["react", "prettier", "react-hooks"],
+  "plugins": ["react", "prettier", "react-hooks", "cypress"],
   "parser": "@babel/eslint-parser",
   "parserOptions": {
     "requireConfigFile": false,
@@ -18,7 +18,7 @@
     "browser": true
   },
   "globals": {
-    "process": true
+    "process": true,
   },
   "settings": {
     "react": {
@@ -42,7 +42,7 @@
   },
   "overrides": [
     {
-      "files": ["**/*.{spec,test}.js"],
+      "files": ["cypress/integration/*.{spec,test}.js"],
       "rules": {
         "prettier/prettier": "warn",
         "no-unused-vars": ["error", { "ignoreRestSiblings": true }],
