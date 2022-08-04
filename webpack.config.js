@@ -8,7 +8,6 @@ const env = dotenv.config().parsed
 console.log({ env })
 
 module.exports = {
-  mode: 'development',
   entry: "./src/index.js",
   output: {
     path: path.join(__dirname, "/build"),
