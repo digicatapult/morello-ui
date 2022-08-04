@@ -5,8 +5,7 @@ const params = {
   h: 800,
   flex: {
     display: 'flex',
-    justifyContent: 'flex-start',
-    justifyContent: 'flex-start',
+    justifyContent: 'center',
     flexGrow: 1,
   }
 }
@@ -22,13 +21,9 @@ color: '#FFFFFF',
 */
 
 export const H1 = styled.h1(props => ({
-  fontFamily: 'Aktiv Grotesk Ex',
-  fontStyle: 'normal',
-  fontWeight: 300,
-  padding: 5,
+  fontFamily: 'Aktiv',
   fontSize: '30px',
   lineHeight: '38px',
-  letterSpacing: '-0.06em',
   color: '#FFFFFF',
   ...props,
 }))
@@ -37,7 +32,8 @@ export const P1 = styled.p({ fontSize: '0.75em', color: 'palevioletred' })
 export const P2 = styled.p({ fontSize: '0.5em', color: 'palevioletred' })
 
 export const Root = styled.div(props => ({
-  display: 'block',
+  display: 'flex',
+  alignItems: 'centeer',
   width: params.w,
   height: params.h,
   backgroundColor: 'red',
