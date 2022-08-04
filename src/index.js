@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom'
-import Page from './components/Page'
+import App from './components/App'
 
 // available in react 18?
 //const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -9,7 +9,7 @@ import Page from './components/Page'
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-      <Page />
+      <App />
     </BrowserRouter>
   </React.StrictMode>,
 document.getElementById('root'));
