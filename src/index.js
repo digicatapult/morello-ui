@@ -1,8 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter } from 'react-router-dom'
 
-import { ContextProvider, Context } from './context'
+import { ContextProvider } from './context'
 import App from './components/App'
 
 // available in react 18?
@@ -10,11 +9,9 @@ import App from './components/App'
 
 const Root = () => (
   <React.StrictMode>
-    <BrowserRouter>
-      <ContextProvider>
+    <ContextProvider>
         <App />
-      </ContextProvider>
-    </BrowserRouter>
+    </ContextProvider>
   </React.StrictMode>
 )
 

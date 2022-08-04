@@ -5,6 +5,7 @@ import { Context } from '../context'
 import Content from './Content'
 import Header from './Header'
 
+
 export default function Page() {
   const state = React.useContext(Context)
   console.log(state)

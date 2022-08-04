@@ -2,9 +2,9 @@ import React from 'react'
 
 const A = () => <h1>hello and buye </h1>
 
-export const SCENARIOS = [
+export const scenarios = [
   {
-    path: '/demo/1',
+    path: 'demo1',
     title: '__title_placeholder',
     description: '__description_placeholder',
     assets: [ /* this could contain icons, other react comps, images and etc if needfefd */ ],
@@ -14,7 +14,7 @@ export const SCENARIOS = [
     Element: (props) => <A  {...props} /> 
   },
   {
-    path: '/demo/2',
+    path: 'demo2',
     title: '__title_placeholder',
     description: '__description_placeholder',
     assets: [ /* this could contain icons, other react comps, images and etc if needfefd */ ],
@@ -34,7 +34,7 @@ export const SCENARIOS = [
     Element: () => <div>somee demo3 content</div> // main element
   },
   {
-    path: '/demo/4',
+    path: 'demo4',
     title: '__title_placeholder',
     description: '__description_placeholder',
     assets: [ /* this could contain icons, other react comps, images and etc if needfefd */ ],
@@ -44,7 +44,7 @@ export const SCENARIOS = [
     Element: () => <div>somee demo4 content</div> // main element
   },
   {
-    path: '/demo/5',
+    path: 'demo5',
     title: '__title_placeholder',
     description: '__description_placeholder',
     assets: [ /* this could contain icons, other react comps, images and etc if needfefd */ ],
@@ -54,7 +54,7 @@ export const SCENARIOS = [
     Element: () => <div>somee demo5 content</div> // main element
   },
   {
-    path: '/demo/6',
+    path: 'demo6',
     title: '__title_placeholder',
     description: '__description_placeholder',
     assets: [ /* this could contain icons, other react comps, images and etc if needfefd */ ],
@@ -64,7 +64,7 @@ export const SCENARIOS = [
     Element: () => <div>somee demo6 content</div> // main element
   },
   {
-    path: '/demo/7',
+    path: 'demo7',
     title: '__title_placeholder',
     description: '__description_placeholder',
     assets: [ /* this could contain icons, other react comps, images and etc if needfefd */ ],
@@ -74,7 +74,7 @@ export const SCENARIOS = [
     Element: () => <div>somee demo7 content</div> // main element
   },
   {
-    path: '/demo/8',
+    path: 'demo8',
     title: '__title_placeholder',
     description: '__description_placeholder',
     assets: [ /* this could contain icons, other react comps, images and etc if needfefd */ ],

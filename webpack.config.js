@@ -9,11 +9,13 @@ const env = dotenv.config().parsed
 module.exports = {
   entry: "./src/index.js",
   output: {
+    publicPath: '/',
     path: path.join(__dirname, "/build"),
     filename: "bundle.[contenthash].js",
     clean: true,
   },
   devServer: {
+    historyApiFallback: true,
     port: 3000,
   },
   devtool: "source-map",
