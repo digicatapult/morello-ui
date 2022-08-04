@@ -8,16 +8,15 @@ import App from './components/App'
 // available in react 18?
 //const root = ReactDOM.createRoot(document.getElementById('root'));
 
-function Root() {
-  const state = React.useContext(Context)
+const Root = () => (
+  <React.StrictMode>
+    <BrowserRouter>
+      <ContextProvider>
+        <App />
+      </ContextProvider>
+    </BrowserRouter>
+  </React.StrictMode>
+)
 
-  return <React.StrictMode>
-      <BrowserRouter>
-        <ContextProvider>
-          <App />
-        </ContextProvider>
-      </BrowserRouter>
-    </React.StrictMode>
-}
 
 ReactDOM.render(<Root />, document.getElementById('root'));
