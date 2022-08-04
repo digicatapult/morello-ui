@@ -54,5 +54,3 @@ export const Container = styled.div(({ size = 10, ...props }) => ({
   width: `${size * 10}%`,
   ...props,
 }))
-
-
