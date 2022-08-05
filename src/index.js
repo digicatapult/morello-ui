@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom'
 
 import { ContextProvider } from './context'
 import App from './components/App'
+import GlobalFonts from './assets/fonts/fonts'
 
 // available in react 18?
 //const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -10,6 +11,7 @@ import App from './components/App'
 const Root = () => (
   <React.StrictMode>
     <ContextProvider>
+        <GlobalFonts />
         <App />
     </ContextProvider>
   </React.StrictMode>

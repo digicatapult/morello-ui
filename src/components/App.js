@@ -7,11 +7,10 @@ import Header from './Header'
 
 export default function Page() {
   const state = React.useContext(Context)
-  console.log(state)
 
   return (
-    <Root width='80%'>
-      <Container width='100%' justifyContent='center' >
+    <Root display='flex' justifyContent='center'>
+      <Container maxWidth={1200} marging='50%'>
         <Header />
         <Content />
       </Container>

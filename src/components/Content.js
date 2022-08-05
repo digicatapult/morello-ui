@@ -24,15 +24,14 @@ function MainMenu(props) {
 }
 
 export default function Content() {
-  return <Wrapper height='90%'>
+  return (
     <BrowserRouter>
       <Routes>
         <Route exec path='/' element={<MainMenu />} />
-        {scenarios.map(({ path, Element, ...props }) => {
-          return <Route path={path} element={<Element {...props} />} />
-        })}
+        {scenarios.map(({ path, Element, ...props }) =>
+          <Route path={path} element={<Element {...props} />} />)}
         <Route path='*' element={<h1>not found</h1>} />
       </Routes>
     </BrowserRouter>
-  </Wrapper>
+  )
 }
