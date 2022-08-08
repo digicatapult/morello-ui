@@ -10,16 +10,18 @@ const Indicator = styled.div`
   width: 100%;
   justify-content: flex-end;
   flex-direction: row;
+  margin-top: 10px;
   transition: all 0.5s;
 `
 
 const Paper = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  align-items: flex-start;
+  text-align: left;
   opacity: 0.6;
-  width: 355px;
-  height: 317px;
+  width: 317px;
+  height: 355px;
   padding: 10px 20px;
   background: ${(props) => props.color};
   transition: all 0.5s;
@@ -41,7 +43,7 @@ export default function Card(props) {
   return (
     <Paper {...props}>
       <Indicator>
-        <img width={'20px'} height={'20px'} src={cardArrow} />
+        <img width={'21px'} height={'21px'} src={cardArrow} />
       </Indicator>
       <Spacer size={182} />
       <H1>{title}</H1>
