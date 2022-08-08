@@ -5,12 +5,14 @@ import { Routes, Route, BrowserRouter } from 'react-router-dom'
 import { scenarios } from '../constants'
 import Card from './Card'
 import { Container, Item } from './Common'
+import Header from './Header'
 
 function MainMenu() {
   const nav = useNavigate()
 
   return (
     <Container>
+      <Header />
       {scenarios.map((details, i) => (
         <Item
           key={details.color}
@@ -33,7 +35,7 @@ export default function sContent() {
       <Routes>
         <Route exec path={'/'} element={<MainMenu />} />
         {scenarios.map(({ path, Element, ...props }) => (
-          <Route key={path} wwpath={path} element={<Element {...props} />} />
+          <Route key={path} path={path} element={<Element {...props} />} />
         ))}
         <Route path={'*'} element={<h1>not found</h1>} />
       </Routes>

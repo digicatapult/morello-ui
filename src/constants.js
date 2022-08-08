@@ -1,5 +1,7 @@
 import React from 'react'
 
+import DemoOne from './layout/Demo1'
+
 export const scenarios = [
   {
     path: 'demo1',
@@ -12,7 +14,7 @@ export const scenarios = [
     other: {},
     fn1: () => {},
     fn2: () => {},
-    Element: () => <h1>test</h1>,
+    Element: (props) => <DemoOne {...props} />,
   },
   {
     path: 'demo2',
@@ -28,7 +30,7 @@ export const scenarios = [
     Element: () => <div>somee demo2 content</div>, // main element
   },
   {
-    path: '/demo/3',
+    path: 'demo3',
     title: 'Question number one two threee?',
     description: 'Out of Bounds write / Out of Bounds read. CWE Score 65.93',
     color: '#0C1B32',

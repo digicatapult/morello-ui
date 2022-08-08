@@ -43,10 +43,12 @@ module.exports = {
     ],
   },
   plugins: [
-    new DefinePlugin(Object.keys(env || []).reduce((out, next) => {
-      out[`process.env.${next}`] = JSON.stringify(env[next])
-      return out
-    }, {})),
+    new DefinePlugin(
+      Object.keys(env || []).reduce((out, next) => {
+        out[`process.env.${next}`] = JSON.stringify(env[next])
+        return out
+      }, {})
+    ),
     new HtmlWebpackPlugin({
       template: 'src/index.html',
     }),

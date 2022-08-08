@@ -1,19 +1,27 @@
 import React from 'react'
-import backgroundOld from '../assets/images/backgroundOld.png'
+import styled from 'styled-components'
 
-export default function DemoOne(props) {
-  console.log(props)
+import DemoHeader from '../components/Demo1Header'
+
+import backgroundDemoOne from '../assets/images/backgroundDemoOne.png' // whbt do we suffix with old??
+
+const Background = styled.div(() => ({
+  position: 'absolute',
+  display: 'block',
+  backgroundImage: `url(${backgroundDemoOne})`,
+  backgroundRepeat: 'no-repeat',
+  backgroundSize: 'auto',
+  width: '1920px',
+  height: '1080px',
+  zIndex: '-5',
+  padding: '0',
+}))
+
+export default function DemoOne({ title }) {
+  console.log(backgroundDemoOne)
   return (
-    <div
-      style={{
-        backgroundImage: backgroundOld,
-        width: '100%',
-        height: '100%',
-      }}
-    >
-      <div>
-        <h1>Demo One</h1>
-      </div>
-    </div>
+    <Background>
+      <DemoHeader title={title} />
+    </Background>
   )
 }
