@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { H1, P1 } from './Common'
+import { H1 } from './Common'
 
 const HeaderStyle = styled.div({
   backgroundColor: '#384D6C',
@@ -31,6 +31,18 @@ const LeftCross = styled.span({
   transform: 'rotate(-45deg)',
 })
 
+const Box = styled.div({
+  position: 'absolute',
+  left: '19.77%',
+  right: '19.77%',
+  top: '250px',
+  bottom: '14.45%',
+  width: '750px',
+  height: '600px',
+  background: '#343556',
+  boxShadow: '24px 24px 1px rgba(0, 0, 0, 0.8)',
+})
+
 export default function DemoHeader({ title }) {
   return (
     <HeaderStyle>
@@ -53,6 +65,7 @@ export default function DemoHeader({ title }) {
         <RightCross />
         <LeftCross />
       </span>
+      <Box> </Box>
     </HeaderStyle>
   )
 }
