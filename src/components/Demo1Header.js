@@ -48,9 +48,11 @@ export default function DemoHeader({ title }) {
       >
         {title ? title : 'Placeholder'}
       </H1>
-      <P1>Close</P1>
-      <RightCross />
-      <LeftCross />
+      <span>
+        <H1>Close</H1>
+        <RightCross />
+        <LeftCross />
+      </span>
     </HeaderStyle>
   )
 }
