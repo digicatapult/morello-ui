@@ -36,7 +36,7 @@ export const demos = [
     title: 'Do you believe your password is safe?',
     description: 'Out of Bounds write / Out of Bounds read. CWE Score 65.93',
     color: '#6C7076',
-    other: {},  
+    other: {},
     fn1: () => {},
     fn2: () => {},
     Element: () => <div>somee demo4 content</div>, // main element
@@ -46,7 +46,7 @@ export const demos = [
     title: 'Do you believe your password is safe?',
     description: 'Out of Bounds write / Out of Bounds read. CWE Score 65.93',
     color: '#D1B44E',
-    other: {},  
+    other: {},
     fn1: () => {},
     fn2: () => {},
     Element: () => <div>somee demo5 content</div>, // main element
@@ -56,7 +56,7 @@ export const demos = [
     title: 'Do you believe your password is safe?',
     description: 'Out of Bounds write / Out of Bounds read. CWE Score 65.93',
     color: '#959728',
-    other: {},  
+    other: {},
     fn1: () => {},
     fn2: () => {},
     Element: () => <div>somee demo6 content</div>, // main element
@@ -66,7 +66,7 @@ export const demos = [
     title: 'Do you believe your password is safe?',
     description: 'Out of Bounds write / Out of Bounds read. CWE Score 65.93',
     color: '#4F6C38',
-    other: {},  
+    other: {},
     fn1: () => {},
     fn2: () => {},
     Element: () => <div>somee demo7 content</div>, // main element
@@ -76,7 +76,7 @@ export const demos = [
     title: 'Do you believe your password is safe?',
     description: '__description_placeholder',
     color: '#546278',
-    other: {},  
+    other: {},
     fn1: () => {},
     fn2: () => {},
     Element: () => <div>somee demo8 content</div>, // main element
