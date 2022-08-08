@@ -12,7 +12,20 @@ const HeaderStle = styled.div({
 export default function DemoHeader({ title }) {
   return (
     <HeaderStle>
-      <H1>{title ? title : 'Placeholder'}</H1>
+      <H1
+        position={'absolute'}
+        lineHeight={'58px'}
+        letterSpacing={'-0.06em'}
+        left={'2.49%'}
+        right={'61.39%'}
+        top={'2.44%'}
+        bottom={'82.91%'}
+        fontStyle={'normal'}
+        fontWeight={'300'}
+        fontSize={'45px'}
+      >
+        {title ? title : 'Placeholder'}
+      </H1>
     </HeaderStle>
   )
 }
