@@ -9,10 +9,10 @@ const params = {
     display: 'flex',
     justifyContent: 'center',
     flexGrow: 1,
-  }
+  },
 }
 
-export const H1 = styled.h1(props => ({
+export const H1 = styled.h1((props) => ({
   fontFamily: 'AktivGrotesk',
   fontSize: '30px',
   lineHeight: '38px',
@@ -20,7 +20,7 @@ export const H1 = styled.h1(props => ({
   ...props,
 }))
 
-export const P1 = styled.p(props => ({ 
+export const P1 = styled.p((props) => ({
   fontFamily: 'AktivGrotesk',
   fontSize: '9px',
   color: '#FFFFFF',
@@ -29,8 +29,7 @@ export const P1 = styled.p(props => ({
 }))
 
 export const P2 = styled.p({ fontSize: '0.5em', color: 'palevioletred' })
-
-export const Root = styled.div(props => ({
+export const Root = styled.div((props) => ({
   display: 'block',
   alignItems: 'centeer',
   backgroundColor: '#F5F5F5',
@@ -38,11 +37,13 @@ export const Root = styled.div(props => ({
   ...props,
 }))
 
-export const Wrapper = styled.section(({ width = '100%', height, ...props}) => ({
-  width: props.width,
-  height: props.height,
-  ...props,
-}))
+export const Wrapper = styled.section(
+  ({ width = '100%', height, ...props }) => ({
+    width,
+    height,
+    ...props,
+  })
+)
 
 export const Item = styled.div(({ size = 1, ...props }) => ({
   ...params.flex,
@@ -64,12 +65,13 @@ export const Spacer = styled.div(({ size = 1 }) => ({
   height: `${size}px`,
 }))
 
-export const Row = styled.div({
+export const Row = styled.div((props) => ({
   display: 'flex',
   width: '100%',
   justifyContent: 'flex-start',
   flexDirection: 'row',
-})
+  ...props,
+}))
 
 export const Col = styled.div(({ size = 1, ...props }) => ({
   ...params.flex,

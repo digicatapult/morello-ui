@@ -2,31 +2,53 @@ import React from 'react'
 import styled from 'styled-components'
 
 import { H1, P1, Spacer } from './Common'
+import cardArrow from '../assets/images/card-arrow.png'
+
+const Indicator = styled.div`
+  display: flex;
+  opacity: 0;
+  width: 100%;
+  justify-content: flex-end;
+  flex-direction: row;
+  transition: all 0.5s;
+`
 
 const Paper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  width: 320px; 
-  height: 355px;
+  opacity: 0.6;
+  width: 355px;
+  height: 317px;
   padding: 10px 20px;
-  background-color: ${props => props.color};
-  transition: all .7s;
+  background: ${(props) => props.color};
+  transition: all 0.5s;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05), 0 1px 3px 0 rgba(0, 0, 0, 0.09);
   &:hover {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    background-color: red;
-  };
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.3),
+      0 6px 20px 0 rgba(0, 0, 0, 0.29);
+    opacity: 1;
+
+    ${Indicator} {
+      opacity: 1;
+    }
+  }
 `
 
 export default function Card(props) {
   const { title, description } = props
 
   return (
-    <Paper {...props} >
+    <Paper {...props}>
+      <Indicator>
+        <img width='"20px"' height='"20px"' src={cardArrow} />
+      </Indicator>
       <Spacer size={182} />
       <H1>{title}</H1>
-      <P1><b>Bug type: </b>{description}</P1>
+      <P1>
+        <b>Bug type: </b>
+        {description}
+      </P1>
     </Paper>
-  ) 
+  )
 }

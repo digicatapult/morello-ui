@@ -11,10 +11,10 @@ import GlobalFonts from './assets/fonts/fonts'
 const Root = () => (
   <React.StrictMode>
     <ContextProvider>
-        <GlobalFonts />
-        <App />
+      <GlobalFonts />
+      <App />
     </ContextProvider>
   </React.StrictMode>
 )
 
-ReactDOM.render(<Root />, document.getElementById('root'));
+ReactDOM.render(<Root />, document.getElementById('root'))

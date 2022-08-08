@@ -4,33 +4,38 @@ import { useNavigate } from 'react-router-dom'
 import { scenarios } from '../constants'
 import { Routes, Route, BrowserRouter } from 'react-router-dom'
 import Card from './Card'
-import { Container, Item, Wrapper } from './Common'
+import { Container, Item } from './Common'
 
-function MainMenu(props) {
+function MainMenu() {
   const nav = useNavigate()
 
   return (
     <Container>
-      {scenarios.map((details, i) =>
-        <Item size={2.3} onClick={(e) => {
-          e.preventDefault()
-          nav(`/demo${i + 1}`, { replace: true })
-        }}>
+      {scenarios.map((details, i) => (
+        <Item
+          key={details.description}
+          size={1.3}
+          onClick={(e) => {
+            e.preventDefault()
+            nav(`/demo${i + 1}`, { replace: true })
+          }}
+        >
           <Card {...details} />
         </Item>
-      )}
+      ))}
     </Container>
   )
 }
 
-export default function Content() {
+export default function sContent() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route exec path='/' element={<MainMenu />} />
-        {scenarios.map(({ path, Element, ...props }) =>
-          <Route path={path} element={<Element {...props} />} />)}
-        <Route path='*' element={<h1>not found</h1>} />
+        <Route exec path='"/"' element={<MainMenu />} />
+        {scenarios.map(({ path, Element, ...props }) => (
+          <Route key={path} wwpath={path} element={<Element {...props} />} />
+        ))}
+        <Route path='"*"' element={<h1>not found</h1>} />
       </Routes>
     </BrowserRouter>
   )

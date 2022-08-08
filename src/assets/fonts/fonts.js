@@ -1,6 +1,6 @@
 import { createGlobalStyle } from 'styled-components'
-import AktivGroteskWoff from './AktivGrotesk.woff';
-import AktivGroteskWoff2 from './AktivGrotesk.woff2';
+import AktivGroteskWoff from './AktivGrotesk.woff'
+import AktivGroteskWoff2 from './AktivGrotesk.woff2'
 
 export default createGlobalStyle`
     @font-face {
@@ -10,4 +10,4 @@ export default createGlobalStyle`
         url(${AktivGroteskWoff}) format('woff');
         font-style: normal;
     }
-`;
+`
