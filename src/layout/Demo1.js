@@ -7,14 +7,15 @@ import backgroundDemoOne from '../assets/images/backgroundDemoOne.png' // whbt d
 
 const Background = styled.div(() => ({
   position: 'absolute',
-  display: 'block',
   backgroundImage: `url(${backgroundDemoOne})`,
   backgroundRepeat: 'no-repeat',
-  backgroundSize: 'auto',
-  width: '1920px',
-  height: '1080px',
   zIndex: '-5',
   padding: '0',
+  position: 'fixed',
+  top: '0',
+  left: '0',
+  minWidth: '100%',
+  minHeight: '100%',
 }))
 
 export default function DemoOne({ title }) {
