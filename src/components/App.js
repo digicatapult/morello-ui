@@ -11,7 +11,12 @@ export default function Page() {
 
   return (
     <Root display={'flex'} justifyContent={'center'}>
-      <Container padding={'24px 24px'} maxHeight={'1024px'} maxWidth={'1366px'} marging={'50%'}>
+      <Container
+        padding={'24px 24px'}
+        maxHeight={'1024px'}
+        maxWidth={'1366px'}
+        marging={'50%'}
+      >
         <Header />
         <Content />
       </Container>
