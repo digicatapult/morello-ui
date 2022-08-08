@@ -10,8 +10,8 @@ export default function Page() {
   console.log({ state })
 
   return (
-    <Root display="flex" justifyContent="enter">
-      <Container maxWidth={1200} marging='"50%"'>
+    <Root display={'flex'} justifyContent={'center'}>
+      <Container maxWidth={1200} marging={'50%'}>
         <Header />
         <Content />
       </Container>

@@ -41,7 +41,7 @@ export default function Card(props) {
   return (
     <Paper {...props}>
       <Indicator>
-        <img width='"20px"' height='"20px"' src={cardArrow} />
+        <img width={'20px'} height={'20px'} src={cardArrow} />
       </Indicator>
       <Spacer size={182} />
       <H1>{title}</H1>

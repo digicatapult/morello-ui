@@ -1,6 +1,5 @@
 {
   "extends": [
-    "eslint:recommended",
     "plugin:react/recommended",
     "prettier"
   ],
@@ -27,14 +26,14 @@
     }
   },
   "rules": {
-    "prettier/prettier": "error",
+    "jsx-quotes": ["error", "prefer-single"],
+    "prettier/prettier": ["error", { "singleQuote": true }],
     "react/jsx-filename-extension": 0,
     "react/require-default-props": 0,
     "react/sort-comp": 0,
     "react/destructuring-assignment": 0,
     "react/no-access-state-in-setstate": 0,
     "react/no-danger": 0,
-    "react/no-array-index-key": "warn",
     "no-useless-constructor": "error",
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",

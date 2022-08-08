@@ -32,7 +32,6 @@ export const P2 = styled.p({ fontSize: '0.5em', color: 'palevioletred' })
 export const Root = styled.div((props) => ({
   display: 'block',
   alignItems: 'centeer',
-  backgroundColor: '#F5F5F5',
   ...params.screen,
   ...props,
 }))
