@@ -9,7 +9,7 @@
     "build": "webpack",
     "depcheck": "depcheck",
     "test:dev": "npx cypress open-ct",
-    "test:integration": "npx cypress run --config-file=cypress.config.js"
+    "test:integration": "npx cypress run"
   },
   "repository": {
     "type": "git",
