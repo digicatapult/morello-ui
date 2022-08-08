@@ -33,7 +33,7 @@ export default function sContent() {
       <Routes>
         <Route exec path={'/'} element={<MainMenu />} />
         {scenarios.map(({ path, Element, ...props }) => (
-          <Route key={path} wwpath={path} element={<Element {...props} />} />
+          <Route key={path} path={path} element={<Element {...props} />} />
         ))}
         <Route path={'*'} element={<h1>not found</h1>} />
       </Routes>
