@@ -31,7 +31,7 @@ export const P1 = styled.p((props) => ({
 export const P2 = styled.p({ fontSize: '0.5em', color: 'palevioletred' })
 export const Root = styled.div((props) => ({
   display: 'block',
-  alignItems: 'centeer',
+  alignItems: 'center',
   ...params.screen,
   ...props,
 }))

@@ -3,6 +3,8 @@ import styled from 'styled-components'
 
 import { H1, P1, Spacer } from './Common'
 import cardArrow from '../assets/images/card-arrow.png'
+import HackerIcon from './HackerIcon'
+import ProgressBar from './ProgressBar'
 
 const Indicator = styled.div`
   display: flex;
@@ -46,6 +48,8 @@ export default function Card(props) {
         <img width={'21px'} height={'21px'} src={cardArrow} />
       </Indicator>
       <Spacer size={182} />
+      <HackerIcon iconText={'Hacker app'} />
+      <ProgressBar progress={'10'} />
       <H1>{title}</H1>
       <P1>
         <b>Bug type: </b>
