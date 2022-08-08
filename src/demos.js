@@ -56,7 +56,6 @@ export const demos = [
     title: 'Do you believe your password is safe?',
     description: 'Out of Bounds write / Out of Bounds read. CWE Score 65.93',
     color: '#959728',
-    assets: [ /* this could contain icons, other react comps, images and etc if needfefd */ ],
     other: {},  
     fn1: () => {},
     fn2: () => {},
@@ -70,7 +69,7 @@ export const demos = [
     other: {},  
     fn1: () => {},
     fn2: () => {},
-    Element: () => <div>somee demo7 content</div> // main element
+    Element: () => <div>somee demo7 content</div>, // main element
   },
   {
     path: 'demo8',
@@ -80,6 +79,6 @@ export const demos = [
     other: {},  
     fn1: () => {},
     fn2: () => {},
-    Element: () => <div>somee demo8 content</div> // main element
+    Element: () => <div>somee demo8 content</div>, // main element
   },
 ]

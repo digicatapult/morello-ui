@@ -1,11 +1,13 @@
 import React from 'react'
 
 export const Context = React.createContext({
+  ctx: true,
   update: () => {},
 })
 
 export const ContextProvider = ({ children }) => {
   const initState = {
+    ctx: true,
     update: (newState) => setState({ ...state, ...newState }),
   }
 

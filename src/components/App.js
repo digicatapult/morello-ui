@@ -7,7 +7,6 @@ import Header from './Header'
 
 export default function Page() {
   const state = React.useContext(Context)
-  console.log('context: ', { state, env: process.env })
 
   return (
     <Root display={'flex'} justifyContent={'center'}>

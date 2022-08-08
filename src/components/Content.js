@@ -27,7 +27,7 @@ function MainMenu() {
   )
 }
 
-export default function sContent() {
+export default function Content() {
   return (
     <BrowserRouter>
       <Routes>
