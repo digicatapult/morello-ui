@@ -1,17 +1,39 @@
 import React from 'react'
 import styled from 'styled-components'
-import { H1 } from './Common'
+import { H1, P1 } from './Common'
 
-const HeaderStle = styled.div({
+const HeaderStyle = styled.div({
   backgroundColor: '#384D6C',
   width: '100%',
   height: '164px',
   position: 'absolute',
 })
 
+const RightCross = styled.span({
+  position: 'absolute',
+  left: '96.63%',
+  right: '1.39%',
+  top: '35%',
+  bottom: '92.77%',
+
+  border: '2px solid #FFFFFF',
+  transform: 'rotate(45deg)',
+})
+
+const LeftCross = styled.span({
+  position: 'absolute',
+  left: '96.63%',
+  right: '1.39%',
+  top: '35%',
+  bottom: '92.77%',
+
+  border: '2px solid #FFFFFF',
+  transform: 'rotate(-45deg)',
+})
+
 export default function DemoHeader({ title }) {
   return (
-    <HeaderStle>
+    <HeaderStyle>
       <H1
         position={'absolute'}
         lineHeight={'58px'}
@@ -26,6 +48,9 @@ export default function DemoHeader({ title }) {
       >
         {title ? title : 'Placeholder'}
       </H1>
-    </HeaderStle>
+      <P1>Close</P1>
+      <RightCross />
+      <LeftCross />
+    </HeaderStyle>
   )
 }
