@@ -13,14 +13,27 @@ const Image = styled.img(({ source }) => ({
   src: `${source}`,
 }))
 
-//<img width={'40px'} height={'40px'} src={crossIcon} />
-
 export default function BoxIcons() {
   return (
     <Row>
-      <img width={'40px'} height={'40px'} src={crossIcon} />
-      <img width={'40px'} height={'40px'} src={minimise} />
-      <img width={'40px'} height={'40px'} src={icon} />
+      <img
+        width={'40px'}
+        height={'40px'}
+        style={{ padding: '8px' }}
+        src={crossIcon}
+      />
+      <img
+        width={'40px'}
+        height={'40px'}
+        style={{ padding: '8px' }}
+        src={minimise}
+      />
+      <img
+        width={'40px'}
+        height={'40px'}
+        style={{ padding: '8px' }}
+        src={icon}
+      />
     </Row>
   )
 }
