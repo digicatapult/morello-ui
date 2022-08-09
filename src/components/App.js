@@ -12,8 +12,8 @@ export default function Page() {
     <Root display={'flex'} justifyContent={'center'}>
       <Container
         padding={'24px 24px'}
-        maxHeight={'1024px'}
-        maxWidth={'1366px'}
+        maxHeight={'1080px'}
+        maxWidth={'1920px'}
         marging={'50%'}
       >
         <Content />

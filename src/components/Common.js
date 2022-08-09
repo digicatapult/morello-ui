@@ -38,6 +38,7 @@ export const Root = styled.div((props) => ({
 
 export const Wrapper = styled.section(
   ({ width = '100%', height, ...props }) => ({
+    ...params.flex,
     width,
     height,
     ...props,
