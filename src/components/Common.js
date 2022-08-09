@@ -80,3 +80,8 @@ export const Col = styled.div(({ size = 1, ...props }) => ({
   height: '100%',
   ...props,
 }))
+
+export const RowSpacer = styled.div(({ size = 1 }) => ({
+  height: '100%',
+  width: `${size * 10}%`,
+}))

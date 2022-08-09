@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { H1, Row, Col } from '../Common'
+import { H1, Row, Col, RowSpacer } from '../Common'
 
 const HeaderStyle = styled.div({
   position: 'absolute',
@@ -9,31 +9,11 @@ const HeaderStyle = styled.div({
   height: '164px',
 })
 
-const RightCross = styled.span({
-  position: 'absolute',
-  left: '96.63%',
-  right: '1.39%',
-  top: '35%',
-  bottom: '92.77%',
-  border: '2px solid #FFFFFF',
-  transform: 'rotate(45deg)',
-})
-
-const LeftCross = styled.span({
-  position: 'absolute',
-  left: '96.63%',
-  right: '1.39%',
-  top: '35%',
-  bottom: '92.77%',
-  border: '2px solid #FFFFFF',
-  transform: 'rotate(-45deg)',
-})
-
 export default function DemoHeader({ title }) {
   return (
     <HeaderStyle>
-      <Row>
-        <Col size={1} paddingLeft={'100px'}>
+      <Row height={'100%'}>
+        <Col size={2} paddingLeft={'50px'} alignItems={'start'}>
           <H1
             lineHeight={'58px'}
             letterSpacing={'-0.06em'}
@@ -44,10 +24,9 @@ export default function DemoHeader({ title }) {
             {title ? title : 'Placeholder'}
           </H1>
         </Col>
-        <Col size={4}>
+        <RowSpacer size={5} />
+        <Col size={3} paddingRight={'50px'} alignItems={'end'}>
           <H1>Close</H1>
-          <RightCross />
-          <LeftCross />
         </Col>
       </Row>
     </HeaderStyle>

@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 import BoxIcons from './BoxIcons'
+import DemoOneInput from './DemoOneInput'
 
 const Box = styled.div({
   position: 'absolute',
@@ -32,7 +33,9 @@ export default function DemoOneBox() {
   return (
     <Box>
       <BoxIcons />
-      <BoxBorder />
+      <BoxBorder>
+        <DemoOneInput />
+      </BoxBorder>
     </Box>
   )
 }
