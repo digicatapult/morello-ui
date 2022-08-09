@@ -1,10 +1,30 @@
 # Morello UI
 A GUI for executing binaries on morello board
 
+
 ## Integration E2E testing
 This repository uses Cypress for testing UI. Specs can be found in `cypress/integration`.
 **Test Types**
 - `smoke` - checks if renders root component
+
+### Local development
+Pretty much a standard one as for every other ReactJS app. There will be some .env that will require to be added/updated, but for time being it's to early.
+
+1. Start with installing dependencies
+```
+npm i
+```
+2. Start the development webpack
+```
+npm start
+```
+#### Production
+For production and a web service we will utilise webpack to bundle everything together by running the below command
+```
+npm build
+```
+This will create a `build/` folder where bundled .js files will live which can be served by the web service.
+
 
 ### Project Insights
 > Web Assets like images fonts and etc

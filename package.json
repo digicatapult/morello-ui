@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "lint": "eslint --ext .js .",
-    "start": "webpack-dev-server --mode=development",
+    "start": "webpack-dev-server --mode=production",
     "build": "webpack",
     "depcheck": "depcheck",
     "test:dev": "npx cypress open-ct",
