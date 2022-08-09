@@ -63,6 +63,3 @@ This repository uses Cypress for testing UI. Specs can be found in `cypress/inte
 - at the moment we don;'t check types, but looks like in the future we will implement envalid
 - all env vars are loaded via webpack and mapped to `priocess.env`
 - also .env is not in gitignore just yet
-
-
-
