@@ -28,21 +28,12 @@ export const P1 = styled.p((props) => ({
   ...props,
 }))
 
-export const P2 = styled.p({ fontSize: '0.5em', color: 'palevioletred' })
 export const Root = styled.div((props) => ({
   display: 'block',
   alignItems: 'centeer',
   ...params.screen,
   ...props,
 }))
-
-export const Wrapper = styled.section(
-  ({ width = '100%', height, ...props }) => ({
-    width,
-    height,
-    ...props,
-  })
-)
 
 // Size gooes from 1 - 10 multiplied by 10
 export const Container = styled.div(({ size = 1, styles = {} }) => ({
