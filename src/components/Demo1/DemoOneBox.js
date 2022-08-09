@@ -1,6 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 
+import BoxIcons from './BoxIcons'
+
 const Box = styled.div({
   position: 'absolute',
   left: '25%',
@@ -29,6 +31,7 @@ const BoxBorder = styled.div({
 export default function DemoOneBox() {
   return (
     <Box>
+      <BoxIcons />
       <BoxBorder />
     </Box>
   )

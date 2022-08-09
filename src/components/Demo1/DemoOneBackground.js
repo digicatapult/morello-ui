@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-import backgroundDemoOne from '../../assets/images/backgroundDemoOne.png'
+import backgroundDemoOne from '../../assets/images/background-demo-one.png'
 
 export const DemoOneBackground = styled.div(() => ({
   position: 'absolute',
