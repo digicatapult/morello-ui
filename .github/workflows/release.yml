@@ -119,7 +119,7 @@ jobs:
           echo "Skipping release as current version has already been published"
   publish:
     name: 'Publish package'
-    needs: [preconditions, dependency-check, tests, check-version, lint]
+    needs: [preconditions, dependency-check, integration, check-version, lint]
     runs-on: ubuntu-latest
     if: ${{ needs.check-version.outputs.is_new_version == 'true' }}
 
