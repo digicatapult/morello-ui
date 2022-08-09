@@ -2,7 +2,7 @@ import React from 'react'
 import { Routes, Route, BrowserRouter } from 'react-router-dom'
 
 import MainMenu from './MainMenu'
-import { demos } from '../demos'
+import { demos } from '../fixtures/demos'
 
 export default function Content() {
   return (

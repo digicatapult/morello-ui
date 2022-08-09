@@ -1,4 +1,16 @@
 import React from 'react'
+import { Navigate } from 'react-router-dom'
+
+function back(e) {
+  e.preventDefault()
+  return <Navigate to={'/'} />
+}
+
+function proceed(e) {
+  e.preventDefault()
+  console.log('proceeding....')
+  return null
+}
 
 export const demos = [
   {
@@ -7,9 +19,10 @@ export const demos = [
     description: 'Out of Bounds write / Out of Bounds read. CWE Score 65.93',
     color: '#384D6C',
     other: {},
-    fn1: () => {},
-    fn2: () => {},
-    Element: () => <h1>test</h1>,
+    back,
+    proceed,
+    Element: (props) => <button onClick={props.back}></button>,
+    fn: () => {},
   },
   {
     path: 'demo2',
@@ -17,9 +30,10 @@ export const demos = [
     description: 'Out of Bounds write / Out of Bounds read. CWE Score 65.93',
     color: '#6C3838',
     other: {},
-    fn1: () => {},
-    fn2: () => {},
+    back,
+    proceed,
     Element: () => <div>somee demo2 content</div>,
+    fn: () => {},
   },
   {
     path: 'demo3',
@@ -27,9 +41,10 @@ export const demos = [
     description: 'Out of Bounds write / Out of Bounds read. CWE Score 65.93',
     color: '#0C1B32',
     other: {},
-    fn1: () => {},
-    fn2: () => {},
+    back,
+    proceed,
     Element: () => <div>somee demo3 content</div>, // main element
+    fn: () => {},
   },
   {
     path: 'demo4',
@@ -37,9 +52,10 @@ export const demos = [
     description: 'Out of Bounds write / Out of Bounds read. CWE Score 65.93',
     color: '#6C7076',
     other: {},
-    fn1: () => {},
-    fn2: () => {},
+    back,
+    proceed,
     Element: () => <div>somee demo4 content</div>, // main element
+    fn1: () => {},
   },
   {
     path: 'demo5',
@@ -47,8 +63,9 @@ export const demos = [
     description: 'Out of Bounds write / Out of Bounds read. CWE Score 65.93',
     color: '#D1B44E',
     other: {},
+    back,
     fn1: () => {},
-    fn2: () => {},
+    proceed,
     Element: () => <div>somee demo5 content</div>, // main element
   },
   {
@@ -57,8 +74,9 @@ export const demos = [
     description: 'Out of Bounds write / Out of Bounds read. CWE Score 65.93',
     color: '#959728',
     other: {},
+    back,
     fn1: () => {},
-    fn2: () => {},
+    proceed,
     Element: () => <div>somee demo6 content</div>, // main element
   },
   {
@@ -67,8 +85,9 @@ export const demos = [
     description: 'Out of Bounds write / Out of Bounds read. CWE Score 65.93',
     color: '#4F6C38',
     other: {},
+    back,
     fn1: () => {},
-    fn2: () => {},
+    proceed,
     Element: () => <div>somee demo7 content</div>, // main element
   },
   {
@@ -77,8 +96,9 @@ export const demos = [
     description: '__description_placeholder',
     color: '#546278',
     other: {},
+    back,
     fn1: () => {},
-    fn2: () => {},
+    proceed,
     Element: () => <div>somee demo8 content</div>, // main element
   },
 ]

@@ -1,11 +1,9 @@
 import React from 'react'
-import { Root, Container } from './Common'
-// import { Context } from '../context'
+import { Root, Container, Spacer } from './Common'
 import Router from './Router'
 import Header from './Header'
 
-export default function Page() {
-  // const state = React.useContext(Context)
+export default function App() {
   return (
     <Root display={'flex'} justifyContent={'center'}>
       <Container
@@ -18,6 +16,7 @@ export default function Page() {
       >
         <Header />
         <Router />
+        <Spacer size={100} />
       </Container>
     </Root>
   )
