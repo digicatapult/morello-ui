@@ -1,31 +1,8 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
 import { Routes, Route, BrowserRouter } from 'react-router-dom'
 
+import MainMenu from './MainMenu'
 import { demos } from '../demos'
-import Card from './Card'
-import { Container, Item } from './Common'
-
-function MainMenu() {
-  const nav = useNavigate()
-
-  return (
-    <Container>
-      {demos.map((details) => (
-        <Item
-          key={details.color}
-          size={2.3}
-          onClick={(e) => {
-            e.preventDefault()
-            nav(details.path, { replace: true })
-          }}
-        >
-          <Card {...details} />
-        </Item>
-      ))}
-    </Container>
-  )
-}
 
 export default function Content() {
   return (
