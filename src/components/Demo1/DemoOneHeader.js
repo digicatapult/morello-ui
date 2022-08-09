@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { H1 } from './Common'
+import { H1 } from '../Common'
 
 const HeaderStyle = styled.div({
   backgroundColor: '#384D6C',
@@ -77,7 +77,7 @@ export default function DemoHeader({ title }) {
         <LeftCross />
       </span>
       <Box>
-        <BoxBorder />{' '}
+        <BoxBorder />
       </Box>
     </HeaderStyle>
   )
