@@ -6,6 +6,7 @@
   "scripts": {
     "lint": "eslint --ext .js .",
     "lint:fix": "$(npm bin)/eslint src/**/*.js --fix",
+    "dev": "webpack-dev-server --mode=development",
     "start": "webpack-dev-server --mode=production",
     "build": "webpack",
     "depcheck": "depcheck",
