@@ -16,7 +16,7 @@ npm i
 ```
 2. Start the development webpack
 ```
-npm start
+npm run dev
 ```
 #### Production
 For production and a web service we will utilise webpack to bundle everything together by running the below command
