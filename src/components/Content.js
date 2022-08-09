@@ -2,7 +2,7 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Routes, Route, BrowserRouter } from 'react-router-dom'
 
-import { scenarios } from '../constants'
+import { demos } from '../demos'
 import Card from './Card'
 import { Container, Item } from './Common'
 
@@ -11,13 +11,13 @@ function MainMenu() {
 
   return (
     <Container>
-      {scenarios.map((details, i) => (
+      {demos.map((details) => (
         <Item
           key={details.color}
           size={2.3}
           onClick={(e) => {
             e.preventDefault()
-            nav(`/demo${i + 1}`, { replace: true })
+            nav(details.path, { replace: true })
           }}
         >
           <Card {...details} />
@@ -27,12 +27,12 @@ function MainMenu() {
   )
 }
 
-export default function sContent() {
+export default function Content() {
   return (
     <BrowserRouter>
       <Routes>
         <Route exec path={'/'} element={<MainMenu />} />
-        {scenarios.map(({ path, Element, ...props }) => (
+        {demos.map(({ path, Element, ...props }) => (
           <Route key={path} path={path} element={<Element {...props} />} />
         ))}
         <Route path={'*'} element={<h1>not found</h1>} />
