@@ -1,23 +1,22 @@
 import React from 'react'
-
-import { Root, Container } from './Common'
-// import { Context } from '../context'
-import Content from './Content'
+import { Root, Container, Spacer } from './Common'
+import Router from './Router'
 import Header from './Header'
 
-export default function Page() {
-  // const state = React.useContext(Context)
-
+export default function App() {
   return (
     <Root display={'flex'} justifyContent={'center'}>
       <Container
-        padding={'24px 24px'}
-        maxHeight={'1024px'}
-        maxWidth={'1366px'}
-        marging={'50%'}
+        size={10}
+        styles={{
+          flexDirection: 'column',
+          maxHeight: '1024px',
+          maxWidth: '1366px',
+        }}
       >
         <Header />
-        <Content />
+        <Router />
+        <Spacer size={100} />
       </Container>
     </Root>
   )

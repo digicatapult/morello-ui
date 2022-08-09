@@ -28,7 +28,6 @@ export const P1 = styled.p((props) => ({
   ...props,
 }))
 
-export const P2 = styled.p({ fontSize: '0.5em', color: 'palevioletred' })
 export const Root = styled.div((props) => ({
   display: 'block',
   alignItems: 'centeer',
@@ -36,27 +35,11 @@ export const Root = styled.div((props) => ({
   ...props,
 }))
 
-export const Wrapper = styled.section(
-  ({ width = '100%', height, ...props }) => ({
-    width,
-    height,
-    ...props,
-  })
-)
-
-export const Item = styled.div(({ size = 1, ...props }) => ({
+// Size gooes from 1 - 10 multiplied by 10
+export const Container = styled.div(({ size = 1, styles = {} }) => ({
   ...params.flex,
-  alignItems: 'center',
   width: `${size * 10}%`,
-  padding: 2,
-  ...props,
-}))
-
-export const Container = styled.div(({ size = 10, ...props }) => ({
-  ...params.flex,
-  flexFlow: 'row wrap',
-  width: `${size * 10}%`,
-  ...props,
+  ...styles,
 }))
 
 export const Spacer = styled.div(({ size = 1 }) => ({
