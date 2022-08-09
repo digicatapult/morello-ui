@@ -9,8 +9,9 @@ export default function Page() {
   return (
     <Root display={'flex'} justifyContent={'center'}>
       <Container
-        mid
+        size={10}
         styles={{
+          flexDirection: 'column',
           maxHeight: '1024px',
           maxWidth: '1366px',
         }}
