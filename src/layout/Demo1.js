@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 
 import DemoHeader from '../components/Demo1/DemoOneHeader'
@@ -15,11 +15,21 @@ const Wrapper = styled.div`
 `
 
 export default function DemoOne(props) {
+  const [finalPassword, setFinalPassword] = useState('')
+
+  useEffect(() => {
+    console.log('Final Passwrd: ', finalPassword)
+  }, [finalPassword])
+
   return (
     <DemoOneBackground>
       <DemoHeader title={props.title} />
       <Wrapper>
-        <DemoOneBox {...props} background={'#343556'} />
+        <DemoOneBox
+          {...props}
+          background={'#343556'}
+          setFinalPassword={setFinalPassword}
+        />
       </Wrapper>
     </DemoOneBackground>
   )

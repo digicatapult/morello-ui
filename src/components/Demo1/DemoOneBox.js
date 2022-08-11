@@ -54,6 +54,8 @@ const Body = styled.div({
 })
 
 export default function DemoOneBox(props) {
+  console.log(props)
+  const { setFinalPassword } = props
   return (
     <Box background={props.background}>
       <Row padding={'8px'} alignItems={'center'}>
@@ -69,7 +71,7 @@ export default function DemoOneBox(props) {
             <br />
             Please input a keyword of choice.
           </Text>
-          <DemoOneInput />
+          <DemoOneInput setFinalPassword={setFinalPassword} />
         </Body>
       </Row>
     </Box>

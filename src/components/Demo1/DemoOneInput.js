@@ -37,7 +37,7 @@ const Button = styled.button({
   cursor: 'pointer',
 })
 
-export default function DemoOneInput() {
+export default function DemoOneInput({ setFinalPassword }) {
   const [password, setPassword] = useState('')
 
   const passwordChange = (e) => {
@@ -47,15 +47,7 @@ export default function DemoOneInput() {
 
   const enterPassword = (e) => {
     e.preventDefault()
-    setPassword(e.target.value)
-    console.log(password)
-  }
-
-  const handleClick = (e) => {
-    e.preventDefault()
-    setPassword(e.target.value)
-    console.log(password)
-    //Get password from usestate
+    setFinalPassword(password)
   }
 
   return (
@@ -78,7 +70,7 @@ export default function DemoOneInput() {
           />
           <Button
             onClick={(e) => {
-              handleClick(e)
+              enterPassword(e)
             }}
           />
         </Row>
