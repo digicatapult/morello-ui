@@ -6,7 +6,8 @@
   "scripts": {
     "lint": "eslint --ext .js .",
     "lint:fix": "$(npm bin)/eslint src/**/*.js --fix",
-    "start": "webpack-dev-server --mode=production",
+    "dev": "webpack-dev-server --mode=development",
+    "start": "webpack-dev-server",
     "build": "webpack",
     "depcheck": "depcheck",
     "test:dev": "npx cypress open-ct",
@@ -32,9 +33,6 @@
       "last 1 safari version"
     ]
   },
-  "keywords": [
-    "OpenAPI"
-  ],
   "author": "Digital Catapult",
   "license": "Apache-2.0",
   "bugs": {

@@ -22,8 +22,8 @@ const Paper = styled.div`
   align-items: flex-start;
   text-align: left;
   opacity: 0.6;
-  width: 317px;
-  height: 355px;
+  width: 400px;
+  height: 450px;
   padding: 10px 20px;
   background: ${(props) => props.color};
   transition: all 0.5s;

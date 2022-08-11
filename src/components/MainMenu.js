@@ -5,11 +5,11 @@ import styled from 'styled-components'
 import { Context } from '../utils/context'
 import { demos } from '../fixtures/demos'
 import Card from './Card'
-import { Container } from './Common'
+import { Container, Spacer } from './Common'
+import Header from './Header'
 
 const ItemWrap = styled.div((props) => ({
   display: 'flex',
-  width: '300px',
   padding: 2,
   backgroundColor: props.color,
 }))
@@ -21,20 +21,27 @@ export default function MainMenu() {
   return (
     <Container
       size={10}
-      style={{ justifyContent: 'flex-start', flexFlow: 'row wrap' }}
+      style={{ flexDirection: 'column', justifyContent: 'center' }}
     >
-      {demos.map((details) => (
-        <ItemWrap
-          key={details.color}
-          onClick={(e) => {
-            e.preventDefault()
-            state.update({ counter: state.counter + 1, a: 'a' })
-            nav(details.path, { replace: true })
-          }}
-        >
-          <Card {...details} />
-        </ItemWrap>
-      ))}
+      <Header />
+      <Container
+        size={10}
+        style={{ justifyContent: 'flex-start', flexFlow: 'row wrap' }}
+      >
+        {demos.map((details) => (
+          <ItemWrap
+            key={details.color}
+            onClick={(e) => {
+              e.preventDefault()
+              state.update({ counter: state.counter + 1, a: 'a' })
+              nav(details.path, { replace: true })
+            }}
+          >
+            <Card {...details} />
+          </ItemWrap>
+        ))}
+      </Container>
+      <Spacer size={100} />
     </Container>
   )
 }
