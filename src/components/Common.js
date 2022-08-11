@@ -65,6 +65,11 @@ export const Spacer = styled.div(({ size = 1 }) => ({
   height: `${size}px`,
 }))
 
+export const RowSpacer = styled.div(({ size = 1 }) => ({
+  height: '100%',
+  width: `${size * 10}%`,
+}))
+
 export const Row = styled.div((props) => ({
   display: 'flex',
   width: '100%',

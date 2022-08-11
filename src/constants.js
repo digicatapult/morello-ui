@@ -8,6 +8,8 @@ export const scenarios = [
     title: 'Do you believe your password is safe?',
     description: 'Out of Bounds write / Out of Bounds read. CWE Score 65.93',
     color: '#384D6C',
+    windowTitle: 'SUPER_SAFE_APP.EXE',
+    hackerWindowTitle: 'hacker.app',
     assets: [
       /* this could contain icons, other react comps, images and etc if needfefd */
     ],

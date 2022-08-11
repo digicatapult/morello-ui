@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { H1, Row, Col } from '../Common'
+import { H1, Row, Col, RowSpacer } from '../Common'
 
 const HeaderStyle = styled.div({
   backgroundColor: '#384D6C',
@@ -12,7 +12,7 @@ export default function DemoHeader({ title }) {
   return (
     <HeaderStyle>
       <Row height={'100%'}>
-        <Col size={1} paddingLeft={'100px'}>
+        <Col size={2} paddingLeft={'50px'} alignItems={'start'}>
           <H1
             lineHeight={'58px'}
             letterSpacing={'-0.06em'}
@@ -23,7 +23,8 @@ export default function DemoHeader({ title }) {
             {title ? title : 'Placeholder'}
           </H1>
         </Col>
-        <Col size={4}>
+        <RowSpacer size={5} />
+        <Col size={3} paddingRight={'50px'} alignItems={'end'}>
           <H1>Close</H1>
         </Col>
       </Row>

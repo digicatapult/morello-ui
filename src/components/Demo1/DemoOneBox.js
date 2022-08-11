@@ -7,7 +7,7 @@ import icon from '../../assets/images/icon-demo-one.png'
 
 import { Row } from '../Common'
 
-export const H1 = styled.h1((props) => ({
+export const Title = styled.p((props) => ({
   fontFamily: 'Monaco',
   fontSize: '30px',
   color: '#FFFFFF',
@@ -17,7 +17,7 @@ export const H1 = styled.h1((props) => ({
   ...props,
 }))
 
-export const H2 = styled.h2((props) => ({
+export const Text = styled.p((props) => ({
   fontFamily: 'Monaco',
   fontSize: '18px',
   color: '#FFFFFF',
@@ -53,18 +53,18 @@ const Body = styled.div({
 })
 
 export default function DemoOneBox(props) {
-  const past = Date.now()
+  const past = new Date().toLocaleString()
   return (
-    <Box {...props}>
+    <Box background={props.background}>
       <Row padding={'8px'} alignItems={'center'}>
         <Icon src={crossIcon} />
         <Icon src={minimise} />
         <Icon src={icon} />
-        <H1>SUPER_SAFE_APP.EXE</H1>
+        <Title>{props.windowTitle}</Title>
       </Row>
       <Row flex={'auto'}>
         <Body>
-          <H2>Last login: {past} on ttys001</H2>
+          <Text>Last login: {past} on ttys001</Text>
         </Body>
       </Row>
     </Box>
