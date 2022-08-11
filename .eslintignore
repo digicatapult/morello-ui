@@ -3,4 +3,3 @@ build
 package.json
 webpack.config.js
 cypress.config.js
-src/constants.js

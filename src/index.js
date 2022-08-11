@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import { ContextProvider } from './context'
+import { ContextProvider } from './utils/context'
 import App from './components/App'
 import GlobalFonts from './assets/fonts/fonts'
 
