@@ -20,6 +20,7 @@ export const demos = [
     title: 'Do you believe your password is safe?',
     description: 'Out of Bounds write / Out of Bounds read. CWE Score 65.93',
     color: '#384D6C',
+    windowTitle: 'SUPER_SAFE_APP.EXE',
     other: {},
     back,
     proceed,
@@ -39,7 +40,7 @@ export const demos = [
   },
   {
     path: 'demo3',
-    title: 'Question number one two threee?',
+    title: 'Question number one two three?',
     description: 'Out of Bounds write / Out of Bounds read. CWE Score 65.93',
     color: '#0C1B32',
     other: {},

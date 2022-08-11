@@ -59,12 +59,7 @@ export default function DemoOneInput() {
   }
 
   return (
-    <Container
-      alignItems={'center'}
-      justifyContent={'center'}
-      flexDirection={'column'}
-      height={'100%'}
-    >
+    <Container styles={{ height: '100%', paddingTop: '100px' }} size={10}>
       <form>
         <Label>insert your password</Label>
         <Row>

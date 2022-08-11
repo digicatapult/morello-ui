@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import { H1, Row, Col, RowSpacer } from '../Common'
 
 const HeaderStyle = styled.div({
-  position: 'absolute',
   backgroundColor: '#384D6C',
   width: '100%',
   height: '164px',
