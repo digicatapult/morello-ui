@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 
 import { Container, Row } from '../Common'
@@ -38,6 +38,26 @@ const Button = styled.button({
 })
 
 export default function DemoOneInput() {
+  const [password, setPassword] = useState('')
+
+  const passwordChange = (e) => {
+    e.preventDefault()
+    setPassword(e.target.value)
+  }
+
+  const enterPassword = (e) => {
+    e.preventDefault()
+    setPassword(e.target.value)
+    console.log(password)
+  }
+
+  const handleClick = (e) => {
+    e.preventDefault()
+    setPassword(e.target.value)
+    console.log(password)
+    //Get password from usestate
+  }
+
   return (
     <Container
       alignItems={'center'}
@@ -48,8 +68,24 @@ export default function DemoOneInput() {
       <form>
         <Label>insert your password</Label>
         <Row>
-          <Input id={'Password'} type={'password'} maxLength={16} />
-          <Button />
+          <Input
+            id={'Password'}
+            type={'password'}
+            maxLength={16}
+            onChange={(e) => {
+              passwordChange(e)
+            }}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') {
+                enterPassword(e)
+              }
+            }}
+          />
+          <Button
+            onClick={(e) => {
+              handleClick(e)
+            }}
+          />
         </Row>
       </form>
     </Container>
