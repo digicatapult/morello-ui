@@ -2,49 +2,36 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 
-import { Context } from '../utils/context'
 import { demos } from '../fixtures/demos'
 import Card from './Card'
-import { Container, Spacer } from './Common'
-import Header from './Header'
+import { Container } from './Common'
 
 const ItemWrap = styled.div((props) => ({
   display: 'flex',
+  width: '300px',
   padding: 2,
   backgroundColor: props.color,
 }))
 
 export default function MainMenu() {
-  const state = React.useContext(Context)
   const nav = useNavigate()
 
   return (
     <Container
-      size={8}
-      style={{ flexDirection: 'column', justifyContent: 'center' }}
+      size={10}
+      style={{ justifyContent: 'flex-start', flexFlow: 'row wrap' }}
     >
-      <Header />
-      <Container
-        size={8}
-        style={{
-          flexFlow: 'row wrap',
-          margin: 'auto',
-          maxWidth: '1480px',
-        }}
-      >
-        {demos.map((details) => (
-          <ItemWrap
-            key={details.color}
-            onClick={(e) => {
-              e.preventDefault()
-              nav(details.path, { replace: true })
-            }}
-          >
-            <Card {...details} />
-          </ItemWrap>
-        ))}
-      </Container>
-      <Spacer size={100} />
+      {demos.map((details) => (
+        <ItemWrap
+          key={details.color}
+          onClick={(e) => {
+            e.preventDefault()
+            nav(details.path, { replace: true })
+          }}
+        >
+          <Card {...details} />
+        </ItemWrap>
+      ))}
     </Container>
   )
 }
