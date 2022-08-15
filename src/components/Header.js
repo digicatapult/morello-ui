@@ -21,13 +21,6 @@ export default function Header({ children, styles = {} }) {
       }}
     >
       {children || logo}
-      <H1
-        /* a tmp to show ctx as state */
-        textAlign={'right'}
-        color={'red'}
-      >
-        {state.counter}
-      </H1>
     </Container>
   )
 }
