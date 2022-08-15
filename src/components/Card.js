@@ -22,6 +22,7 @@ const Paper = styled.div`
   opacity: 0.6;
   width: 317px;
   height: 355px;
+  cursor: pointer;
   padding: 10px 20px;
   background: ${(props) => props.color};
   transition: all 0.5s;
