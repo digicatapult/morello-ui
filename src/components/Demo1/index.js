@@ -2,7 +2,6 @@ import React from 'react'
 import styled from 'styled-components'
 
 import Header from './Header'
-
 import { Background } from './Background'
 import Box from './Box'
 
