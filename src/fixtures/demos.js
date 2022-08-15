@@ -1,7 +1,7 @@
 import React from 'react'
 import { Navigate } from 'react-router-dom'
 
-import Demo1 from '../components/Demo1/index'
+import Demo1 from '../components/Demo1'
 
 function back(e) {
   e.preventDefault()
