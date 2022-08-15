@@ -15,7 +15,7 @@ const Wrapper = styled.div`
   height: 100%;
 `
 
-export default function DemoOne(props) {
+export default function Demo(props) {
   return (
     <Background>
       <Header title={props.title} />
