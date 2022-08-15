@@ -20,6 +20,15 @@ export const H1 = styled.h1((props) => ({
   ...props,
 }))
 
+// Icon heading text
+export const H2 = styled.p({
+  fontFamily: 'AktivGrotesk',
+  fontSize: '16px',
+  margin: '10px auto',
+  color: '#FFFFFF',
+  lineHeight: '11.52px',
+})
+
 export const P1 = styled.p((props) => ({
   fontFamily: 'AktivGrotesk',
   fontSize: '9px',
