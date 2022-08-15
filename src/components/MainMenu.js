@@ -33,7 +33,7 @@ export default function MainMenu() {
             key={details.color}
             onClick={(e) => {
               e.preventDefault()
-              state.update({ counter: state.counter + 1, a: 'a' })
+              state.update({ counter: state.counter + 1 })
               nav(details.path, { replace: true })
             }}
           >

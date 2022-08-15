@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 
 import { Container, Row } from '../Common'
+import { Context } from '../../utils/context'
 import lockIcon from '../../assets/images/lock-demo-one.png'
 
 const Input = styled.input({
@@ -37,17 +38,17 @@ const Button = styled.button({
   cursor: 'pointer',
 })
 
-export default function DemoOneInput({ setFinalPassword }) {
-  const [password, setPassword] = useState('')
+export default function DemoOneInput() {
+  const { update } = React.useContext(Context)
 
   const passwordChange = (e) => {
     e.preventDefault()
-    setPassword(e.target.value)
+    update({ password: e.target.value })
   }
 
   const enterPassword = (e) => {
     e.preventDefault()
-    setFinalPassword(password)
+    update({ isPasswordSet: true })
   }
 
   return (

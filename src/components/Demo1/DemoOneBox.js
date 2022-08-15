@@ -3,6 +3,7 @@ import styled from 'styled-components'
 
 import DemoOneInput from './DemoOneInput'
 import { Row } from '../Common'
+import { Context } from '../../utils/context'
 
 import crossIcon from '../../assets/images/cross-demo-one.png'
 import minimise from '../../assets/images/minus-demo-one.png'
@@ -21,6 +22,16 @@ export const Title = styled.p((props) => ({
 export const Text = styled.p((props) => ({
   fontFamily: 'Monaco',
   fontSize: '12px',
+  color: '#FFFFFF',
+  fontWeight: '100',
+  margin: '0px',
+  padding: '10px',
+  ...props,
+}))
+
+export const SavedText = styled.p((props) => ({
+  fontFamily: 'Monaco',
+  fontSize: '22px',
   color: '#FFFFFF',
   fontWeight: '100',
   margin: '0px',
@@ -54,8 +65,11 @@ const Body = styled.div({
 })
 
 export default function DemoOneBox(props) {
-  console.log(props)
-  const { setFinalPassword } = props
+  const { isPasswordSet } = React.useContext(Context)
+
+  const date = new Date().toDateString().slice(0, 10)
+  const time = new Date().toLocaleTimeString()
+
   return (
     <Box background={props.background}>
       <Row padding={'8px'} alignItems={'center'}>
@@ -66,12 +80,26 @@ export default function DemoOneBox(props) {
       </Row>
       <Row flex={'auto'}>
         <Body>
-          <Text>
-            This application will store your password securely.
-            <br />
-            Please input a keyword of choice.
-          </Text>
-          <DemoOneInput setFinalPassword={setFinalPassword} />
+          {!isPasswordSet && (
+            <>
+              <Text>
+                This application will store your password securely.
+                <br />
+                Please input a keyword of choice.
+              </Text>
+              <DemoOneInput />
+            </>
+          )}
+          {isPasswordSet && (
+            <>
+              <SavedText>
+                last login: {date} {time}.
+                <br />
+                <br />
+                Password Stored Safely
+              </SavedText>
+            </>
+          )}
         </Body>
       </Row>
     </Box>
