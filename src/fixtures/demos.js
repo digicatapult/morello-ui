@@ -1,7 +1,7 @@
 import React from 'react'
 import { Navigate } from 'react-router-dom'
 
-import Demo from '../layout/Demo1'
+import Demo1 from '../../src/components/Demo1/Index'
 
 function back(e) {
   e.preventDefault()
@@ -24,7 +24,7 @@ export const demos = [
     other: {},
     back,
     proceed,
-    Element: (props) => <Demo {...props} />,
+    Element: (props) => <Demo1 {...props} />,
     fn: () => {},
   },
   {

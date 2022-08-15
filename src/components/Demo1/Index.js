@@ -1,11 +1,10 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import Header from '../components/Demo1/Header'
+import Header from './Header'
 
-import { Background } from '../components/Demo1/Background'
-import Box from '../components/Demo1/Box'
-//import { Context } from '../utils/context'
+import { Background } from './Background'
+import Box from './Box'
 
 const Wrapper = styled.div`
   display: flex;
@@ -15,7 +14,7 @@ const Wrapper = styled.div`
   height: 100%;
 `
 
-export default function Demo(props) {
+export default function Demo1(props) {
   return (
     <Background>
       <Header title={props.title} />
