@@ -1,8 +1,6 @@
 import React from 'react'
 import { Navigate } from 'react-router-dom'
 
-import DemoOne from '../layout/Demo1'
-
 function back(e) {
   e.preventDefault()
   return <Navigate to={'/'} />
@@ -24,7 +22,7 @@ export const demos = [
     other: {},
     back,
     proceed,
-    Element: (props) => <DemoOne {...props} />,
+    Element: (props) => <button onClick={props.back}></button>,
     fn: () => {},
   },
   {

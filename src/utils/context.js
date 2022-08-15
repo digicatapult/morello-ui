@@ -5,6 +5,7 @@ import React from 'react'
 // this could be a single entity e.g. themeCtx
 export const Context = React.createContext({
   ctx: true,
+  counter: 0,
   update: () => {},
 })
 
@@ -12,6 +13,7 @@ export const Context = React.createContext({
 export const ContextProvider = ({ children }) => {
   const initState = {
     ctx: true,
+    counter: 0,
     update: (newState) => setState({ ...state, ...newState }),
   }
 
