@@ -8,6 +8,7 @@ describe('Demo One', () => {
   })
 
   it('Max length cuts off long passwords', () => {
+    // eslint-disable-next-line cypress/no-force
     cy.get('#Password', { maxlength: 16, force: true }).type(
       '12345678910111213141516',
       { force: true }

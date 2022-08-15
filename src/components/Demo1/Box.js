@@ -5,9 +5,9 @@ import DemoOneInput from './DemoOneInput'
 import { Row } from '../Common'
 import { Context } from '../../utils/context'
 
-import crossIcon from '../../assets/images/cross-demo-one.png'
-import minimise from '../../assets/images/minus-demo-one.png'
-import icon from '../../assets/images/icon-demo-one.png'
+import crossIcon from '../../assets/images/cross.png'
+import minimise from '../../assets/images/minus.png'
+import icon from '../../assets/images/icon.png'
 
 export const Title = styled.p((props) => ({
   fontFamily: 'Monaco',

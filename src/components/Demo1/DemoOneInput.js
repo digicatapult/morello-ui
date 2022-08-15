@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 import { Container, Row } from '../Common'
 import { Context } from '../../utils/context'
-import lockIcon from '../../assets/images/lock-demo-one.png'
+import lockIcon from '../../assets/images/lock.png'
 
 const Input = styled.input({
   width: '350px',

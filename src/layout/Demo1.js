@@ -1,10 +1,10 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import DemoHeader from '../components/Demo1/DemoOneHeader'
+import DemoHeader from '../components/Demo1/Header'
 
-import { DemoOneBackground } from '../components/Demo1/DemoOneBackground'
-import DemoOneBox from '../components/Demo1/DemoOneBox'
+import { DemoOneBackground } from '../components/Demo1/Background'
+import DemoOneBox from '../components/Demo1/Box'
 //import { Context } from '../utils/context'
 
 const Wrapper = styled.div`
