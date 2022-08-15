@@ -6,6 +6,8 @@ import React from 'react'
 export const Context = React.createContext({
   ctx: true,
   counter: 0,
+  password: '',
+  isPasswordSet: false,
   update: () => {},
 })
 
@@ -14,6 +16,8 @@ export const ContextProvider = ({ children }) => {
   const initState = {
     ctx: true,
     counter: 0,
+    password: '',
+    isPasswordSet: false,
     update: (newState) => setState({ ...state, ...newState }),
   }
 

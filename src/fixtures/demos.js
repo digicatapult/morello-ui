@@ -1,6 +1,8 @@
 import React from 'react'
 import { Navigate } from 'react-router-dom'
 
+import Demo1 from '../components/Demo1'
+
 function back(e) {
   e.preventDefault()
   return <Navigate to={'/'} />
@@ -18,10 +20,11 @@ export const demos = [
     title: 'Do you believe your password is safe?',
     description: 'Out of Bounds write / Out of Bounds read. CWE Score 65.93',
     color: '#384D6C',
+    windowTitle: 'SUPER_SAFE_APP.EXE',
     other: {},
     back,
     proceed,
-    Element: (props) => <button onClick={props.back}></button>,
+    Element: (props) => <Demo1 {...props} />,
     fn: () => {},
   },
   {
@@ -37,7 +40,7 @@ export const demos = [
   },
   {
     path: 'demo3',
-    title: 'Question number one two threee?',
+    title: 'Question number one two three?',
     description: 'Out of Bounds write / Out of Bounds read. CWE Score 65.93',
     color: '#0C1B32',
     other: {},
