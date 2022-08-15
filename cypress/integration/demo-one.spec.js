@@ -9,7 +9,8 @@ describe('Demo One', () => {
 
   it('Max length cuts off long passwords', () => {
     cy.get('#Password', { maxlength: 16, force: true }).type(
-      '12345678910111213141516'
+      '12345678910111213141516',
+      { force: true }
     )
     cy.get('#Password').should('have.value', '1234567891011121')
   })
