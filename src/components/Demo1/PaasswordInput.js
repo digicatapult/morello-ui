@@ -38,7 +38,7 @@ const Button = styled.button({
   cursor: 'pointer',
 })
 
-export default function DemoOneInput() {
+export default function PasswordInput() {
   const { update } = React.useContext(Context)
 
   const passwordChange = (e) => {

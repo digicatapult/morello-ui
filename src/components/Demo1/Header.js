@@ -15,7 +15,7 @@ const CloseElement = styled.span({
   cursor: 'pointer',
 })
 
-export default function DemoHeader({ title }) {
+export default function Header({ title }) {
   const GoBack = () => {
     console.log('Go back a page')
   }

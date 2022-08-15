@@ -1,10 +1,10 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import DemoHeader from '../components/Demo1/Header'
+import Header from '../components/Demo1/Header'
 
-import { DemoOneBackground } from '../components/Demo1/Background'
-import DemoOneBox from '../components/Demo1/Box'
+import { Background } from '../components/Demo1/Background'
+import BoxContainer from '../components/Demo1/Box'
 //import { Context } from '../utils/context'
 
 const Wrapper = styled.div`
@@ -17,11 +17,11 @@ const Wrapper = styled.div`
 
 export default function DemoOne(props) {
   return (
-    <DemoOneBackground>
-      <DemoHeader title={props.title} />
+    <Background>
+      <Header title={props.title} />
       <Wrapper>
-        <DemoOneBox {...props} background={'#343556'} />
+        <BoxContainer {...props} background={'#343556'} />
       </Wrapper>
-    </DemoOneBackground>
+    </Background>
   )
 }

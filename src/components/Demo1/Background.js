@@ -1,11 +1,11 @@
 import styled from 'styled-components'
 
-import backgroundDemoOne from '../../assets/images/background.png'
+import background from '../../assets/images/background.png'
 
-export const DemoOneBackground = styled.div(() => ({
+export const Background = styled.div(() => ({
   display: 'flex',
   flexDirection: 'column',
-  backgroundImage: `url(${backgroundDemoOne})`,
+  backgroundImage: `url(${background})`,
   width: '1920px',
   height: '1080px',
 }))

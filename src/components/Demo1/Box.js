@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import DemoOneInput from './DemoOneInput'
+import PasswordInput from './PaasswordInput'
 import { Row } from '../Common'
 import { Context } from '../../utils/context'
 
@@ -64,7 +64,7 @@ const Body = styled.div({
   outlineOffset: '-10px',
 })
 
-export default function DemoOneBox(props) {
+export default function BoxContainer(props) {
   const { isPasswordSet } = React.useContext(Context)
 
   const date = new Date().toDateString().slice(0, 10)
@@ -87,7 +87,7 @@ export default function DemoOneBox(props) {
                 <br />
                 Please input a keyword of choice.
               </Text>
-              <DemoOneInput />
+              <PasswordInput />
             </>
           )}
           {isPasswordSet && (
