@@ -20,13 +20,17 @@ export default function MainMenu() {
 
   return (
     <Container
-      size={10}
+      size={8}
       style={{ flexDirection: 'column', justifyContent: 'center' }}
     >
       <Header />
       <Container
-        size={10}
-        style={{ justifyContent: 'flex-start', flexFlow: 'row wrap' }}
+        size={8}
+        style={{
+          flexFlow: 'row wrap',
+          margin: 'auto',
+          maxWidth: '1480px',
+        }}
       >
         {demos.map((details) => (
           <ItemWrap

@@ -10,7 +10,9 @@ export default function Header({ children, styles = {} }) {
 
   return (
     <Container
+      size={7.5}
       styles={{
+        margin: 'auto',
         height: '80px',
         padding: '10px 20px',
         alignItems: 'center',
