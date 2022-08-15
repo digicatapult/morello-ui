@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import PasswordInput from './PaasswordInput'
+import Input from './Input'
 import { Row } from '../Common'
 import { Context } from '../../utils/context'
 
@@ -46,7 +46,7 @@ const Icon = styled.img(({ source }) => ({
   src: `${source}`,
 }))
 
-const Box = styled.div((props) => ({
+const Container = styled.div((props) => ({
   display: 'flex',
   flexDirection: 'column',
   width: '900px',
@@ -64,14 +64,14 @@ const Body = styled.div({
   outlineOffset: '-10px',
 })
 
-export default function BoxContainer(props) {
+export default function Box(props) {
   const { isPasswordSet } = React.useContext(Context)
 
   const date = new Date().toDateString().slice(0, 10)
   const time = new Date().toLocaleTimeString()
 
   return (
-    <Box background={props.background}>
+    <Container background={props.background}>
       <Row padding={'8px'} alignItems={'center'}>
         <Icon src={crossIcon} />
         <Icon src={minimise} />
@@ -87,7 +87,7 @@ export default function BoxContainer(props) {
                 <br />
                 Please input a keyword of choice.
               </Text>
-              <PasswordInput />
+              <Input />
             </>
           )}
           {isPasswordSet && (
@@ -102,6 +102,6 @@ export default function BoxContainer(props) {
           )}
         </Body>
       </Row>
-    </Box>
+    </Container>
   )
 }

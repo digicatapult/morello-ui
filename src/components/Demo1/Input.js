@@ -5,7 +5,7 @@ import { Container, Row } from '../Common'
 import { Context } from '../../utils/context'
 import lockIcon from '../../assets/images/lock.png'
 
-const Input = styled.input({
+const PasswordInput = styled.input({
   width: '350px',
   backgroundColor: '#343556',
   border: '4px solid #FFFFFF',
@@ -38,7 +38,7 @@ const Button = styled.button({
   cursor: 'pointer',
 })
 
-export default function PasswordInput() {
+export default function Input() {
   const { update } = React.useContext(Context)
 
   const passwordChange = (e) => {
@@ -56,7 +56,7 @@ export default function PasswordInput() {
       <form>
         <Label>insert your password</Label>
         <Row>
-          <Input
+          <PasswordInput
             id={'Password'}
             type={'password'}
             maxLength={16}

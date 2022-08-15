@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import Header from '../components/Demo1/Header'
 
 import { Background } from '../components/Demo1/Background'
-import BoxContainer from '../components/Demo1/Box'
+import Box from '../components/Demo1/Box'
 //import { Context } from '../utils/context'
 
 const Wrapper = styled.div`
@@ -20,7 +20,7 @@ export default function Demo(props) {
     <Background>
       <Header title={props.title} />
       <Wrapper>
-        <BoxContainer {...props} background={'#343556'} />
+        <Box {...props} background={'#343556'} />
       </Wrapper>
     </Background>
   )
