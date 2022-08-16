@@ -7,5 +7,5 @@ export const Background = styled.div(() => ({
   flexDirection: 'column',
   backgroundImage: `url(${background})`,
   width: '100%',
-  height: '100%',
+  height: '860px',
 }))

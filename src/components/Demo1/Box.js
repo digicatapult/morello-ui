@@ -49,8 +49,8 @@ const Icon = styled.img(({ source }) => ({
 const Container = styled.div((props) => ({
   display: 'flex',
   flexDirection: 'column',
-  width: '900px',
-  height: '600px',
+  width: '826px',
+  height: '626px',
   boxShadow: '24px 24px 1px rgba(0, 0, 0, 0.8)',
   ...props,
 }))
