@@ -1,12 +1,12 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import { P1 } from '../Common'
+import { Txt_Demo1A } from '../Common'
 
 const Wrapper = styled.div`
-  height: 100px;
+  height: 22px;
   width: 100%;
-  flex-direction: column;
+  padding: 0px 10px;
 `
 
 const BarBackground = styled.div`
@@ -24,17 +24,12 @@ const Bar = styled.div`
   background: #d9d9d9;
 `
 
-const Label = styled(P1)`
-  margin: 10px auto;
-  font-size: 16px;
-`
-
 export default function ProgressBar(props) {
   const { progress } = props
 
   return (
     <Wrapper>
-      <Label>{`hacking in progress ${progress}%`}</Label>
+      <Txt_Demo1A>{`hacking in progress ${progress}%`}</Txt_Demo1A>
       <BarBackground />
       <Bar progress={progress} />
     </Wrapper>

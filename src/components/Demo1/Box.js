@@ -2,8 +2,9 @@ import React from 'react'
 import styled from 'styled-components'
 
 import Input from './Input'
-import { Row } from '../Common'
+import { Col, Row, Spacer, Txt_Demo1A } from '../Common'
 import { Context } from '../../utils/context'
+import ProgressBar from './ProgressBar'
 
 import crossIcon from '../../assets/images/cross.png'
 import minimise from '../../assets/images/minus.png'
@@ -17,28 +18,6 @@ export const Title = styled.p((props) => ({
   fontWeight: '100',
   margin: '0px',
   paddingLeft: '10px',
-  ...props,
-}))
-
-/* move this to Common.js as part of typography */
-export const Text = styled.p((props) => ({
-  fontFamily: 'Monaco',
-  fontSize: '12px',
-  color: '#FFFFFF',
-  fontWeight: '100',
-  margin: '0px',
-  padding: '10px',
-  ...props,
-}))
-
-/* move this to Common.js */
-export const SavedText = styled.p((props) => ({
-  fontFamily: 'Monaco',
-  fontSize: '22px',
-  color: '#FFFFFF',
-  fontWeight: '100',
-  margin: '0px',
-  padding: '10px',
   ...props,
 }))
 
@@ -69,6 +48,30 @@ const Body = styled.div({
 })
 
 function Modal(props) {
+  const [modal, setModal] = React.useState({
+    renderActions: true,
+    showHacking: false,
+  })
+  const { update, demo1 } = React.useContext(Context)
+
+  const handleNo = (e) => {
+    e.preventDefault()
+    update({
+      demo1: {
+        ...demo1,
+        renderModal: false,
+      }
+    })
+  }
+
+  const handleYes = (e) => {
+    e.preventDefault()
+    setModal({
+      renderActions: false,
+      showHacking: true,
+    })
+  }
+
   return (
     <Container
       position={'absolute'}
@@ -85,9 +88,22 @@ function Modal(props) {
         <Title>{props.modalTitle}</Title>
       </Row>
       <Row flex={'auto'}>
-        <Body>
-          <Text>{props.modalText}</Text>
-        </Body>
+        <Col
+          padding={'5px'}
+          boxSizing={'border-box'}
+          justifyContent={'space-between'}
+          outline={'2px solid #FFFFFF'}
+          outlineOffset={'-10px'}
+        >
+          <Txt_Demo1A>{props.modalText}</Txt_Demo1A>
+          {modal.renderActions && <Row justifyContent={'flex-end'} marginRight={'20px'} padding={'10px'}>
+            <button onClick={handleYes}>yes</button>
+            <button onClick={handleNo}>no</button>
+          </Row>}
+          {modal.showHacking && <Row flex={'auto'}>
+            <ProgressBar progress={2}/>
+          </Row>}
+        </Col>
       </Row>
     </Container>
   )
@@ -112,20 +128,20 @@ export default function Box(props) {
         <Body>
           {!isPasswordSet && (
             <>
-              <Text>
+              <Txt_Demo1A>
                 This application will store your password securely.
                 <br />
                 Please input a keyword of choice.
-              </Text>
+              </Txt_Demo1A>
               <Input />
             </>
           )}
-          {isPasswordSet && <SavedText>
+          {isPasswordSet && <Txt_Demo1A>
             last login: {date} {time}.
             <br />
             <br />
             Password Stored Safely
-          </SavedText>}
+          </Txt_Demo1A>}
         </Body>
       </Row>
     </Container>

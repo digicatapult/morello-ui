@@ -29,6 +29,17 @@ export const H2 = styled.p({
   lineHeight: '11.52px',
 })
 
+/* move this to Common.js as part of typography */
+export const Txt_Demo1A = styled.p((props) => ({
+  fontFamily: 'Monaco',
+  fontSize: '18px',
+  color: '#FFFFFF',
+  fontWeight: '100',
+  margin: '0px',
+  padding: '10px',
+  ...props,
+}))
+
 export const P1 = styled.p((props) => ({
   fontFamily: 'AktivGrotesk',
   fontSize: '9px',
