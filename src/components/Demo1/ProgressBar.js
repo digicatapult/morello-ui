@@ -25,13 +25,31 @@ const Bar = styled.div`
 `
 
 export default function ProgressBar(props) {
-  const { progress } = props
+  const [progress, setProgress] = React.useState(2)
 
-  return (
+  React.useEffect(async () => {
+    await new Promise(r => setTimeout(r, 400))
+    setProgress(22)
+    await new Promise(r => setTimeout(r, 600))
+    setProgress(63)
+    await new Promise(r => setTimeout(r, 1000))
+    setProgress(98)
+    await new Promise(r => setTimeout(r, 4000))
+    setProgress(100)
+    // TODO call props.execute()
+  }, [])
+
+  const showProgress = progress != 100
+
+  return (showProgress ?
     <Wrapper>
       <Txt_Demo1A>{`hacking in progress ${progress}%`}</Txt_Demo1A>
       <BarBackground />
       <Bar progress={progress} />
+    </Wrapper> :
+    <Wrapper>
+      <Txt_Demo1A>{props.modalSuccess}</Txt_Demo1A>
+      <Txt_Demo1A>Passowrd_123</Txt_Demo1A>
     </Wrapper>
   )
 }

@@ -9,6 +9,8 @@ export const Context = React.createContext({
     password: '',
     isPasswordSet: false,
     renderModal: false,
+    renderModalActions: true,
+    showHackingProgress: false,
   },
   update: () => {},
 })
@@ -22,6 +24,8 @@ export const ContextProvider = ({ children }) => {
       password: '',
       isPasswordSet: false,
       renderModal: false,
+      renderModalActions: true,
+      showHackingProgress: false,
     },
     update: (newState) => setState({ ...state, ...newState }),
   }

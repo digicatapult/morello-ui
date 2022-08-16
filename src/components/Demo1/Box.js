@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 import Input from './Input'
-import { Col, Row, Spacer, Txt_Demo1A } from '../Common'
+import { Col, Row, RowSpacer, Txt_Demo1A } from '../Common'
 import { Context } from '../../utils/context'
 import ProgressBar from './ProgressBar'
 
@@ -47,12 +47,13 @@ const Body = styled.div({
   outlineOffset: '-10px',
 })
 
-function Modal(props) {
-  const [modal, setModal] = React.useState({
-    renderActions: true,
-    showHacking: false,
-  })
-  const { update, demo1 } = React.useContext(Context)
+const Button = styled.button`
+  width: 20%;
+  height: 30px;
+`
+
+function Modal({ demo1, update, ...props }) {
+  const { showHackingProgress, renderModalActions } = demo1
 
   const handleNo = (e) => {
     e.preventDefault()
@@ -66,9 +67,12 @@ function Modal(props) {
 
   const handleYes = (e) => {
     e.preventDefault()
-    setModal({
-      renderActions: false,
-      showHacking: true,
+    update({
+      demo1: {
+        ...demo1,
+        renderModalActions: false,
+        showHackingProgress: true,
+      }
     })
   }
 
@@ -96,12 +100,12 @@ function Modal(props) {
           outlineOffset={'-10px'}
         >
           <Txt_Demo1A>{props.modalText}</Txt_Demo1A>
-          {modal.renderActions && <Row justifyContent={'flex-end'} marginRight={'20px'} padding={'10px'}>
-            <button onClick={handleYes}>yes</button>
-            <button onClick={handleNo}>no</button>
+          {renderModalActions && <Row justifyContent={'center'} marginRight={'20px'} padding={'10px'}>
+            <Button styles={{height: '20px', width: '20px' }} onClick={handleYes}>YES</Button>
+            <Button onClick={handleNo}>NO</Button>
           </Row>}
-          {modal.showHacking && <Row flex={'auto'}>
-            <ProgressBar progress={2}/>
+          {showHackingProgress && <Row flex={'auto'}>
+            <ProgressBar {...props}/>
           </Row>}
         </Col>
       </Row>
@@ -110,14 +114,15 @@ function Modal(props) {
 }
 
 export default function Box(props) {
-  const { demo1: { isPasswordSet, renderModal } } = React.useContext(Context)
+  const { demo1, update } = React.useContext(Context)
+  const { isPasswordSet, renderModal } = demo1
 
   const date = new Date().toDateString().slice(0, 10)
   const time = new Date().toLocaleTimeString()
 
   return (
     <Container background={props.background}>
-      {renderModal && Modal(props)}
+      {renderModal && Modal({ ...props, demo1, update })}
       <Row paddingLeft={'5px'} alignItems={'center'}>
         <Icon src={crossIcon} />
         <Icon src={minimise} />
