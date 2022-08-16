@@ -20,14 +20,9 @@ const Paper = styled.div`
   align-items: flex-start;
   text-align: left;
   opacity: 0.6;
-<<<<<<< HEAD
   width: 317px;
   height: 355px;
   cursor: pointer;
-=======
-  width: 400px;
-  height: 450px;
->>>>>>> main
   padding: 10px 20px;
   background: ${(props) => props.color};
   transition: all 0.5s;
