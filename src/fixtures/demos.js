@@ -10,9 +10,10 @@ export const demos = [
     color: '#384D6C',
     windowTitle: 'SUPER_SAFE_APP.EXE',
     modalTitle: 'hacker.app',
-    modalText: 'Would you like to break into the system and reveal the password?',
+    modalText:
+      'Would you like to break into the system and reveal the password?',
     modalSuccess: 'Hacking completed. The password is:',
-    Element: (props) => <Demo1 {...props}/>,
+    Element: (props) => <Demo1 {...props} />,
     execute: (args) => {
       console.log('Demo1 executing...', args)
     },

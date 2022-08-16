@@ -47,7 +47,7 @@ export default function Input() {
       demo1: {
         ...demo1,
         password: e.target.value,
-      }
+      },
     })
   }
 

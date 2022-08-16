@@ -2,7 +2,6 @@ import React from 'react'
 
 import { Root, Container } from './Common'
 import Router from './Router'
-import Header from './Header'
 
 export default function App() {
   return (

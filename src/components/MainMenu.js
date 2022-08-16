@@ -22,7 +22,7 @@ export default function MainMenu() {
       <Header />
       <Container
         size={10}
-        style={{ 
+        style={{
           justifyContent: 'center',
           flexFlow: 'row wrap',
         }}

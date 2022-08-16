@@ -38,17 +38,19 @@ export default function Header({ title }) {
         </Col>
         <RowSpacer size={5} />
         <Col size={3} paddingRight={'50px'} alignItems={'end'}>
-          <CloseElement onClick={(e) => {
-            e.preventDefault()
-            update({
-              demo1: {
-                password: '',
-                renderModal: false,
-                isPasswordSet: false, 
-              }
-            })
-            nav('/', { replace: true })
-          }}>
+          <CloseElement
+            onClick={(e) => {
+              e.preventDefault()
+              update({
+                demo1: {
+                  password: '',
+                  renderModal: false,
+                  isPasswordSet: false,
+                },
+              })
+              nav('/', { replace: true })
+            }}
+          >
             <H1>Close</H1>
             <img src={closeIcon} />
           </CloseElement>

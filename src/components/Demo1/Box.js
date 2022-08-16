@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 import Input from './Input'
-import { Col, Row, RowSpacer, Txt_Demo1A } from '../Common'
+import { Col, Row, Txt_Demo1A } from '../Common'
 import { Context } from '../../utils/context'
 import ProgressBar from './ProgressBar'
 
@@ -61,7 +61,7 @@ function Modal({ demo1, update, ...props }) {
       demo1: {
         ...demo1,
         renderModal: false,
-      }
+      },
     })
   }
 
@@ -72,7 +72,7 @@ function Modal({ demo1, update, ...props }) {
         ...demo1,
         renderModalActions: false,
         showHackingProgress: true,
-      }
+      },
     })
   }
 
@@ -100,13 +100,26 @@ function Modal({ demo1, update, ...props }) {
           outlineOffset={'-10px'}
         >
           <Txt_Demo1A>{props.modalText}</Txt_Demo1A>
-          {renderModalActions && <Row justifyContent={'center'} marginRight={'20px'} padding={'10px'}>
-            <Button styles={{height: '20px', width: '20px' }} onClick={handleYes}>YES</Button>
-            <Button onClick={handleNo}>NO</Button>
-          </Row>}
-          {showHackingProgress && <Row flex={'auto'}>
-            <ProgressBar {...props}/>
-          </Row>}
+          {renderModalActions && (
+            <Row
+              justifyContent={'center'}
+              marginRight={'20px'}
+              padding={'10px'}
+            >
+              <Button
+                styles={{ height: '20px', width: '20px' }}
+                onClick={handleYes}
+              >
+                YES
+              </Button>
+              <Button onClick={handleNo}>NO</Button>
+            </Row>
+          )}
+          {showHackingProgress && (
+            <Row flex={'auto'}>
+              <ProgressBar {...props} />
+            </Row>
+          )}
         </Col>
       </Row>
     </Container>
@@ -141,12 +154,14 @@ export default function Box(props) {
               <Input />
             </>
           )}
-          {isPasswordSet && <Txt_Demo1A>
-            last login: {date} {time}.
-            <br />
-            <br />
-            Password Stored Safely
-          </Txt_Demo1A>}
+          {isPasswordSet && (
+            <Txt_Demo1A>
+              last login: {date} {time}.
+              <br />
+              <br />
+              Password Stored Safely
+            </Txt_Demo1A>
+          )}
         </Body>
       </Row>
     </Container>

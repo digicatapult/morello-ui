@@ -14,7 +14,7 @@ export default function Icon(props) {
       demo1: {
         ...demo1,
         renderModal: true,
-      }
+      },
     })
   }
 

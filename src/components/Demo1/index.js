@@ -19,23 +19,27 @@ const Wrapper = styled.div`
 
 export default function Demo1(props) {
   const state = React.useContext(Context)
-  const { demo1: { isPasswordSet }} = state
+  const {
+    demo1: { isPasswordSet },
+  } = state
 
   return (
     <Background>
       <Header {...props} />
       <Wrapper>
-        {isPasswordSet && <HackerApp
-          imageSrc={hackerIcon}
-          text={'hacker app'}
-          styles={{
-            position: 'absolute',
-            left: '20px',
-            top: '200px',
-            width: '100px',
-            textAlign: 'center'
-          }}
-        />}
+        {isPasswordSet && (
+          <HackerApp
+            imageSrc={hackerIcon}
+            text={'hacker app'}
+            styles={{
+              position: 'absolute',
+              left: '20px',
+              top: '200px',
+              width: '100px',
+              textAlign: 'center',
+            }}
+          />
+        )}
         <Box {...props} background={'#343556'} />
       </Wrapper>
     </Background>
