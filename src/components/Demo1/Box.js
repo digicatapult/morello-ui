@@ -4,12 +4,10 @@ import styled from 'styled-components'
 import Input from './Input'
 import { Row } from '../Common'
 import { Context } from '../../utils/context'
-import HackerApp from './HackerApp'
 
 import crossIcon from '../../assets/images/cross.png'
 import minimise from '../../assets/images/minus.png'
 import icon from '../../assets/images/icon.png'
-import hackerIcon from '../../assets/images/hacker-app-icon.png'
 
 /* Same should be moved to Common.js as part of typography */
 export const Title = styled.p((props) => ({
@@ -53,6 +51,7 @@ const Icon = styled.img(({ source }) => ({
 
 const Container = styled.div((props) => ({
   display: 'flex',
+  position: 'relative',
   flexDirection: 'column',
   width: '826px',
   height: '626px',
@@ -69,25 +68,40 @@ const Body = styled.div({
   outlineOffset: '-10px',
 })
 
+function Modal(props) {
+  return (
+    <Container
+      position={'absolute'}
+      top={'40%'}
+      left={'40%'}
+      width={'586px'}
+      height={'258px'}
+      background={'#CE1C1C'}
+    >
+      <Row padding={'8px'} alignItems={'center'}>
+        <Icon src={crossIcon} />
+        <Icon src={minimise} />
+        <Icon src={icon} />
+        <Title>{props.modalTitle}</Title>
+      </Row>
+      <Row flex={'auto'}>
+        <Body>
+          <Text>{props.modalText}</Text>
+        </Body>
+      </Row>
+    </Container>
+  )
+}
+
 export default function Box(props) {
-  const { demo1: { isPasswordSet } } = React.useContext(Context)
+  const { demo1: { isPasswordSet, renderModal } } = React.useContext(Context)
 
   const date = new Date().toDateString().slice(0, 10)
   const time = new Date().toLocaleTimeString()
 
   return (
     <Container background={props.background}>
-      {isPasswordSet && <HackerApp
-        imageSrc={hackerIcon}
-        text={'hacker app'}
-        styles={{
-          position: 'absolute',
-          top: '250px',
-          left: '275px',
-          width: '100px',
-          textAlign: 'center'
-        }}
-      />}
+      {renderModal && Modal(props)}
       <Row padding={'8px'} alignItems={'center'}>
         <Icon src={crossIcon} />
         <Icon src={minimise} />
@@ -106,7 +120,6 @@ export default function Box(props) {
               <Input />
             </>
           )}
-          {/* this could be fixed and made a bit more generic */}
           {isPasswordSet && <SavedText>
             last login: {date} {time}.
             <br />

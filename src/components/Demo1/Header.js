@@ -20,7 +20,7 @@ const CloseElement = styled.span({
 
 export default function Header({ title }) {
   const nav = useNavigate()
-  const { update, demo1 } = React.useContext(Context)
+  const { update } = React.useContext(Context)
 
   return (
     <HeaderStyle>
@@ -42,7 +42,8 @@ export default function Header({ title }) {
             e.preventDefault()
             update({
               demo1: {
-                ...demo1,
+                password: '',
+                renderModal: false,
                 isPasswordSet: false, 
               }
             })
