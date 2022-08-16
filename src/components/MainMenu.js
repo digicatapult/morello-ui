@@ -5,6 +5,7 @@ import styled from 'styled-components'
 import { demos } from '../fixtures/demos'
 import Card from './Card'
 import { Container } from './Common'
+import Header from './Header'
 
 const ItemWrap = styled.div((props) => ({
   display: 'flex',
@@ -17,21 +18,27 @@ export default function MainMenu() {
   const nav = useNavigate()
 
   return (
-    <Container
-      size={10}
-      style={{ justifyContent: 'flex-start', flexFlow: 'row wrap' }}
-    >
-      {demos.map((details) => (
-        <ItemWrap
-          key={details.color}
-          onClick={(e) => {
-            e.preventDefault()
-            nav(details.path, { replace: true })
-          }}
-        >
-          <Card {...details} />
-        </ItemWrap>
-      ))}
-    </Container>
+    <>
+      <Header />
+      <Container
+        size={10}
+        style={{ 
+          justifyContent: 'center',
+          flexFlow: 'row wrap',
+        }}
+      >
+        {demos.map((details) => (
+          <ItemWrap
+            key={details.color}
+            onClick={(e) => {
+              e.preventDefault()
+              nav(details.path, { replace: true })
+            }}
+          >
+            <Card {...details} />
+          </ItemWrap>
+        ))}
+      </Container>
+    </>
   )
 }

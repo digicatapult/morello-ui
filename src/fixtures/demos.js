@@ -1,12 +1,6 @@
 import React from 'react'
-import { Navigate } from 'react-router-dom'
 
 import Demo1 from '../components/Demo1'
-
-function back(e) {
-  e.preventDefault()
-  return <Navigate to={'/'} />
-}
 
 function proceed(e) {
   e.preventDefault()
@@ -22,9 +16,8 @@ export const demos = [
     color: '#384D6C',
     windowTitle: 'SUPER_SAFE_APP.EXE',
     other: {},
-    back,
     proceed,
-    Element: (props) => <Demo1 {...props} />,
+    Element: (props) => <Demo1 {...props}/>,
     fn: () => {},
   },
   {
@@ -33,7 +26,6 @@ export const demos = [
     description: 'Out of Bounds write / Out of Bounds read. CWE Score 65.93',
     color: '#6C3838',
     other: {},
-    back,
     proceed,
     Element: () => <div>somee demo2 content</div>,
     fn: () => {},
@@ -44,7 +36,6 @@ export const demos = [
     description: 'Out of Bounds write / Out of Bounds read. CWE Score 65.93',
     color: '#0C1B32',
     other: {},
-    back,
     proceed,
     Element: () => <div>somee demo3 content</div>, // main element
     fn: () => {},
@@ -55,7 +46,6 @@ export const demos = [
     description: 'Out of Bounds write / Out of Bounds read. CWE Score 65.93',
     color: '#6C7076',
     other: {},
-    back,
     proceed,
     Element: () => <div>somee demo4 content</div>, // main element
     fn1: () => {},
@@ -66,7 +56,6 @@ export const demos = [
     description: 'Out of Bounds write / Out of Bounds read. CWE Score 65.93',
     color: '#D1B44E',
     other: {},
-    back,
     fn1: () => {},
     proceed,
     Element: () => <div>somee demo5 content</div>, // main element
@@ -77,7 +66,6 @@ export const demos = [
     description: 'Out of Bounds write / Out of Bounds read. CWE Score 65.93',
     color: '#959728',
     other: {},
-    back,
     fn1: () => {},
     proceed,
     Element: () => <div>somee demo6 content</div>, // main element
@@ -88,7 +76,6 @@ export const demos = [
     description: 'Out of Bounds write / Out of Bounds read. CWE Score 65.93',
     color: '#4F6C38',
     other: {},
-    back,
     fn1: () => {},
     proceed,
     Element: () => <div>somee demo7 content</div>, // main element
@@ -99,7 +86,6 @@ export const demos = [
     description: '__description_placeholder',
     color: '#546278',
     other: {},
-    back,
     fn1: () => {},
     proceed,
     Element: () => <div>somee demo8 content</div>, // main element

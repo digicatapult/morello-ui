@@ -8,6 +8,7 @@ export default function Header({ children, styles = {} }) {
 
   return (
     <Container
+      size={10}
       styles={{
         height: '80px',
         padding: '10px 20px',

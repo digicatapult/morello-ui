@@ -16,7 +16,7 @@ const Wrapper = styled.div`
 export default function Demo1(props) {
   return (
     <Background>
-      <Header title={props.title} />
+      <Header {...props} />
       <Wrapper>
         <Box {...props} background={'#343556'} />
       </Wrapper>

@@ -1,5 +1,6 @@
 import React from 'react'
-import { Root, Container, Spacer } from './Common'
+
+import { Root, Container } from './Common'
 import Router from './Router'
 import Header from './Header'
 
@@ -14,9 +15,7 @@ export default function App() {
           maxWidth: '1366px',
         }}
       >
-        <Header />
         <Router />
-        <Spacer size={100} />
       </Container>
     </Root>
   )
