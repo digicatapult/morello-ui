@@ -49,7 +49,8 @@ const Body = styled.div({
 
 const Button = styled.button`
   width: 20%;
-  height: 30px;
+  height: 50px;
+  margin-left: 5px;
 `
 
 function Modal({ demo1, update, ...props }) {
@@ -61,6 +62,7 @@ function Modal({ demo1, update, ...props }) {
       demo1: {
         ...demo1,
         renderModal: false,
+        renderModalActions: true,
       },
     })
   }

@@ -46,6 +46,7 @@ export default function Header({ title }) {
                   password: '',
                   renderModal: false,
                   isPasswordSet: false,
+                  renderModalActions: true,
                 },
               })
               nav('/', { replace: true })
