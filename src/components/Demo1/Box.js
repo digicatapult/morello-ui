@@ -12,7 +12,7 @@ import icon from '../../assets/images/icon.png'
 /* Same should be moved to Common.js as part of typography */
 export const Title = styled.p((props) => ({
   fontFamily: 'Monaco',
-  fontSize: '30px',
+  fontSize: '32px',
   color: '#FFFFFF',
   fontWeight: '100',
   margin: '0px',
@@ -43,9 +43,9 @@ export const SavedText = styled.p((props) => ({
 }))
 
 const Icon = styled.img(({ source }) => ({
-  width: '40px',
-  height: '40px',
-  margin: '4px',
+  width: '20px',
+  height: '20px',
+  marginLeft: '4px',
   src: `${source}`,
 }))
 
@@ -78,7 +78,7 @@ function Modal(props) {
       height={'258px'}
       background={'#CE1C1C'}
     >
-      <Row padding={'8px'} alignItems={'center'}>
+      <Row paddingLeft={'5px'} alignItems={'center'}>
         <Icon src={crossIcon} />
         <Icon src={minimise} />
         <Icon src={icon} />
@@ -102,7 +102,7 @@ export default function Box(props) {
   return (
     <Container background={props.background}>
       {renderModal && Modal(props)}
-      <Row padding={'8px'} alignItems={'center'}>
+      <Row paddingLeft={'5px'} alignItems={'center'}>
         <Icon src={crossIcon} />
         <Icon src={minimise} />
         <Icon src={icon} />
