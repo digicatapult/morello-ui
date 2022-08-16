@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 
 import { H1, Row, Col, RowSpacer } from '../Common'
 import closeIcon from '../../assets/images/close-icon.png'
+import { Context } from '../../utils/context'
 
 const HeaderStyle = styled.div({
   backgroundColor: '#384D6C',
@@ -19,6 +20,7 @@ const CloseElement = styled.span({
 
 export default function Header({ title }) {
   const nav = useNavigate()
+  const { update } = React.useContext(Context)
 
   return (
     <HeaderStyle>
@@ -38,6 +40,7 @@ export default function Header({ title }) {
         <Col size={3} paddingRight={'50px'} alignItems={'end'}>
           <CloseElement onClick={(e) => {
             e.preventDefault()
+            update({ isPasswordSet: false })
             nav('/', { replace: true })
           }}>
             <H1>Close</H1>

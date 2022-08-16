@@ -4,11 +4,14 @@ import styled from 'styled-components'
 import Input from './Input'
 import { Row } from '../Common'
 import { Context } from '../../utils/context'
+import HackerIcon from '../Icon'
 
 import crossIcon from '../../assets/images/cross.png'
 import minimise from '../../assets/images/minus.png'
 import icon from '../../assets/images/icon.png'
+import hackerIcon from '../../assets/images/hacker-app-icon.png'
 
+/* Same should be moved to Common.js as part of typography */
 export const Title = styled.p((props) => ({
   fontFamily: 'Monaco',
   fontSize: '30px',
@@ -19,6 +22,7 @@ export const Title = styled.p((props) => ({
   ...props,
 }))
 
+/* move this to Common.js as part of typography */
 export const Text = styled.p((props) => ({
   fontFamily: 'Monaco',
   fontSize: '12px',
@@ -29,6 +33,7 @@ export const Text = styled.p((props) => ({
   ...props,
 }))
 
+/* move this to Common.js */
 export const SavedText = styled.p((props) => ({
   fontFamily: 'Monaco',
   fontSize: '22px',
@@ -72,6 +77,17 @@ export default function Box(props) {
 
   return (
     <Container background={props.background}>
+      {isPasswordSet && <HackerIcon
+        imageSrc={hackerIcon}
+        text={'hacker app'}
+        styles={{
+          position: 'absolute',
+          top: '250px',
+          left: '275px',
+          width: '100px',
+          textAlign: 'center'
+        }}
+      />}
       <Row padding={'8px'} alignItems={'center'}>
         <Icon src={crossIcon} />
         <Icon src={minimise} />
@@ -90,16 +106,13 @@ export default function Box(props) {
               <Input />
             </>
           )}
-          {isPasswordSet && (
-            <>
-              <SavedText>
-                last login: {date} {time}.
-                <br />
-                <br />
-                Password Stored Safely
-              </SavedText>
-            </>
-          )}
+          {/* this could be fixed and made a bit more generic */}
+          {isPasswordSet && <SavedText>
+            last login: {date} {time}.
+            <br />
+            <br />
+            Password Stored Safely
+          </SavedText>}
         </Body>
       </Row>
     </Container>

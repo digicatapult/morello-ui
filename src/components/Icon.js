@@ -7,7 +7,7 @@ export default function Icon(props) {
   const { imageSrc, text, action, styles } = props
 
   return (
-    <Col {...styles} onClick={action}>
+    <Col {...styles} cursor={'pointer'} onClick={action}>
       <img style={{ padding: '0px 10px' }} src={imageSrc} />
       <H2>{text}</H2>
     </Col>

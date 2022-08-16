@@ -4,7 +4,7 @@ import Demo1 from '../components/Demo1'
 
 function proceed(e) {
   e.preventDefault()
-  console.log('proceeding....')
+  console.log('this will call morello-api endpoint')
   return null
 }
 
