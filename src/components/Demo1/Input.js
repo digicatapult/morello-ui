@@ -80,6 +80,7 @@ export default function Input() {
             }}
           />
           <Button
+            id={'submit-password'}
             onClick={(e) => {
               enterPassword(e)
             }}

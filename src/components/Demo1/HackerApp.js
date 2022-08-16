@@ -19,7 +19,14 @@ export default function Icon(props) {
   }
 
   return (
-    <Col {...styles} cursor={'pointer'} onClick={(e) => renderModal(e)}>
+    <Col
+      id={'hacker-app'}
+      styles={{
+        ...styles,
+        cursor: 'pointer',
+      }}
+      onClick={(e) => renderModal(e)}
+    >
       <img style={{ padding: '0px 10px' }} src={imageSrc} />
       <H2>{text}</H2>
     </Col>

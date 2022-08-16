@@ -25,7 +25,7 @@ export default function Header({ title }) {
   return (
     <HeaderStyle>
       <Row height={'100%'}>
-        <Col size={3} paddingLeft={'50px'} alignItems={'start'}>
+        <Col size={3} styles={{ paddingLeft: '50px', alignItems: 'start' }}>
           <H1
             lineHeight={'58px'}
             letterSpacing={'-0.06em'}
@@ -37,7 +37,7 @@ export default function Header({ title }) {
           </H1>
         </Col>
         <RowSpacer size={5} />
-        <Col size={3} paddingRight={'50px'} alignItems={'end'}>
+        <Col size={3} styles={{ paddingRight: '50px', alignItems: 'end' }}>
           <CloseElement
             onClick={(e) => {
               e.preventDefault()

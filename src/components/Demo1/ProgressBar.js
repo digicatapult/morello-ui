@@ -42,7 +42,7 @@ export default function ProgressBar(props) {
   const showProgress = progress != 100
 
   return showProgress ? (
-    <Wrapper>
+    <Wrapper id={'demo1-progress-bar'}>
       <Txt_Demo1A>{`hacking in progress ${progress}%`}</Txt_Demo1A>
       <BarBackground />
       <Bar progress={progress} />

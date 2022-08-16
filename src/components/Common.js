@@ -75,13 +75,13 @@ export const Row = styled.div((props) => ({
   ...props,
 }))
 
-export const Col = styled.div(({ size = 1, ...props }) => ({
+export const Col = styled.div(({ size = 1, styles }) => ({
   ...params.flex,
   flexDirection: 'column',
   alignItems: 'center',
   width: `${size * 10}%`,
   height: '100%',
-  ...props,
+  ...styles,
 }))
 
 export const RowSpacer = styled.div(({ size = 1 }) => ({

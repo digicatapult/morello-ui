@@ -28,14 +28,14 @@ const Icon = styled.img(({ source }) => ({
   src: `${source}`,
 }))
 
-const Container = styled.div((props) => ({
+const Container = styled.div(({ styles }) => ({
   display: 'flex',
   position: 'relative',
   flexDirection: 'column',
   width: '826px',
   height: '626px',
   boxShadow: '24px 24px 1px rgba(0, 0, 0, 0.8)',
-  ...props,
+  ...styles,
 }))
 
 const Body = styled.div({
@@ -78,12 +78,15 @@ function Modal({ demo1, update, ...props }) {
 
   return (
     <Container
-      position={'absolute'}
-      top={'40%'}
-      left={'40%'}
-      width={'586px'}
-      height={'258px'}
-      background={'#CE1C1C'}
+      id={'hacker-app-modal'}
+      styles={{
+        position: 'absolute',
+        top: '40%',
+        left: '40%',
+        width: '586px',
+        height: '258px',
+        background: '#CE1C1C',
+      }}
     >
       <Row paddingLeft={'5px'} alignItems={'center'}>
         <Icon src={crossIcon} />
@@ -93,11 +96,13 @@ function Modal({ demo1, update, ...props }) {
       </Row>
       <Row flex={'auto'}>
         <Col
-          padding={'5px'}
-          boxSizing={'border-box'}
-          justifyContent={'space-between'}
-          outline={'2px solid #FFFFFF'}
-          outlineOffset={'-10px'}
+          styles={{
+            padding: '5px',
+            boxSizing: 'border-box',
+            justifyContent: 'space-between',
+            outline: '2px solid #FFFFFF',
+            outlineOffset: '-10px',
+          }}
         >
           <Txt_Demo1A>{props.modalText}</Txt_Demo1A>
           {renderModalActions && (
@@ -106,13 +111,12 @@ function Modal({ demo1, update, ...props }) {
               marginRight={'20px'}
               padding={'10px'}
             >
-              <Button
-                styles={{ height: '20px', width: '20px' }}
-                onClick={handleYes}
-              >
+              <Button id={'demo1-modal-btn-yes'} onClick={handleYes}>
                 YES
               </Button>
-              <Button onClick={handleNo}>NO</Button>
+              <Button id={'demo1-modal-btn-no'} onClick={handleNo}>
+                NO
+              </Button>
             </Row>
           )}
           {showHackingProgress && (
@@ -134,7 +138,7 @@ export default function Box(props) {
   const time = new Date().toLocaleTimeString()
 
   return (
-    <Container background={props.background}>
+    <Container styles={{ background: props.background }}>
       {renderModal && Modal({ ...props, demo1, update })}
       <Row paddingLeft={'5px'} alignItems={'center'}>
         <Icon src={crossIcon} />
