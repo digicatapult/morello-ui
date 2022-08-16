@@ -20,7 +20,7 @@ const CloseElement = styled.span({
 
 export default function Header({ title }) {
   const nav = useNavigate()
-  const { update } = React.useContext(Context)
+  const { update, demo1 } = React.useContext(Context)
 
   return (
     <HeaderStyle>
@@ -40,7 +40,12 @@ export default function Header({ title }) {
         <Col size={3} paddingRight={'50px'} alignItems={'end'}>
           <CloseElement onClick={(e) => {
             e.preventDefault()
-            update({ isPasswordSet: false })
+            update({
+              demo1: {
+                ...demo1,
+                isPasswordSet: false, 
+              }
+            })
             nav('/', { replace: true })
           }}>
             <H1>Close</H1>

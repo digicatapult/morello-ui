@@ -5,17 +5,24 @@ import React from 'react'
 // this could be a single entity e.g. themeCtx
 export const Context = React.createContext({
   ctx: true,
-  password: '',
-  isPasswordSet: false,
+  demo1: {
+    password: '',
+    isPasswordSet: false,
+    renderModal: false,
+  },
   update: () => {},
 })
 
 // this is a provider for initial and state updates
 export const ContextProvider = ({ children }) => {
+  // TOO update context or create separate update method for each demo e.g. demmo1-update
   const initState = {
     ctx: true,
-    password: '',
-    isPasswordSet: false,
+    demo1: {
+      password: '',
+      isPasswordSet: false,
+      renderModal: false,
+    },
     update: (newState) => setState({ ...state, ...newState }),
   }
 

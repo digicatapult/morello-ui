@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import Input from './Input'
 import { Row } from '../Common'
 import { Context } from '../../utils/context'
-import HackerIcon from '../Icon'
+import HackerApp from './HackerApp'
 
 import crossIcon from '../../assets/images/cross.png'
 import minimise from '../../assets/images/minus.png'
@@ -70,14 +70,14 @@ const Body = styled.div({
 })
 
 export default function Box(props) {
-  const { isPasswordSet } = React.useContext(Context)
+  const { demo1: { isPasswordSet } } = React.useContext(Context)
 
   const date = new Date().toDateString().slice(0, 10)
   const time = new Date().toLocaleTimeString()
 
   return (
     <Container background={props.background}>
-      {isPasswordSet && <HackerIcon
+      {isPasswordSet && <HackerApp
         imageSrc={hackerIcon}
         text={'hacker app'}
         styles={{
