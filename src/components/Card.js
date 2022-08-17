@@ -20,8 +20,9 @@ const Paper = styled.div`
   align-items: flex-start;
   text-align: left;
   opacity: 0.6;
-  width: 400px;
-  height: 450px;
+  width: 317px;
+  height: 355px;
+  cursor: pointer;
   padding: 10px 20px;
   background: ${(props) => props.color};
   transition: all 0.5s;
@@ -30,7 +31,6 @@ const Paper = styled.div`
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.3),
       0 6px 20px 0 rgba(0, 0, 0, 0.29);
     opacity: 1;
-
     ${Indicator} {
       opacity: 1;
     }

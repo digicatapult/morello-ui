@@ -39,16 +39,26 @@ const Button = styled.button({
 })
 
 export default function Input() {
-  const { update } = React.useContext(Context)
+  const { update, demo1 } = React.useContext(Context)
 
   const passwordChange = (e) => {
     e.preventDefault()
-    update({ password: e.target.value })
+    update({
+      demo1: {
+        ...demo1,
+        password: e.target.value,
+      },
+    })
   }
 
   const enterPassword = (e) => {
     e.preventDefault()
-    update({ isPasswordSet: true })
+    update({
+      demo1: {
+        ...demo1,
+        isPasswordSet: true,
+      },
+    })
   }
 
   return (
@@ -70,6 +80,7 @@ export default function Input() {
             }}
           />
           <Button
+            id={'submit-password'}
             onClick={(e) => {
               enterPassword(e)
             }}
