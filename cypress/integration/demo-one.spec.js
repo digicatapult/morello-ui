@@ -18,16 +18,16 @@ describe('Demo One', () => {
       cy.get('#Password').should('have.value', '1234567891011121')
     })
   })
-  
+
   it('Renders Hacker App after submitting a password', () => {
-    cy.get('#Password').type('password100', { force: true })
+    cy.get('#Password').type('password100')
     cy.get('#submit-password').click()
     cy.get('#hacker-app').should('exist')
   })
 
-  // TODO come back later 
+  // TODO come back later
   it.skip('Renders modal after clicking on Hacker App', () => {
-    cy.get('#hacker-app').click({ force: true })
+    cy.get('#hacker-app').click()
     cy.get('#hacker-app-modal').should('exist')
   })
 
