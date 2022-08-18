@@ -15,7 +15,7 @@ module.exports = {
   },
   devServer: {
     historyApiFallback: true,
-    port: 3000,
+    port: 8080,
   },
   devtool: 'source-map',
   module: {
@@ -45,6 +45,7 @@ module.exports = {
   plugins: [
     new DefinePlugin({
       'process.env': Object.keys(env).reduce((out, next) => {
+        console.log({ env, next, out })
         out[next] = env[next]
         return out
       }, {}),

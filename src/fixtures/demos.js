@@ -1,5 +1,6 @@
 import React from 'react'
 
+import { executeBinary } from '../utils/morello-api'
 import Demo1 from '../components/Demo1'
 
 export const demos = [
@@ -14,8 +15,14 @@ export const demos = [
       'Would you like to break into the system and reveal the password?',
     modalSuccess: 'Hacking completed. The password is:',
     Element: (props) => <Demo1 {...props} />,
-    execute: (args) => {
-      console.log('Demo1 executing...', args)
+    execute: async (password) => {
+      try {
+        const output = await executeBinary('demo1', { password })
+        console.log(output)
+        return output
+      } catch (e) {
+        console.log('handle error', e)
+      } 
     },
   },
   {

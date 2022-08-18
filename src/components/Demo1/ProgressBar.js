@@ -36,7 +36,6 @@ export default function ProgressBar(props) {
     setProgress(98)
     await new Promise((r) => setTimeout(r, 4000))
     setProgress(100)
-    // TODO call props.execute()
   }, [])
 
   const showProgress = progress != 100
