@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "lint": "eslint --ext .js .",
-    "lint:fix": "$(npm bin)/eslint src/components/**/*.js --fix",
+    "lint:fix": "eslint --ext --fix .js .",
     "dev": "webpack-dev-server --mode=development --open",
     "build": "webpack --mode=production",
     "depcheck": "depcheck",

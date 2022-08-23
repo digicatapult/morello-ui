@@ -18,23 +18,23 @@ describe('Demo One', () => {
       cy.get('#Password').should('have.value', '1234567891011121')
     })
   })
-  
+
   describe('Happy path', () => {
     beforeEach(() => {
       cy.get('#Password').type('password')
       cy.get('#submit-password').click()
       cy.get('#hacker-app').click()
-      cy.get('#demo1-modal-btn-yes').click() 
+      cy.get('#demo1-modal-btn-yes').click()
     })
 
     it('Renders Hacker App after submitting a password', () => {
       cy.get('#hacker-app').should('exist')
     })
-  
+
     it('Renders modal after clicking on Hacker App', () => {
       cy.get('#hacker-app-modal').should('exist')
     })
-  
+
     it('Renders progress bar after clicking <YES>', () => {
       cy.get('#demo1-progress-bar').should('exist')
     })
