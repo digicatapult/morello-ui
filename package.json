@@ -6,9 +6,8 @@
   "scripts": {
     "lint": "eslint --ext .js .",
     "lint:fix": "$(npm bin)/eslint src/components/**/*.js --fix",
-    "dev": "webpack-dev-server --mode=development",
-    "start": "webpack-dev-server",
-    "build": "webpack",
+    "dev": "webpack-dev-server --mode=development --open",
+    "build": "webpack --mode=production",
     "depcheck": "depcheck",
     "test:dev": "npx cypress open-ct",
     "test:integration": "npx cypress run"
@@ -16,10 +15,6 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/digicatapult/morello-ui.git"
-  },
-  "engines": {
-    "node": "16.x.x",
-    "npm": "8.x.x"
   },
   "browserslist": {
     "production": [
@@ -41,7 +36,6 @@
   "resolutions": {
     "styled-components": "^5"
   },
-  "homepage": "https://github.com/digicatapult/morello-ui#readme",
   "devDependencies": {
     "@babel/core": "^7.18.10",
     "@babel/eslint-parser": "^7.18.9",
