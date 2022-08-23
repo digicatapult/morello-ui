@@ -23,7 +23,6 @@ export const demos = [
         const params =
           args.length > 1 && typeof args !== 'string' ? [...args] : [args]
         const output = await executeBinary('out-of-bounds-read', { params })
-        console.log(output)
         return output
       } catch (e) {
         console.log('handle error', e)

@@ -52,7 +52,6 @@ export default function ProgressBar({ update, execute, ...props }) {
     if (!demo1.output) load()
   }, [demo1, update, execute])
 
-  console.log({ Window })
   const showProgress = progress != 100
 
   return showProgress ? (
