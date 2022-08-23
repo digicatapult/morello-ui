@@ -16,16 +16,18 @@ export const demos = [
       'Would you like to break into the system and reveal the password?',
     modalSuccess: 'Hacking completed. The password is:',
     Element: (props) => <Demo1 {...props} />,
-    execute: async (args) => {
+    execute: async (args, arch = 'aarch64') => {
       try {
         // TODO updadte with V2
         // currently API ddoes not allow other types...
         const params =
           args.length > 1 && typeof args !== 'string' ? [...args] : [args]
-        const output = await executeBinary('out-of-bounds-read', { params })
+        const output = await executeBinary(`out-of-bounds-read-${arch}`, {
+          params,
+        })
         return output
       } catch (e) {
-        console.log('handle error', e)
+        console.log('TODO: handle error', e)
       }
     },
   },
