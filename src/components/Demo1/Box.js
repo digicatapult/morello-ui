@@ -53,7 +53,9 @@ const Button = styled.button`
   margin-left: 5px;
 `
 
-function Modal({ demo1, update, ...props }) {
+// TODO - convert into a reusable
+function Modal(props) {
+  const { demo1, update } = props
   const { showHackingProgress, renderModalActions } = demo1
 
   const handleNo = (e) => {

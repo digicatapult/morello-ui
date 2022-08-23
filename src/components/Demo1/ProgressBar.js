@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { Context } from '../../utils/context'
 
 import { Txt_Demo1A } from '../Common'
 
@@ -24,20 +25,34 @@ const Bar = styled.div`
   background: #d9d9d9;
 `
 
-export default function ProgressBar(props) {
+export default function ProgressBar({ update, execute, ...props }) {
   const [progress, setProgress] = React.useState(2)
+  const { demo1 } = React.useContext(Context)
 
-  React.useEffect(async () => {
+  async function fill() {
     await new Promise((r) => setTimeout(r, 400))
     setProgress(22)
     await new Promise((r) => setTimeout(r, 600))
     setProgress(63)
     await new Promise((r) => setTimeout(r, 1000))
     setProgress(98)
-    await new Promise((r) => setTimeout(r, 4000))
-    setProgress(100)
-  }, [])
+  }
 
+  React.useEffect(() => {
+    async function load() {
+      await fill()
+      update({
+        demo1: {
+          ...demo1,
+          output: await execute(demo1.password),
+        },
+      })
+      setProgress(100)
+    }
+    if (!demo1.output) load()
+  }, [demo1, update, execute])
+
+  console.log({ Window })
   const showProgress = progress != 100
 
   return showProgress ? (

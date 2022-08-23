@@ -7,7 +7,6 @@ import Card from './Card'
 import { Container } from './Common'
 import Header from './Header'
 
-
 const ItemWrap = styled.div((props) => ({
   display: 'flex',
   width: '300px',

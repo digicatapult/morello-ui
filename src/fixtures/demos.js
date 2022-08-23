@@ -6,6 +6,7 @@ import Demo1 from '../components/Demo1'
 export const demos = [
   {
     path: 'demo1',
+    binaryName: 'out-of-bounds-read',
     title: 'Do you believe your password is safe?',
     description: 'Out of Bounds write / Out of Bounds read. CWE Score 65.93',
     color: '#384D6C',
@@ -15,14 +16,18 @@ export const demos = [
       'Would you like to break into the system and reveal the password?',
     modalSuccess: 'Hacking completed. The password is:',
     Element: (props) => <Demo1 {...props} />,
-    execute: async (password) => {
+    execute: async (args) => {
       try {
-        const output = await executeBinary('demo1', { password })
+        // TODO updadte with V2
+        // currently API ddoes not allow other types...
+        const params =
+          args.length > 1 && typeof args !== 'string' ? [...args] : [args]
+        const output = await executeBinary('out-of-bounds-read', { params })
         console.log(output)
         return output
       } catch (e) {
         console.log('handle error', e)
-      } 
+      }
     },
   },
   {

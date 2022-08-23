@@ -7,10 +7,8 @@ if (!Window.config) {
   Window.config = {}
 }
 
-if (!Window.config.inteli) {
-  Window.config = {}
-}
-
-for (const [key, value] of Object.entries(config)) {
-  Window.config[key] = value
-}
+Window.config = Object.keys(config).reduce((out, next) => {
+  if (!out.hasOwnProperty(next)) out[next] = config[next]
+  return out
+}, {})
+o
