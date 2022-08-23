@@ -6,7 +6,7 @@
   "scripts": {
     "lint": "eslint --ext .js .",
     "lint:fix": "eslint --ext --fix .js .",
-    "dev": "webpack-dev-server --mode=development --open",
+    "dev": "webpack-dev-server --mode=development",
     "build": "webpack --mode=production",
     "depcheck": "depcheck",
     "test:dev": "npx cypress open-ct",
