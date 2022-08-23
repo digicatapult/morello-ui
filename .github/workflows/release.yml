@@ -91,7 +91,7 @@ jobs:
           record: false
           headless: true
           build: npm run build
-          start: npm run dev
+          start: npm start
           wait-on: 'http://localhost:8080'
 
   check-version:
