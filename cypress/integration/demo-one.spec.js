@@ -35,8 +35,12 @@ describe('Demo One', () => {
       cy.get('#hacker-app-modal').should('exist')
     })
   
-    it.skip('Renders progress bar after clicking <YES>', () => {
+    it('Renders progress bar after clicking <YES>', () => {
       cy.get('#demo1-progress-bar').should('exist')
+    })
+
+    it.skip('Executes demo1 binaries by calling an api', () => {
+      // TODO
     })
   })
 })
