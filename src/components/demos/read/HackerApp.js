@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import { H2 } from '../../shared/Common'
 import { Context } from '../../../utils/context'
+import { IconText } from '../../shared/Common'
 
 const IconWrapper = styled.div`
   position: absolute;
@@ -11,9 +11,10 @@ const IconWrapper = styled.div`
   width: 60px;
   text-align: center;
 `
+
 export default function Hacker(props) {
   const { readDemo, update } = React.useContext(Context)
-  const { imageSrc, text } = props
+  const { imageSrc, text, font } = props
 
   const renderModal = (e, { state, update }) => {
     e.preventDefault()

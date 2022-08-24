@@ -8,10 +8,10 @@ import icon from '../../assets/images/icon.png'
 import { Row } from './Common'
 
 const TitleText = styled.p((props) => ({
-  fontFamily: 'Monaco',
   fontWeight: 'bold',
   margin: '0px',
   paddingLeft: '10px',
+  fontFamily: props.fontFamily,
   ...props,
 }))
 
@@ -76,13 +76,13 @@ const titleProps = {
   },
 }
 
-export default function Title({ title, arch }) {
-  const props = titleProps[arch]
+export default function Title({ title, theme }) {
+  const props = titleProps[theme.name]
 
   return (
     <Row alignItems={'center'} {...props.bar}>
       {props.icons.map((icon) => icon)}
-      <TitleText data-cy={'title-bar'} {...props.text}>
+      <TitleText data-cy={'title-bar'} {...theme.font} {...props.text}>
         {title}
       </TitleText>
     </Row>

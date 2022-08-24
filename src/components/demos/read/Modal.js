@@ -35,6 +35,7 @@ const renderActions = ({ update, state, type }) => {
   }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   const btn = () =>
     state.theme.name === 'Morello'
       ? [
@@ -104,6 +105,53 @@ const renderActions = ({ update, state, type }) => {
             onClick={handleNo}
           >
             NO
+=======
+  const btn = ({ cyPrefix = '' }) =>
+    readDemo.theme.name === 'Morello'
+      ? [
+          <Button key={'read-demo-modal-btn-yes-1'} onClick={handleYes}>
+            <DemoText
+              data-cy={`${cyPrefix}modal-btn-yes-cheri`}
+              {...readDemo.theme.font}
+              color={'#fff'}
+              margin={'0'}
+            >
+              YES
+            </DemoText>
+          </Button>,
+          <div key={'div-1'} style={{ width: '30px' }} />,
+          <Button key={'read-demo-modal-btn-no-1'} onClick={handleNo}>
+            <DemoText
+              data-cy={`${cyPrefix}modal-btn-no-cheri`}
+              {...readDemo.theme.font}
+              color={'#fff'}
+              margin={'0'}
+            >
+              NO
+            </DemoText>
+          </Button>,
+        ]
+      : [
+          <ButtonBasic key={'read-demo-modal-btn-yes-2'} onClick={handleYes}>
+            <DemoText
+              data-cy={`${cyPrefix}modal-btn-yes-aarch64`}
+              {...readDemo.theme.font}
+              color={'#000'}
+              margin={'0'}
+            >
+              YES
+            </DemoText>
+          </ButtonBasic>,
+          <ButtonBasic key={'read-demo-modal-btn-no-2'} onClick={handleNo}>
+            <DemoText
+              data-cy={`${cyPrefix}modal-btn-no-aarch64`}
+              {...readDemo.theme.font}
+              color={'#000'}
+              margin={'0'}
+            >
+              NO
+            </DemoText>
+>>>>>>> main
           </ButtonBasic>,
         ]
 >>>>>>> main
@@ -130,6 +178,7 @@ export default function Modal({ type, update, state, ProgressBar, details = unde
 
   return (
 <<<<<<< HEAD
+<<<<<<< HEAD
     <Window data-cy={`${path}-modal`} styles={theme.modal.window}>
       <Title title={state.modalTitle} arch={theme.name} />
       <Row>
@@ -141,6 +190,19 @@ export default function Modal({ type, update, state, ProgressBar, details = unde
       <Row>
         <Page {...theme.modal.page}>
           <DemoText data-cy={'modal-main-text'} {...readDemo.txt_col}>
+            {readDemo.modalText}
+          </DemoText>
+>>>>>>> main
+=======
+    <Window data-cy={'modal-main'} styles={theme.modal.window}>
+      <Title title={readDemo.modalTitle} theme={theme} />
+      <Row>
+        <Page {...theme.modal.page}>
+          <DemoText
+            data-cy={'modal-main-text'}
+            {...readDemo.theme.font}
+            color={'#fff'}
+          >
             {readDemo.modalText}
           </DemoText>
 >>>>>>> main

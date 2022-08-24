@@ -13,7 +13,7 @@ export const Themes = (arch) => {
   return {
     name: arch,
     font: isCheri
-      ? { fontFamily: 'AktivGrotesk', color: '#000' }
+      ? { fontFamily: 'OpenSans', color: '#000' }
       : { fontFamily: 'Monaco', color: '#fff' },
     arch: isCheri ? 'cheri' : 'aarch64',
     progressBar: {
@@ -48,7 +48,7 @@ export const Themes = (arch) => {
             width: '300px',
             height: '60px',
             padding: '6px 12px',
-            fontFamily: 'AktivGrotesk',
+            fontFamily: 'OpenSans',
             fontStyle: 'normal',
             fontSize: '1.6em',
             color: '#787878',
@@ -74,7 +74,7 @@ export const Themes = (arch) => {
             speak: 'none',
           },
       label: {
-        fontFamily: isCheri ? 'AktivGrotesk' : 'Monaco',
+        fontFamily: isCheri ? 'OpenSans' : 'Monaco',
         fontStyle: 'normal',
         fontWeight: '600',
         fontSize: isCheri ? '16px' : '24px',
@@ -85,7 +85,7 @@ export const Themes = (arch) => {
         color: isCheri ? '#000' : '#fff',
       },
       warning: {
-        fontFamily: isCheri ? 'AktivGrotesk' : 'Monaco',
+        fontFamily: isCheri ? 'OpenSans' : 'Monaco',
         fontStyle: 'normal',
         fontWeight: '400',
         fontSize: '14px',
@@ -94,7 +94,7 @@ export const Themes = (arch) => {
         minHeight: '30px',
       },
       loginAttempt: {
-        fontFamily: isCheri ? 'AktivGrotesk' : 'Monaco',
+        fontFamily: isCheri ? 'OpenSans' : 'Monaco',
         fontSize: '14px',
         color: isCheri ? '#000' : '#fff',
       },
@@ -111,7 +111,7 @@ export const Themes = (arch) => {
         marginTop: '32px',
       },
       loginButton: {
-        fontFamily: isCheri ? 'AktivGrotesk' : 'Monaco',
+        fontFamily: isCheri ? 'OpenSans' : 'Monaco',
         fontSize: '16px',
         width: '100px',
         height: '50px',

@@ -6,7 +6,11 @@ import Header from '../../shared/Header'
 import { Context, initState } from '../../../utils/context'
 import { extractLoginResult } from '../../../utils/write-demo-output'
 import Box from '../../shared/Box'
+<<<<<<< HEAD
 import { Container, Col, H2 } from '../../shared/Common'
+=======
+import { Container, Col, IconText } from '../../shared/Common'
+>>>>>>> main
 import { ButtonSide } from '../../shared/Buttons'
 import { Themes } from '../../../fixtures/themes'
 import LoginForm from './LoginForm'
@@ -30,6 +34,7 @@ const IconWrapper = styled.div`
   text-align: center;
 `
 
+<<<<<<< HEAD
 const ConsoleButtonWrapper = styled.div`
   position: absolute;
   bottom: 100px;
@@ -64,6 +69,8 @@ const ConsoleButton = ({ update, state }) => {
   )
 }
 
+=======
+>>>>>>> main
 const successfulLogin = (apiOutput) =>
   extractLoginResult(apiOutput) === 'Login succeeded'
 const loginError = (apiOutput) => extractLoginResult(apiOutput) === 'error'
@@ -79,7 +86,11 @@ const SecretDesktop = ({ icons }) => {
             width={'60px'}
             height={'60px'}
           />
+<<<<<<< HEAD
           <H2>{icon.name}</H2>
+=======
+          <IconText>{icon.name}</IconText>
+>>>>>>> main
         </IconWrapper>
       ))}
     </Col>
@@ -174,6 +185,7 @@ export default function WriteDemo(props) {
                 action={() => {
                   nav('/write-demo-explainer')
                 }}
+<<<<<<< HEAD
               />,
               <ConsoleButton update={update} state={demoState} />
               ]
@@ -187,6 +199,10 @@ export default function WriteDemo(props) {
         executable={`${binaryName}-${theme.arch} ${usernamePasswordPairs.join(', ')}`}
         output={response.output}
       />}
+=======
+              />
+            )}
+>>>>>>> main
       </Wrapper>
     </>
   )

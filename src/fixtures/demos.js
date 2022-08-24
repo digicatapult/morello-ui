@@ -67,10 +67,13 @@ export const demos = [
     description: 'Out of Bounds write. CWE Score 65.93',
     color: '#6C3838',
 <<<<<<< HEAD
+<<<<<<< HEAD
     icon: bugIcon,
     windowTitle: 'SUPER_SAFE_APP.EXE',
     modalTitle: 'CONSOLE.EXE',
 =======
+=======
+>>>>>>> main
     secretDesktop: [
       {
         name: 'Documents',
@@ -101,6 +104,9 @@ export const demos = [
         img: JpegIcon,
       },
     ],
+<<<<<<< HEAD
+>>>>>>> main
+=======
 >>>>>>> main
     helpContent: `
       The username is root.
