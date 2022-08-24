@@ -1,4 +1,9 @@
+import React from 'react'
 import styled from 'styled-components'
+
+import crossIcon from '../assets/images/cross.png'
+import minimise from '../assets/images/minus.png'
+import icon from '../assets/images/icon.png'
 
 const params = {
   screen: {
@@ -11,6 +16,13 @@ const params = {
     flexGrow: 1,
   },
 }
+
+export const Icon = styled.img(({ source }) => ({
+  width: '20px',
+  height: '20px',
+  marginLeft: '4px',
+  src: `${source}`,
+}))
 
 export const H1 = styled.h1((props) => ({
   fontFamily: 'AktivGrotesk',
@@ -62,6 +74,16 @@ export const Container = styled.div(({ size = 1, styles = {} }) => ({
   ...styles,
 }))
 
+export const Title = styled.p((props) => ({
+  fontFamily: 'Monaco',
+  fontSize: '32px',
+  color: '#FFFFFF',
+  fontWeight: '100',
+  margin: '0px',
+  paddingLeft: '10px',
+  ...props,
+}))
+
 export const Spacer = styled.div(({ size = 1 }) => ({
   width: '100%',
   height: `${size}px`,
@@ -88,3 +110,10 @@ export const RowSpacer = styled.div(({ size = 1 }) => ({
   height: '100%',
   width: `${size * 10}%`,
 }))
+
+export const renderTitle = (title) => <Row paddingLeft={'5px'} alignItems={'center'}>
+  <Icon src={crossIcon} />
+  <Icon src={minimise} />
+  <Icon src={icon} />
+  <Title>{title}</Title>
+</Row>

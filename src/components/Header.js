@@ -1,22 +1,64 @@
 import React from 'react'
+import styled from 'styled-components'
+import { useNavigate } from 'react-router-dom'
 
-import { Container } from './Common'
-import dsbdLogo from '../assets/images/logo.png'
+import { H1, Row, Col, RowSpacer } from './Common'
+import closeIcon from '../assets/images/close-icon.png'
+import { Context } from '../utils/context'
 
-export default function Header({ children }) {
-  const logo = <img src={dsbdLogo} width={'120px'} height={'34px'} />
+const HeaderStyle = styled.div((props) => ({
+  backgroundColor: '#384D6C',
+  width: '100%',
+  height: '164px',
+  ...props,
+}))
+
+const CloseElement = styled.span({
+  display: 'flex',
+  alignItems: 'center',
+  cursor: 'pointer',
+})
+
+export default function Header({ logo, showClose, title, ...props }) {
+  const nav = useNavigate()
+  const { update } = React.useContext(Context)
 
   return (
-    <Container
-      size={10}
-      styles={{
-        height: '80px',
-        padding: '10px 20px',
-        alignItems: 'center',
-        justifyContent: 'flex-start',
-      }}
-    >
-      {children || logo}
-    </Container>
+    <HeaderStyle backgroundColor={props.color || 'none'}>
+      <Row height={'100%'}>
+        <Col size={3} styles={{ paddingLeft: '50px', alignItems: 'start' }}>
+          {title ? <H1
+            lineHeight={'58px'}
+            letterSpacing={'-0.06em'}
+            fontStyle={'normal'}
+            fontWeight={'300'}
+            fontSize={'45px'}
+          >
+            {title}
+          </H1> :
+          <img src={logo} width={'140px'} height={'38px'} />}
+        </Col>
+        <RowSpacer size={5} />
+        <Col size={3} styles={{ paddingRight: '50px', alignItems: 'end' }}>
+          {showClose && <CloseElement
+            onClick={(e) => {
+              e.preventDefault()
+              update({
+                demo1: {
+                  password: '',
+                  renderModal: false,
+                  isPasswordSet: false,
+                  renderModalActions: true,
+                },
+              })
+              nav('/', { replace: true })
+            }}
+          >
+            <H1>Close</H1>
+            <img src={closeIcon} />
+          </CloseElement>}
+        </Col>
+      </Row>
+    </HeaderStyle>
   )
 }
