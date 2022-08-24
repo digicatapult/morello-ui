@@ -6,6 +6,7 @@ import { demos } from '../fixtures/demos'
 import Card from './Card'
 import { Container } from './Common'
 import Header from './Header'
+import dsbdLogo from '../assets/images/logo.png'
 
 const ItemWrap = styled.div((props) => ({
   display: 'flex',
@@ -19,7 +20,7 @@ export default function MainMenu() {
 
   return (
     <>
-      <Header />
+      <Header logo={dsbdLogo} />
       <Container
         size={10}
         style={{

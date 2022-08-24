@@ -6,7 +6,9 @@ import React from 'react'
 export const Context = React.createContext({
   ctx: true,
   demo1: {
+    isMorello: false,
     password: '',
+    showHackPopup: false,
     isPasswordSet: false,
     renderModal: false,
     renderModalActions: true,
@@ -21,7 +23,9 @@ export const ContextProvider = ({ children }) => {
   const initState = {
     ctx: true,
     demo1: {
+      isMorello: false,
       password: '',
+      showHackPopup: false,
       isPasswordSet: false,
       renderModal: false,
       renderModalActions: true,

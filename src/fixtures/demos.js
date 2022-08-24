@@ -1,11 +1,12 @@
 import React from 'react'
 
 import { executeBinary } from '../utils/morello-api'
-import Demo1 from '../components/Demo1'
+import Demo from '../components/Demo'
 
 export const demos = [
   {
     path: 'demo1',
+    // TODO group by A and B
     binaryName: 'out-of-bounds-read',
     title: 'Do you believe your password is safe?',
     description: 'Out of Bounds write / Out of Bounds read. CWE Score 65.93',
@@ -14,8 +15,9 @@ export const demos = [
     modalTitle: 'hacker.app',
     modalText:
       'Would you like to break into the system and reveal the password?',
-    modalSuccess: 'Hacking completed. The password is:',
-    Element: (props) => <Demo1 {...props} />,
+    hackingOkBody: 'The password is:',
+    hackingOkTitle: 'Hacking completed.',
+    Element: (props) => <Demo {...props} />,
     execute: async (args, arch = 'aarch64') => {
       try {
         // TODO updadte with V2

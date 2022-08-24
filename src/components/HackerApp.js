@@ -1,7 +1,7 @@
 import React from 'react'
 
-import { Col, H2 } from '../Common'
-import { Context } from '../../utils/context'
+import { Col, H2 } from './Common'
+import { Context } from '../utils/context'
 
 // usage <Icon imageSrc={cardArrow} text={'txt'} styles={{ width: '100px', textAlign: 'center'}}/>
 export default function Icon(props) {

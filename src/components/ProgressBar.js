@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Context } from '../../utils/context'
 
-import { Txt_Demo1A } from '../Common'
+import { Context } from '../utils/context'
+import { Txt_Demo1A } from './Common'
 
 const Wrapper = styled.div`
   height: 22px;
@@ -25,17 +25,15 @@ const Bar = styled.div`
   background: #d9d9d9;
 `
 
-export default function ProgressBar({ update, execute, ...props }) {
+export default function ProgressBar({ update, execute }) {
   const [progress, setProgress] = React.useState(2)
   const { demo1 } = React.useContext(Context)
 
   async function fill() {
-    await new Promise((r) => setTimeout(r, 400))
-    setProgress(22)
-    await new Promise((r) => setTimeout(r, 600))
-    setProgress(63)
-    await new Promise((r) => setTimeout(r, 1000))
-    setProgress(98)
+    for (let count = 0; count <= 98; count += 2) {
+      await new Promise((r) => setTimeout(r, 20))
+      setProgress(count)
+    }
   }
 
   React.useEffect(() => {
@@ -44,6 +42,7 @@ export default function ProgressBar({ update, execute, ...props }) {
       update({
         demo1: {
           ...demo1,
+          showHackPopup: true,
           output: await execute(demo1.password),
         },
       })
@@ -58,12 +57,7 @@ export default function ProgressBar({ update, execute, ...props }) {
     <Wrapper id={'demo1-progress-bar'}>
       <Txt_Demo1A>{`hacking in progress ${progress}%`}</Txt_Demo1A>
       <BarBackground />
-      <Bar progress={progress} />
+      <Bar progress={progress} s />
     </Wrapper>
-  ) : (
-    <Wrapper>
-      <Txt_Demo1A>{props.modalSuccess}</Txt_Demo1A>
-      <Txt_Demo1A>Passowrd_123</Txt_Demo1A>
-    </Wrapper>
-  )
+  ) : null
 }
