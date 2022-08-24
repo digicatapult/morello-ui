@@ -7,6 +7,7 @@ export const Context = React.createContext({
   ctx: true,
   demo1: {
     password: '',
+    showHackPopup: false,
     isPasswordSet: false,
     renderModal: false,
     renderModalActions: true,
@@ -22,6 +23,7 @@ export const ContextProvider = ({ children }) => {
     ctx: true,
     demo1: {
       password: '',
+      showHackPopup: false,
       isPasswordSet: false,
       renderModal: false,
       renderModalActions: true,
