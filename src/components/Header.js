@@ -27,36 +27,41 @@ export default function Header({ logo, showClose, title, ...props }) {
     <HeaderStyle backgroundColor={props.color || 'none'}>
       <Row height={'100%'}>
         <Col size={3} styles={{ paddingLeft: '50px', alignItems: 'start' }}>
-          {title ? <H1
-            lineHeight={'58px'}
-            letterSpacing={'-0.06em'}
-            fontStyle={'normal'}
-            fontWeight={'300'}
-            fontSize={'45px'}
-          >
-            {title}
-          </H1> :
-          <img src={logo} width={'140px'} height={'38px'} />}
+          {title ? (
+            <H1
+              lineHeight={'58px'}
+              letterSpacing={'-0.06em'}
+              fontStyle={'normal'}
+              fontWeight={'300'}
+              fontSize={'45px'}
+            >
+              {title}
+            </H1>
+          ) : (
+            <img src={logo} width={'140px'} height={'38px'} />
+          )}
         </Col>
         <RowSpacer size={5} />
         <Col size={3} styles={{ paddingRight: '50px', alignItems: 'end' }}>
-          {showClose && <CloseElement
-            onClick={(e) => {
-              e.preventDefault()
-              update({
-                demo1: {
-                  password: '',
-                  renderModal: false,
-                  isPasswordSet: false,
-                  renderModalActions: true,
-                },
-              })
-              nav('/', { replace: true })
-            }}
-          >
-            <H1>Close</H1>
-            <img src={closeIcon} />
-          </CloseElement>}
+          {showClose && (
+            <CloseElement
+              onClick={(e) => {
+                e.preventDefault()
+                update({
+                  demo1: {
+                    password: '',
+                    renderModal: false,
+                    isPasswordSet: false,
+                    renderModalActions: true,
+                  },
+                })
+                nav('/', { replace: true })
+              }}
+            >
+              <H1>Close</H1>
+              <img src={closeIcon} />
+            </CloseElement>
+          )}
         </Col>
       </Row>
     </HeaderStyle>

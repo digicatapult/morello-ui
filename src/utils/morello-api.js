@@ -8,7 +8,6 @@ export async function executeBinary(name, params) {
   try {
     const res = await fetch(`${url}?${queryString}`)
     return res.json()
-
   } catch (e) {
     return e.message
   }

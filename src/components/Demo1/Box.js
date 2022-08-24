@@ -5,6 +5,7 @@ import Input from './Input'
 import { Row, Txt_Demo1A, renderTitle } from '../Common'
 import { Context } from '../../utils/context'
 import Modal from '../Modal'
+import ProgressBar from './ProgressBar'
 
 const Window = styled.div`
   display: flex;
@@ -34,11 +35,13 @@ export default function Box(props) {
 
   return (
     <Window background={props}>
-      {renderModal && Modal({
-        ...props,
-        demo1,
-        update,
-        ProgressBar: (props) => <ProgressBar {...props} />})}
+      {renderModal &&
+        Modal({
+          ...props,
+          demo1,
+          update,
+          ProgressBar: (props) => <ProgressBar {...props} />,
+        })}
       {renderTitle(props.windowTitle)}
       <Row flex={'auto'}>
         <Body>

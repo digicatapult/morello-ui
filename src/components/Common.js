@@ -110,9 +110,11 @@ export const RowSpacer = styled.div(({ size = 1 }) => ({
   width: `${size * 10}%`,
 }))
 
-export const renderTitle = (title) => <Row paddingLeft={'5px'} alignItems={'center'}>
-  <Icon src={crossIcon} />
-  <Icon src={minimise} />
-  <Icon src={icon} />
-  <Title>{title}</Title>
-</Row>
+export const renderTitle = (title) => (
+  <Row paddingLeft={'5px'} alignItems={'center'}>
+    <Icon src={crossIcon} />
+    <Icon src={minimise} />
+    <Icon src={icon} />
+    <Title>{title}</Title>
+  </Row>
+)

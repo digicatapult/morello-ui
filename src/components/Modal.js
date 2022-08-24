@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import { Txt_Demo1A, Col, Row, renderTitle } from './Common'
+import { Txt_Demo1A, Col, Row, renderTitle, Spacer } from './Common'
 import ProgressBar from './Demo1/ProgressBar'
 
 const Button = styled.button`
@@ -21,7 +21,7 @@ const Page = styled(Col)`
   padding: 5px;
   box-sizing: border-box;
   justify-content: space-between;
-  outline: 2px solid #FFFFFF;
+  outline: 2px solid #ffffff;
   outline-offset: -10px;
   box-shadow: 24px 24px 1px rgba(0, 0, 0, 0.8);
 `
@@ -50,18 +50,14 @@ const renderActions = ({ update, demo1 }) => {
   }
 
   return (
-    <Row
-      justifyContent={'center'}
-      marginRight={'20px'}
-      padding={'10px'}
-    >
+    <Row justifyContent={'center'} marginRight={'20px'} padding={'10px'}>
       <Button id={'demo1-modal-btn-yes'} onClick={handleYes}>
         YES
       </Button>
       <Button id={'demo1-modal-btn-no'} onClick={handleNo}>
         NO
       </Button>
-    </Row >
+    </Row>
   )
 }
 
@@ -85,10 +81,13 @@ export default function Modal(props) {
       <Row flex={'auto'}>
         <Page>
           <Txt_Demo1A>{props.modalText}</Txt_Demo1A>
+          <Spacer size={10} />
           {renderModalActions && renderActions(props)}
-          {showHackingProgress && <Row flex={'auto'}>
+          {showHackingProgress && (
+            <Row flex={'auto'} marginTop={'20px'}>
               <ProgressBar {...props} />
-            </Row>}
+            </Row>
+          )}
         </Page>
       </Row>
     </Window>

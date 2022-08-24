@@ -1,22 +1,23 @@
 import styled from 'styled-components'
 
 export const Button = styled.button`
-  background-color: black;
-  color: white;
+  color: #40303f;
   font-size: 20px;
+  border: none;
   padding: 10px 60px;
-  maargin-left: 80px;
+  margin-bottom: 10px;
+  margin-right: 10px;
   border-radius: 5px;
   cursor: pointer;
-  transmission: all 0.5;
+  transition: all 0.3s;
 
   &:hover {
-    background-color: gray;
+    backgroundcolor: rgba(255, 255, 255, 0.5);
   }
 
   &:disabled {
-    color: grey;
+    color: gray;
     opacity: 0.7;
     cursor: default;
   }
-`;
+`

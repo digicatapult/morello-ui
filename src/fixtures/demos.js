@@ -6,6 +6,7 @@ import Demo1 from '../components/Demo1'
 export const demos = [
   {
     path: 'demo1',
+    // TODO group by A and B
     binaryName: 'out-of-bounds-read',
     title: 'Do you believe your password is safe?',
     description: 'Out of Bounds write / Out of Bounds read. CWE Score 65.93',
