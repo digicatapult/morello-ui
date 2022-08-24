@@ -12,7 +12,7 @@ const Window = styled.div`
   flex-direction: column;
   width: 826px;
   height: 626px;
-  boxShadow: 24px 24px 1px rgba(0, 0, 0, 0.8);
+  box-shadow: 24px 24px 1px rgba(0, 0, 0, 0.8);
   background: ${(props) => props.background};
 `
 

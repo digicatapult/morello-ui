@@ -23,6 +23,7 @@ const Page = styled(Col)`
   justify-content: space-between;
   outline: 2px solid #FFFFFF;
   outline-offset: -10px;
+  box-shadow: 24px 24px 1px rgba(0, 0, 0, 0.8);
 `
 
 const renderActions = ({ update, demo1 }) => {
@@ -72,7 +73,6 @@ export default function Modal(props) {
     <Window
       id={'hacker-app-modal'}
       styles={{
-        
         position: 'absolute',
         top: '40%',
         left: '40%',

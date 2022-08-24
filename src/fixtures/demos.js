@@ -14,7 +14,8 @@ export const demos = [
     modalTitle: 'hacker.app',
     modalText:
       'Would you like to break into the system and reveal the password?',
-    modalSuccess: 'Hacking completed. The password is:',
+    hackingOkBody: 'The password is:',
+    hackingOkTitle: 'Hacking completed.',
     Element: (props) => <Demo1 {...props} />,
     execute: async (args, arch = 'aarch64') => {
       try {

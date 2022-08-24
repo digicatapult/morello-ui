@@ -56,7 +56,6 @@ export const P1 = styled.p((props) => ({
   fontFamily: 'AktivGrotesk',
   fontSize: '9px',
   color: '#FFFFFF',
-  lineHeight: '11.52px',
   ...props,
 }))
 
