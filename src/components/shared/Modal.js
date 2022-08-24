@@ -2,29 +2,16 @@ import React from 'react'
 import styled from 'styled-components'
 
 import { Txt_Demo1A, Col, Row, renderTitle, Spacer } from './Common'
-import ProgressBar from './ProgressBar'
+import ProgressBar from '../ProgressBar'
+import { Context } from '../../utils/context'
 
 const Button = styled.button`
   width: 20%;
   height: 50px;
   margin-left: 5px;
 `
-
-const Window = styled.div((props) => ({
-  display: 'flex',
-  position: 'relative',
-  flexDirection: 'column',
-  ...props.styles,
-}))
-
-const Page = styled(Col)`
-  padding: 5px;
-  box-sizing: border-box;
-  justify-content: space-between;
-  outline: 2px solid #ffffff;
-  outline-offset: -10px;
-  box-shadow: 24px 24px 1px rgba(0, 0, 0, 0.8);
-`
+const Window = styled.div(({ styles }) => styles)
+const Page = styled(Col)((props) => props)
 
 const renderActions = ({ update, demo1 }) => {
   const handleNo = (e) => {
@@ -62,24 +49,17 @@ const renderActions = ({ update, demo1 }) => {
 }
 
 export default function Modal(props) {
-  const { demo1 } = props
+  const { demo1, theme } = props
   const { showHackingProgress, renderModalActions } = demo1
 
   return (
     <Window
       id={'hacker-app-modal'}
-      styles={{
-        position: 'absolute',
-        top: '40%',
-        left: '40%',
-        width: '586px',
-        height: '258px',
-        background: '#CE1C1C',
-      }}
+      styles={theme.window}
     >
       {renderTitle(demo1.modalTitle)}
       <Row flex={'auto'}>
-        <Page>
+        <Page {...theme.page}>
           <Txt_Demo1A>{props.modalText}</Txt_Demo1A>
           <Spacer size={10} />
           {renderModalActions && renderActions(props)}

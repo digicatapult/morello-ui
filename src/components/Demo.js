@@ -5,23 +5,15 @@ import { useNavigate } from 'react-router-dom'
 import Header from './Header'
 import HackerApp from './HackerApp'
 import { Context } from '../utils/context'
-import { Background } from './Background'
-import hackerIcon from '../assets/images/hacker-app-icon.png'
 import Box from './Box'
-import Popup, { PopBody, PopFooter, PopHeader } from './Popup'
+import Popup, { PopBody, PopFooter, PopHeader } from './shared/Popup'
 
-const Wrapper = styled.div`
-  display: flex;
-  position: relative;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-`
+const Wrapper = styled.div((props) => props)
 
 export default function Demo1(props) {
   const nav = useNavigate()
   const state = React.useContext(Context)
+  const { Background, ...theme } = state.themes.Morello
   const {
     demo1: { isPasswordSet, showHackPopup },
   } = state
@@ -56,21 +48,15 @@ export default function Demo1(props) {
         </Popup>
       )}
       <Header {...props} showClose={true} />
-      <Wrapper>
+      <Wrapper {...theme.wrapper}>
         {isPasswordSet && (
           <HackerApp
-            imageSrc={hackerIcon}
+            imageSrc={theme.icons.hacker}
             text={'hacker app'}
-            styles={{
-              position: 'absolute',
-              left: '20px',
-              top: '200px',
-              width: '100px',
-              textAlign: 'center',
-            }}
+            styles={theme.icons.style}
           />
         )}
-        <Box {...props} background={'#343556'} />
+        <Box {...props}/>
       </Wrapper>
     </Background>
   )

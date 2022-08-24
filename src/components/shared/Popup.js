@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Context } from '../utils/context'
+import { Context } from '../../utils/context'
 
-import { Button } from './shared/Buttons'
+import { Button } from './Buttons'
 import { H1, H2, P1, Row } from './Common'
 
 const headerProps = {

@@ -2,17 +2,11 @@ import React from 'react'
 import styled from 'styled-components'
 import { useNavigate } from 'react-router-dom'
 
-import { H1, Row, Col, RowSpacer } from './Common'
+import { H1, Row, Col, RowSpacer } from './shared/Common'
 import closeIcon from '../assets/images/close-icon.png'
 import { Context } from '../utils/context'
 
-const HeaderStyle = styled.div((props) => ({
-  backgroundColor: '#384D6C',
-  width: '100%',
-  height: '164px',
-  ...props,
-}))
-
+const HeaderStyle = styled.div((props) => props)
 const CloseElement = styled.span({
   display: 'flex',
   alignItems: 'center',
@@ -21,10 +15,10 @@ const CloseElement = styled.span({
 
 export default function Header({ logo, showClose, title, ...props }) {
   const nav = useNavigate()
-  const { update } = React.useContext(Context)
+  const { update, themes } = React.useContext(Context)
 
   return (
-    <HeaderStyle data-cy={'header'} backgroundColor={props.color || 'none'}>
+    <HeaderStyle  data-cy={'header'} {...themes.Morello.header} backgroundColor={props.color || 'none'}>
       <Row height={'100%'}>
         <Col size={3} styles={{ paddingLeft: '50px', alignItems: 'start' }}>
           {title ? (

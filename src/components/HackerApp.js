@@ -1,10 +1,10 @@
 import React from 'react'
 
-import { Col, H2 } from './Common'
+import { Col, H2 } from './shared/Common'
 import { Context } from '../utils/context'
 
 // usage <Icon imageSrc={cardArrow} text={'txt'} styles={{ width: '100px', textAlign: 'center'}}/>
-export default function Icon(props) {
+export default function Hacker(props) {
   const { demo1, update } = React.useContext(Context)
   const { imageSrc, text, styles } = props
 

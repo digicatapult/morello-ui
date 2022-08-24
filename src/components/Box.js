@@ -1,50 +1,35 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import Input from './Input'
-import { Row, Txt_Demo1A, renderTitle } from './Common'
+import Input from './shared/Input'
+import { Row, Txt_Demo1A, renderTitle } from './shared/Common'
 import { Context } from '../utils/context'
-import Modal from './Modal'
+import Modal from './shared/Modal'
 import ProgressBar from './ProgressBar'
 
-const Window = styled.div`
-  display: flex;
-  position: relative;
-  flex-direction: column;
-  width: 826px;
-  height: 626px;
-  box-shadow: 24px 24px 1px rgba(0, 0, 0, 0.8);
-  background: ${(props) => props.background};
-`
-
-const Body = styled.div({
-  boxSizing: 'border-box',
-  height: '100%',
-  width: '100%',
-  padding: '10px',
-  outline: '2px solid #FFFFFF',
-  outlineOffset: '-10px',
-})
+const Window = styled.div((props) => props)
+const Body = styled.div((props) => props)
 
 export default function Box(props) {
-  const { demo1, update } = React.useContext(Context)
+  const { demo1, update, themes } = React.useContext(Context)
   const { isPasswordSet, renderModal } = demo1
+  const theme = themes.Morello
 
   const date = new Date().toDateString().slice(0, 10)
   const time = new Date().toLocaleTimeString()
 
+  const modalProps = { ...props, theme: theme.modal, demo1, update }
+
   return (
-    <Window background={props}>
+    <Window {...theme.primary.windowCont}>
       {renderModal &&
         Modal({
-          ...props,
-          demo1,
-          update,
+          ...modalProps,
           ProgressBar: (props) => <ProgressBar {...props} />,
         })}
       {renderTitle(props.windowTitle)}
       <Row flex={'auto'}>
-        <Body>
+        <Body {...theme.primary.windowBody}>
           {!isPasswordSet && (
             <>
               <Txt_Demo1A>

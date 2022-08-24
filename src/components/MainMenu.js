@@ -3,19 +3,14 @@ import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 
 import { demos } from '../fixtures/demos'
-import Card from './Card'
-import { Container } from './Common'
+import Card from './shared/Card'
+import { Container } from './shared/Common'
 import Header from './Header'
 import dsbdLogo from '../assets/images/logo.png'
 
-const ItemWrap = styled.div((props) => ({
-  display: 'flex',
-  width: '300px',
-  padding: 2,
-  backgroundColor: props.color,
-}))
+const ItemWrap = styled.div((props) => props)
 
-export default function MainMenu() {
+export default function MainMenu(props) {
   const nav = useNavigate()
 
   return (
@@ -30,6 +25,7 @@ export default function MainMenu() {
       >
         {demos.map((details) => (
           <ItemWrap
+           {...props.themes.Morello.menuItemWrap}
             key={details.color}
             onClick={(e) => {
               e.preventDefault()

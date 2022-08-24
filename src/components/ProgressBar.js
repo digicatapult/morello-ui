@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 import { Context } from '../utils/context'
-import { Txt_Demo1A } from './Common'
+import { Txt_Demo1A } from './shared/Common'
 
 const Wrapper = styled.div`
   height: 22px;
@@ -27,7 +27,8 @@ const Bar = styled.div`
 
 export default function ProgressBar({ update, execute }) {
   const [progress, setProgress] = React.useState(2)
-  const { demo1 } = React.useContext(Context)
+  const { demo1, themes } = React.useContext(Context)
+  const theme = themes.Morello.progressBar
 
   async function fill() {
     for (let count = 0; count <= 98; count += 2) {
@@ -54,10 +55,10 @@ export default function ProgressBar({ update, execute }) {
   const showProgress = progress != 100
 
   return showProgress ? (
-    <Wrapper id={'demo1-progress-bar'}>
+    <Wrapper id={'demo1-progress-bar'} {...theme.wrapper}>
       <Txt_Demo1A>{`hacking in progress ${progress}%`}</Txt_Demo1A>
-      <BarBackground />
-      <Bar progress={progress} s />
+      <BarBackground {...theme.background}/>
+      <Bar progress={progress} {...theme.bar}/>
     </Wrapper>
   ) : null
 }

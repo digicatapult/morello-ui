@@ -1,9 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import crossIcon from '../assets/images/cross.png'
-import minimise from '../assets/images/minus.png'
-import icon from '../assets/images/icon.png'
+import crossIcon from '../../assets/images/cross.png'
+import minimise from '../../assets/images/minus.png'
+import icon from '../../assets/images/icon.png'
 
 const params = {
   screen: {
