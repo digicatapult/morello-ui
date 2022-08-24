@@ -2,13 +2,13 @@ import React from 'react'
 import styled from 'styled-components'
 import { useNavigate } from 'react-router-dom'
 
-import Header from '../Header'
+import Header from './Header'
 import HackerApp from './HackerApp'
-import { Context } from '../../utils/context'
+import { Context } from '../utils/context'
 import { Background } from './Background'
-import hackerIcon from '../../assets/images/hacker-app-icon.png'
+import hackerIcon from '../assets/images/hacker-app-icon.png'
 import Box from './Box'
-import Popup, { PopBody, PopFooter, PopHeader } from '../Popup'
+import Popup, { PopBody, PopFooter, PopHeader } from './Popup'
 
 const Wrapper = styled.div`
   display: flex;

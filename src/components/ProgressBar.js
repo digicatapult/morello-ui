@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import { Context } from '../../utils/context'
-import { Txt_Demo1A } from '../Common'
+import { Context } from '../utils/context'
+import { Txt_Demo1A } from './Common'
 
 const Wrapper = styled.div`
   height: 22px;

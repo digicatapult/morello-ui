@@ -2,9 +2,9 @@ import React from 'react'
 import styled from 'styled-components'
 
 import Input from './Input'
-import { Row, Txt_Demo1A, renderTitle } from '../Common'
-import { Context } from '../../utils/context'
-import Modal from '../Modal'
+import { Row, Txt_Demo1A, renderTitle } from './Common'
+import { Context } from '../utils/context'
+import Modal from './Modal'
 import ProgressBar from './ProgressBar'
 
 const Window = styled.div`

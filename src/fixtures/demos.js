@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { executeBinary } from '../utils/morello-api'
-import Demo1 from '../components/Demo1'
+import Demo from '../components/Demo'
 
 export const demos = [
   {
@@ -17,7 +17,7 @@ export const demos = [
       'Would you like to break into the system and reveal the password?',
     hackingOkBody: 'The password is:',
     hackingOkTitle: 'Hacking completed.',
-    Element: (props) => <Demo1 {...props} />,
+    Element: (props) => <Demo {...props} />,
     execute: async (args, arch = 'aarch64') => {
       try {
         // TODO updadte with V2

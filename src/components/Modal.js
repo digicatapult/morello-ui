@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 import { Txt_Demo1A, Col, Row, renderTitle, Spacer } from './Common'
-import ProgressBar from './Demo1/ProgressBar'
+import ProgressBar from './ProgressBar'
 
 const Button = styled.button`
   width: 20%;
