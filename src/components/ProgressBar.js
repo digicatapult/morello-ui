@@ -5,7 +5,7 @@ import { Context } from '../utils/context'
 import { Txt_Demo1A } from './shared/Common'
 
 const Wrapper = styled.div((props) => props)
-const BarBackground = styled.div(props => props)
+const BarBackground = styled.div((props) => props)
 
 const Bar = styled.div((props) => ({
   width: `${props.progress}%`,
@@ -31,7 +31,7 @@ export default function ProgressBar({ update, demo1 }) {
         demo1: {
           ...demo1,
           output,
-          showHackPopup: theme.name === 'Morello' ? false : true
+          showHackPopup: theme.name === 'Morello' ? false : true,
         },
       })
       setProgress(100)
@@ -44,8 +44,8 @@ export default function ProgressBar({ update, demo1 }) {
   return showProgress ? (
     <Wrapper id={'demo1-progress-bar'} {...theme.progressBar.wrapper}>
       <Txt_Demo1A>{`hacking in progress ${progress}%`}</Txt_Demo1A>
-      <BarBackground {...theme.progressBar.background}/>
-      <Bar progress={progress} {...theme.progressBar.bar}/>
+      <BarBackground {...theme.progressBar.background} />
+      <Bar progress={progress} {...theme.progressBar.bar} />
     </Wrapper>
   ) : null
 }

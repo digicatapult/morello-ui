@@ -133,5 +133,5 @@ export const Aarch64 = {
       outline: '2px solid #FFFFFF',
       outlineOffset: '-10px',
     },
-  }
+  },
 }

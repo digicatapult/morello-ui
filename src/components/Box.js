@@ -21,7 +21,7 @@ export default function Box(demo1) {
   const date = new Date().toDateString().slice(0, 10)
   const time = new Date().toLocaleTimeString()
   const isMorello = theme.name === 'Morello'
-  const font = isMorello 
+  const font = isMorello
     ? { fontFamily: 'AktivGrotesk', color: '#000' }
     : { fontFamily: 'Monaco', color: '#fff' }
 
@@ -36,20 +36,25 @@ export default function Box(demo1) {
       {renderTitle(demo1.windowTitle, theme.name)}
       <Row flex={'auto'}>
         <Body {...theme.primary.windowBody}>
-          {(!isPasswordSet) && (
+          {!isPasswordSet && (
             <>
-            <Row justifyContent={theme.name === 'Morello' ? 'center' : 'flex-start'} marginTop={isMorello ? '49px' : '0px'}>
-              {isMorello && <img src={KeychainIcon} width={50}/>}
-              <Txt_Demo1A {...font}>
-                This application will store your password securely.
-                <br />
-                Please input a keyword of choice.
-              </Txt_Demo1A>
-            </Row>
-            <Input {...demo1}/>
+              <Row
+                justifyContent={
+                  theme.name === 'Morello' ? 'center' : 'flex-start'
+                }
+                marginTop={isMorello ? '49px' : '0px'}
+              >
+                {isMorello && <img src={KeychainIcon} width={50} />}
+                <Txt_Demo1A {...font}>
+                  This application will store your password securely.
+                  <br />
+                  Please input a keyword of choice.
+                </Txt_Demo1A>
+              </Row>
+              <Input {...demo1} />
             </>
           )}
-          {(isPasswordSet && !isMorello) && (
+          {isPasswordSet && !isMorello && (
             <Txt_Demo1A {...font}>
               last login: {date} {time}.
               <br />

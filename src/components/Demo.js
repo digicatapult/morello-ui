@@ -44,9 +44,7 @@ export default function Demo1(props) {
             {`${JSON.stringify(demo1.output)}\n\n
             Click on TRY to see how morello addresses this issue`}
           </PopBody>
-          <PopFooter>
-            {`${demo1.hackingOkBody} ${demo1.password}`}
-          </PopFooter>
+          <PopFooter>{`${demo1.hackingOkBody} ${demo1.password}`}</PopFooter>
         </Popup>
       )}
       <Header {...demo1} showClose={true} />
@@ -58,7 +56,7 @@ export default function Demo1(props) {
             styles={theme.icons.style}
           />
         )}
-        <Box {...demo1}/>
+        <Box {...demo1} />
       </Wrapper>
     </Background>
   )

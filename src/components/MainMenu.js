@@ -8,14 +8,14 @@ import { Container } from './shared/Common'
 import Header from './Header'
 import dsbdLogo from '../assets/images/logo.png'
 
-const ItemWrap = styled.div(({styles}) => styles)
+const ItemWrap = styled.div(({ styles }) => styles)
 
 export default function MainMenu(props) {
   const nav = useNavigate()
 
   return (
     <>
-      <Header logo={dsbdLogo} {...props}/>
+      <Header logo={dsbdLogo} {...props} />
       <Container
         size={10}
         style={{

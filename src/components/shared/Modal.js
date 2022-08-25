@@ -2,7 +2,6 @@ import React from 'react'
 import styled from 'styled-components'
 
 import { Txt_Demo1A, Col, Row, renderTitle, Spacer } from './Common'
-import ProgressBar from '../ProgressBar'
 
 const Button = styled.button`
   width: 20%;
@@ -53,10 +52,7 @@ export default function Modal({ update, demo1, ProgressBar }) {
 
   console.log('modal: ', { update, theme, demo1 })
   return (
-    <Window
-      id={'hacker-app-modal'}
-      styles={theme.modal.window}
-    >
+    <Window id={'hacker-app-modal'} styles={theme.modal.window}>
       {renderTitle(demo1.modalTitle, theme.name)}
       <Row flex={'auto'}>
         <Page {...theme.modal.page}>
@@ -65,7 +61,7 @@ export default function Modal({ update, demo1, ProgressBar }) {
           {renderModalActions && renderActions({ demo1, update })}
           {showHackingProgress && (
             <Row flex={'auto'} marginTop={'20px'}>
-              <ProgressBar demo1={demo1} update={update}/>
+              <ProgressBar demo1={demo1} update={update} />
             </Row>
           )}
         </Page>

@@ -122,7 +122,9 @@ const Circle = styled.div(({ size = 1, color }) => ({
 const aarch64Icons = [crossIcon, icon, minimise]
 const titleProps = {
   Aarch64: {
-    icons: aarch64Icons.map(src => <Icon width={'26px'} height={'26px'} src={src}/>),
+    icons: aarch64Icons.map((src) => (
+      <Icon width={'26px'} height={'26px'} src={src} />
+    )),
     text: {
       color: '#fff',
     },
@@ -132,9 +134,9 @@ const titleProps = {
   },
   Morello: {
     icons: [
-      <Circle color='rgb(255, 59, 48)'/>,
-      <Circle color='rgb(255, 149, 0)'/>,
-      <Circle color='rgb(52, 199, 89)'/>
+      <Circle color='rgb(255, 59, 48)' />,
+      <Circle color='rgb(255, 149, 0)' />,
+      <Circle color='rgb(52, 199, 89)' />,
     ],
     iconSize: {
       width: '16px',
@@ -145,7 +147,8 @@ const titleProps = {
       color: '#FFF',
     },
     bar: {
-      background: '-webkit-gradient(linear, left top, left bottom, color-stop(0.0, #40303f, color-stop(1.0, #000)))',
+      background:
+        '-webkit-gradient(linear, left top, left bottom, color-stop(0.0, #40303f, color-stop(1.0, #000)))',
       background: '-webkit-linear-gradient(top, #40303f, #000)',
       color: '#4d494d',
       height: '30px',

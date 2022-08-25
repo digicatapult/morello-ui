@@ -4,14 +4,13 @@ import styled from 'styled-components'
 import { Container, Row } from './Common'
 import { Context } from '../../utils/context'
 
-const PasswordInput = styled.input(props => props)
-const Label = styled.label(props => props)
+const PasswordInput = styled.input((props) => props)
+const Label = styled.label((props) => props)
 const Button = styled.button((props) => props)
 
 export default function Input(demo1) {
   const { update } = React.useContext(Context)
   const { password } = demo1.theme
-
 
   const passwordChange = (e) => {
     e.preventDefault()

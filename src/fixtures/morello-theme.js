@@ -11,7 +11,7 @@ export const Morello = {
     backgroundColor: '#384D6C',
     width: '100%',
     height: '164px',
-  },   
+  },
   progressBar: {
     wrapper: {
       height: '12px',
@@ -42,7 +42,8 @@ export const Morello = {
       letterSpacing: '-0.02em',
       textShadow: '0px 1px 0px #fff',
       outline: 'none',
-      background: '-webkit-gradient(linear, left top, left bottom, from(#e0e0e0), to(#ffffff))',
+      background:
+        '-webkit-gradient(linear, left top, left bottom, from(#e0e0e0), to(#ffffff))',
       background: '-moz-linear-gradient(top,  #e0e0e0,  #ffffff)',
       borderRadius: '3px',
       border: '1px solid #717171',
@@ -132,5 +133,5 @@ export const Morello = {
       paddingTop: '40px',
       color: '#fff',
     },
-  }
+  },
 }

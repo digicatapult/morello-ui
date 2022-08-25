@@ -5,7 +5,8 @@ import Demo from '../components/Demo'
 import AccessDemo from '../components/AccessDemo'
 import Info from '../components/Info'
 
-export const demos = [{
+export const demos = [
+  {
     path: 'demo1',
     isDemo: true,
     // TODO group by A and B
@@ -15,7 +16,8 @@ export const demos = [{
     color: '#384D6C',
     windowTitle: 'SUPER_SAFE_APP.EXE',
     modalTitle: 'hacker.app',
-    modalText: 'Would you like to break into the system and reveal the password?',
+    modalText:
+      'Would you like to break into the system and reveal the password?',
     hackingOkBody: 'The password is:',
     hackingOkTitle: 'Hacking completed.',
     Element: (props) => <Demo {...props} />,
