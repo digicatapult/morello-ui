@@ -1,11 +1,11 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 
-import Header from './Header'
-import HackerApp from './HackerApp'
-import { Context } from '../utils/context'
-import Box from './Box'
-import MorelloSlider from './MorelloSlider'
+import Header from '../Header'
+import HackerApp from '../HackerApp'
+import { Context } from '../../utils/context'
+import Box from '../Box'
+import { ButtonSide} from '../shared/Buttons'
 
 const Wrapper = styled.div((props) => props)
 
@@ -18,11 +18,15 @@ export default function Demo1(props) {
 
   const switchToMorello = (e) => {
     e.preventDefault()
+    const theme = themes['Morello'];
+    theme.modal.page.background = '#717171'
+    theme.modal.page.color = '#818181'
+
     update({
       demo1: {
         ...demo1,
         active: 'Morello',
-        theme: themes['Morello'],
+        theme,
         output: undefined,
         password: '',
         showHackPopup: false,
@@ -36,8 +40,11 @@ export default function Demo1(props) {
 
   return (
     <Background>
-      {demo1.showHackPopup && <MorelloSlider {...demo1} />}
-      <Header {...demo1} showClose={true} />
+      {demo1.showHackPopup && <ButtonSide 
+        {...demo1}
+        action={switchToMorello}
+      />}
+      <Header {...demo1} />
       <Wrapper {...theme.wrapper}>
         {demo1.isPasswordSet && (
           <HackerApp

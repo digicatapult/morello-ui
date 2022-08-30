@@ -5,14 +5,13 @@ import { Txt_Demo1A, Row } from './shared/Common'
 
 const Wrapper = styled.div((props) => props)
 const BarBackground = styled.div((props) => props)
-
 const Bar = styled.div((props) => ({
   width: `${props.progress}%`,
   ...props,
 }))
 
 export default function ProgressBar({ update, demo1 }) {
-  const [progress, setProgress] = React.useState(2)
+  const [progress, setProgress] = React.useState(10)
   const { theme, execute } = demo1
 
   async function fill() {
@@ -47,8 +46,8 @@ export default function ProgressBar({ update, demo1 }) {
       <Bar progress={progress} {...theme.progressBar.bar} />
     </Wrapper>
   ) : <Row>
-      <Txt_Demo1A fontSize={'12px'} wordWrap={'break-word'}>
-        {demo1.output.status === 'error' 
+      <Txt_Demo1A wordWrap={'break-word'}>
+        {demo1.output.status != 'error'
           ? 'FAILURE. The password could not be revealed. - Display output?'
           : `Your password is ${demo1.password}!`}
       </Txt_Demo1A>

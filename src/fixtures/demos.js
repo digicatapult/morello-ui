@@ -1,9 +1,13 @@
 import React from 'react'
 
 import { executeBinary } from '../utils/morello-api'
+<<<<<<< HEAD
 import Demo from '../components/Demo'
 import AccessDemo from '../components/AccessDemo'
 import Info from '../components/Info'
+=======
+import Demo from '../components/Demos/Demo1'
+>>>>>>> 1a35f07 (DSBD-48: added aq side button.)
 
 export const demos = [
   {

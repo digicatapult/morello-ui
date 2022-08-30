@@ -15,7 +15,7 @@ export default function MainMenu(props) {
 
   return (
     <>
-      <Header logo={dsbdLogo} {...props} />
+      <Header logo={dsbdLogo} {...props} showClose={false} />
       <Container
         size={10}
         style={{

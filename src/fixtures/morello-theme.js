@@ -88,7 +88,20 @@ export const Morello = {
     },
   },
   modal: {
-    button: {},
+    button: {
+        display: 'inline-block',
+        backgroundSize: '100% 60%',
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: '50% 50%',
+        borderRadius: '5px',
+        padding: '0px',
+        boxSizing: 'border-box',
+        minWidth: '200px',
+        minHeight: '32px',
+        maxHeight: '64px',
+      border: '1 solid',
+      
+    },
     window: {
       display: 'flex',
       flexDirection: 'column',
@@ -106,6 +119,7 @@ export const Morello = {
       position: 'relative',
       background: '#212124',
       outlineOffset: '-10px',
+      padding: '5px;'
     },
   },
   Background: styled.div({

@@ -149,8 +149,8 @@ const titleProps = {
     },
     bar: {
       background:
-        '-webkit-gradient(linear, left top, left bottom, color-stop(0.0, #40303f, color-stop(1.0, #000)))',
-      background: '-webkit-linear-gradient(top, #40303f, #000)',
+        '-webkit-gradient(linear, left top, left bottom, color-stop(0.0, #40303f, color-stop(1.0, #212124)))',
+      background: '-webkit-linear-gradient(top, #40303f, #212124)',
       color: '#4d494d',
       height: '30px',
       borderTop: '1px solid #001',
