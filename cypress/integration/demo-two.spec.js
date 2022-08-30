@@ -4,6 +4,6 @@ describe('Demo Two', () => {
   })
 
   it('Renders', () => {
-    cy.get('#header').should('exist')
+    cy.get('[data-cy=header]').should('be.visible')
   })
 })

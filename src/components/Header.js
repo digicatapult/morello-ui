@@ -24,7 +24,7 @@ export default function Header({ logo, showClose, title, ...props }) {
   const { update } = React.useContext(Context)
 
   return (
-    <HeaderStyle id={'header'} backgroundColor={props.color || 'none'}>
+    <HeaderStyle data-cy={'header'} backgroundColor={props.color || 'none'}>
       <Row height={'100%'}>
         <Col size={3} styles={{ paddingLeft: '50px', alignItems: 'start' }}>
           {title ? (
