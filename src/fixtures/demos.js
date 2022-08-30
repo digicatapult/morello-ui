@@ -2,6 +2,7 @@ import React from 'react'
 
 import { executeBinary } from '../utils/morello-api'
 import Demo from '../components/Demo'
+import Component from '../components/Component'
 
 export const demos = [
   {
@@ -41,7 +42,7 @@ export const demos = [
     color: '#384D6C',
     windowTitle: 'SUPER_SAFE_APP.EXE',
     modalTitle: 'hacker.app',
-    Element: (props) => <Demo {...props} />,
+    Element: (props) => <Component {...props} />,
   },
   {
     path: 'demo3',
