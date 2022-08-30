@@ -1,4 +1,4 @@
-describe('Learn Morello', () => {
+describe('About DSbD', () => {
   beforeEach(() => {
     cy.visit('/about-dsbd')
   })
