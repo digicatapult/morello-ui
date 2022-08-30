@@ -35,10 +35,13 @@ export const demos = [
   },
   {
     path: 'demo2',
+    binaryName: 'out-of-bounds-access',
     title: 'Do you think your files are safe?',
-    description: 'Out of Bounds write / Out of Bounds read. CWE Score 65.93',
-    color: '#6C3838',
-    Element: () => <div>somee demo2 content</div>,
+    description: 'Out of Bounds write. CWE Score 65.93',
+    color: '#384D6C',
+    windowTitle: 'SUPER_SAFE_APP.EXE',
+    modalTitle: 'hacker.app',
+    Element: (props) => <Demo {...props} />,
   },
   {
     path: 'demo3',
