@@ -37,7 +37,7 @@ export const demos = [
   {
     path: 'demo2',
     binaryName: 'out-of-bounds-access',
-    title: 'Do you think your files are safe?',
+    title: 'Is your password what you think it is?',
     description: 'Out of Bounds write. CWE Score 65.93',
     color: '#384D6C',
     windowTitle: 'SUPER_SAFE_APP.EXE',
