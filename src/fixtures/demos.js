@@ -2,6 +2,7 @@ import React from 'react'
 
 import { executeBinary } from '../utils/morello-api'
 import Demo from '../components/Demo'
+import AccessDemo from '../components/AccessDemo'
 import Info from '../components/Info'
 
 export const demos = [
@@ -9,8 +10,8 @@ export const demos = [
     path: 'demo1',
     // TODO group by A and B
     binaryName: 'out-of-bounds-read',
-    title: 'Do you believe your password is safe?',
-    description: 'Out of Bounds write / Out of Bounds read. CWE Score 65.93',
+    title: 'Are your secrets really safe?',
+    description: 'Out of Bounds write. CWE Score 65.93',
     color: '#384D6C',
     windowTitle: 'SUPER_SAFE_APP.EXE',
     modalTitle: 'hacker.app',
@@ -36,10 +37,13 @@ export const demos = [
   },
   {
     path: 'demo2',
-    title: 'Do you think your files are safe?',
-    description: 'Out of Bounds write / Out of Bounds read. CWE Score 65.93',
-    color: '#6C3838',
-    Element: () => <div>somee demo2 content</div>,
+    binaryName: 'out-of-bounds-access',
+    title: 'Is your password what you think it is?',
+    description: 'Out of Bounds write. CWE Score 65.93',
+    color: '#384D6C',
+    windowTitle: 'SUPER_SAFE_APP.EXE',
+    modalTitle: 'hacker.app',
+    Element: (props) => <AccessDemo {...props} />,
   },
   {
     path: 'learn-morello',
