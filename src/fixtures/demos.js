@@ -9,8 +9,8 @@ export const demos = [
     path: 'demo1',
     // TODO group by A and B
     binaryName: 'out-of-bounds-read',
-    title: 'Do you believe your password is safe?',
-    description: 'Out of Bounds write / Out of Bounds read. CWE Score 65.93',
+    title: 'Are your secrets really safe?',
+    description: 'Out of Bounds write. CWE Score 65.93',
     color: '#384D6C',
     windowTitle: 'SUPER_SAFE_APP.EXE',
     modalTitle: 'hacker.app',
