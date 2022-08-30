@@ -45,7 +45,7 @@ const Paper = styled.div`
 `
 
 export default function Card(props) {
-  const { title, description } = props
+  const { title, description, isDemo } = props
 
   return (
     <Paper {...props}>
@@ -55,7 +55,7 @@ export default function Card(props) {
       <Spacer size={182} />
       <H1>{title}</H1>
       <P1>
-        <b>Bug type: </b>
+        {isDemo ? <b>Bug type: </b> : null}
         {description}
       </P1>
     </Paper>
