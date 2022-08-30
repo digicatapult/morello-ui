@@ -32,7 +32,7 @@ const ScreenshotPicture = styled.picture`
 
 const Screenshot = styled.img`
   max-width: 100%;
-  `
+`
 
 const QrCodeWrap = styled.a`
   margin-left: -100px;
@@ -51,12 +51,18 @@ export default function Demo1(props) {
       <Header {...props} showClose={true} />
       <Content>
         <ScreenshotPicture>
-          <source srcSet={`${props.imageName}.webp`} type="image/webp"/>
-          <source srcSet={`${props.imageName}.avif`} type="image/avif"/>
-          <Screenshot src={`${props.imageName}.png`} alt={`Image of website: ${props.link}`}/>
+          <source srcSet={`${props.imageName}.webp`} type="image/webp" />
+          <source srcSet={`${props.imageName}.avif`} type="image/avif" />
+          <Screenshot
+            src={`${props.imageName}.png`}
+            alt={`Image of website: ${props.link}`}
+          />
         </ScreenshotPicture>
         <QrCodeWrap href={props.link}>
-          <QrCode src={`${props.qrCode}.svg`} alt={`QR code link to ${props.link}`}/>
+          <QrCode
+            src={`${props.qrCode}.svg`}
+            alt={`QR code link to ${props.link}`}
+          />
         </QrCodeWrap>
       </Content>
     </Wrapper>

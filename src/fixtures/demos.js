@@ -46,10 +46,10 @@ export const demos = [
     title: 'Learn about the ARM Morello CPU',
     description: 'Learn more about the ARM Morello CPU',
     color: '#0C1B32',
-    Element: (props) => <Info {...props}/>, // main element
+    Element: (props) => <Info {...props} />, // main element
     imageName: 'arm-morello-screenshot',
     qrCode: 'arm-morello-qr',
-    link: 'https://www.arm.com/architecture/cpu/morello'
+    link: 'https://www.arm.com/architecture/cpu/morello',
   },
   {
     path: 'demo4',
