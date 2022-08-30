@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 import backgroundImg from '../assets/images/background.png'
-import hacker from '../assets/images/hacker-app-icon.png'
+import icon from '../assets/images/hacker-app-icon.png'
 import lockIcon from '../assets/images/lock.png'
 
 export const Aarch64 = {
@@ -77,12 +77,12 @@ export const Aarch64 = {
     padding: 2,
   },
   icons: {
-    hacker,
+    icon,
     style: {
       position: 'absolute',
       left: '20px',
       top: '200px',
-      width: '100px',
+      width: '60px',
       textAlign: 'center',
     },
   },

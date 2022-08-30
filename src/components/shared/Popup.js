@@ -3,18 +3,12 @@ import styled from 'styled-components'
 import { Context } from '../../utils/context'
 
 import { Button } from './Buttons'
-import { H1, H2, P1, Row } from './Common'
+import { H2, P1, renderTitle, Row } from './Common'
 
-const headerProps = {
-  textAlign: 'center',
-  backgroundColor: '#40303f',
-  padding: '16px 20px',
-}
 const footerProps = {
-  borderBottom: 'solid 1px #414A4C',
   fontSize: '16px',
   color: '#414A4C',
-  padding: '16px 20px',
+  padding: '6px 10px',
 }
 const bodyProps = {
   color: '#414A4C',
@@ -28,33 +22,36 @@ const Popup = styled.div`
   z-index: 10;
   left: 0;
   top: 0;
-  width: 100%;
+  width: 10%;
   height: 100%;
   overflow: auto;
-  background-color: rgba(0, 0, 0, 0.3);
   transition: 0.3s ease-in-out;
+  border-radius: '6px',
+  border: '1px solid #818181',
+  box-shadow: '0px 0px 4px #818181',
 `
 
 const Content = styled.div`
-  width: 500px;
+  width: 100px;
   z-index: 10;
-  margin: 25% auto;
+  height: 100%;
   background-color: #fff;
   border-radius: 5px;
   position: relative;
   transition: inherit;
-  transform: translateY(-100px);
-  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05), 0 1px 3px 0 rgba(0, 0, 0, 0.09);
 }`
 
+// TODO convert inti a slicer
 export default function PopupBox(props) {
   const ref = React.useRef()
   const {
+    demo1,
     demo1: { showHackPopup },
   } = React.useContext(Context)
   /*eslint-disable */
   const { addEventListener, removeEventListener } = window
 
+  // **TODO - timer?
   // TODO reviewe this, leaving for time being as we might need to cancel popup
   // if leaving add an option for clickOutside check
   /*eslint-disable */
@@ -71,9 +68,12 @@ export default function PopupBox(props) {
     return null
   }
 
+  console.log(demo1)
+
   return (
     <Popup ref={ref}>
       <Content>
+        {renderTitle('some txt', 'Morello')}
         {props.children}
         <Row
           boxSizing={'border-box'}
@@ -85,10 +85,6 @@ export default function PopupBox(props) {
       </Content>
     </Popup>
   )
-}
-
-export const PopHeader = (props) => {
-  return <H1 {...headerProps}>{props.children}</H1>
 }
 
 export const PopBody = (props) => {

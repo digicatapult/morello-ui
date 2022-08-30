@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 import backgroundImg from '../assets/images/osx-background.png'
-import hacker from '../assets/images/hacker-app-icon.png'
+import icon from '../assets/images/hacker-app-icon-morello.png'
 import lockIcon from '../assets/images/lock.png'
 
 export const Morello = {
@@ -78,12 +78,12 @@ export const Morello = {
     height: '100%',
   },
   icons: {
-    hacker,
+    icon,
     style: {
       position: 'absolute',
       left: '20px',
       top: '200px',
-      width: '100px',
+      width: '60px',
       textAlign: 'center',
     },
   },
@@ -96,7 +96,7 @@ export const Morello = {
       top: '40%',
       left: '40%',
       width: '586px',
-      height: '258px',
+      maxHeight: '358px',
       borderRadius: '6px',
       border: '1px solid #818181',
       boxShadow: '0px 0px 4px #818181',
@@ -116,7 +116,7 @@ export const Morello = {
   }),
   primary: {
     windowCont: {
-      background: '#212124',
+      background: '#fff',
       width: '826px',
       height: '626px',
       border: '1px solid #818181',

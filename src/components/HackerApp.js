@@ -8,7 +8,7 @@ export default function Hacker(props) {
   const { demo1, update } = React.useContext(Context)
   const { imageSrc, text, styles } = props
 
-  const renderModal = (e) => {
+  const renderModal = (e, { demo1, update }) => {
     e.preventDefault()
     update({
       demo1: {
@@ -25,9 +25,9 @@ export default function Hacker(props) {
         ...styles,
         cursor: 'pointer',
       }}
-      onClick={(e) => renderModal(e)}
+      onClick={(e) => renderModal(e, { demo1, update })}
     >
-      <img style={{ padding: '0px 10px' }} src={imageSrc} />
+      <img style={{ padding: '0px 10px' }} src={imageSrc} width={'60px'} height={'53px'} />
       <H2>{text}</H2>
     </Col>
   )

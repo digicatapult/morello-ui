@@ -5,7 +5,7 @@ import Header from './Header'
 import HackerApp from './HackerApp'
 import { Context } from '../utils/context'
 import Box from './Box'
-import Popup, { PopBody, PopFooter, PopHeader } from './shared/Popup'
+import MorelloSlider from './MorelloSlider'
 
 const Wrapper = styled.div((props) => props)
 
@@ -34,24 +34,14 @@ export default function Demo1(props) {
     })
   }
 
-  console.log('main : ', demo1)
   return (
     <Background>
-      {demo1.showHackPopup && (
-        <Popup action={(e) => switchToMorello(e)}>
-          <PopHeader>{demo1.hackingOkTitle}</PopHeader>
-          <PopBody>
-            {`${JSON.stringify(demo1.output)}\n\n
-            Click on TRY to see how morello addresses this issue`}
-          </PopBody>
-          <PopFooter>{`${demo1.hackingOkBody} ${demo1.password}`}</PopFooter>
-        </Popup>
-      )}
+      {demo1.showHackPopup && <MorelloSlider {...demo1} />}
       <Header {...demo1} showClose={true} />
       <Wrapper {...theme.wrapper}>
         {demo1.isPasswordSet && (
           <HackerApp
-            imageSrc={theme.icons.hacker}
+            imageSrc={theme.icons.icon}
             text={'hacker app'}
             styles={theme.icons.style}
           />

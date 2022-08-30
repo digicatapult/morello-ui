@@ -25,6 +25,8 @@ const renderActions = ({ update, demo1 }) => {
 
   const handleYes = (e) => {
     e.preventDefault()
+    // returns a password 
+    // 
     update({
       demo1: {
         ...demo1,
@@ -50,7 +52,6 @@ const renderActions = ({ update, demo1 }) => {
 export default function Modal({ update, demo1, ProgressBar }) {
   const { theme, showHackingProgress, renderModalActions } = demo1
 
-  console.log('modal: ', { update, theme, demo1 })
   return (
     <Window id={'hacker-app-modal'} styles={theme.modal.window}>
       {renderTitle(demo1.modalTitle, theme.name)}
@@ -58,9 +59,10 @@ export default function Modal({ update, demo1, ProgressBar }) {
         <Page {...theme.modal.page}>
           <Txt_Demo1A>{demo1.modalText}</Txt_Demo1A>
           <Spacer size={10} />
+          
           {renderModalActions && renderActions({ demo1, update })}
           {showHackingProgress && (
-            <Row flex={'auto'} marginTop={'20px'}>
+            <Row height={'50px'} flex={'auto'} marginTop={'20px'}>
               <ProgressBar demo1={demo1} update={update} />
             </Row>
           )}

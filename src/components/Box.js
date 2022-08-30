@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 import Input from './shared/Input'
-import { Row, Txt_Demo1A, renderTitle } from './shared/Common'
+import { Col, Row, Txt_Demo1A, renderTitle, Spacer } from './shared/Common'
 import { Context } from '../utils/context'
 import Modal from './shared/Modal'
 import KeychainIcon from '../assets/images/keychain-strip.png'
@@ -16,7 +16,7 @@ const Body = styled.div((props) => ({
 
 export default function Box(demo1) {
   const { update } = React.useContext(Context)
-  const { theme, isPasswordSet, renderModal } = demo1
+  const { theme, isPasswordSet, renderModal, showHackPopup } = demo1
 
   const date = new Date().toDateString().slice(0, 10)
   const time = new Date().toLocaleTimeString()
@@ -27,12 +27,11 @@ export default function Box(demo1) {
 
   return (
     <Window {...theme.primary.windowCont}>
-      {renderModal &&
-        Modal({
-          update,
-          demo1,
-          ProgressBar: (props) => <ProgressBar {...props} />,
-        })}
+      {renderModal && Modal({
+        update,
+        demo1,
+        ProgressBar: (props) => <ProgressBar {...props} />,
+      })}
       {renderTitle(demo1.windowTitle, theme.name)}
       <Row flex={'auto'}>
         <Body {...theme.primary.windowBody}>
@@ -53,6 +52,25 @@ export default function Box(demo1) {
               </Row>
               <Input {...demo1} />
             </>
+          )}
+          {isPasswordSet && isMorello && (
+            <Col size={10}>
+            <Row
+              justifyContent={
+                theme.name === 'Morello' ? 'center' : 'flex-start'
+              }
+              marginTop={isMorello ? '49px' : '0px'}
+            >
+              {isMorello && <img src={KeychainIcon} width={50} />}
+              <Txt_Demo1A {...font}>
+                This application will store your password securely.
+                <br />
+                Please input a keyword of choice.
+              </Txt_Demo1A>
+            </Row>
+            <Spacer size={120} />
+            <Row justifyContent={'center'}><Txt_Demo1A {...font}>Password has been submitted. Now you can attempt to hack</Txt_Demo1A></Row>
+            </Col>
           )}
           {isPasswordSet && !isMorello && (
             <Txt_Demo1A {...font}>

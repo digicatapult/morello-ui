@@ -129,6 +129,7 @@ const titleProps = {
       color: '#fff',
     },
     bar: {
+      paddingTop: '4px',
       backgroudColor: '#343556',
     },
   },

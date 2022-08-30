@@ -5,7 +5,7 @@ import Router from '../utils/Router'
 
 export default function App() {
   return (
-    <Root display={'flex'} justifyContent={'center'}>
+    <Root display={'flex'} justifyContent={'center'} flexDirection={'row'}>
       <Container
         size={10}
         styles={{

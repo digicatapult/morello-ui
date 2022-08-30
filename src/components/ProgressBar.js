@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 import { Context } from '../utils/context'
-import { Txt_Demo1A } from './shared/Common'
+import { Txt_Demo1A, Row } from './shared/Common'
 
 const Wrapper = styled.div((props) => props)
 const BarBackground = styled.div((props) => props)
@@ -34,9 +34,9 @@ export default function ProgressBar({ update, demo1 }) {
           showHackPopup: theme.name === 'Morello' ? false : true,
         },
       })
-      setProgress(100)
     }
     if (!demo1.output) load()
+    else setProgress(100)
   }, [])
 
   const showProgress = progress !== 100
@@ -47,5 +47,9 @@ export default function ProgressBar({ update, demo1 }) {
       <BarBackground {...theme.progressBar.background} />
       <Bar progress={progress} {...theme.progressBar.bar} />
     </Wrapper>
-  ) : null
+  ) : <Row>
+      <Txt_Demo1A fontSize={'12px'} wordWrap={'break-word'}>
+        {JSON.stringify(demo1.output)}
+      </Txt_Demo1A>
+    </Row>
 }
