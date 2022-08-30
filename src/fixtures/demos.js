@@ -3,6 +3,7 @@ import React from 'react'
 import { executeBinary } from '../utils/morello-api'
 import Demo from '../components/Demo'
 import AccessDemo from '../components/AccessDemo'
+import Info from '../components/Info'
 
 export const demos = [
   {
