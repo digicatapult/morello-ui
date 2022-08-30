@@ -27,7 +27,7 @@ export default function Hacker(props) {
       }}
       onClick={(e) => renderModal(e, { demo1, update })}
     >
-      <img style={{ padding: '0px 10px' }} src={imageSrc} width={'60px'} height={'53px'} />
+      <img style={{ padding: '0px 10px' }} src={imageSrc} width={'60px'} height={'60px'} />
       <H2>{text}</H2>
     </Col>
   )

@@ -10,6 +10,7 @@ export default function App() {
         size={10}
         styles={{
           flexDirection: 'column',
+          overflow: 'hidden',
           maxHeight: '1024px',
           maxWidth: '1366px',
         }}

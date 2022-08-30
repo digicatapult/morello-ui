@@ -1,7 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import { Context } from '../utils/context'
 import { Txt_Demo1A, Row } from './shared/Common'
 
 const Wrapper = styled.div((props) => props)
@@ -49,7 +48,9 @@ export default function ProgressBar({ update, demo1 }) {
     </Wrapper>
   ) : <Row>
       <Txt_Demo1A fontSize={'12px'} wordWrap={'break-word'}>
-        {JSON.stringify(demo1.output)}
+        {demo1.output.status === 'error' 
+          ? 'FAILURE. The password could not be revealed. - Display output?'
+          : `Your password is ${demo1.password}!`}
       </Txt_Demo1A>
     </Row>
 }

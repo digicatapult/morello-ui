@@ -49,7 +49,7 @@ const renderActions = ({ update, demo1 }) => {
   )
 }
 
-export default function Modal({ update, demo1, ProgressBar }) {
+export default function Modal({ update, demo1, ProgressBar, txt = {} }) {
   const { theme, showHackingProgress, renderModalActions } = demo1
 
   return (
@@ -57,7 +57,7 @@ export default function Modal({ update, demo1, ProgressBar }) {
       {renderTitle(demo1.modalTitle, theme.name)}
       <Row flex={'auto'}>
         <Page {...theme.modal.page}>
-          <Txt_Demo1A>{demo1.modalText}</Txt_Demo1A>
+          <Txt_Demo1A {...txt} >{demo1.modalText}</Txt_Demo1A>
           <Spacer size={10} />
           
           {renderModalActions && renderActions({ demo1, update })}
