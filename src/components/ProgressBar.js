@@ -45,11 +45,13 @@ export default function ProgressBar({ update, demo1 }) {
       <BarBackground {...theme.progressBar.background} />
       <Bar progress={progress} {...theme.progressBar.bar} />
     </Wrapper>
-  ) : <Row>
+  ) : (
+    <Row>
       <Txt_Demo1A wordWrap={'break-word'}>
         {demo1.output.status != 'error'
           ? 'FAILURE. The password could not be revealed. - Display output?'
           : `Your password is ${demo1.password}!`}
       </Txt_Demo1A>
     </Row>
+  )
 }

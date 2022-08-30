@@ -1,17 +1,13 @@
 import React from 'react'
 
-import { Morello } from '../fixtures/morello-theme'
-import { Aarch64 } from '../fixtures/aarch64-theme'
+import { Themes } from '../fixtures/themes'
 // TODO this is more of an exammple how we can have a global
 // state without 3rd parties e.g. redux
 // this could be a single entity e.g. themeCtx
 export const Context = React.createContext({
-  themes: {
-    Morello,
-    Aarch64,
-  },
+  Themes,
   demo1: {
-    theme: Aarch64,
+    theme: Themes('Aarch64'),
     password: '',
     showHackPopup: false,
     isPasswordSet: false,
@@ -26,13 +22,10 @@ export const Context = React.createContext({
 export const ContextProvider = ({ children }) => {
   // TOO update context or create separate update method for each demo e.g. demmo1-update
   const initState = {
-    themes: {
-      Morello,
-      Aarch64,
-    },
+    Themes,
     demo1: {
       active: 'Aarch64',
-      theme: Aarch64,
+      theme: Themes('Aarch64'),
       password: '',
       showHackPopup: false,
       isPasswordSet: false,

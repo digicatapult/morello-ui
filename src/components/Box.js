@@ -27,11 +27,12 @@ export default function Box(demo1) {
 
   return (
     <Window {...theme.primary.windowCont}>
-      {renderModal && Modal({
-        update,
-        demo1,
-        ProgressBar: (props) => <ProgressBar {...props} />,
-      })}
+      {renderModal &&
+        Modal({
+          update,
+          demo1,
+          ProgressBar: (props) => <ProgressBar {...props} />,
+        })}
       {renderTitle(demo1.windowTitle, theme.name)}
       <Row flex={'auto'}>
         <Body {...theme.primary.windowBody}>
@@ -55,21 +56,25 @@ export default function Box(demo1) {
           )}
           {isPasswordSet && isMorello && (
             <Col size={10}>
-            <Row
-              justifyContent={
-                theme.name === 'Morello' ? 'center' : 'flex-start'
-              }
-              marginTop={isMorello ? '49px' : '0px'}
-            >
-              {isMorello && <img src={KeychainIcon} width={50} />}
-              <Txt_Demo1A {...font}>
-                This application will store your password securely.
-                <br />
-                Please input a keyword of choice.
-              </Txt_Demo1A>
-            </Row>
-            <Spacer size={120} />
-            <Row justifyContent={'center'}><Txt_Demo1A {...font}>Password has been submitted. Now you can attempt to hack</Txt_Demo1A></Row>
+              <Row
+                justifyContent={
+                  theme.name === 'Morello' ? 'center' : 'flex-start'
+                }
+                marginTop={isMorello ? '49px' : '0px'}
+              >
+                {isMorello && <img src={KeychainIcon} width={50} />}
+                <Txt_Demo1A {...font}>
+                  This application will store your password securely.
+                  <br />
+                  Please input a keyword of choice.
+                </Txt_Demo1A>
+              </Row>
+              <Spacer size={120} />
+              <Row justifyContent={'center'}>
+                <Txt_Demo1A {...font}>
+                  Password has been submitted. Now you can attempt to hack
+                </Txt_Demo1A>
+              </Row>
             </Col>
           )}
           {isPasswordSet && !isMorello && (

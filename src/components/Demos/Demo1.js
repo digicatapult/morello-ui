@@ -5,20 +5,20 @@ import Header from '../Header'
 import HackerApp from '../HackerApp'
 import { Context } from '../../utils/context'
 import Box from '../Box'
-import { ButtonSide} from '../shared/Buttons'
+import { ButtonSide } from '../shared/Buttons'
 
 const Wrapper = styled.div((props) => props)
 
 export default function Demo1(props) {
   const state = React.useContext(Context)
   const demo1 = { ...state.demo1, ...props }
-  const { update, themes } = state
+  const { update, Themes } = state
   const { theme } = demo1
   const { Background } = theme
 
   const switchToMorello = (e) => {
     e.preventDefault()
-    const theme = themes['Morello'];
+    const theme = Themes('Morello')
     theme.modal.page.background = '#717171'
     theme.modal.page.color = '#818181'
 
@@ -40,10 +40,9 @@ export default function Demo1(props) {
 
   return (
     <Background>
-      {demo1.showHackPopup && <ButtonSide 
-        {...demo1}
-        action={switchToMorello}
-      />}
+      {demo1.showHackPopup && (
+        <ButtonSide {...demo1} action={switchToMorello} />
+      )}
       <Header {...demo1} />
       <Wrapper {...theme.wrapper}>
         {demo1.isPasswordSet && (

@@ -30,11 +30,25 @@ const renderActions = ({ update, demo1 }) => {
     })
   }
 
-  const btn = () => demo1.theme.name === 'Morello'
-    ? [<Button id={'demo1-modal-btn-yes'} onClick={handleYes}>YES</Button>, <div style={{ width: '30px' }}/>,
-      <Button id={'demo1-modal-btn-no'} onClick={handleNo}>NO</Button>]
-    : [<ButtonBasic id={'demo1-modal-btn-no'} onClick={handleYes}>YES</ButtonBasic>,
-      <ButtonBasic id={'demo1-modal-btn-no'} onClick={handleNo}>NO</ButtonBasic>]
+  const btn = () =>
+    demo1.theme.name === 'Morello'
+      ? [
+          <Button id={'demo1-modal-btn-yes'} onClick={handleYes}>
+            YES
+          </Button>,
+          <div style={{ width: '30px' }} />,
+          <Button id={'demo1-modal-btn-no'} onClick={handleNo}>
+            NO
+          </Button>,
+        ]
+      : [
+          <ButtonBasic id={'demo1-modal-btn-no'} onClick={handleYes}>
+            YES
+          </ButtonBasic>,
+          <ButtonBasic id={'demo1-modal-btn-no'} onClick={handleNo}>
+            NO
+          </ButtonBasic>,
+        ]
 
   return (
     <Row justifyContent={'center'} padding={'10px'}>
@@ -53,14 +67,16 @@ export default function Modal({ update, demo1, ProgressBar }) {
         <Page {...theme.modal.page}>
           <Txt_Demo1A {...demo1.txt_col}>{demo1.modalText}</Txt_Demo1A>
           <Spacer size={10} />
-          
+
           {renderModalActions && renderActions({ demo1, update })}
           {showHackingProgress && (
             <Row height={'50px'} flex={'auto'} marginTop={'20px'}>
               <ProgressBar demo1={demo1} update={update} />
             </Row>
           )}
-          {demo1?.switchToMorello && <Button onClick={demo1.switchToMorello}>TRY</Button>}
+          {demo1?.switchToMorello && (
+            <Button onClick={demo1.switchToMorello}>TRY</Button>
+          )}
         </Page>
       </Row>
     </Window>

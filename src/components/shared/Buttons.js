@@ -20,9 +20,15 @@ export function ButtonSide({ action, ...demo1 }) {
     animation-iteration-count: infinite;
 
     @keyframes stepIn {
-      0% {margin-left: 10px;}
-      30% {margin-left: 39px;}
-      100% {margin-left: 10px;}
+      0% {
+        margin-left: 10px;
+      }
+      30% {
+        margin-left: 39px;
+      }
+      100% {
+        margin-left: 10px;
+      }
     }
   `
 
@@ -33,8 +39,8 @@ export function ButtonSide({ action, ...demo1 }) {
     pointer: cursor;
     padding: 0px 20px;
     align-items: center;
-    height: 700px;
-    opacity: 0.6 ;
+    height: 694px;
+    opacity: 0.6;
     top: 168px;
     width: auto;
     transition: all 0.6s;
@@ -42,22 +48,18 @@ export function ButtonSide({ action, ...demo1 }) {
   `
 
   return (
-    <SideButton
-      {...demo1}
-      onClick={action}
-    >
+    <SideButton {...demo1} onClick={action}>
       <Arrow />
     </SideButton>
   )
 }
-
 
 export const Button = styled.button`
   font-size: 1em;
   font-weight: 600;
   padding: 10px 15px 10px 15px;
   color: #fff;
-  background-color: #000; 
+  background-color: #000;
   box-shadow: 0px 0px 4px #212124;
   border: 1px solid #212124;
 
