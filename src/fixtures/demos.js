@@ -45,11 +45,14 @@ export const demos = [
     Element: (props) => <AccessDemo {...props} />,
   },
   {
-    path: 'demo3',
-    title: 'Question number one two three?',
-    description: 'Out of Bounds write / Out of Bounds read. CWE Score 65.93',
+    path: 'learn-morello',
+    title: 'Learn about the ARM Morello CPU',
+    description: 'Learn more about the ARM Morello CPU',
     color: '#0C1B32',
-    Element: () => <div>somee demo3 content</div>, // main element
+    Element: (props) => <Info {...props} />, // main element
+    imageName: 'arm-morello-screenshot',
+    qrCode: 'arm-morello-qr',
+    link: 'https://www.arm.com/architecture/cpu/morello',
   },
   {
     path: 'demo4',
