@@ -1,14 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
-import { useNavigate } from 'react-router-dom'
 
 import Header from './Header'
-import HackerApp from './HackerApp'
-import { Context } from '../utils/context'
-import { Background } from './Background'
-import hackerIcon from '../assets/images/hacker-app-icon.png'
-import Box from './Box'
-import Popup, { PopBody, PopFooter, PopHeader } from './Popup'
 
 const Wrapper = styled.div`
   display: flex;
@@ -44,15 +37,13 @@ const QrCode = styled.img`
 `
 
 export default function Demo1(props) {
-  const nav = useNavigate()
-
   return (
     <Wrapper>
       <Header {...props} showClose={true} />
       <Content>
         <ScreenshotPicture>
-          <source srcSet={`${props.imageName}.webp`} type="image/webp" />
-          <source srcSet={`${props.imageName}.avif`} type="image/avif" />
+          <source srcSet={`${props.imageName}.webp`} type={'image/webp'} />
+          <source srcSet={`${props.imageName}.avif`} type={'image/avif'} />
           <Screenshot
             src={`${props.imageName}.png`}
             alt={`Image of website: ${props.link}`}
