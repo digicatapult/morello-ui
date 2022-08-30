@@ -7,6 +7,6 @@ describe('Learn Morello', () => {
     cy.get('img')
       .filter('[src="arm-morello-screenshot.png"]')
       .should('be.visible')
-    cy.get('img').filter('[src="arm-morello-qr.png"]').should('be.visible')
+    cy.get('img').filter('[src="arm-morello-qr.svg"]').should('be.visible')
   })
 })
