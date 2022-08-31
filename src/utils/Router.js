@@ -11,7 +11,7 @@ export default function Router() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route exec path={'/'} element={<MainMenu {...state.demo1} />} />
+        <Route exec path={'/'} element={<MainMenu {...state} />} />
         {demos.map(({ path, Element, ...props }) => (
           <Route key={path} path={path} element={<Element {...props} />} />
         ))}

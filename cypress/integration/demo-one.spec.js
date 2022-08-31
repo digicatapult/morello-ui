@@ -8,6 +8,11 @@ describe('Demo One', () => {
     cy.get('#Password').should('exist')
   })
 
+  it('Returns to main menu and confirm that menu container has been rendered', () => {
+    cy.get('[data-cy=header-close-btn]').click()
+    cy.get('[data-cy=main-menu-container]').should('exist')
+  })
+
   describe('If password entered is more than 16 chars', () => {
     it('Max length cuts off long passwords', () => {
       // eslint-disable-next-line cypress/no-force

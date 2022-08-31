@@ -20,7 +20,7 @@ export const demos = [
       'Would you like to break into the system and reveal the password?',
     hackingOkBody: 'The password is:',
     hackingOkTitle: 'Hacking completed.',
-    Element: (props) => <Demo {...props} />,
+    Element: (props) => <Demo {...props} showClose={true} />,
     execute: async (args, arch = 'aarch64') => {
       try {
         // TODO updadte with V2

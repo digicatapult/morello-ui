@@ -17,6 +17,7 @@ export default function MainMenu(props) {
     <>
       <Header logo={dsbdLogo} {...props} showClose={false} />
       <Container
+        data-cy={'main-menu-container'}
         size={10}
         style={{
           justifyContent: 'center',

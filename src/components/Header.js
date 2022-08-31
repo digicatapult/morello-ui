@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { useNavigate } from 'react-router-dom'
 
 import { H1, Row, Col, RowSpacer } from './shared/Common'
 import closeIcon from '../assets/images/close-icon.png'
@@ -18,7 +19,7 @@ export default function Header(props) {
     demo1: { theme },
     update,
   } = React.useContext(Context)
-  props = { ...demo1, ...props }
+  const nav = useNavigate()
 
   return (
     <HeaderStyle
@@ -44,13 +45,14 @@ export default function Header(props) {
         </Col>
         <RowSpacer size={5} />
         <Col size={3} styles={{ paddingRight: '50px', alignItems: 'end' }}>
-          {demo1.theme && (
+          {props.showClose && (
             <CloseElement
+              data-cy={'header-close-btn'}
               onClick={(e) => {
                 e.preventDefault()
                 update({
                   demo1: {
-                    ...props,
+                    ...demo1,
                     password: '',
                     renderModal: false,
                     isPasswordSet: false,
