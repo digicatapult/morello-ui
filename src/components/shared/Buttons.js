@@ -39,9 +39,9 @@ export function ButtonSide({ action, ...demo1 }) {
     cursor: pointer;
     padding: 0px 20px;
     align-items: center;
-    height: 698px;
+    height: 700px;
     opacity: 0.6;
-    top: 172px;
+    top: 164px;
     width: auto;
     transition: all 0.6s;
     background-image: url(${backgroundImg});
