@@ -43,7 +43,7 @@ const ErrorMessage = styled.p({
   fontFamily: 'Monaco',
   fontStyle: 'normal',
   fontWeight: '400',
-  fontSize: '24px',
+  fontSize: '20px',
   lineHeight: '32px',
 })
 
