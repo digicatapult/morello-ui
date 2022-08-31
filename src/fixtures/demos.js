@@ -32,7 +32,7 @@ export const demos = [
         })
         return output
       } catch (e) {
-        console.log('TODO: handle error', e)
+        //TODO: handle error', e
       }
     },
   },

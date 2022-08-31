@@ -45,7 +45,6 @@ const Content = styled.div`
 export default function PopupBox(props) {
   const ref = React.useRef()
   const {
-    demo1,
     demo1: { showHackPopup },
   } = React.useContext(Context)
   /*eslint-disable */
@@ -67,8 +66,6 @@ export default function PopupBox(props) {
   if (!showHackPopup) {
     return null
   }
-
-  console.log(demo1)
 
   return (
     <Popup ref={ref}>
