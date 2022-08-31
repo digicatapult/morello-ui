@@ -41,9 +41,8 @@ export const demos = [
     icon: bugIcon,
     windowTitle: 'SUPER_SAFE_APP.EXE',
     modalTitle: 'hacker.app',
-    modalText:
-      'Would you like to break into the system and reveal the password?',
-    hackingOkBody: 'The password is:',
+    modalText: 'Would you like to break into the system and reveal the secret?',
+    hackingOkBody: 'The secret is:',
     hackingOkTitle: 'Hacking completed.',
     Element: (props) => <ReadDemo {...props} showClose={true} />,
     execute: async (executable, args) => {
@@ -64,6 +63,7 @@ export const demos = [
     title: 'Is your password what you think it is?',
     description: 'Out of Bounds write. CWE Score 65.93',
     color: '#6C3838',
+    icon: bugIcon,
     secretDesktop: [
       {
         name: 'Documents',
@@ -98,8 +98,8 @@ export const demos = [
     modalTitle: 'console.app',
     helpContent: `
       The username is root.
-      \nPassword can be changed by attempting to login with a username that is longer than 16 characters to perform an out of bounds write. 
-      The password will be replaced with the out of bounds characters. 
+      \nPassword can be changed by attempting to login with a username that is longer than 16 characters to perform an out of bounds write.
+      The password will be replaced with the out of bounds characters.
       \ne.g. if 'root------------123' is attempted for a username, the password is now '123'.
     `,
     Element: (props) => <WriteDemo {...props} />,

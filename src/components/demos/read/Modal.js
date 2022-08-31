@@ -88,8 +88,19 @@ const renderActions = ({ update, type = 'readDemo', ...props }) => {
   )
 }
 
-export default function Modal({ type, update, ...props }) {
-  const { theme, showHackingProgress, renderModalActions, ProgressBar } = props
+export default function Modal({ update, readDemo, ProgressBar }) {
+  const {
+    theme,
+    showHackingProgress,
+    renderModalActions,
+    output,
+    binaryName,
+    secret,
+  } = readDemo
+
+  const executableAndArgs = `${binaryName}-${theme.arch} ${secret} -32 ${
+    -32 + secret.length
+  }`
 
   return (
     <Window data-cy={`${props.path}-modal`} styles={theme.modal.window}>

@@ -1,9 +1,9 @@
 import backgroundImgOsx from '../assets/images/osx-background.png'
-import iconOsx from '../assets/images/hacker-app-icon-morello.png'
-import lockIconOsx from '../assets/images/lock.png'
+import hackerIconOsx from '../assets/images/unlock.svg'
+import lockIconOsx from '../assets/images/cloud-upload-alt.svg'
 
 import backgroundImg from '../assets/images/background.png'
-import iconImg from '../assets/images/hacker-app-icon.png'
+import hackerIconImg from '../assets/images/hacker-app-icon.png'
 import lockIconImg from '../assets/images/lock.png'
 
 // LP TODO - a lot of properties are shared between morello and aarch64, abstract
@@ -77,7 +77,8 @@ export const Themes = (arch) => {
         fontFamily: isCheri ? 'OpenSans' : 'Monaco',
         fontStyle: 'normal',
         fontWeight: '600',
-        fontSize: isCheri ? '16px' : '24px',
+        textTransform: isCheri ? 'none' : 'lowercase',
+        fontSize: isCheri ? '18px' : '24px',
         minHeight: '32px',
         display: 'inline-block',
         lineHeight: '32px',
@@ -98,7 +99,7 @@ export const Themes = (arch) => {
         fontSize: '14px',
         color: isCheri ? '#000' : '#fff',
       },
-      savePasswordButton: {
+      saveSecretButton: {
         width: '60px',
         height: '60px',
         background: `url(${isCheri ? lockIconOsx : lockIconImg})`,
@@ -127,7 +128,7 @@ export const Themes = (arch) => {
       backgroundSize: 'cover',
     },
     icons: {
-      hackerIcon: isCheri ? iconOsx : iconImg,
+      hackerIcon: isCheri ? hackerIconOsx : hackerIconImg,
     },
     modal: {
       button: isCheri
