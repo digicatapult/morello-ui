@@ -24,16 +24,15 @@ const Wrapper = styled.div`
 const Button = styled.button((props) => props)
 
 export default function ReadDemo(props) {
-  const state = React.useContext(Context)
+  const { update, readDemo } = React.useContext(Context)
+  const state = { ...readDemo, ...props }
 
   const nav = useNavigate()
   const [passwordInput, setPasswordInput] = useState('')
   const [someInputTyped, setSomeInputTyped] = useState(false)
   const passwordUpperBound = 16
-  const readDemo = { ...state.readDemo, ...props }
 
-  const { update } = state
-  const { theme, renderExplainer } = readDemo
+  const { theme, renderExplainer } = state
 
   const date = new Date().toDateString().slice(0, 10)
   const time = new Date().toLocaleTimeString()
@@ -55,7 +54,7 @@ export default function ReadDemo(props) {
     setSomeInputTyped(false)
     update({
       readDemo: {
-        ...readDemo,
+        ...state,
         theme: Themes('Morello'),
         output: undefined,
         password: '',
@@ -75,7 +74,7 @@ export default function ReadDemo(props) {
     if (passwordInput.length > 0) {
       update({
         readDemo: {
-          ...readDemo,
+          ...state,
           isPasswordSet: true,
           password: passwordInput,
         },
@@ -95,19 +94,19 @@ export default function ReadDemo(props) {
 
   return (
     <>
-      <Header {...readDemo} />
+      <Header {...state} />
       <Wrapper {...theme.wrapper}>
-        {readDemo.showHackPopup && (
-          <ButtonSide {...readDemo} action={switchToMorello} />
+        {state.showHackPopup && (
+          <ButtonSide {...state} action={switchToMorello} />
         )}
         {renderExplainer && (
           <ButtonSide
-            {...readDemo}
+            {...state}
             message={'Learn More'}
             action={(e) => {
               nav('/read-demo-explainer')
               e.preventDefault()
-              readDemo.renderExplainer = false
+              state.renderExplainer = false
             }}
           />
         )}
@@ -118,8 +117,8 @@ export default function ReadDemo(props) {
             font={theme.font}
           />
         )}
-        <Box {...readDemo}>
-          {!readDemo.isPasswordSet && (
+        <Box {...state}>
+          {!state.isPasswordSet && (
             <Col size={10}>
               <Row
                 justifyContent={isMorello ? 'center' : 'flex-start'}
@@ -142,7 +141,7 @@ export default function ReadDemo(props) {
                   <Container size={10}>
                     <Input
                       label={'insert your password'}
-                      theme={readDemo.theme.form}
+                      theme={state.theme.form}
                       setInputState={setPasswordInput}
                       inputType={'password'}
                       upperBound={passwordUpperBound}
@@ -151,7 +150,7 @@ export default function ReadDemo(props) {
                       InputErrorWarning={InputErrorWarning}
                     />
                     <Button
-                      {...readDemo.theme.form.savePasswordButton}
+                      {...state.theme.form.savePasswordButton}
                       type={'submit'}
                       data-cy={'submit-password-btn'}
                     />
@@ -160,7 +159,7 @@ export default function ReadDemo(props) {
               </Container>
             </Col>
           )}
-          {readDemo.isPasswordSet && isMorello && (
+          {state.isPasswordSet && isMorello && (
             <Col size={10}>
               <Row justifyContent={'center'} marginTop={'120px'}>
                 <img src={KeychainIcon} />
@@ -182,7 +181,7 @@ export default function ReadDemo(props) {
               </Container>
             </Col>
           )}
-          {readDemo.isPasswordSet && !isMorello && (
+          {state.isPasswordSet && !isMorello && (
             <DemoText {...theme.font}>
               last login: {date} {time}.
               <br />
@@ -191,10 +190,11 @@ export default function ReadDemo(props) {
             </DemoText>
           )}
         </Box>
-        {readDemo.renderModal &&
+        {state.renderModal &&
           Modal({
             update,
-            readDemo,
+            type: 'readDemo',
+            state,
             ProgressBar: (props) => <ProgressBar {...props} />,
           })}
       </Wrapper>

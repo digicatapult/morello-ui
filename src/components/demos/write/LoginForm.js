@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from 'react'
-import styled from 'styled-components'
 
 import Input from '../../shared/Input'
 import { Container, Spinner } from '../../shared/Common'
 import { extractLoginResult } from '../../../utils/write-demo-output'
-
-const Button = styled.button((props) => props)
-const LoginAttemptText = styled.p((props) => props)
+import { Context } from '../../../utils/context'
 
 const failedLogin = (apiOutput) =>
   extractLoginResult(apiOutput) === 'Login failed'
@@ -15,13 +12,12 @@ const loginError = (apiOutput) => extractLoginResult(apiOutput) === 'error'
 export default function LoginForm({
   demoState,
   showSpinner,
-  setUsernamePasswordPairs,
-  apiOutput,
 }) {
   const [usernameInput, setUsernameInput] = useState('')
   const [passwordInput, setPasswordInput] = useState('')
   const [someUsernameTyped, setSomeUsernameTyped] = useState(false)
   const [somePasswordTyped, setSomePasswordTyped] = useState(false)
+  const { update, response } = React.useContext(Context)
 
   const usernameUpperBound = 16
   const passwordUpperBound = 16
@@ -37,11 +33,16 @@ export default function LoginForm({
     e.preventDefault()
 
     if (usernameInput.length > 0 && passwordInput.length > 0) {
-      setUsernamePasswordPairs((prev) => [
-        ...prev,
-        usernameInput,
-        passwordInput,
-      ])
+      update({
+        writeDemo: {
+          ...demoState,
+          usernamePasswordPairs: [
+            ...demoState.usernamePasswordPairs,
+            usernameInput,
+            passwordInput
+          ]
+        }
+      })
     }
   }
 
@@ -96,27 +97,27 @@ export default function LoginForm({
           gap: '30px',
         }}
       >
-        <Button
-          {...demoState.theme.form.loginButton}
+        <button
+          style={demoState.theme.form.loginButton}
           data-cy={'login'}
           type={'submit'}
           disabled={showSpinner}
         >
           {showSpinner ? <Spinner /> : `Login`}
-        </Button>
-        <LoginAttemptText
+        </button>
+        <p
           {...demoState.theme.form.loginAttempt}
           visibility={
-            failedLogin(apiOutput) || loginError(apiOutput)
+            failedLogin(response) || loginError(response)
               ? 'visible'
               : 'hidden'
           }
           data-cy={'login-attempt'}
         >
-          {failedLogin(apiOutput) && `Incorrect username or password`}
-          {loginError(apiOutput) &&
+          {failedLogin(response) && `Incorrect username or password`}
+          {loginError(response) &&
             `Suspicious activity detected - account locked`}
-        </LoginAttemptText>
+        </p>
       </Container>
     </form>
   )

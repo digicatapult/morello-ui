@@ -96,6 +96,9 @@ export const demos = [
         img: JpegIcon,
       },
     ],
+    icon: bugIcon,
+    windowTitle: 'SUPER_SAFE_APP.EXE',
+    modalTitle: 'CONSOLE.EXE',
     helpContent: `
       The username is root.
       \nPassword can be changed by attempting to login with a username that is longer than 16 characters to perform an out of bounds write. 
