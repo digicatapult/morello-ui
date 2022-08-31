@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 
 import { Container, Row } from './Common'
@@ -38,8 +38,32 @@ const Button = styled.button({
   cursor: 'pointer',
 })
 
+const ErrorMessage = styled.p({
+  color: '#ff7272',
+  fontFamily: 'Monaco',
+  fontStyle: 'normal',
+  fontWeight: '400',
+  fontSize: '24px',
+  lineHeight: '32px',
+})
+
 export default function Input() {
   const { update, demo1 } = React.useContext(Context)
+  const [passwordError, SetPasswordError] = useState(false)
+  const passwordLowerBound = 1
+  const passwordUpperBound = 4
+
+  useEffect(() => {
+    if (
+      demo1.password.length === passwordLowerBound ||
+      (demo1.password.length < passwordUpperBound &&
+        demo1.password.length >= passwordLowerBound)
+    ) {
+      SetPasswordError(true)
+    } else {
+      SetPasswordError(false)
+    }
+  }, [demo1.password])
 
   const passwordChange = (e) => {
     e.preventDefault()
@@ -53,12 +77,14 @@ export default function Input() {
 
   const enterPassword = (e) => {
     e.preventDefault()
-    update({
-      demo1: {
-        ...demo1,
-        isPasswordSet: true,
-      },
-    })
+    if (demo1.password.length >= passwordUpperBound) {
+      update({
+        demo1: {
+          ...demo1,
+          isPasswordSet: true,
+        },
+      })
+    }
   }
 
   return (
@@ -88,6 +114,7 @@ export default function Input() {
             }}
           />
         </Row>
+        {passwordError && <ErrorMessage>Password Not Long Enough</ErrorMessage>}
       </form>
     </Container>
   )
