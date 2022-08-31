@@ -1,13 +1,21 @@
 import styled from 'styled-components'
 
+import backgroundImgOsx from '../assets/images/osx-background.png'
+import iconOsx from '../assets/images/hacker-app-icon-morello.png'
+import lockIconOsx from '../assets/images/lock.png'
+
 import backgroundImg from '../assets/images/background.png'
-import icon from '../assets/images/hacker-app-icon.png'
-import lockIcon from '../assets/images/lock.png'
+import iconImg from '../assets/images/hacker-app-icon.png'
+import lockIconImg from '../assets/images/lock.png'
 
 
 // LP TODO - a lot of properties are shared between morello and aarch64, abstract 
 export const Themes = (arch) => {
   const isCheri = arch === 'Morello'; 
+  const backgroundImage = isCheri ? backgroundImgOsx : backgroundImg 
+  const icon = isCheri ? iconOsx : iconImg 
+  const lockIcon = isCheri ? lockIconOsx : lockIconImg 
+
   return ({
     name: arch,
     arch: isCheri ? 'cheri' : 'aarch64',
@@ -37,7 +45,21 @@ export const Themes = (arch) => {
       },
     },
     password: {
-      input: {
+      input: isCheri ? {
+        width: '300px',
+        padding: '6px 12px',
+        fontSize: '1.6em',
+        color: '#787878',
+        letterSpacing: '-0.02em',
+        textShadow: '0px 1px 0px #fff',
+        outline: 'none',
+        background:
+          '-webkit-gradient(linear, left top, left bottom, from(#e0e0e0), to(#ffffff))',
+        background: '-moz-linear-gradient(top,  #e0e0e0,  #ffffff)',
+        borderRadius: '3px',
+        border: '1px solid #717171',
+        marginRight: '20px',
+      } : {
         width: '350px',
         backgroundColor: '#343556',
         border: '4px solid #FFFFFF',
@@ -55,7 +77,7 @@ export const Themes = (arch) => {
         fontSize: isCheri ? '16px' : '24px',
         lineHeight: '32px',
         htmlFor: 'Password',
-        color: '#fff',
+        color: isCheri ? '#000' :'#fff',
       },
       button: {
         width: '70px',
@@ -145,7 +167,7 @@ export const Themes = (arch) => {
     Background: styled.div({
       display: 'flex',
       flexDirection: 'column',
-      backgroundImage: `url(${backgroundImg})`,
+      backgroundImage: `url(${backgroundImage})`,
       width: '100%',
       height: '860px',
     }),
@@ -168,10 +190,13 @@ export const Themes = (arch) => {
         background: '#343556',
       },
       windowBody: isCheri ? {
-        position: 'relative',
-        background: '#212124',
-        outlineOffset: '-10px',
-        padding: '5px;',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        width: '100%',
+        padding: '10px',
+        paddingTop: '40px',
+        color: '#fff',
       } : {
         boxSizing: 'border-box',
         height: '100%',

@@ -16,7 +16,7 @@ const Body = styled.div((props) => ({
 
 export default function Box(demo1) {
   const { update } = React.useContext(Context)
-  const { theme, isPasswordSet, renderModal, showHackPopup } = demo1
+  const { theme, isPasswordSet, renderModal } = demo1
 
   const date = new Date().toDateString().slice(0, 10)
   const time = new Date().toLocaleTimeString()

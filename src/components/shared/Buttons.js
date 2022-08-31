@@ -36,12 +36,12 @@ export function ButtonSide({ action, ...demo1 }) {
     position: absolute;
     display: flex;
     z-index: 101;
-    pointer: cursor;
+    cursor: pointer;
     padding: 0px 20px;
     align-items: center;
-    height: 694px;
+    height: 698px;
     opacity: 0.6;
-    top: 168px;
+    top: 172px;
     width: auto;
     transition: all 0.6s;
     background-image: url(${backgroundImg});
