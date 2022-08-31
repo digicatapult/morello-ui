@@ -19,20 +19,27 @@ const Paper = styled.div`
   flex-direction: column;
   align-items: flex-start;
   text-align: left;
-  opacity: 0.6;
+  opacity: 1;
   width: 317px;
   height: 355px;
   cursor: pointer;
   padding: 10px 20px;
   background: ${(props) => props.color};
-  transition: all 0.5s;
+  transition: all 0.1s;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05), 0 1px 3px 0 rgba(0, 0, 0, 0.09);
+
+  -webkit-tap-highlight-color: transparent; /* remove tap highlight */
+
+  &:focus {
+    outline: 0 !important;
+    box-shadow: none;
+  }
   &:hover {
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.3),
       0 6px 20px 0 rgba(0, 0, 0, 0.29);
-    opacity: 1;
+    opacity: 0.6;
     ${Indicator} {
-      opacity: 1;
+      opacity: 0.6;
     }
   }
 `
