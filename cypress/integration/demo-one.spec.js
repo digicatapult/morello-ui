@@ -24,7 +24,7 @@ describe('Demo One', () => {
       cy.get('#Password').type('password')
       cy.get('#submit-password').click()
       cy.get('#hacker-app').click()
-      cy.get('#demo1-modal-btn-yes').click()
+      cy.get('[data-cy=demo1-modal-btn-yes-2]').click()
     })
 
     it('Renders Hacker App after submitting a password', () => {
