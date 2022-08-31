@@ -114,7 +114,9 @@ export default function Input() {
             }}
           />
         </Row>
-        {passwordError && <ErrorMessage>Password Not Long Enough</ErrorMessage>}
+        {passwordError && (
+          <ErrorMessage>Minimum Length 4 Characters</ErrorMessage>
+        )}
       </form>
     </Container>
   )
