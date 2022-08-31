@@ -33,19 +33,35 @@ const renderActions = ({ update, demo1 }) => {
   const btn = () =>
     demo1.theme.name === 'Morello'
       ? [
-          <Button id={'demo1-modal-btn-yes'} onClick={handleYes}>
+          <Button
+            key={'modal-yes-btn-1'}
+            id={'demo1-modal-btn-yes'}
+            onClick={handleYes}
+          >
             YES
           </Button>,
-          <div style={{ width: '30px' }} />,
-          <Button id={'demo1-modal-btn-no'} onClick={handleNo}>
+          <div key={'div-1'} style={{ width: '30px' }} />,
+          <Button
+            key={'modal-no-btn-1'}
+            id={'demo1-modal-btn-no'}
+            OnClick={handleNo}
+          >
             NO
           </Button>,
         ]
       : [
-          <ButtonBasic id={'demo1-modal-btn-no'} onClick={handleYes}>
+          <ButtonBasic
+            key={'modal-yes-btn-2'}
+            id={'demo1-modal-btn-no'}
+            onClick={handleYes}
+          >
             YES
           </ButtonBasic>,
-          <ButtonBasic id={'demo1-modal-btn-no'} onClick={handleNo}>
+          <ButtonBasic
+            key={'modal-no-btn-2'}
+            id={'demo1-modal-btn-no'}
+            onClick={handleNo}
+          >
             NO
           </ButtonBasic>,
         ]

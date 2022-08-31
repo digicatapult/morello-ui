@@ -138,8 +138,6 @@ export const Morello = {
       color: '#fff',
       boxShadow: '0px 0px 4px #818181',
     },
-    windowBody: {
-
-    },
+    windowBody: {},
   },
 }

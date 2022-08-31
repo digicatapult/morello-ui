@@ -15,7 +15,11 @@ export default function Header(demo1) {
   const { theme } = demo1
 
   return (
-    <HeaderStyle  data-cy={'header'} {...theme.header} backgroundColor={props.color || 'none'}>
+    <HeaderStyle
+      data-cy={'header'}
+      {...theme.header}
+      backgroundColor={props.color || 'none'}
+    >
       <Row height={'100%'}>
         <Col size={3} styles={{ paddingLeft: '50px', alignItems: 'start' }}>
           {demo1.title ? (

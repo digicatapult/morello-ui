@@ -123,7 +123,7 @@ const aarch64Icons = [crossIcon, icon, minimise]
 const titleProps = {
   Aarch64: {
     icons: aarch64Icons.map((src) => (
-      <Icon width={'26px'} height={'26px'} src={src} />
+      <Icon key={src} width={'26px'} height={'26px'} src={src} />
     )),
     text: {
       color: '#fff',
@@ -135,9 +135,9 @@ const titleProps = {
   },
   Morello: {
     icons: [
-      <Circle color='rgb(255, 59, 48)' />,
-      <Circle color='rgb(255, 149, 0)' />,
-      <Circle color='rgb(52, 199, 89)' />,
+      <Circle key={'osx-title-btn-1'} color='"rgb(255, 59, 48)"' />,
+      <Circle key={'osx-title-btn-1'} color='"rgb(255, 149, 0)"' />,
+      <Circle key={'osx-title-btn-1'} color='"rgb(52, 199, 89)"' />,
     ],
     iconSize: {
       width: '16px',
