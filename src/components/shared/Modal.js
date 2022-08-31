@@ -3,7 +3,6 @@ import styled from 'styled-components'
 
 import { Txt_Demo1A, Col, Row, renderTitle, Spacer } from './Common'
 import ProgressBar from '../ProgressBar'
-import { Context } from '../../utils/context'
 
 const Button = styled.button`
   width: 20%;
@@ -36,6 +35,7 @@ const renderActions = ({ update, demo1 }) => {
     })
   }
 
+  // TODO adjust for morello theme
   return (
     <Row justifyContent={'center'} marginRight={'20px'} padding={'10px'}>
       <Button id={'demo1-modal-btn-yes'} onClick={handleYes}>
@@ -55,11 +55,11 @@ export default function Modal(props) {
   return (
     <Window
       id={'hacker-app-modal'}
-      styles={theme.window}
+      styles={theme.modal.window}
     >
-      {renderTitle(demo1.modalTitle)}
+      {renderTitle(demo1.modalTitle, theme.name)}
       <Row flex={'auto'}>
-        <Page {...theme.page}>
+        <Page {...theme.modal.page}>
           <Txt_Demo1A>{props.modalText}</Txt_Demo1A>
           <Spacer size={10} />
           {renderModalActions && renderActions(props)}

@@ -15,10 +15,11 @@ const CloseElement = styled.span({
 
 export default function Header({ logo, showClose, title, ...props }) {
   const nav = useNavigate()
-  const { update, themes } = React.useContext(Context)
+  const { update } = React.useContext(Context)
+  const { theme } = props
 
   return (
-    <HeaderStyle  data-cy={'header'} {...themes.Morello.header} backgroundColor={props.color || 'none'}>
+    <HeaderStyle  data-cy={'header'} {...theme.header} backgroundColor={props.color || 'none'}>
       <Row height={'100%'}>
         <Col size={3} styles={{ paddingLeft: '50px', alignItems: 'start' }}>
           {title ? (

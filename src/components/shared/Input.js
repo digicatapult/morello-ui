@@ -8,9 +8,9 @@ const PasswordInput = styled.input(props => props)
 const Label = styled.label(props => props)
 const Button = styled.button((props) => props)
 
-export default function Input() {
-  const { update, demo1, themes } = React.useContext(Context)
-  const { password } = themes.Morello
+export default function Input({ theme }) {
+  const { update, demo1 } = React.useContext(Context)
+  const { password } = theme
 
   const passwordChange = (e) => {
     e.preventDefault()

@@ -13,7 +13,8 @@ const Wrapper = styled.div((props) => props)
 export default function Demo1(props) {
   const nav = useNavigate()
   const state = React.useContext(Context)
-  const { Background, ...theme } = state.themes.Morello
+  const { theme } = props
+  const { Background } = theme
   const {
     demo1: { isPasswordSet, showHackPopup },
   } = state
@@ -21,12 +22,12 @@ export default function Demo1(props) {
   const switchToMorello = (e) => {
     e.preventDefault()
     state.update({
+      active: 'Morello',
       demo1: {
         ...Object.keys(state.demo1).reduce((out, next) => {
           out[next] = typeof next == 'string' ? '' : false
           return out
         }, {}),
-        isMorello: true,
         renderModalActions: true,
       },
     })

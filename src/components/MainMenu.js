@@ -8,14 +8,14 @@ import { Container } from './shared/Common'
 import Header from './Header'
 import dsbdLogo from '../assets/images/logo.png'
 
-const ItemWrap = styled.div((props) => props)
+const ItemWrap = styled.div(({styles}) => styles)
 
 export default function MainMenu(props) {
   const nav = useNavigate()
 
   return (
     <>
-      <Header logo={dsbdLogo} />
+      <Header logo={dsbdLogo} {...props}/>
       <Container
         size={10}
         style={{
@@ -25,7 +25,12 @@ export default function MainMenu(props) {
       >
         {demos.map((details) => (
           <ItemWrap
-           {...props.themes.Morello.menuItemWrap}
+            styles={{
+              display: 'flex',
+              width: '300px',
+              padding: 2,
+              backgroundColor: props.color,
+            }}
             key={details.color}
             onClick={(e) => {
               e.preventDefault()

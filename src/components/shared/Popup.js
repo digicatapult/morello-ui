@@ -22,6 +22,7 @@ const bodyProps = {
   padding: '16px 20px',
 }
 
+// TODDO: move
 const Popup = styled.div`
   position: absolute;
   z-index: 10;
@@ -92,10 +93,10 @@ export const PopHeader = (props) => {
 
 export const PopBody = (props) => {
   return (
-    <P1 {...bodyProps}>
+    <div style={{...bodyProps}}>
       <H2 color={'#414A4C'}>Output:</H2>
       {props.children}
-    </P1>
+    </div>
   )
 }
 

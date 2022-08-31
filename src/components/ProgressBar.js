@@ -4,31 +4,17 @@ import styled from 'styled-components'
 import { Context } from '../utils/context'
 import { Txt_Demo1A } from './shared/Common'
 
-const Wrapper = styled.div`
-  height: 22px;
-  width: 100%;
-  padding: 0px 10px;
-`
+const Wrapper = styled.div((props) => props)
+const BarBackground = styled.div(props => props)
 
-const BarBackground = styled.div`
-  height: 50%;
-  width: 100%;
-  background: #979797;
-  padding: 0px;
-`
+const Bar = styled.div((props) => ({
+  width: `${props.progress}%`,
+  ...props,
+}))
 
-const Bar = styled.div`
-  position: relative;
-  height: 50%;
-  top: -50%;
-  width: ${(props) => props.progress}%;
-  background: #d9d9d9;
-`
-
-export default function ProgressBar({ update, execute }) {
+export default function ProgressBar({ update, execute, theme }) {
   const [progress, setProgress] = React.useState(2)
-  const { demo1, themes } = React.useContext(Context)
-  const theme = themes.Morello.progressBar
+  const { demo1 } = React.useContext(Context)
 
   async function fill() {
     for (let count = 0; count <= 98; count += 2) {
@@ -41,10 +27,11 @@ export default function ProgressBar({ update, execute }) {
     async function load() {
       await fill()
       update({
+        name: 'Morello',
         demo1: {
           ...demo1,
-          showHackPopup: true,
           output: await execute(demo1.password),
+          showHackPopup: true,
         },
       })
       setProgress(100)
@@ -55,10 +42,10 @@ export default function ProgressBar({ update, execute }) {
   const showProgress = progress != 100
 
   return showProgress ? (
-    <Wrapper id={'demo1-progress-bar'} {...theme.wrapper}>
+    <Wrapper id={'demo1-progress-bar'} {...theme.progressBar.wrapper}>
       <Txt_Demo1A>{`hacking in progress ${progress}%`}</Txt_Demo1A>
-      <BarBackground {...theme.background}/>
-      <Bar progress={progress} {...theme.bar}/>
+      <BarBackground {...theme.progressBar.background}/>
+      <Bar progress={progress} {...theme.progressBar.bar}/>
     </Wrapper>
   ) : null
 }

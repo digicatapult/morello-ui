@@ -2,8 +2,12 @@ import React from 'react'
 
 import { Root, Container } from './shared/Common'
 import Router from '../utils/Router'
+import { Context } from '../utils/context'
 
 export default function App() {
+  const { themes, active } = React.useContext(Context)
+  const theme = themes[active || 'Aarch64']
+
   return (
     <Root display={'flex'} justifyContent={'center'}>
       <Container
@@ -14,7 +18,7 @@ export default function App() {
           maxWidth: '1366px',
         }}
       >
-        <Router />
+        <Router theme={theme}/>
       </Container>
     </Root>
   )

@@ -5,8 +5,7 @@ import Demo from '../components/Demo'
 import AccessDemo from '../components/AccessDemo'
 import Info from '../components/Info'
 
-export const demos = [
-  {
+export const demos = [{
     path: 'demo1',
     isDemo: true,
     // TODO group by A and B

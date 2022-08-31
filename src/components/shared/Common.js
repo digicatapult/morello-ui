@@ -1,10 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import crossIcon from '../../assets/images/cross.png'
-import minimise from '../../assets/images/minus.png'
-import icon from '../../assets/images/icon.png'
-
 const params = {
   screen: {
     width: '100%',
@@ -17,11 +13,12 @@ const params = {
   },
 }
 
-export const Icon = styled.img(({ source }) => ({
-  width: '20px',
-  height: '20px',
+export const Icon = styled.img(({ source, ...props }) => ({
+  width: '16px',
+  height: '10px',
   marginLeft: '4px',
   src: `${source}`,
+  ...props,
 }))
 
 export const H1 = styled.h1((props) => ({
@@ -73,16 +70,6 @@ export const Container = styled.div(({ size = 1, styles = {} }) => ({
   ...styles,
 }))
 
-export const Title = styled.p((props) => ({
-  fontFamily: 'Monaco',
-  fontSize: '32px',
-  color: '#FFFFFF',
-  fontWeight: '100',
-  margin: '0px',
-  paddingLeft: '10px',
-  ...props,
-}))
-
 export const Spacer = styled.div(({ size = 1 }) => ({
   width: '100%',
   height: `${size}px`,
@@ -110,11 +97,81 @@ export const RowSpacer = styled.div(({ size = 1 }) => ({
   width: `${size * 10}%`,
 }))
 
-export const renderTitle = (title) => (
-  <Row paddingLeft={'5px'} alignItems={'center'}>
-    <Icon src={crossIcon} />
-    <Icon src={minimise} />
-    <Icon src={icon} />
-    <Title>{title}</Title>
-  </Row>
-)
+// TODO extract title to a new file
+import crossIcon from '../../assets/images/cross.png'
+import minimise from '../../assets/images/minus.png'
+import icon from '../../assets/images/icon.png'
+import osx_crossIcon from '../../assets/images/osx-minimize.jpeg'
+import osx_minimise from '../../assets/images/osx-maximize.jpeg'
+import osx_icon from '../../assets/images/osx-icon.jpeg'
+
+const Title = styled.p((props) => ({
+  fontFamily: 'Monaco',
+  fontWeight: 'bold',
+  margin: '0px',
+  paddingLeft: '10px',
+  ...props,
+}))
+
+const Circle = styled.div(({ size = 1, color }) => ({
+  display: 'block',
+  width: `${size * 15}px`,
+  height: `${size * 15}px`,
+  marginLeft: '5px',
+  borderRadius: '50px',
+  backgroundColor: color,
+}))
+
+const titleProps = {
+  Aarch64: {
+    icons: [<Icon src={crossIcon}/>, <Icon src={minimise}/>, <Icon src={icon}/>],
+    iconSize: {
+      width: '20px',
+      height: '20px',
+    },
+    text: {
+      color: '#fff',
+    },
+    bar: {
+      backgroudColor: '#343556',
+    },
+  },
+  Morello: {
+    icons: [
+      <Circle color='rgb(255, 59, 48)'/>,
+      <Circle color='rgb(255, 149, 0)'/>,
+      <Circle color='rgb(52, 199, 89)'/>
+    ],
+    iconSize: {
+      width: '16px',
+      height: '10px',
+    },
+    text: {
+      fontSize: '11pt',
+      color: '#FFF',
+    },
+    bar: {
+      background: '-webkit-gradient(linear, left top, left bottom, color-stop(0.0, #40303f, color-stop(1.0, #000)))',
+      background: '-webkit-linear-gradient(top, #40303f, #000)',
+      color: '#4d494d',
+      height: '30px',
+      borderTop: '1px solid #001',
+      borderBottom: '1px solid #000',
+      borderTopLeftRadius: '6px',
+      borderTopRightRadius: '6px',
+      userSelect: 'none',
+    },
+    addHoc: {},
+  },
+}
+
+export const renderTitle = (title, arch) => {
+  const props = titleProps[arch]
+
+  return (
+    <Row alignItems={'center'} {...props.bar}>
+      {props.icons.map((icon) => icon)}
+      <Title {...props.text}>{title}</Title>
+    </Row>
+  )
+}
