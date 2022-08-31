@@ -8,6 +8,7 @@ import Info from '../components/Info'
 export const demos = [
   {
     path: 'demo1',
+    isDemo: true,
     // TODO group by A and B
     binaryName: 'out-of-bounds-read',
     title: 'Are your secrets really safe?',
@@ -37,6 +38,7 @@ export const demos = [
   },
   {
     path: 'demo2',
+    isDemo: true,
     binaryName: 'out-of-bounds-access',
     title: 'Is your password what you think it is?',
     description: 'Out of Bounds write. CWE Score 65.93',
@@ -46,21 +48,24 @@ export const demos = [
     Element: (props) => <AccessDemo {...props} />,
   },
   {
+    path: 'about-dsbd',
+    title: 'About Digital Security by Design',
+    description: 'About the Digital Security by Design ISCF Challenge',
+    color: '#0C1B32',
+    Element: (props) => <Info {...props} />, // main element
+    imageName: 'dsbd-info-screenshot',
+    qrCode: 'dsbd-info-qr',
+    link: 'https://www.dsbd.tech/',
+  },
+  {
     path: 'learn-morello',
     title: 'Learn about the ARM Morello CPU',
     description: 'Learn more about the ARM Morello CPU',
-    color: '#0C1B32',
+    color: '#6C7076',
     Element: (props) => <Info {...props} />, // main element
     imageName: 'arm-morello-screenshot',
     qrCode: 'arm-morello-qr',
     link: 'https://www.arm.com/architecture/cpu/morello',
-  },
-  {
-    path: 'demo4',
-    title: 'Do you believe your password is safe?',
-    description: 'Out of Bounds write / Out of Bounds read. CWE Score 65.93',
-    color: '#6C7076',
-    Element: () => <div>somee demo4 content</div>, // main element
   },
   {
     path: 'demo5',
