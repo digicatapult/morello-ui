@@ -15,11 +15,7 @@ export default function Header(demo1) {
   const { theme } = demo1
 
   return (
-<<<<<<< HEAD
     <HeaderStyle  data-cy={'header'} {...theme.header} backgroundColor={props.color || 'none'}>
-=======
-    <HeaderStyle {...theme.header} backgroundColor={demo1.color || 'none'}>
->>>>>>> c9017ef (DSBD-48: morello UI using themes.)
       <Row height={'100%'}>
         <Col size={3} styles={{ paddingLeft: '50px', alignItems: 'start' }}>
           {demo1.title ? (
