@@ -8,9 +8,10 @@ const PasswordInput = styled.input(props => props)
 const Label = styled.label(props => props)
 const Button = styled.button((props) => props)
 
-export default function Input({ theme }) {
-  const { update, demo1 } = React.useContext(Context)
-  const { password } = theme
+export default function Input(demo1) {
+  const { update } = React.useContext(Context)
+  const { password } = demo1.theme
+
 
   const passwordChange = (e) => {
     e.preventDefault()
@@ -45,12 +46,6 @@ export default function Input({ theme }) {
             maxLength={16}
             onChange={(e) => {
               passwordChange(e)
-            }}
-            onKeyDown={(e) => {
-              // TODO figure this one
-              if (e.key === 'Enter') {
-                enterPassword(e)
-              }
             }}
           />
           <Button

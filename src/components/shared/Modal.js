@@ -48,10 +48,10 @@ const renderActions = ({ update, demo1 }) => {
   )
 }
 
-export default function Modal(props) {
-  const { demo1, theme } = props
-  const { showHackingProgress, renderModalActions } = demo1
+export default function Modal({ update, demo1, ProgressBar }) {
+  const { theme, showHackingProgress, renderModalActions } = demo1
 
+  console.log('modal: ', { update, theme, demo1 })
   return (
     <Window
       id={'hacker-app-modal'}
@@ -60,12 +60,12 @@ export default function Modal(props) {
       {renderTitle(demo1.modalTitle, theme.name)}
       <Row flex={'auto'}>
         <Page {...theme.modal.page}>
-          <Txt_Demo1A>{props.modalText}</Txt_Demo1A>
+          <Txt_Demo1A>{demo1.modalText}</Txt_Demo1A>
           <Spacer size={10} />
-          {renderModalActions && renderActions(props)}
+          {renderModalActions && renderActions({ demo1, update })}
           {showHackingProgress && (
             <Row flex={'auto'} marginTop={'20px'}>
-              <ProgressBar {...props} />
+              <ProgressBar demo1={demo1} update={update}/>
             </Row>
           )}
         </Page>

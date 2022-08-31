@@ -101,9 +101,6 @@ export const RowSpacer = styled.div(({ size = 1 }) => ({
 import crossIcon from '../../assets/images/cross.png'
 import minimise from '../../assets/images/minus.png'
 import icon from '../../assets/images/icon.png'
-import osx_crossIcon from '../../assets/images/osx-minimize.jpeg'
-import osx_minimise from '../../assets/images/osx-maximize.jpeg'
-import osx_icon from '../../assets/images/osx-icon.jpeg'
 
 const Title = styled.p((props) => ({
   fontFamily: 'Monaco',
@@ -122,13 +119,10 @@ const Circle = styled.div(({ size = 1, color }) => ({
   backgroundColor: color,
 }))
 
+const aarch64Icons = [crossIcon, icon, minimise]
 const titleProps = {
   Aarch64: {
-    icons: [<Icon src={crossIcon}/>, <Icon src={minimise}/>, <Icon src={icon}/>],
-    iconSize: {
-      width: '20px',
-      height: '20px',
-    },
+    icons: aarch64Icons.map(src => <Icon width={'26px'} height={'26px'} src={src}/>),
     text: {
       color: '#fff',
     },

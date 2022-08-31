@@ -11,7 +11,7 @@ export const Morello = {
     backgroundColor: '#384D6C',
     width: '100%',
     height: '164px',
-  },
+  },   
   progressBar: {
     wrapper: {
       height: '12px',
@@ -20,7 +20,6 @@ export const Morello = {
       padding: '0px 10px',
     },
     background: {
-      margin: '0 auto',
       height: '50%',
       width: '100%',
       background: '#000',

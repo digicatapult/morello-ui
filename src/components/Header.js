@@ -1,10 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
-import { useNavigate } from 'react-router-dom'
 
 import { H1, Row, Col, RowSpacer } from './shared/Common'
 import closeIcon from '../assets/images/close-icon.png'
-import { Context } from '../utils/context'
 
 const HeaderStyle = styled.div((props) => props)
 const CloseElement = styled.span({
@@ -13,16 +11,18 @@ const CloseElement = styled.span({
   cursor: 'pointer',
 })
 
-export default function Header({ logo, showClose, title, ...props }) {
-  const nav = useNavigate()
-  const { update } = React.useContext(Context)
-  const { theme } = props
+export default function Header(demo1) {
+  const { theme } = demo1
 
   return (
+<<<<<<< HEAD
     <HeaderStyle  data-cy={'header'} {...theme.header} backgroundColor={props.color || 'none'}>
+=======
+    <HeaderStyle {...theme.header} backgroundColor={demo1.color || 'none'}>
+>>>>>>> c9017ef (DSBD-48: morello UI using themes.)
       <Row height={'100%'}>
         <Col size={3} styles={{ paddingLeft: '50px', alignItems: 'start' }}>
-          {title ? (
+          {demo1.title ? (
             <H1
               lineHeight={'58px'}
               letterSpacing={'-0.06em'}
@@ -30,20 +30,21 @@ export default function Header({ logo, showClose, title, ...props }) {
               fontWeight={'300'}
               fontSize={'45px'}
             >
-              {title}
+              {demo1.title}
             </H1>
           ) : (
-            <img src={logo} width={'140px'} height={'38px'} />
+            <img src={demo1.logo} width={'140px'} height={'38px'} />
           )}
         </Col>
         <RowSpacer size={5} />
         <Col size={3} styles={{ paddingRight: '50px', alignItems: 'end' }}>
-          {showClose && (
+          {demo1.showClose && (
             <CloseElement
               onClick={(e) => {
                 e.preventDefault()
                 update({
                   demo1: {
+                    ...demo1,
                     password: '',
                     renderModal: false,
                     isPasswordSet: false,

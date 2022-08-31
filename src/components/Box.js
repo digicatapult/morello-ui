@@ -14,32 +14,31 @@ const Body = styled.div((props) => ({
   ...props,
 }))
 
-export default function Box(props) {
-  const { demo1, update } = React.useContext(Context)
-  const { isPasswordSet, renderModal } = demo1
-  const { theme } = props
+export default function Box(demo1) {
+  const { update } = React.useContext(Context)
+  const { theme, isPasswordSet, renderModal } = demo1
 
   const date = new Date().toDateString().slice(0, 10)
   const time = new Date().toLocaleTimeString()
-  const modalProps = { ...props, demo1, update }
   const isMorello = theme.name === 'Morello'
   const font = isMorello 
-    ? { fontFamily: 'AktivGrotesk', color: '#fff' }
-    : { fontFamily: 'Monaco', color: '#000' }
+    ? { fontFamily: 'AktivGrotesk', color: '#000' }
+    : { fontFamily: 'Monaco', color: '#fff' }
 
   return (
     <Window {...theme.primary.windowCont}>
       {renderModal &&
         Modal({
-          ...modalProps,
+          update,
+          demo1,
           ProgressBar: (props) => <ProgressBar {...props} />,
         })}
-      {renderTitle(props.windowTitle, theme.name)}
+      {renderTitle(demo1.windowTitle, theme.name)}
       <Row flex={'auto'}>
         <Body {...theme.primary.windowBody}>
-          {(!isPasswordSet || isMorello) && (
+          {(!isPasswordSet) && (
             <>
-            <Row justifyContent={'center'} marginTop={isMorello ? '49px' : '0px'}>
+            <Row justifyContent={theme.name === 'Morello' ? 'center' : 'flex-start'} marginTop={isMorello ? '49px' : '0px'}>
               {isMorello && <img src={KeychainIcon} width={50}/>}
               <Txt_Demo1A {...font}>
                 This application will store your password securely.
@@ -47,7 +46,7 @@ export default function Box(props) {
                 Please input a keyword of choice.
               </Txt_Demo1A>
             </Row>
-            <Input theme={theme}/>
+            <Input {...demo1}/>
             </>
           )}
           {(isPasswordSet && !isMorello) && (

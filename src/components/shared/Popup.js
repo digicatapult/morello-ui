@@ -60,7 +60,7 @@ export default function PopupBox(props) {
   /*eslint-disable */
   React.useEffect(() => {
     const clickOutside = (e) => {
-      if (e.target == ref.current) setShow(false)
+      // if (e.target == ref.current) setShow(false)
     }
     addEventListener('click', clickOutside)
 
@@ -80,7 +80,7 @@ export default function PopupBox(props) {
           padding={'0px 5px'}
           justifyContent={'flex-end'}
         >
-          <Button onClick={props.action}>TRY</Button>
+          <Button onClick={(e) => props.action(e)}>TRY</Button>
         </Row>
       </Content>
     </Popup>

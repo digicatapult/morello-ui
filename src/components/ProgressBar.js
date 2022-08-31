@@ -12,34 +12,34 @@ const Bar = styled.div((props) => ({
   ...props,
 }))
 
-export default function ProgressBar({ update, execute, theme }) {
+export default function ProgressBar({ update, demo1 }) {
   const [progress, setProgress] = React.useState(2)
-  const { demo1 } = React.useContext(Context)
+  const { theme, execute } = demo1
 
   async function fill() {
     for (let count = 0; count <= 98; count += 2) {
-      await new Promise((r) => setTimeout(r, 20))
       setProgress(count)
+      await new Promise((r) => setTimeout(r, 20))
     }
   }
 
   React.useEffect(() => {
     async function load() {
       await fill()
+      const output = await execute(demo1.password, theme.arch)
       update({
-        name: 'Morello',
         demo1: {
           ...demo1,
-          output: await execute(demo1.password),
-          showHackPopup: true,
+          output,
+          showHackPopup: theme.name === 'Morello' ? false : true
         },
       })
       setProgress(100)
     }
     if (!demo1.output) load()
-  }, [demo1, update, execute])
+  }, [])
 
-  const showProgress = progress != 100
+  const showProgress = progress !== 100
 
   return showProgress ? (
     <Wrapper id={'demo1-progress-bar'} {...theme.progressBar.wrapper}>

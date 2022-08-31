@@ -1,6 +1,5 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styled from 'styled-components'
-import { useNavigate } from 'react-router-dom'
 
 import Header from './Header'
 import HackerApp from './HackerApp'
@@ -11,53 +10,55 @@ import Popup, { PopBody, PopFooter, PopHeader } from './shared/Popup'
 const Wrapper = styled.div((props) => props)
 
 export default function Demo1(props) {
-  const nav = useNavigate()
   const state = React.useContext(Context)
-  const { theme } = props
+  const demo1 = { ...state.demo1, ...props }
+  const { update, themes } = state
+  const { theme } = demo1
   const { Background } = theme
-  const {
-    demo1: { isPasswordSet, showHackPopup },
-  } = state
 
   const switchToMorello = (e) => {
     e.preventDefault()
-    state.update({
-      active: 'Morello',
+    update({
       demo1: {
-        ...Object.keys(state.demo1).reduce((out, next) => {
-          out[next] = typeof next == 'string' ? '' : false
-          return out
-        }, {}),
+        ...demo1,
+        active: 'Morello',
+        theme: themes['Morello'],
+        output: undefined,
+        password: '',
+        showHackPopup: false,
+        isPasswordSet: false,
+        renderModal: false,
         renderModalActions: true,
+        showHackingProgress: false,
       },
     })
-    nav('/demo1?type=dsbd', { replace: true })
   }
 
+  console.log('main : ', demo1)
   return (
     <Background>
-      {showHackPopup && (
-        <Popup action={switchToMorello}>
-          <PopHeader>{props.hackingOkTitle}</PopHeader>
+      {demo1.showHackPopup && (
+        <Popup action={(e) => switchToMorello(e)}>
+          <PopHeader>{demo1.hackingOkTitle}</PopHeader>
           <PopBody>
-            {`${JSON.stringify(state.demo1.output)}\n\n
+            {`${JSON.stringify(demo1.output)}\n\n
             Click on TRY to see how morello addresses this issue`}
           </PopBody>
           <PopFooter>
-            {`${props.hackingOkBody} ${state.demo1.password}`}
+            {`${demo1.hackingOkBody} ${demo1.password}`}
           </PopFooter>
         </Popup>
       )}
-      <Header {...props} showClose={true} />
+      <Header {...demo1} showClose={true} />
       <Wrapper {...theme.wrapper}>
-        {isPasswordSet && (
+        {demo1.isPasswordSet && (
           <HackerApp
             imageSrc={theme.icons.hacker}
             text={'hacker app'}
             styles={theme.icons.style}
           />
         )}
-        <Box {...props}/>
+        <Box {...demo1}/>
       </Wrapper>
     </Background>
   )
