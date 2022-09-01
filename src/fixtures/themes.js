@@ -21,6 +21,7 @@ export const Themes = (arch) => {
     header: {
       backgroundColor: '#384D6C',
       width: '100%',
+      zIndex: 999,
       height: '164px',
     },
     progressBar: {

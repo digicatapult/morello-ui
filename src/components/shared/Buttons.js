@@ -39,7 +39,8 @@ export function ButtonSide({ action, ...demo1 }) {
     cursor: pointer;
     padding: 0px 20px;
     align-items: center;
-    height: 700px;
+    height: auto;
+    max-height: 100%;
     opacity: 0.6;
     top: 164px;
     width: auto;

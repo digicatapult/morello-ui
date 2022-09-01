@@ -48,7 +48,7 @@ export default function ProgressBar({ update, demo1 }) {
   ) : (
     <Row>
       <Txt_Demo1A wordWrap={'break-word'}>
-        {demo1.output.status != 'error'
+        {demo1.output.status != 'success'
           ? 'FAILURE. The password could not be revealed. - Display output?'
           : `Your password is ${demo1.password}!`}
       </Txt_Demo1A>

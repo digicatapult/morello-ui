@@ -10,7 +10,7 @@ export const demos = [
     path: 'demo1',
     isDemo: true,
     // TODO group by A and B
-    binaryName: 'out-of-bounds-read',
+    binaryName: 'out-of-bounds-readV2',
     title: 'Are your secrets really safe?',
     description: 'Out of Bounds write. CWE Score 65.93',
     color: '#384D6C',
@@ -26,7 +26,7 @@ export const demos = [
         // TODO updadte with V2
         // currently API ddoes not allow other types...
         const params =
-          args.length > 1 && typeof args !== 'string' ? [...args] : [args]
+          args.length > 1 && typeof args !== 'string' ? [...argsi, -32, 32] : [args, -32, 32]
         const output = await executeBinary(`out-of-bounds-read-${arch}`, {
           params,
         })
