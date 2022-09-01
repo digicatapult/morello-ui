@@ -26,7 +26,9 @@ export const demos = [
         // TODO updadte with V2
         // currently API ddoes not allow other types...
         const params =
-          args.length > 1 && typeof args !== 'string' ? [...argsi, -32, 32] : [args, -32, 32]
+          args.length > 1 && typeof args !== 'string'
+            ? [...argsi, -32, 32]
+            : [args, -32, 32]
         const output = await executeBinary(`out-of-bounds-read-${arch}`, {
           params,
         })
