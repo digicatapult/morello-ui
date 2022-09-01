@@ -49,9 +49,11 @@ const ErrorMessage = styled.p({
 
 export default function Input() {
   const { update, demo1 } = React.useContext(Context)
-  const [passwordError, SetPasswordError] = useState(false)
+  const [passwordMinError, SetPasswordMinError] = useState(false)
+  const [passwordMaxError, SetPasswordMaxError] = useState(false)
   const passwordLowerBound = 1
   const passwordUpperBound = 4
+  const passwordMaxBound = 16
 
   useEffect(() => {
     if (
@@ -59,9 +61,12 @@ export default function Input() {
       (demo1.password.length < passwordUpperBound &&
         demo1.password.length >= passwordLowerBound)
     ) {
-      SetPasswordError(true)
+      SetPasswordMinError(true)
+    } else if (demo1.password.length === passwordMaxBound) {
+      SetPasswordMaxError(true)
     } else {
-      SetPasswordError(false)
+      SetPasswordMinError(false)
+      SetPasswordMaxError(false)
     }
   }, [demo1.password])
 
@@ -114,10 +119,13 @@ export default function Input() {
             }}
           />
         </Row>
-        {passwordError && (
+        {passwordMinError && (
           <ErrorMessage>
             Minimum Password Length: <br /> {passwordUpperBound} Characters
           </ErrorMessage>
+        )}
+        {passwordMaxError && (
+          <ErrorMessage>Maximum Password Reached</ErrorMessage>
         )}
       </form>
     </Container>
