@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 
 import { Container, Row } from './Common'
@@ -7,10 +7,31 @@ import { Context } from '../../utils/context'
 const PasswordInput = styled.input((props) => props)
 const Label = styled.label((props) => props)
 const Button = styled.button((props) => props)
+const Warning = styled.p((props) => props)
 
 export default function Input(demo1) {
   const { update } = React.useContext(Context)
   const { password } = demo1.theme
+  const [passwordMinError, SetPasswordMinError] = useState(false)
+  const [passwordMaxError, SetPasswordMaxError] = useState(false)
+  const passwordLowerBound = 1
+  const passwordUpperBound = 4
+  const passwordMaxBound = 16
+
+  useEffect(() => {
+    if (
+      demo1.password.length === passwordLowerBound ||
+      (demo1.password.length < passwordUpperBound &&
+        demo1.password.length >= passwordLowerBound)
+    ) {
+      SetPasswordMinError(true)
+    } else if (demo1.password.length === passwordMaxBound) {
+      SetPasswordMaxError(true)
+    } else {
+      SetPasswordMinError(false)
+      SetPasswordMaxError(false)
+    }
+  }, [demo1.password])
 
   const passwordChange = (e) => {
     e.preventDefault()
@@ -55,6 +76,14 @@ export default function Input(demo1) {
             }}
           />
         </Row>
+        {passwordMinError && (
+          <Warning {...password.warning}>
+            Minimum Password Length: <br /> {passwordUpperBound} Characters
+          </Warning>
+        )}
+        {passwordMaxError && (
+          <Warning {...password.warning}> Maximum Password Reached </Warning>
+        )}
       </form>
     </Container>
   )
