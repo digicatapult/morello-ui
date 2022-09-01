@@ -1,7 +1,12 @@
 import React from 'react'
+import styled from 'styled-components'
 
-import { Col, H2 } from './shared/Common'
+import { H2 } from './shared/Common'
 import { Context } from '../utils/context'
+
+const IconWrapper = styled.div`
+  ${(props) => props.styles}
+`
 
 // usage <Icon imageSrc={cardArrow} text={'txt'} styles={{ width: '100px', textAlign: 'center'}}/>
 export default function Hacker(props) {
@@ -19,21 +24,15 @@ export default function Hacker(props) {
   }
 
   return (
-    <Col
-      id={'hacker-app'}
-      styles={{
-        ...styles,
-        cursor: 'pointer',
-      }}
-      onClick={(e) => renderModal(e, { demo1, update })}
-    >
+    <IconWrapper id={'hacker-app'} styles={styles}>
       <img
-        style={{ padding: '0px 10px' }}
+        style={{ cursor: 'pointer' }}
         src={imageSrc}
         width={'60px'}
         height={'60px'}
+        onClick={(e) => renderModal(e, { demo1, update })}
       />
       <H2>{text}</H2>
-    </Col>
+    </IconWrapper>
   )
 }

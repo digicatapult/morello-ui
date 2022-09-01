@@ -3,24 +3,17 @@ import styled from 'styled-components'
 
 import Header from './Header'
 
-const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-`
-
 const Content = styled.div`
-  display: flex;
-  background: #F0F0F0;
+  display: grid;
+  grid-area: body;
+  grid-template-columns: minmax(auto, 60vw) minmax(auto, 20vw);
   justify-content: center;
-  height 100%;
-  padding-top: 32px;
-  padding-left: 16px;
-  padding-right: 16px;
+  background: #f0f0f0;
+  padding: 50px 0;
 `
 
 const ScreenshotPicture = styled.picture`
-  align-self: start;
+  margin-right: -100px;
 `
 
 const Screenshot = styled.img`
@@ -28,17 +21,17 @@ const Screenshot = styled.img`
 `
 
 const QrCodeWrap = styled.a`
-  margin-left: -100px;
   align-self: end;
 `
 
 const QrCode = styled.img`
-  max-width: 400px;
+  min-width: 200px;
+  max-width: 25vw;
 `
 
 export default function Demo1(props) {
   return (
-    <Wrapper>
+    <>
       <Header {...props} showClose={true} />
       <Content>
         <ScreenshotPicture>
@@ -56,6 +49,6 @@ export default function Demo1(props) {
           />
         </QrCodeWrap>
       </Content>
-    </Wrapper>
+    </>
   )
 }

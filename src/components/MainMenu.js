@@ -8,7 +8,18 @@ import { Container } from './shared/Common'
 import Header from './Header'
 import dsbdLogo from '../assets/images/logo.png'
 
-const ItemWrap = styled.div(({ styles }) => styles)
+const ItemWrap = styled.div`
+  display: flex;
+  flex-basis: 20vw;
+  min-width: 10rem;
+  background-color: ${(props) => props.color};
+`
+
+const CardLayout = styled(Container)`
+  flex-flow: row wrap;
+  gap: 20px;
+  padding: 20px;
+`
 
 export default function MainMenu(props) {
   const nav = useNavigate()
@@ -16,32 +27,20 @@ export default function MainMenu(props) {
   return (
     <>
       <Header logo={dsbdLogo} {...props} showClose={false} />
-      <Container
-        data-cy={'main-menu-container'}
-        size={10}
-        style={{
-          justifyContent: 'center',
-          flexFlow: 'row wrap',
-        }}
-      >
+      <CardLayout data-cy={'main-menu-container'} size={10}>
         {demos.map((details) => (
           <ItemWrap
-            styles={{
-              display: 'flex',
-              width: '300px',
-              padding: 2,
-              backgroundColor: props.color,
-            }}
+            styles={{}}
             key={details.color}
             onClick={(e) => {
               e.preventDefault()
-              nav(details.path, { replace: true })
+              nav(details.path, { replace: false })
             }}
           >
             <Card {...details} />
           </ItemWrap>
         ))}
-      </Container>
+      </CardLayout>
     </>
   )
 }

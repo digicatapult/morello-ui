@@ -56,13 +56,6 @@ export const P1 = styled.p((props) => ({
   ...props,
 }))
 
-export const Root = styled.div((props) => ({
-  display: 'block',
-  alignItems: 'center',
-  ...params.screen,
-  ...props,
-}))
-
 // Size gooes from 1 - 10 multiplied by 10
 export const Container = styled.div(({ size = 1, styles = {} }) => ({
   ...params.flex,
@@ -110,14 +103,14 @@ const Title = styled.p((props) => ({
   ...props,
 }))
 
-const Circle = styled.div(({ size = 1, color }) => ({
-  display: 'block',
-  width: `${size * 15}px`,
-  height: `${size * 15}px`,
-  marginLeft: '5px',
-  borderRadius: '50px',
-  backgroundColor: color,
-}))
+const Circle = styled.div`
+  display: block;
+  width: 12px;
+  height: 12px;
+  margin-left: 5px;
+  border-radius: 50%;
+  background-color: ${(props) => props.color};
+`
 
 const aarch64Icons = [crossIcon, icon, minimise]
 const titleProps = {
@@ -135,9 +128,9 @@ const titleProps = {
   },
   Morello: {
     icons: [
-      <Circle key={'osx-title-btn-1'} color='"rgb(255, 59, 48)"' />,
-      <Circle key={'osx-title-btn-2'} color='"rgb(255, 149, 0)"' />,
-      <Circle key={'osx-title-btn-3'} color='"rgb(52, 199, 89)"' />,
+      <Circle key={'osx-title-btn-1'} color={'rgb(255, 59, 48)'} />,
+      <Circle key={'osx-title-btn-2'} color={'rgb(255, 149, 0)'} />,
+      <Circle key={'osx-title-btn-3'} color={'rgb(52, 199, 89)'} />,
     ],
     iconSize: {
       width: '16px',
@@ -153,6 +146,7 @@ const titleProps = {
       background: '-webkit-linear-gradient(top, #40303f, #212124)',
       color: '#4d494d',
       height: '30px',
+      paddingLeft: '5px',
       borderTop: '1px solid #001',
       borderBottom: '1px solid #000',
       borderTopLeftRadius: '6px',

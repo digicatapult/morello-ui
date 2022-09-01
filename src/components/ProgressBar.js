@@ -32,11 +32,10 @@ export default function ProgressBar({ update, demo1 }) {
 
   React.useEffect(() => {
     async function load() {
-      await fill()
-      const output = await demo1.execute(
-        `${demo1.binaryName}-${theme.arch}`,
-        demo1.password
-      )
+      const [, output] = await Promise.all([
+        fill(),
+        demo1.execute(`${demo1.binaryName}-${theme.arch}`, demo1.password),
+      ])
       update({
         demo1: {
           ...demo1,

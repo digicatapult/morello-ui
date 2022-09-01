@@ -20,8 +20,7 @@ const Paper = styled.div`
   align-items: flex-start;
   text-align: left;
   opacity: 1;
-  width: 317px;
-  height: 355px;
+  flex-basis: 20vw;
   cursor: pointer;
   padding: 10px 20px;
   background: ${(props) => props.color};
