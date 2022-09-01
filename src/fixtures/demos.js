@@ -21,21 +21,15 @@ export const demos = [
     hackingOkBody: 'The password is:',
     hackingOkTitle: 'Hacking completed.',
     Element: (props) => <Demo {...props} showClose={true} />,
-    execute: async (args, arch = 'aarch64') => {
-      try {
-        // TODO updadte with V2
-        // currently API ddoes not allow other types...
-        const params =
-          args.length > 1 && typeof args !== 'string'
-            ? [...argsi, -32, 32]
-            : [args, -32, 32]
-        const output = await executeBinary(`out-of-bounds-read-${arch}`, {
-          params,
-        })
-        return output
-      } catch (e) {
-        //TODO: handle error', e
-      }
+    execute: async (executable, args) => {
+      const params =
+        args.length > 1 && typeof args !== 'string'
+          ? [...args, -32, 32]
+          : [args, -32, -32 + args.length]
+      const output = await executeBinary(executable, {
+        params,
+      })
+      return output
     },
   },
   {
@@ -44,7 +38,7 @@ export const demos = [
     binaryName: 'out-of-bounds-access',
     title: 'Is your password what you think it is?',
     description: 'Out of Bounds write. CWE Score 65.93',
-    color: '#384D6C',
+    color: '#6C3838',
     windowTitle: 'SUPER_SAFE_APP.EXE',
     modalTitle: 'hacker.app',
     Element: (props) => <AccessDemo {...props} />,
