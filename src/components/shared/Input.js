@@ -59,7 +59,7 @@ export default function Input(demo1) {
             suggested={'shhhh-secret'}
             id={'Password'}
             type={'password'}
-            maxLength={16}
+            maxLength={passwordUpperBound}
             onChange={(e) => {
               passwordChange(e)
             }}
