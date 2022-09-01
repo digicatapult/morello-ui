@@ -57,7 +57,7 @@ export default function Header(props) {
                     renderModal: false,
                     isPasswordSet: false,
                     renderModalActions: true,
-                    outpsut: undefined,
+                    output: undefined,
                   },
                 })
                 nav('/', { replace: true })
