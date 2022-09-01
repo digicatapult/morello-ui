@@ -45,12 +45,14 @@ export default function Input(demo1) {
 
   const enterPassword = (e) => {
     e.preventDefault()
-    update({
-      demo1: {
-        ...demo1,
-        isPasswordSet: true,
-      },
-    })
+    if (demo1.password.length >= passwordUpperBound) {
+      update({
+        demo1: {
+          ...demo1,
+          isPasswordSet: true,
+        },
+      })
+    }
   }
 
   return (
