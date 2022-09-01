@@ -27,5 +27,5 @@ services:
     ports:
       - "3001:3000"
     environment:
-      - DSBD_API_HOST=qemu
-      - DSBD_API_PORT=19507
+      - MORELLO_HOST=qemu
+      - MORELLO_PORT=19507
