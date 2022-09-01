@@ -14,18 +14,10 @@ export default function Input(demo1) {
   const { password } = demo1.theme
   const [passwordMinError, SetPasswordMinError] = useState(false)
   const [passwordMaxError, SetPasswordMaxError] = useState(false)
-  const passwordLowerBound = 1
-  const passwordUpperBound = 4
   const passwordMaxBound = 16
 
   useEffect(() => {
-    if (
-      demo1.password.length === passwordLowerBound ||
-      (demo1.password.length < passwordUpperBound &&
-        demo1.password.length >= passwordLowerBound)
-    ) {
-      SetPasswordMinError(true)
-    } else if (demo1.password.length === passwordMaxBound) {
+    if (demo1.password.length === passwordMaxBound) {
       SetPasswordMaxError(true)
     } else {
       SetPasswordMinError(false)
@@ -45,7 +37,9 @@ export default function Input(demo1) {
 
   const enterPassword = (e) => {
     e.preventDefault()
-    if (demo1.password.length >= passwordUpperBound) {
+    if (demo1.password.length === 0) {
+      SetPasswordMinError(true)
+    } else if (demo1.password.length > 0) {
       update({
         demo1: {
           ...demo1,
@@ -80,11 +74,14 @@ export default function Input(demo1) {
         </Row>
         {passwordMinError && (
           <Warning {...password.warning}>
-            Minimum Password Length: <br /> {passwordUpperBound} Characters
+            Password Must Be Greater Than 0
           </Warning>
         )}
         {passwordMaxError && (
-          <Warning {...password.warning}> Maximum Password Reached </Warning>
+          <Warning {...password.warning}>
+            {' '}
+            Maximum Password Length Reached{' '}
+          </Warning>
         )}
       </form>
     </Container>
