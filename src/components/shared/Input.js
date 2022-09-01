@@ -73,7 +73,10 @@ export default function Input(demo1) {
           />
         </Row>
         {passwordMinError && (
-          <Warning {...password.warning}>Please Enter A Pasword</Warning>
+          <Warning {...password.warning}>
+            Password is too short, must be at least {passwordUpperBound}{' '}
+            characters
+          </Warning>
         )}
         {passwordMaxError && (
           <Warning {...password.warning}>
