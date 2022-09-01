@@ -1,12 +1,13 @@
 import React from 'react'
 
+import { Themes } from '../fixtures/themes'
 // TODO this is more of an exammple how we can have a global
 // state without 3rd parties e.g. redux
 // this could be a single entity e.g. themeCtx
 export const Context = React.createContext({
-  ctx: true,
+  Themes,
   demo1: {
-    isMorello: false,
+    theme: Themes('Aarch64'),
     password: '',
     showHackPopup: false,
     isPasswordSet: false,
@@ -21,9 +22,10 @@ export const Context = React.createContext({
 export const ContextProvider = ({ children }) => {
   // TOO update context or create separate update method for each demo e.g. demmo1-update
   const initState = {
-    ctx: true,
+    Themes,
     demo1: {
-      isMorello: false,
+      active: 'Aarch64',
+      theme: Themes('Aarch64'),
       password: '',
       showHackPopup: false,
       isPasswordSet: false,

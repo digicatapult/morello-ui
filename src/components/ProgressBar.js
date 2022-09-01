@@ -1,63 +1,57 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import { Context } from '../utils/context'
-import { Txt_Demo1A } from './Common'
+import { Txt_Demo1A, Row } from './shared/Common'
 
-const Wrapper = styled.div`
-  height: 22px;
-  width: 100%;
-  padding: 0px 10px;
-`
+const Wrapper = styled.div((props) => props)
+const BarBackground = styled.div((props) => props)
+const Bar = styled.div((props) => ({
+  width: `${props.progress}%`,
+  ...props,
+}))
 
-const BarBackground = styled.div`
-  height: 50%;
-  width: 100%;
-  background: #979797;
-  padding: 0px;
-`
-
-const Bar = styled.div`
-  position: relative;
-  height: 50%;
-  top: -50%;
-  width: ${(props) => props.progress}%;
-  background: #d9d9d9;
-`
-
-export default function ProgressBar({ update, execute }) {
-  const [progress, setProgress] = React.useState(2)
-  const { demo1 } = React.useContext(Context)
+export default function ProgressBar({ update, demo1 }) {
+  const [progress, setProgress] = React.useState(10)
+  const { theme, execute } = demo1
 
   async function fill() {
     for (let count = 0; count <= 98; count += 2) {
-      await new Promise((r) => setTimeout(r, 20))
       setProgress(count)
+      await new Promise((r) => setTimeout(r, 20))
     }
   }
 
   React.useEffect(() => {
     async function load() {
       await fill()
+      const output = await execute(demo1.password, theme.arch)
       update({
         demo1: {
           ...demo1,
-          showHackPopup: true,
-          output: await execute(demo1.password),
+          output,
+          showHackPopup: theme.name === 'Morello' ? false : true,
         },
       })
-      setProgress(100)
     }
     if (!demo1.output) load()
-  }, [demo1, update, execute])
+    else setProgress(100)
+  }, [])
 
-  const showProgress = progress != 100
+  const showProgress = progress !== 100
 
   return showProgress ? (
-    <Wrapper id={'demo1-progress-bar'}>
+    <Wrapper id={'demo1-progress-bar'} {...theme.progressBar.wrapper}>
       <Txt_Demo1A>{`hacking in progress ${progress}%`}</Txt_Demo1A>
-      <BarBackground />
-      <Bar progress={progress} s />
+      <BarBackground {...theme.progressBar.background} />
+      <Bar progress={progress} {...theme.progressBar.bar} />
     </Wrapper>
-  ) : null
+  ) : (
+    <Row>
+      <Txt_Demo1A wordWrap={'break-word'}>
+        {demo1.output.status != 'success'
+          ? 'FAILURE. The password could not be revealed. - Display output?'
+          : `Your password is ${demo1.password}!`}
+      </Txt_Demo1A>
+    </Row>
+  )
 }

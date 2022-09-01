@@ -1,62 +1,84 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import Input from './Input'
-import { Row, Txt_Demo1A, renderTitle } from './Common'
+import Input from './shared/Input'
+import { Col, Row, Txt_Demo1A, renderTitle, Spacer } from './shared/Common'
 import { Context } from '../utils/context'
-import Modal from './Modal'
+import Modal from './shared/Modal'
+import KeychainIcon from '../assets/images/keychain-strip.png'
 import ProgressBar from './ProgressBar'
 
-const Window = styled.div`
-  display: flex;
-  position: relative;
-  flex-direction: column;
-  width: 826px;
-  height: 626px;
-  box-shadow: 24px 24px 1px rgba(0, 0, 0, 0.8);
-  background: ${(props) => props.background};
-`
-
-const Body = styled.div({
-  boxSizing: 'border-box',
-  height: '100%',
+const Window = styled.div((props) => props)
+const Body = styled.div((props) => ({
   width: '100%',
-  padding: '10px',
-  outline: '2px solid #FFFFFF',
-  outlineOffset: '-10px',
-})
+  ...props,
+}))
 
-export default function Box(props) {
-  const { demo1, update } = React.useContext(Context)
-  const { isPasswordSet, renderModal } = demo1
+export default function Box(demo1) {
+  const { update } = React.useContext(Context)
+  const { theme, isPasswordSet, renderModal } = demo1
 
   const date = new Date().toDateString().slice(0, 10)
   const time = new Date().toLocaleTimeString()
+  const isMorello = theme.name === 'Morello'
+  const font = isMorello
+    ? { fontFamily: 'AktivGrotesk', color: '#000' }
+    : { fontFamily: 'Monaco', color: '#fff' }
 
   return (
-    <Window background={props}>
+    <Window {...theme.primary.windowCont}>
       {renderModal &&
         Modal({
-          ...props,
-          demo1,
           update,
+          demo1,
           ProgressBar: (props) => <ProgressBar {...props} />,
         })}
-      {renderTitle(props.windowTitle)}
+      {renderTitle(demo1.windowTitle, theme.name)}
       <Row flex={'auto'}>
-        <Body>
+        <Body {...theme.primary.windowBody}>
           {!isPasswordSet && (
             <>
-              <Txt_Demo1A>
-                This application will store your password securely.
-                <br />
-                Please input a keyword of choice.
-              </Txt_Demo1A>
-              <Input />
+              <Row
+                justifyContent={
+                  theme.name === 'Morello' ? 'center' : 'flex-start'
+                }
+                marginTop={isMorello ? '49px' : '0px'}
+              >
+                {isMorello && <img src={KeychainIcon} width={50} />}
+                <Txt_Demo1A {...font}>
+                  This application will store your password securely.
+                  <br />
+                  Please input a keyword of choice.
+                </Txt_Demo1A>
+              </Row>
+              <Input {...demo1} />
             </>
           )}
-          {isPasswordSet && (
-            <Txt_Demo1A>
+          {isPasswordSet && isMorello && (
+            <Col size={10}>
+              <Row
+                justifyContent={
+                  theme.name === 'Morello' ? 'center' : 'flex-start'
+                }
+                marginTop={isMorello ? '49px' : '0px'}
+              >
+                {isMorello && <img src={KeychainIcon} width={50} />}
+                <Txt_Demo1A {...font}>
+                  This application will store your password securely.
+                  <br />
+                  Please input a keyword of choice.
+                </Txt_Demo1A>
+              </Row>
+              <Spacer size={120} />
+              <Row justifyContent={'center'}>
+                <Txt_Demo1A {...font}>
+                  Password has been submitted. Now you can attempt to hack
+                </Txt_Demo1A>
+              </Row>
+            </Col>
+          )}
+          {isPasswordSet && !isMorello && (
+            <Txt_Demo1A {...font}>
               last login: {date} {time}.
               <br />
               <br />

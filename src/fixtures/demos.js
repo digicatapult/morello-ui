@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { executeBinary } from '../utils/morello-api'
-import Demo from '../components/Demo'
+import Demo from '../components/Demos/Demo1'
 import AccessDemo from '../components/AccessDemo'
 import Info from '../components/Info'
 
@@ -10,7 +10,7 @@ export const demos = [
     path: 'demo1',
     isDemo: true,
     // TODO group by A and B
-    binaryName: 'out-of-bounds-read',
+    binaryName: 'out-of-bounds-readV2',
     title: 'Are your secrets really safe?',
     description: 'Out of Bounds write. CWE Score 65.93',
     color: '#384D6C',
@@ -20,19 +20,21 @@ export const demos = [
       'Would you like to break into the system and reveal the password?',
     hackingOkBody: 'The password is:',
     hackingOkTitle: 'Hacking completed.',
-    Element: (props) => <Demo {...props} />,
+    Element: (props) => <Demo {...props} showClose={true} />,
     execute: async (args, arch = 'aarch64') => {
       try {
         // TODO updadte with V2
         // currently API ddoes not allow other types...
         const params =
-          args.length > 1 && typeof args !== 'string' ? [...args] : [args]
+          args.length > 1 && typeof args !== 'string'
+            ? [...argsi, -32, 32]
+            : [args, -32, 32]
         const output = await executeBinary(`out-of-bounds-read-${arch}`, {
           params,
         })
         return output
       } catch (e) {
-        console.log('TODO: handle error', e)
+        //TODO: handle error', e
       }
     },
   },

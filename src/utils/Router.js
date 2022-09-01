@@ -1,14 +1,17 @@
 import React from 'react'
 import { Routes, Route, BrowserRouter } from 'react-router-dom'
 
-import MainMenu from './MainMenu'
+import MainMenu from '../components/MainMenu'
 import { demos } from '../fixtures/demos'
+import { Context } from './context'
 
-export default function Content() {
+export default function Router() {
+  const state = React.useContext(Context)
+
   return (
     <BrowserRouter>
       <Routes>
-        <Route exec path={'/'} element={<MainMenu />} />
+        <Route exec path={'/'} element={<MainMenu {...state} />} />
         {demos.map(({ path, Element, ...props }) => (
           <Route key={path} path={path} element={<Element {...props} />} />
         ))}

@@ -92,7 +92,7 @@ jobs:
           headless: true
           build: npm run build
           start: npm start
-          wait-on: 'http://localhost:8080'
+          wait-on: 'http://localhost:3000'
 
   check-version:
     name: 'Check version'

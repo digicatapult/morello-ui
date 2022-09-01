@@ -1,20 +1,14 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Context } from '../utils/context'
+import { Context } from '../../utils/context'
 
-import { Button } from './shared/Buttons'
-import { H1, H2, P1, Row } from './Common'
+import { Button } from './Buttons'
+import { H2, P1, renderTitle, Row } from './Common'
 
-const headerProps = {
-  textAlign: 'center',
-  backgroundColor: '#40303f',
-  padding: '16px 20px',
-}
 const footerProps = {
-  borderBottom: 'solid 1px #414A4C',
   fontSize: '16px',
   color: '#414A4C',
-  padding: '16px 20px',
+  padding: '6px 10px',
 }
 const bodyProps = {
   color: '#414A4C',
@@ -22,30 +16,32 @@ const bodyProps = {
   padding: '16px 20px',
 }
 
+// TODDO: move
 const Popup = styled.div`
   position: absolute;
   z-index: 10;
   left: 0;
   top: 0;
-  width: 100%;
+  width: 10%;
   height: 100%;
   overflow: auto;
-  background-color: rgba(0, 0, 0, 0.3);
   transition: 0.3s ease-in-out;
+  border-radius: '6px',
+  border: '1px solid #818181',
+  box-shadow: '0px 0px 4px #818181',
 `
 
 const Content = styled.div`
-  width: 500px;
+  width: 100px;
   z-index: 10;
-  margin: 25% auto;
+  height: 100%;
   background-color: #fff;
   border-radius: 5px;
   position: relative;
   transition: inherit;
-  transform: translateY(-100px);
-  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05), 0 1px 3px 0 rgba(0, 0, 0, 0.09);
 }`
 
+// TODO convert inti a slicer
 export default function PopupBox(props) {
   const ref = React.useRef()
   const {
@@ -54,12 +50,13 @@ export default function PopupBox(props) {
   /*eslint-disable */
   const { addEventListener, removeEventListener } = window
 
+  // **TODO - timer?
   // TODO reviewe this, leaving for time being as we might need to cancel popup
   // if leaving add an option for clickOutside check
   /*eslint-disable */
   React.useEffect(() => {
     const clickOutside = (e) => {
-      if (e.target == ref.current) setShow(false)
+      // if (e.target == ref.current) setShow(false)
     }
     addEventListener('click', clickOutside)
 
@@ -73,29 +70,26 @@ export default function PopupBox(props) {
   return (
     <Popup ref={ref}>
       <Content>
+        {renderTitle('some txt', 'Morello')}
         {props.children}
         <Row
           boxSizing={'border-box'}
           padding={'0px 5px'}
           justifyContent={'flex-end'}
         >
-          <Button onClick={props.action}>TRY</Button>
+          <Button onClick={(e) => props.action(e)}>TRY</Button>
         </Row>
       </Content>
     </Popup>
   )
 }
 
-export const PopHeader = (props) => {
-  return <H1 {...headerProps}>{props.children}</H1>
-}
-
 export const PopBody = (props) => {
   return (
-    <P1 {...bodyProps}>
+    <div style={{...bodyProps}}>
       <H2 color={'#414A4C'}>Output:</H2>
       {props.children}
-    </P1>
+    </div>
   )
 }
 

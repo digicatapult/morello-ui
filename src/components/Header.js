@@ -2,32 +2,34 @@ import React from 'react'
 import styled from 'styled-components'
 import { useNavigate } from 'react-router-dom'
 
-import { H1, Row, Col, RowSpacer } from './Common'
+import { H1, Row, Col, RowSpacer } from './shared/Common'
 import closeIcon from '../assets/images/close-icon.png'
 import { Context } from '../utils/context'
 
-const HeaderStyle = styled.div((props) => ({
-  backgroundColor: '#384D6C',
-  width: '100%',
-  height: '164px',
-  ...props,
-}))
-
+const HeaderStyle = styled.div((props) => props)
 const CloseElement = styled.span({
   display: 'flex',
   alignItems: 'center',
   cursor: 'pointer',
 })
 
-export default function Header({ logo, showClose, title, ...props }) {
+export default function Header(props) {
+  const {
+    demo1,
+    demo1: { theme },
+    update,
+  } = React.useContext(Context)
   const nav = useNavigate()
-  const { update } = React.useContext(Context)
 
   return (
-    <HeaderStyle data-cy={'header'} backgroundColor={props.color || 'none'}>
+    <HeaderStyle
+      data-cy={'header'}
+      {...theme.header}
+      backgroundColor={props.color || 'none'}
+    >
       <Row height={'100%'}>
         <Col size={3} styles={{ paddingLeft: '50px', alignItems: 'start' }}>
-          {title ? (
+          {props.title ? (
             <H1
               lineHeight={'58px'}
               letterSpacing={'-0.06em'}
@@ -35,24 +37,27 @@ export default function Header({ logo, showClose, title, ...props }) {
               fontWeight={'300'}
               fontSize={'45px'}
             >
-              {title}
+              {props.title}
             </H1>
           ) : (
-            <img src={logo} width={'140px'} height={'38px'} />
+            <img src={props.logo} width={'140px'} height={'38px'} />
           )}
         </Col>
         <RowSpacer size={5} />
         <Col size={3} styles={{ paddingRight: '50px', alignItems: 'end' }}>
-          {showClose && (
+          {props.showClose && (
             <CloseElement
+              data-cy={'header-close-btn'}
               onClick={(e) => {
                 e.preventDefault()
                 update({
                   demo1: {
+                    ...demo1,
                     password: '',
                     renderModal: false,
                     isPasswordSet: false,
                     renderModalActions: true,
+                    output: undefined,
                   },
                 })
                 nav('/', { replace: true })
