@@ -86,7 +86,6 @@ export const Themes = (arch) => {
         fontStyle: 'normal',
         fontWeight: '400',
         fontSize: isCheri ? '16px' : '20px',
-        lineHeight: '32px',
         color: '#f00',
       },
       button: {
