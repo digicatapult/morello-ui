@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import { H1, P1, Spacer } from './Common'
+import { H1, P1 } from './Common'
 import cardArrow from '../../assets/images/card-arrow.png'
 
 const Indicator = styled.div`

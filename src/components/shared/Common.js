@@ -63,11 +63,6 @@ export const Container = styled.div(({ size = 1, styles = {} }) => ({
   ...styles,
 }))
 
-export const Spacer = styled.div(({ size = 1 }) => ({
-  width: '100%',
-  height: `${size}px`,
-}))
-
 export const Row = styled.div((props) => ({
   display: 'flex',
   width: '100%',
