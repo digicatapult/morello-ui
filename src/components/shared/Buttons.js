@@ -12,6 +12,7 @@ export const ButtonBasic = styled.button`
 
 export function ButtonSide({ action, ...demo1 }) {
   const Arrow = styled.div`
+    display: flex;
     background-size: cover;
     background-image: url(${ArrowWhite});
     height: 33px;
@@ -39,8 +40,7 @@ export function ButtonSide({ action, ...demo1 }) {
     cursor: pointer;
     padding: 0px 20px;
     align-items: center;
-    height: auto;
-    max-height: 100%;
+    height: 696px;
     opacity: 0.6;
     top: 164px;
     width: auto;

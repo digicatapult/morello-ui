@@ -178,6 +178,7 @@ export const Themes = (arch) => {
       backgroundImage: `url(${backgroundImage})`,
       width: '100%',
       height: '860px',
+      overflow: 'hidden',
     }),
     primary: {
       windowCont: isCheri
