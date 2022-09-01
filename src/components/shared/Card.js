@@ -15,16 +15,13 @@ const Indicator = styled.div`
 `
 
 const Paper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  text-align: left;
+  display: grid;
+  grid-template-rows: 1fr auto auto;
   opacity: 1;
-  flex-basis: 20vw;
   cursor: pointer;
   padding: 10px 20px;
   background: ${(props) => props.color};
-  transition: all 0.1s;
+  transition: opacity 0.1s;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05), 0 1px 3px 0 rgba(0, 0, 0, 0.09);
 
   -webkit-tap-highlight-color: transparent; /* remove tap highlight */
@@ -51,7 +48,6 @@ export default function Card(props) {
       <Indicator>
         <img width={'21px'} height={'21px'} src={cardArrow} />
       </Indicator>
-      <Spacer size={182} />
       <H1>{title}</H1>
       <P1>
         {isDemo ? <b>Bug type: </b> : null}
