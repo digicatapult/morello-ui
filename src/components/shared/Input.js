@@ -73,9 +73,7 @@ export default function Input(demo1) {
           />
         </Row>
         {passwordMinError && (
-          <Warning {...password.warning}>
-            Password Must Be Greater Than 0
-          </Warning>
+          <Warning {...password.warning}>Please Enter A Pasword</Warning>
         )}
         {passwordMaxError && (
           <Warning {...password.warning}>
