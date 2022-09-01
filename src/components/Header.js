@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 
 import { H1, Row, Col, RowSpacer } from './shared/Common'
 import closeIcon from '../assets/images/close-icon.png'
-import { Context } from '../utils/context'
+import { Context, initState } from '../utils/context'
 
 const HeaderStyle = styled.div((props) => props)
 const CloseElement = styled.span({
@@ -15,7 +15,6 @@ const CloseElement = styled.span({
 
 export default function Header(props) {
   const {
-    demo1,
     demo1: { theme },
     update,
   } = React.useContext(Context)
@@ -50,16 +49,7 @@ export default function Header(props) {
               data-cy={'header-close-btn'}
               onClick={(e) => {
                 e.preventDefault()
-                update({
-                  demo1: {
-                    ...demo1,
-                    password: '',
-                    renderModal: false,
-                    isPasswordSet: false,
-                    renderModalActions: true,
-                    output: undefined,
-                  },
-                })
+                update(initState)
                 nav('/', { replace: true })
               }}
             >
