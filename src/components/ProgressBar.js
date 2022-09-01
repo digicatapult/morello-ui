@@ -10,9 +10,18 @@ const Bar = styled.div((props) => ({
   ...props,
 }))
 
+const extractPassword = ({ output }) =>
+  output
+    .split('\n')
+    .filter((x) => !!x)
+    .pop()
+    .split(':')
+    .pop()
+    .trim()
+
 export default function ProgressBar({ update, demo1 }) {
   const [progress, setProgress] = React.useState(10)
-  const { theme, execute } = demo1
+  const { theme } = demo1
 
   async function fill() {
     for (let count = 0; count <= 98; count += 2) {
@@ -24,7 +33,10 @@ export default function ProgressBar({ update, demo1 }) {
   React.useEffect(() => {
     async function load() {
       await fill()
-      const output = await execute(demo1.password, theme.arch)
+      const output = await demo1.execute(
+        `${demo1.binaryName}-${theme.arch}`,
+        demo1.password
+      )
       update({
         demo1: {
           ...demo1,
@@ -35,7 +47,7 @@ export default function ProgressBar({ update, demo1 }) {
     }
     if (!demo1.output) load()
     else setProgress(100)
-  }, [])
+  }, [demo1, theme, update])
 
   const showProgress = progress !== 100
 
@@ -50,7 +62,7 @@ export default function ProgressBar({ update, demo1 }) {
       <Txt_Demo1A wordWrap={'break-word'}>
         {demo1.output.status != 'success'
           ? 'FAILURE. The password could not be revealed. - Display output?'
-          : `Your password is ${demo1.password}!`}
+          : `Your password is ${extractPassword(demo1.output)}!`}
       </Txt_Demo1A>
     </Row>
   )

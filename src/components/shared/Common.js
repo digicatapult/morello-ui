@@ -136,8 +136,8 @@ const titleProps = {
   Morello: {
     icons: [
       <Circle key={'osx-title-btn-1'} color='"rgb(255, 59, 48)"' />,
-      <Circle key={'osx-title-btn-1'} color='"rgb(255, 149, 0)"' />,
-      <Circle key={'osx-title-btn-1'} color='"rgb(52, 199, 89)"' />,
+      <Circle key={'osx-title-btn-2'} color='"rgb(255, 149, 0)"' />,
+      <Circle key={'osx-title-btn-3'} color='"rgb(52, 199, 89)"' />,
     ],
     iconSize: {
       width: '16px',
