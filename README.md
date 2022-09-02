@@ -11,7 +11,10 @@ A GUI for executing binaries on [Morello](https://www.arm.com/architecture/cpu/m
 | DSBD_API_HOST |    N     | `localhost` | Morello API host name |
 | DSBD_API_PORT |    N     |   `3001`    | Morello API port      |
 
-Environment variables are loaded via webpack using a `.env` file or `Window.config`.
+Environment variables can be configured at:
+
+- **build** time using a `.env` file at the root of the repository.
+- **runtime** by editing [`config.js`](./public/config.js).
 
 ## Getting started
 
