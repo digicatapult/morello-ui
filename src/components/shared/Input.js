@@ -74,8 +74,8 @@ export default function Input(demo1) {
         </Row>
         {passwordMinError && (
           <Warning {...password.warning}>
-            Password cannot be empty, must be <br /> at most{' '}
-            {passwordUpperBound} characters
+            Password cannot be empty, must be a <br />
+            maximum of {passwordUpperBound} characters
           </Warning>
         )}
         {passwordMaxError && (
