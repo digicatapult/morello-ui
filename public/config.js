@@ -1,5 +1,5 @@
 const config = {
-  dsbdApiPort: 3000,
+  dsbdApiPort: 3001,
   dsbdApiHost: 'localhost',
 }
 

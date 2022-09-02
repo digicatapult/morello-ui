@@ -22,7 +22,7 @@ export const demos = [
     // TODO group by A and B
     binaryName: 'out-of-bounds-readV2',
     title: 'Are your secrets really safe?',
-    description: 'Out of Bounds write. CWE Score 65.93',
+    description: 'Out of Bounds read. CWE Score 24.9',
     color: '#384D6C',
     windowTitle: 'SUPER_SAFE_APP.EXE',
     modalTitle: 'hacker.app',
