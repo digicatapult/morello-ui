@@ -5,8 +5,18 @@ describe('Learn Morello', () => {
 
   it('Renders', () => {
     cy.get('img')
-      .filter('[src="arm-morello-screenshot.png"]')
+      .filter('[data-cy="learn-morello-screenshot"]')
       .should('be.visible')
-    cy.get('img').filter('[src="arm-morello-qr.svg"]').should('be.visible')
+      .and(($img) => {
+        // "naturalWidth" and "naturalHeight" are set when the image loads
+        expect($img[0].naturalWidth).to.be.greaterThan(0)
+      })
+    cy.get('img')
+      .filter('[data-cy="learn-morello-qr"]')
+      .should('be.visible')
+      .and(($img) => {
+        // "naturalWidth" and "naturalHeight" are set when the image loads
+        expect($img[0].naturalWidth).to.be.greaterThan(0)
+      })
   })
 })

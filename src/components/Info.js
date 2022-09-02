@@ -38,12 +38,14 @@ export default function Demo1(props) {
           <source srcSet={props.screenshot.webp} type={'image/webp'} />
           <source srcSet={props.screenshot.avif} type={'image/avif'} />
           <Screenshot
+            data-cy={`${props.path}-screenshot`}
             src={props.screenshot.png}
             alt={`Image of website: ${props.link}`}
           />
         </ScreenshotPicture>
         <QrCodeWrap href={props.link}>
           <QrCode
+            data-cy={`${props.path}-qr`}
             src={`${props.qrCode}`}
             alt={`QR code link to ${props.link}`}
           />
