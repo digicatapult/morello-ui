@@ -35,16 +35,16 @@ export default function Demo1(props) {
       <Header {...props} showClose={true} />
       <Content>
         <ScreenshotPicture>
-          <source srcSet={`${props.imageName}.webp`} type={'image/webp'} />
-          <source srcSet={`${props.imageName}.avif`} type={'image/avif'} />
+          <source srcSet={props.screenshot.webp} type={'image/webp'} />
+          <source srcSet={props.screenshot.avif} type={'image/avif'} />
           <Screenshot
-            src={`${props.imageName}.png`}
+            src={props.screenshot.png}
             alt={`Image of website: ${props.link}`}
           />
         </ScreenshotPicture>
         <QrCodeWrap href={props.link}>
           <QrCode
-            src={`${props.qrCode}.svg`}
+            src={`${props.qrCode}`}
             alt={`QR code link to ${props.link}`}
           />
         </QrCodeWrap>

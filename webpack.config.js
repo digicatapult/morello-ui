@@ -34,7 +34,7 @@ module.exports = (vars) => {
           type: 'javascript/auto',
         },
         {
-          test: /\.(png|svg|jpg|jpeg|gif)$/i,
+          test: /\.(png|svg|jpg|jpeg|gif|webp|avif|svg)$/i,
           type: 'asset/resource',
         },
         {
@@ -59,7 +59,7 @@ module.exports = (vars) => {
       }),
       new CopyPlugin({
         patterns: [
-          path.resolve(__dirname, "public", "config.js"),
+          { from: path.resolve(__dirname, "public", "*"), to: '[name][ext]' }
         ],
       }),
     ],
