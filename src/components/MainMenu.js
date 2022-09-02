@@ -17,8 +17,8 @@ const ItemWrap = styled.div`
 
 const CardLayout = styled(Container)`
   flex-flow: row wrap;
-  gap: 20px;
-  padding: 20px;
+  gap: 10px;
+  padding: 0px 50px 50px 50px;
 `
 
 export default function MainMenu(props) {

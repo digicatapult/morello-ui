@@ -8,6 +8,7 @@ export const ButtonBasic = styled.button`
   width: 20%;
   height: 50px;
   margin-left: 5px;
+  border: 0;
 `
 
 export function ButtonSide({ action, ...demo1 }) {
@@ -19,16 +20,17 @@ export function ButtonSide({ action, ...demo1 }) {
     width: 55px;
     animation: stepIn 1.3s;
     animation-iteration-count: infinite;
+    margin-right: 2vw;
 
     @keyframes stepIn {
       0% {
-        margin-left: 10px;
+        margin-left: 1vw;
       }
       30% {
-        margin-left: 39px;
+        margin-left: 4vw;
       }
       100% {
-        margin-left: 10px;
+        margin-left: 1vw;
       }
     }
   `
