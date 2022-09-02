@@ -2,7 +2,7 @@ name: Release
 
 on:
   push:
-    branches: ['main', 'bug/fix-release']
+    branches: ['main']
 
 jobs:
   preconditions:
