@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 
 import { Container, Row } from './Common'
@@ -7,10 +7,23 @@ import { Context } from '../../utils/context'
 const PasswordInput = styled.input((props) => props)
 const Label = styled.label((props) => props)
 const Button = styled.button((props) => props)
+const Warning = styled.p((props) => props)
 
 export default function Input(demo1) {
   const { update } = React.useContext(Context)
   const { password } = demo1.theme
+  const [passwordMinError, SetPasswordMinError] = useState(false)
+  const [passwordMaxError, SetPasswordMaxError] = useState(false)
+  const passwordUpperBound = 16
+
+  useEffect(() => {
+    if (demo1.password.length === passwordUpperBound) {
+      SetPasswordMaxError(true)
+    } else {
+      SetPasswordMinError(false)
+      SetPasswordMaxError(false)
+    }
+  }, [demo1.password])
 
   const passwordChange = (e) => {
     e.preventDefault()
@@ -24,12 +37,16 @@ export default function Input(demo1) {
 
   const enterPassword = (e) => {
     e.preventDefault()
-    update({
-      demo1: {
-        ...demo1,
-        isPasswordSet: true,
-      },
-    })
+    if (demo1.password.length === 0) {
+      SetPasswordMinError(true)
+    } else if (demo1.password.length > 0) {
+      update({
+        demo1: {
+          ...demo1,
+          isPasswordSet: true,
+        },
+      })
+    }
   }
 
   return (
@@ -42,7 +59,7 @@ export default function Input(demo1) {
             suggested={'shhhh-secret'}
             id={'Password'}
             type={'password'}
-            maxLength={16}
+            maxLength={passwordUpperBound}
             onChange={(e) => {
               passwordChange(e)
             }}
@@ -55,6 +72,17 @@ export default function Input(demo1) {
             }}
           />
         </Row>
+        {passwordMinError && (
+          <Warning {...password.warning}>
+            Password cannot be empty, must be a <br />
+            maximum of {passwordUpperBound} characters
+          </Warning>
+        )}
+        {passwordMaxError && (
+          <Warning {...password.warning}>
+            Maximum password length reached
+          </Warning>
+        )}
       </form>
     </Container>
   )
