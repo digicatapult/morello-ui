@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 import { Button, ButtonBasic } from './Buttons'
-import { Txt_Demo1A, Col, Row, renderTitle, Spacer } from './Common'
+import { Txt_Demo1A, Col, Row, renderTitle } from './Common'
 
 const Window = styled.div(({ styles }) => styles)
 const Page = styled(Col)((props) => props)
@@ -82,7 +82,6 @@ export default function Modal({ update, demo1, ProgressBar }) {
       <Row flex={'auto'}>
         <Page {...theme.modal.page}>
           <Txt_Demo1A {...demo1.txt_col}>{demo1.modalText}</Txt_Demo1A>
-          <Spacer size={10} />
 
           {renderModalActions && renderActions({ demo1, update })}
           {showHackingProgress && (

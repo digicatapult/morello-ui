@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 import Input from './shared/Input'
-import { Col, Row, Txt_Demo1A, renderTitle, Spacer } from './shared/Common'
+import { Col, Row, Txt_Demo1A, renderTitle } from './shared/Common'
 import { Context } from '../utils/context'
 import Modal from './shared/Modal'
 import KeychainIcon from '../assets/images/keychain-strip.png'
@@ -69,7 +69,6 @@ export default function Box(demo1) {
                   Please input a keyword of choice.
                 </Txt_Demo1A>
               </Row>
-              <Spacer size={120} />
               <Row justifyContent={'center'}>
                 <Txt_Demo1A {...font}>
                   Password has been submitted. Now you can attempt to hack

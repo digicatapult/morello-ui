@@ -1,22 +1,21 @@
 import React from 'react'
-
-import { Root, Container } from './shared/Common'
+import styled from 'styled-components'
 import Router from '../utils/Router'
+
+const Root = styled.div`
+  display: grid;
+  grid-template-areas:
+    'header'
+    'body';
+  grid-template-rows: 164px 1fr;
+  width: 100vw;
+  height: 100vh;
+`
 
 export default function App() {
   return (
-    <Root display={'flex'} justifyContent={'center'} flexDirection={'row'}>
-      <Container
-        size={10}
-        styles={{
-          flexDirection: 'column',
-          overflow: 'hidden',
-          maxHeight: '1024px',
-          maxWidth: '1366px',
-        }}
-      >
-        <Router />
-      </Container>
+    <Root>
+      <Router />
     </Root>
   )
 }

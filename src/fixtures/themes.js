@@ -1,5 +1,3 @@
-import styled from 'styled-components'
-
 import backgroundImgOsx from '../assets/images/osx-background.png'
 import iconOsx from '../assets/images/hacker-app-icon-morello.png'
 import lockIconOsx from '../assets/images/lock.png'
@@ -21,8 +19,11 @@ export const Themes = (arch) => {
     header: {
       backgroundColor: '#384D6C',
       width: '100%',
-      zIndex: 999,
-      height: '164px',
+      gridArea: 'header',
+      display: 'flex',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      padding: '0px 50px',
     },
     progressBar: {
       wrapper: {
@@ -81,6 +82,13 @@ export const Themes = (arch) => {
         htmlFor: 'Password',
         color: isCheri ? '#000' : '#fff',
       },
+      warning: {
+        fontFamily: isCheri ? '000' : 'Monaco',
+        fontStyle: 'normal',
+        fontWeight: '400',
+        fontSize: isCheri ? '16px' : '20px',
+        color: '#f00',
+      },
       button: {
         width: '70px',
         background: `url(${lockIcon})`,
@@ -93,12 +101,8 @@ export const Themes = (arch) => {
       },
     },
     wrapper: {
-      display: 'flex',
-      position: 'relative',
-      alignItems: 'center',
-      justifyContent: 'center',
-      width: '100%',
-      height: '100%',
+      backgroundImage: `url(${backgroundImage})`,
+      backgroundSize: 'cover',
     },
     menuItemWrap: {
       display: 'flex',
@@ -110,7 +114,7 @@ export const Themes = (arch) => {
       style: {
         position: 'absolute',
         left: '20px',
-        top: '200px',
+        bottom: '100px',
         width: '60px',
         textAlign: 'center',
       },
@@ -172,14 +176,6 @@ export const Themes = (arch) => {
             boxShadow: '24px 24px 1px rgba(0, 0, 0, 0.8)',
           },
     },
-    Background: styled.div({
-      display: 'flex',
-      flexDirection: 'column',
-      backgroundImage: `url(${backgroundImage})`,
-      width: '100%',
-      height: '860px',
-      overflow: 'hidden',
-    }),
     primary: {
       windowCont: isCheri
         ? {
