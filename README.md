@@ -2,19 +2,23 @@
 
 A GUI for executing binaries on [Morello](https://www.arm.com/architecture/cpu/morello) and `aarch64` architecture. Binaries are executed using [`morello-api`](https://github.com/digicatapult/morello-api/).
 
-## Environment Variables
+## Configuration
 
-`morello-ui` is configured primarily using environment variables as follows:
+At **BUILD** time, `morello-ui` is configured using environment variables in a `.env` file at the root of the repository:
 
 | variable      | required |   default   | description           |
 | :------------ | :------: | :---------: | :-------------------- |
 | DSBD_API_HOST |    N     | `localhost` | Morello API host name |
 | DSBD_API_PORT |    N     |   `3001`    | Morello API port      |
 
-Environment variables can be configured at:
+At **RUNTIME**, edit [`config.js`](./public/config.js). Default values:
 
-- **build** time using a `.env` file at the root of the repository.
-- **runtime** by editing [`config.js`](./public/config.js).
+```js
+{
+  dsbdApiPort: 3001,
+  dsbdApiHost: 'localhost',
+}
+```
 
 ## Getting started
 
