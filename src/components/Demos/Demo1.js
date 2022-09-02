@@ -3,18 +3,24 @@ import styled from 'styled-components'
 
 import Header from '../Header'
 import HackerApp from '../HackerApp'
-import { Context } from '../../utils/context'
+import { Context, initState } from '../../utils/context'
 import Box from '../Box'
 import { ButtonSide } from '../shared/Buttons'
 
-const Wrapper = styled.div((props) => props)
+const Wrapper = styled.div`
+  grid-area: body;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  ${(props) => props}
+`
 
 export default function Demo1(props) {
   const state = React.useContext(Context)
   const demo1 = { ...state.demo1, ...props }
   const { update, Themes } = state
   const { theme } = demo1
-  const { Background } = theme
 
   const switchToMorello = (e) => {
     e.preventDefault()
@@ -38,13 +44,17 @@ export default function Demo1(props) {
     })
   }
 
+  React.useEffect(() => {
+    update(initState)
+  }, [update])
+
   return (
-    <Background>
-      {demo1.showHackPopup && (
-        <ButtonSide {...demo1} action={switchToMorello} />
-      )}
+    <>
       <Header {...demo1} />
       <Wrapper {...theme.wrapper}>
+        {demo1.showHackPopup && (
+          <ButtonSide {...demo1} action={switchToMorello} />
+        )}
         {demo1.isPasswordSet && (
           <HackerApp
             imageSrc={theme.icons.icon}
@@ -54,6 +64,6 @@ export default function Demo1(props) {
         )}
         <Box {...demo1} />
       </Wrapper>
-    </Background>
+    </>
   )
 }
