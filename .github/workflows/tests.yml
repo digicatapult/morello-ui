@@ -82,9 +82,9 @@ jobs:
           record: false
           headless: true
           build: npm run build
-          start: npm run dev
+          start: npm start
           wait-on: 'http://localhost:3000'
-          
+
   check-version:
     name: 'Check version'
     runs-on: ubuntu-latest
