@@ -5,6 +5,16 @@ import Demo from '../components/Demos/Demo1'
 import AccessDemo from '../components/AccessDemo'
 import Info from '../components/Info'
 
+import MorelloQR from '../assets/images/arm-morello-qr.svg'
+import MorelloScreenShotWebP from '../assets/images/arm-morello-screenshot.webp'
+import MorelloScreenShotAvif from '../assets/images/arm-morello-screenshot.avif'
+import MorelloScreenShotPng from '../assets/images/arm-morello-screenshot.png'
+
+import DsbdQR from '../assets/images/dsbd-info-qr.svg'
+import DsbdScreenShotWebP from '../assets/images/dsbd-info-screenshot.webp'
+import DsbdScreenShotAvif from '../assets/images/dsbd-info-screenshot.avif'
+import DsbdScreenShotPng from '../assets/images/dsbd-info-screenshot.png'
+
 export const demos = [
   {
     path: 'demo1',
@@ -49,8 +59,12 @@ export const demos = [
     description: 'About the Digital Security by Design ISCF Challenge',
     color: '#0C1B32',
     Element: (props) => <Info {...props} />, // main element
-    imageName: 'dsbd-info-screenshot',
-    qrCode: 'dsbd-info-qr',
+    screenshot: {
+      webp: DsbdScreenShotWebP,
+      avif: DsbdScreenShotAvif,
+      png: DsbdScreenShotPng,
+    },
+    qrCode: DsbdQR,
     link: 'https://www.dsbd.tech/',
   },
   {
@@ -59,8 +73,12 @@ export const demos = [
     description: 'Learn more about the ARM Morello CPU',
     color: '#6C7076',
     Element: (props) => <Info {...props} />, // main element
-    imageName: 'arm-morello-screenshot',
-    qrCode: 'arm-morello-qr',
+    screenshot: {
+      webp: MorelloScreenShotWebP,
+      avif: MorelloScreenShotAvif,
+      png: MorelloScreenShotPng,
+    },
+    qrCode: MorelloQR,
     link: 'https://www.arm.com/architecture/cpu/morello',
   },
   {

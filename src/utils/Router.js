@@ -12,8 +12,12 @@ export default function Router() {
     <BrowserRouter>
       <Routes>
         <Route exec path={'/'} element={<MainMenu {...state} />} />
-        {demos.map(({ path, Element, ...props }) => (
-          <Route key={path} path={path} element={<Element {...props} />} />
+        {demos.map(({ Element, ...props }) => (
+          <Route
+            key={props.path}
+            path={props.path}
+            element={<Element {...props} />}
+          />
         ))}
         <Route path={'*'} element={<h1>not found</h1>} />
       </Routes>

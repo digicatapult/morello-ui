@@ -2,6 +2,7 @@ const path = require('path')
 const dotenv = require('dotenv')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { DefinePlugin } = require('webpack')
+const CopyPlugin = require('copy-webpack-plugin')
 
 
 module.exports = (vars) => {
@@ -33,7 +34,7 @@ module.exports = (vars) => {
           type: 'javascript/auto',
         },
         {
-          test: /\.(png|svg|jpg|jpeg|gif)$/i,
+          test: /\.(png|svg|jpg|jpeg|gif|webp|avif|svg)$/i,
           type: 'asset/resource',
         },
         {
@@ -55,6 +56,11 @@ module.exports = (vars) => {
       }),
       new HtmlWebpackPlugin({
         template: 'src/index.html',
+      }),
+      new CopyPlugin({
+        patterns: [
+          { from: path.resolve(__dirname, "public", "*"), to: '[name][ext]' }
+        ],
       }),
     ],
   })

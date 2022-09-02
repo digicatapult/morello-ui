@@ -10,14 +10,16 @@ import dsbdLogo from '../assets/images/logo.png'
 
 const ItemWrap = styled.div`
   display: flex;
-  flex-basis: 20vw;
-  min-width: 10rem;
+  flex-basis: 20%;
+  min-width: 180px;
   background-color: ${(props) => props.color};
 `
 
 const CardLayout = styled(Container)`
   flex-flow: row wrap;
   gap: 10px;
+  max-width: 1400px;
+  margin: 0 auto;
   padding: 0px 50px 50px 50px;
 `
 
