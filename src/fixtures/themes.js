@@ -82,6 +82,13 @@ export const Themes = (arch) => {
         htmlFor: 'Password',
         color: isCheri ? '#000' : '#fff',
       },
+      warning: {
+        fontFamily: isCheri ? '000' : 'Monaco',
+        fontStyle: 'normal',
+        fontWeight: '400',
+        fontSize: isCheri ? '16px' : '20px',
+        color: '#f00',
+      },
       button: {
         width: '70px',
         background: `url(${lockIcon})`,
