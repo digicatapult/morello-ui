@@ -1,17 +1,19 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import { H2 } from './shared/Common'
-import { Context } from '../utils/context'
+import { H2 } from '../../shared/Common'
+import { Context } from '../../../utils/context'
 
 const IconWrapper = styled.div`
-  ${(props) => props.styles}
+  position: absolute;
+  left: 20px;
+  bottom: 100px;
+  width: 60px;
+  text-align: center;
 `
-
-// usage <Icon imageSrc={cardArrow} text={'txt'} styles={{ width: '100px', textAlign: 'center'}}/>
 export default function Hacker(props) {
   const { demo1, update } = React.useContext(Context)
-  const { imageSrc, text, styles } = props
+  const { imageSrc, text } = props
 
   const renderModal = (e, { demo1, update }) => {
     e.preventDefault()
@@ -24,7 +26,7 @@ export default function Hacker(props) {
   }
 
   return (
-    <IconWrapper id={'hacker-app'} styles={styles}>
+    <IconWrapper id={'hacker-app'}>
       <img
         style={{ cursor: 'pointer' }}
         src={imageSrc}

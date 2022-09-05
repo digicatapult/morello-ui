@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import { Txt_Demo1A, Row } from './shared/Common'
+import { DemoText, Row } from '../../shared/Common'
 
 const Wrapper = styled.div((props) => props)
 const BarBackground = styled.div((props) => props)
@@ -52,17 +52,17 @@ export default function ProgressBar({ update, demo1 }) {
 
   return showProgress ? (
     <Wrapper id={'demo1-progress-bar'} {...theme.progressBar.wrapper}>
-      <Txt_Demo1A>{`hacking in progress ${progress}%`}</Txt_Demo1A>
+      <DemoText>{`hacking in progress ${progress}%`}</DemoText>
       <BarBackground {...theme.progressBar.background} />
       <Bar progress={progress} {...theme.progressBar.bar} />
     </Wrapper>
   ) : (
     <Row>
-      <Txt_Demo1A wordWrap={'break-word'}>
+      <DemoText wordWrap={'break-word'}>
         {demo1.output.status != 'success'
           ? 'FAILURE. The password could not be revealed. - Display output?'
           : `Your password is ${extractPassword(demo1.output)}!`}
-      </Txt_Demo1A>
+      </DemoText>
     </Row>
   )
 }

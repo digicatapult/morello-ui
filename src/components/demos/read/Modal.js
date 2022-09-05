@@ -1,8 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import { Button, ButtonBasic } from './Buttons'
-import { Txt_Demo1A, Col, Row, renderTitle } from './Common'
+import { Button, ButtonBasic } from '../../shared/Buttons'
+import { DemoText, Col, Row } from '../../shared/Common'
+import Title from '../../shared/Title'
 
 const Window = styled.div(({ styles }) => styles)
 const Page = styled(Col)((props) => props)
@@ -78,10 +79,10 @@ export default function Modal({ update, demo1, ProgressBar }) {
 
   return (
     <Window id={'hacker-app-modal'} styles={theme.modal.window}>
-      {renderTitle(demo1.modalTitle, theme.name)}
+      <Title title={demo1.modalTitle} arch={theme.name} />
       <Row flex={'auto'}>
         <Page {...theme.modal.page}>
-          <Txt_Demo1A {...demo1.txt_col}>{demo1.modalText}</Txt_Demo1A>
+          <DemoText {...demo1.txt_col}>{demo1.modalText}</DemoText>
 
           {renderModalActions && renderActions({ demo1, update })}
           {showHackingProgress && (

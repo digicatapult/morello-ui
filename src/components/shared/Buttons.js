@@ -11,7 +11,7 @@ export const ButtonBasic = styled.button`
   border: 0;
 `
 
-export function ButtonSide({ action, ...demo1 }) {
+export function ButtonSide({ action }) {
   const Arrow = styled.div`
     display: flex;
     background-size: cover;
@@ -52,7 +52,7 @@ export function ButtonSide({ action, ...demo1 }) {
   `
 
   return (
-    <SideButton {...demo1} onClick={action}>
+    <SideButton onClick={action}>
       <Arrow />
     </SideButton>
   )

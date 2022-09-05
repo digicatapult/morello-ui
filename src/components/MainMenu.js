@@ -5,7 +5,7 @@ import styled from 'styled-components'
 import { demos } from '../fixtures/demos'
 import Card from './shared/Card'
 import { Container } from './shared/Common'
-import Header from './Header'
+import Header from './shared/Header'
 import dsbdLogo from '../assets/images/logo.png'
 
 const ItemWrap = styled.div`
@@ -23,12 +23,12 @@ const CardLayout = styled(Container)`
   padding: 0px 50px 50px 50px;
 `
 
-export default function MainMenu(props) {
+export default function MainMenu() {
   const nav = useNavigate()
 
   return (
     <>
-      <Header logo={dsbdLogo} {...props} showClose={false} />
+      <Header logo={dsbdLogo} showClose={false} />
       <CardLayout data-cy={'main-menu-container'} size={10}>
         {demos.map((details) => (
           <ItemWrap

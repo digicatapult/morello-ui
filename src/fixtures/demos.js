@@ -1,8 +1,8 @@
 import React from 'react'
 
 import { executeBinary } from '../utils/morello-api'
-import Demo from '../components/Demos/Demo1'
-import AccessDemo from '../components/AccessDemo'
+import ReadDemo from '../components/demos/read/Demo'
+import WriteDemo from '../components/demos/write/Demo'
 import Info from '../components/Info'
 
 import MorelloQR from '../assets/images/arm-morello-qr.svg'
@@ -30,7 +30,7 @@ export const demos = [
       'Would you like to break into the system and reveal the password?',
     hackingOkBody: 'The password is:',
     hackingOkTitle: 'Hacking completed.',
-    Element: (props) => <Demo {...props} showClose={true} />,
+    Element: (props) => <ReadDemo {...props} showClose={true} />,
     execute: async (executable, args) => {
       const params =
         args.length > 1 && typeof args !== 'string'
@@ -51,7 +51,7 @@ export const demos = [
     color: '#6C3838',
     windowTitle: 'SUPER_SAFE_APP.EXE',
     modalTitle: 'hacker.app',
-    Element: (props) => <AccessDemo {...props} />,
+    Element: (props) => <WriteDemo {...props} />,
   },
   {
     path: 'about-dsbd',
