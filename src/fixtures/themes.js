@@ -36,7 +36,7 @@ export const Themes = (arch) => {
         background: isCheri ? '#fff' : '#d9d9d9',
       },
     },
-    password: {
+    form: {
       input: isCheri
         ? {
             width: '300px',
@@ -87,7 +87,7 @@ export const Themes = (arch) => {
         margin: '5px',
         minHeight: '30px',
       },
-      button: {
+      savePasswordButton: {
         width: '60px',
         height: '60px',
         background: `url(${isCheri ? lockIconOsx : lockIconImg})`,
@@ -98,6 +98,13 @@ export const Themes = (arch) => {
         cursor: 'pointer',
         marginLeft: '2px',
         marginTop: '32px',
+      },
+      loginButton: {
+        fontFamily: isCheri ? '000' : 'Monaco',
+        fontSize: '16px',
+        width: '100px',
+        height: '50px',
+        cursor: 'pointer',
       },
     },
     wrapper: {

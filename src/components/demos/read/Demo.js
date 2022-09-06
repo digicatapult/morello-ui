@@ -122,8 +122,8 @@ export default function ReadDemo(props) {
                   <Container size={10}>
                     <Input
                       label={'insert your password'}
-                      theme={readDemo.theme.password}
-                      inputState={passwordInput}
+                      theme={readDemo.theme.form}
+                      upperBound={[passwordUpperBound]}
                       setInputState={SetPasswordInput}
                       inputType={'password'}
                       id={'password'}
@@ -131,7 +131,7 @@ export default function ReadDemo(props) {
                       InputErrorWarning={InputErrorWarning}
                     />
                     <Button
-                      {...readDemo.theme.password.button}
+                      {...readDemo.theme.form.savePasswordButton}
                       type={'submit'}
                       id={'submit-password'}
                     />
