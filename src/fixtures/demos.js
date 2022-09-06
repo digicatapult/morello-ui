@@ -14,7 +14,6 @@ import DsbdQR from '../assets/images/dsbd-info-qr.svg'
 import DsbdScreenShotWebP from '../assets/images/dsbd-info-screenshot.webp'
 import DsbdScreenShotAvif from '../assets/images/dsbd-info-screenshot.avif'
 import DsbdScreenShotPng from '../assets/images/dsbd-info-screenshot.png'
-import ExplainerSlides from '../components/ExplainerSlides'
 import ExplainerSVG from '../components/ExplainerSVG'
 
 import OutOfBoundsReadImages from '../assets/images/out-of-bounds-read-explainer/OutOfBoundsReadImages'
@@ -91,38 +90,19 @@ export const demos = [
     description:
       'Learn about Out of Bounds Read Exploits and How Morello Prevents Them',
     color: '#D1B44E',
-    Element: (props) => <ExplainerSlides {...props} />, // main element
-    explainerSrc:
-      'https://docs.google.com/presentation/d/e/2PACX-1vRBsF3-PUSnIngjH47sdH3xvSEHVFFyKOxTx21kCAYNaCdyHZ-rt8_jlJT_pvwx-DpGPfhWLq9VExcm/embed?start=false&loop=false&delayms=3000',
-    nativeSize: {
-      width: 1440,
-      height: 839,
-    },
-    crop: {
-      left: 7,
-      right: 7,
-      top: 7,
-      bottom: 40,
-    },
-  },
-  {
-    path: 'demo1-explainer-svg',
-    title: 'What is an Out of Bounds Read?',
-    description:
-      'Learn about Out of Bounds Read Exploits and How Morello Prevents Them',
-    color: '#D1B44E',
     Element: (props) => <ExplainerSVG {...props} />, // main element
     images: OutOfBoundsReadImages,
     nativeSize: {
-      width: 1440,
-      height: 839,
+      width: 960,
+      height: 540,
     },
-    crop: {
-      left: 0,
-      right: 0,
-      top: 0,
-      bottom: 0,
-    },
+  },
+  {
+    path: 'demo6',
+    title: 'Do you believe your password is safe?',
+    description: 'Out of Bounds write / Out of Bounds read. CWE Score 65.93',
+    color: '#4F6C38',
+    Element: () => <div>somee demo7 content</div>, // main element
   },
   {
     path: 'demo7',

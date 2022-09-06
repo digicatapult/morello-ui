@@ -4,26 +4,26 @@ import styled from 'styled-components'
 import Header from './Header'
 
 const ExplainerWrapper = styled.div`
-  width: calc(
-    ${({ explainerSize: { width } }) => width}px -
-      ${({ crop: { left, right } }) => left + right}px
+  width: min(
+    calc(100vw - 20vw),
+    calc((100vh - 10vh - 164px) * ${({ aspectRatio }) => aspectRatio})
   );
-  height: calc(
-    ${({ explainerSize: { height } }) => height}px -
-      ${({ crop: { top, bottom } }) => top + bottom}px
+  height: min(
+    calc(100vh - 10vh - 164px),
+    calc((100vw - 20vw) / ${({ aspectRatio }) => aspectRatio})
   );
   overflow: hidden;
-  margin: 0px auto;
+  align-self: center;
+  justify-self: center;
 `
 
 const ExplainerImage = styled.img`
-  position: relative;
-  left: -${({ crop: { left } }) => left}px;
-  top: -${({ crop: { top } }) => top}px;
+  width: 100%;
+  height: 100%;
 `
 
 export default function Explainer(props) {
-  const { images, crop, nativeSize } = props
+  const { images, nativeSize } = props
   const explainerRef = React.useRef()
   const [currentSlide, setCurrentSlide] = React.useState(0)
 
@@ -59,15 +59,13 @@ export default function Explainer(props) {
   return (
     <>
       <Header {...props} showClose={true} />
-      <ExplainerWrapper explainerSize={nativeSize} crop={crop}>
+      <ExplainerWrapper aspectRatio={nativeSize.width / nativeSize.height}>
         <ExplainerImage
           src={images[currentSlide]}
           ref={explainerRef}
-          onClick={nextSlide}
-          frameBorder={'0'}
           width={nativeSize.width}
           height={nativeSize.height}
-          crop={crop}
+          onClick={nextSlide}
         />
       </ExplainerWrapper>
     </>
