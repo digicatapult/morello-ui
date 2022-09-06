@@ -29,7 +29,7 @@ const QrCode = styled.img`
   max-width: 25vw;
 `
 
-export default function Demo1(props) {
+export default function Info(props) {
   return (
     <>
       <Header {...props} showClose={true} />
