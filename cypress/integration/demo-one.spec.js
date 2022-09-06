@@ -1,6 +1,6 @@
 describe('Demo One', () => {
   beforeEach(() => {
-    cy.visit('/demo1')
+    cy.visit('/read-demo')
   })
 
   // TODO use data= property for getting DOM elements
@@ -29,7 +29,7 @@ describe('Demo One', () => {
       cy.get('#password').type('password')
       cy.get('#submit-password').click()
       cy.get('#hacker-app').click()
-      cy.get('[data-cy=demo1-modal-btn-yes-2]').click()
+      cy.get('[data-cy=read-demo-modal-btn-yes-2]').click()
     })
 
     it('Renders Hacker App after submitting a password', () => {
@@ -41,10 +41,10 @@ describe('Demo One', () => {
     })
 
     it('Renders progress bar after clicking <YES>', () => {
-      cy.get('#demo1-progress-bar').should('exist')
+      cy.get('#read-demo-progress-bar').should('exist')
     })
 
-    it.skip('Executes demo1 binaries by calling an api', () => {
+    it.skip('Executes read demo binaries by calling an api', () => {
       // TODO
     })
   })

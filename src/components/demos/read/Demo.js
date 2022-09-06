@@ -26,10 +26,10 @@ const Button = styled.button((props) => props)
 export default function ReadDemo(props) {
   const state = React.useContext(Context)
   const [passwordInput, SetPasswordInput] = useState('')
-  const demo1 = { ...state.demo1, ...props }
+  const readDemo = { ...state.readDemo, ...props }
 
   const { update } = state
-  const { theme } = demo1
+  const { theme } = readDemo
 
   const date = new Date().toDateString().slice(0, 10)
   const time = new Date().toLocaleTimeString()
@@ -39,8 +39,8 @@ export default function ReadDemo(props) {
     e.preventDefault()
 
     update({
-      demo1: {
-        ...demo1,
+      readDemo: {
+        ...readDemo,
         theme: Themes('Morello'),
         output: undefined,
         password: '',
@@ -57,8 +57,8 @@ export default function ReadDemo(props) {
     e.preventDefault()
     if (passwordInput.length > 0) {
       update({
-        demo1: {
-          ...demo1,
+        readDemo: {
+          ...readDemo,
           isPasswordSet: true,
           password: passwordInput,
         },
@@ -72,16 +72,16 @@ export default function ReadDemo(props) {
 
   return (
     <>
-      <Header {...demo1} />
+      <Header {...readDemo} />
       <Wrapper {...theme.wrapper}>
-        {demo1.showHackPopup && (
-          <ButtonSide {...demo1} action={switchToMorello} />
+        {readDemo.showHackPopup && (
+          <ButtonSide {...readDemo} action={switchToMorello} />
         )}
-        {demo1.isPasswordSet && (
+        {readDemo.isPasswordSet && (
           <HackerApp imageSrc={theme.icons.hackerIcon} text={'hacker app'} />
         )}
-        <Box {...demo1}>
-          {!demo1.isPasswordSet && (
+        <Box {...readDemo}>
+          {!readDemo.isPasswordSet && (
             <>
               <Row
                 justifyContent={isMorello ? 'center' : 'flex-start'}
@@ -104,14 +104,14 @@ export default function ReadDemo(props) {
                   <Container size={10}>
                     <Input
                       label={'insert your password'}
-                      theme={demo1.theme.password}
+                      theme={readDemo.theme.password}
                       inputState={passwordInput}
                       setInputState={SetPasswordInput}
                       inputType={'password'}
                       id={'password'}
                     />
                     <Button
-                      {...demo1.theme.password.button}
+                      {...readDemo.theme.password.button}
                       type={'submit'}
                       id={'submit-password'}
                     />
@@ -120,7 +120,7 @@ export default function ReadDemo(props) {
               </Container>
             </>
           )}
-          {demo1.isPasswordSet && isMorello && (
+          {readDemo.isPasswordSet && isMorello && (
             <Col size={10}>
               <Row justifyContent={'center'} marginTop={'49px'}>
                 <img src={KeychainIcon} />
@@ -137,7 +137,7 @@ export default function ReadDemo(props) {
               </Row>
             </Col>
           )}
-          {demo1.isPasswordSet && !isMorello && (
+          {readDemo.isPasswordSet && !isMorello && (
             <DemoText {...theme.font}>
               last login: {date} {time}.
               <br />
@@ -146,10 +146,10 @@ export default function ReadDemo(props) {
             </DemoText>
           )}
         </Box>
-        {demo1.renderModal &&
+        {readDemo.renderModal &&
           Modal({
             update,
-            demo1,
+            readDemo,
             ProgressBar: (props) => <ProgressBar {...props} />,
           })}
       </Wrapper>

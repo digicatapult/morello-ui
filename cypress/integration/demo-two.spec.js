@@ -1,6 +1,6 @@
 describe('Demo Two', () => {
   beforeEach(() => {
-    cy.visit('/demo2')
+    cy.visit('/write-demo')
   })
 
   it('Renders', () => {

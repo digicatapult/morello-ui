@@ -3,7 +3,7 @@ import React from 'react'
 import { Themes } from '../fixtures/themes'
 
 export const initState = {
-  demo1: {
+  readDemo: {
     theme: Themes('Aarch64'),
     password: '',
     showHackPopup: false,
@@ -18,7 +18,7 @@ export const initState = {
 // state without 3rd parties e.g. redux
 // this could be a single entity e.g. themeCtx
 export const Context = React.createContext({
-  demo1: {},
+  readDemo: {},
   update: () => {},
 })
 

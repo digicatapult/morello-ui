@@ -19,9 +19,9 @@ const extractPassword = ({ output }) =>
     .pop()
     .trim()
 
-export default function ProgressBar({ update, demo1 }) {
+export default function ProgressBar({ update, readDemo }) {
   const [progress, setProgress] = React.useState(10)
-  const { theme } = demo1
+  const { theme } = readDemo
 
   async function fill() {
     for (let count = 0; count <= 98; count += 2) {
@@ -34,24 +34,27 @@ export default function ProgressBar({ update, demo1 }) {
     async function load() {
       const [, output] = await Promise.all([
         fill(),
-        demo1.execute(`${demo1.binaryName}-${theme.arch}`, demo1.password),
+        readDemo.execute(
+          `${readDemo.binaryName}-${theme.arch}`,
+          readDemo.password
+        ),
       ])
       update({
-        demo1: {
-          ...demo1,
+        readDemo: {
+          ...readDemo,
           output,
           showHackPopup: theme.name === 'Morello' ? false : true,
         },
       })
     }
-    if (!demo1.output) load()
+    if (!readDemo.output) load()
     else setProgress(100)
-  }, [demo1, theme, update])
+  }, [readDemo, theme, update])
 
   const showProgress = progress !== 100
 
   return showProgress ? (
-    <Wrapper id={'demo1-progress-bar'} {...theme.progressBar.wrapper}>
+    <Wrapper id={'read-demo-progress-bar'} {...theme.progressBar.wrapper}>
       <DemoText>{`hacking in progress ${progress}%`}</DemoText>
       <BarBackground {...theme.progressBar.background} />
       <Bar progress={progress} {...theme.progressBar.bar} />
@@ -59,9 +62,9 @@ export default function ProgressBar({ update, demo1 }) {
   ) : (
     <Row>
       <DemoText wordWrap={'break-word'}>
-        {demo1.output.status != 'success'
+        {readDemo.output.status != 'success'
           ? 'FAILURE. The password could not be revealed. - Display output?'
-          : `Your password is ${extractPassword(demo1.output)}!`}
+          : `Your password is ${extractPassword(readDemo.output)}!`}
       </DemoText>
     </Row>
   )

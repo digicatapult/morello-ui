@@ -17,7 +17,7 @@ import DsbdScreenShotPng from '../assets/images/dsbd-info-screenshot.png'
 
 export const demos = [
   {
-    path: 'demo1',
+    path: 'read-demo',
     isDemo: true,
     // TODO group by A and B
     binaryName: 'out-of-bounds-readV2',
@@ -43,7 +43,7 @@ export const demos = [
     },
   },
   {
-    path: 'demo2',
+    path: 'write-demo',
     isDemo: true,
     binaryName: 'out-of-bounds-access',
     title: 'Is your password what you think it is?',

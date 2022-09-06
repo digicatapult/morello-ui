@@ -12,14 +12,14 @@ const IconWrapper = styled.div`
   text-align: center;
 `
 export default function Hacker(props) {
-  const { demo1, update } = React.useContext(Context)
+  const { readDemo, update } = React.useContext(Context)
   const { imageSrc, text } = props
 
-  const renderModal = (e, { demo1, update }) => {
+  const renderModal = (e, { readDemo, update }) => {
     e.preventDefault()
     update({
-      demo1: {
-        ...demo1,
+      readDemo: {
+        ...readDemo,
         renderModal: true,
       },
     })
@@ -32,7 +32,7 @@ export default function Hacker(props) {
         src={imageSrc}
         width={'60px'}
         height={'60px'}
-        onClick={(e) => renderModal(e, { demo1, update })}
+        onClick={(e) => renderModal(e, { readDemo, update })}
       />
       <H2>{text}</H2>
     </IconWrapper>
