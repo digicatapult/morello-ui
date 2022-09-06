@@ -24,7 +24,6 @@ const ExplainerImage = styled.img`
 
 export default function Explainer(props) {
   const { images, nativeSize } = props
-  const explainerRef = React.useRef()
   const [currentSlide, setCurrentSlide] = React.useState(0)
 
   const imageCount = images.length
@@ -62,7 +61,6 @@ export default function Explainer(props) {
       <ExplainerWrapper aspectRatio={nativeSize.width / nativeSize.height}>
         <ExplainerImage
           src={images[currentSlide]}
-          ref={explainerRef}
           width={nativeSize.width}
           height={nativeSize.height}
           onClick={nextSlide}

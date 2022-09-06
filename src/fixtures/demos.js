@@ -14,7 +14,7 @@ import DsbdQR from '../assets/images/dsbd-info-qr.svg'
 import DsbdScreenShotWebP from '../assets/images/dsbd-info-screenshot.webp'
 import DsbdScreenShotAvif from '../assets/images/dsbd-info-screenshot.avif'
 import DsbdScreenShotPng from '../assets/images/dsbd-info-screenshot.png'
-import ExplainerSVG from '../components/ExplainerSVG'
+import Explainer from '../components/Explainer'
 
 import OutOfBoundsReadImages from '../assets/images/out-of-bounds-read-explainer/OutOfBoundsReadImages'
 
@@ -90,7 +90,7 @@ export const demos = [
     description:
       'Learn about Out of Bounds Read Exploits and How Morello Prevents Them',
     color: '#D1B44E',
-    Element: (props) => <ExplainerSVG {...props} />, // main element
+    Element: (props) => <Explainer {...props} />, // main element
     images: OutOfBoundsReadImages,
     nativeSize: {
       width: 960,
