@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 
 import Header from '../../shared/Header'
@@ -26,6 +26,8 @@ const Button = styled.button((props) => props)
 export default function ReadDemo(props) {
   const state = React.useContext(Context)
   const [passwordInput, SetPasswordInput] = useState('')
+  const [someInputTyped, SetSomeInputTyped] = useState(false)
+  const passwordUpperBound = 16
   const readDemo = { ...state.readDemo, ...props }
 
   const { update } = state
@@ -34,6 +36,16 @@ export default function ReadDemo(props) {
   const date = new Date().toDateString().slice(0, 10)
   const time = new Date().toLocaleTimeString()
   const isMorello = theme.name === 'Morello'
+
+  const noPasswordEntered = passwordInput.length === 0 && someInputTyped
+  const passwordAtMaxLength = passwordInput.length === passwordUpperBound
+
+  const InputErrorWarning = () => (
+    <>
+      {noPasswordEntered && <>Cannot be empty</>}
+      {passwordAtMaxLength && <>Maximum length reached</>}
+    </>
+  )
 
   const switchToMorello = (e) => {
     e.preventDefault()
@@ -66,7 +78,13 @@ export default function ReadDemo(props) {
     }
   }
 
-  React.useEffect(() => {
+  useEffect(() => {
+    if (passwordInput.length > 0) {
+      SetSomeInputTyped(true)
+    }
+  }, [passwordInput])
+
+  useEffect(() => {
     update(initState)
   }, [update])
 
@@ -109,6 +127,8 @@ export default function ReadDemo(props) {
                       setInputState={SetPasswordInput}
                       inputType={'password'}
                       id={'password'}
+                      showInputError={passwordAtMaxLength || noPasswordEntered}
+                      InputErrorWarning={InputErrorWarning}
                     />
                     <Button
                       {...readDemo.theme.password.button}
