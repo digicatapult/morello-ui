@@ -108,8 +108,13 @@ export default function ReadDemo(props) {
                       inputState={passwordInput}
                       setInputState={SetPasswordInput}
                       inputType={'password'}
+                      id={'password'}
                     />
-                    <Button {...demo1.theme.password.button} type={'submit'} />
+                    <Button
+                      {...demo1.theme.password.button}
+                      type={'submit'}
+                      id={'submit-password'}
+                    />
                   </Container>
                 </form>
               </Container>

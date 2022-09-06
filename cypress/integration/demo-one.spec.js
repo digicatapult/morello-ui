@@ -5,7 +5,7 @@ describe('Demo One', () => {
 
   // TODO use data= property for getting DOM elements
   it('Renders login box', () => {
-    cy.get('#Password').should('exist')
+    cy.get('#password').should('exist')
   })
 
   it('Returns to main menu and confirm that menu container has been rendered', () => {
@@ -16,17 +16,17 @@ describe('Demo One', () => {
   describe('If password entered is more than 16 chars', () => {
     it('Max length cuts off long passwords', () => {
       // eslint-disable-next-line cypress/no-force
-      cy.get('#Password', { maxlength: 16, force: true }).type(
+      cy.get('#password', { maxlength: 16, force: true }).type(
         '12345678910111213141516',
         { force: true }
       )
-      cy.get('#Password').should('have.value', '1234567891011121')
+      cy.get('#password').should('have.value', '1234567891011121')
     })
   })
 
   describe('Happy path', () => {
     beforeEach(() => {
-      cy.get('#Password').type('password')
+      cy.get('#password').type('password')
       cy.get('#submit-password').click()
       cy.get('#hacker-app').click()
       cy.get('[data-cy=demo1-modal-btn-yes-2]').click()

@@ -14,6 +14,7 @@ export default function Input({
   setInputState,
   inputType = 'text',
   upperBound = 16,
+  id = '',
 }) {
   const [inputMinError, SetInputMinError] = useState(false)
   const [inputMaxError, SetInputMaxError] = useState(false)
@@ -33,6 +34,7 @@ export default function Input({
       <Row>
         <InputBox
           {...theme.input}
+          id={id}
           type={inputType}
           maxLength={upperBound}
           onChange={(e) => {
