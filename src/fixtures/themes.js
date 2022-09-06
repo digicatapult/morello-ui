@@ -80,12 +80,15 @@ export const Themes = (arch) => {
       },
       warning: {
         fontFamily: isCheri ? '000' : 'Monaco',
-        fontStyle: 'normal',
-        fontWeight: '400',
         fontSize: '14px',
         color: '#f00',
         margin: '5px',
         minHeight: '30px',
+      },
+      loginAttempt: {
+        fontFamily: isCheri ? '000' : 'Monaco',
+        fontSize: '14px',
+        color: '#fff',
       },
       savePasswordButton: {
         width: '60px',

@@ -16,7 +16,7 @@ const Wrapper = styled.div`
   ${(props) => props}
 `
 const Button = styled.button((props) => props)
-const Warning = styled.p((props) => props)
+const LoginAttemptText = styled.p((props) => props)
 
 export default function WriteDemo(props) {
   const state = React.useContext(Context)
@@ -74,15 +74,20 @@ export default function WriteDemo(props) {
 
   const enterUsernameAndPassword = (e) => {
     e.preventDefault()
-    update({
-      writeDemo: {
-        ...writeDemo,
-        usernamePasswordPairs: [
-          ...writeDemo.usernamePasswordPairs,
-          [usernameInput, passwordInput],
-        ],
-      },
-    })
+    SetSomeUsernameTyped(true)
+    SetSomePasswordTyped(true)
+
+    if (usernameInput.length > 0 && passwordInput.length > 0) {
+      update({
+        writeDemo: {
+          ...writeDemo,
+          usernamePasswordPairs: [
+            ...writeDemo.usernamePasswordPairs,
+            [usernameInput, passwordInput],
+          ],
+        },
+      })
+    }
   }
 
   return (
@@ -99,6 +104,7 @@ export default function WriteDemo(props) {
                 upperBound={usernameUpperBound}
                 showInputError={usernameAtMaxLength || noUsernameEntered}
                 InputErrorWarning={UsernameErrorWarning}
+                id={'username'}
               />
               <Input
                 label={'Password'}
@@ -108,6 +114,7 @@ export default function WriteDemo(props) {
                 inputType={'password'}
                 showInputError={passwordAtMaxLength || noPasswordEntered}
                 InputErrorWarning={PasswordErrorWarning}
+                id={'password'}
               />
               <Container
                 size={10}
@@ -124,12 +131,13 @@ export default function WriteDemo(props) {
                 >
                   Login
                 </Button>
-                <Warning
-                  {...writeDemo.theme.form.warning}
+                <LoginAttemptText
+                  {...writeDemo.theme.form.loginAttempt}
                   visibility={demoOutput ? 'visible' : 'hidden'}
+                  id={'login-attempt'}
                 >
                   {demoOutput}
-                </Warning>
+                </LoginAttemptText>
               </Container>
             </form>
           </Container>

@@ -67,6 +67,8 @@ export default function ReadDemo(props) {
 
   const enterPassword = (e) => {
     e.preventDefault()
+    SetSomeInputTyped(true)
+
     if (passwordInput.length > 0) {
       update({
         readDemo: {
