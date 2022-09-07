@@ -22,7 +22,7 @@ services:
     expose:
       - "19507"
   morello-api:
-    image: digicatapult/morello-api:v0.6.2
+    image: digicatapult/morello-api:v0.6.4
     container_name: api
     ports:
       - "3001:3000"
