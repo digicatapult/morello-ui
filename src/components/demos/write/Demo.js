@@ -65,13 +65,6 @@ export default function WriteDemo(props) {
     update(initState)
   }, [update])
 
-  useEffect(() => {
-    if (writeDemo.usernamePasswordPairs.length > 0) {
-      // TODO execute API
-      SetDemoOutput('***PARSED API OUTPUT***')
-    }
-  }, [writeDemo.usernamePasswordPairs])
-
   const enterUsernameAndPassword = (e) => {
     e.preventDefault()
     SetSomeUsernameTyped(true)
@@ -87,6 +80,8 @@ export default function WriteDemo(props) {
           ],
         },
       })
+      // TODO execute API
+      SetDemoOutput('***PARSED API OUTPUT***')
     }
   }
 
