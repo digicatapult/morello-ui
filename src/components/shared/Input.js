@@ -13,7 +13,7 @@ export default function Input({
   setInputState,
   inputType = 'text',
   upperBound = 16,
-  id = '',
+  cySelector,
   showInputError,
   InputErrorWarning,
 }) {
@@ -23,7 +23,7 @@ export default function Input({
       <Row>
         <InputBox
           {...theme.input}
-          id={id}
+          data-cy={`${cySelector}`}
           type={inputType}
           maxLength={upperBound}
           onChange={(e) => {

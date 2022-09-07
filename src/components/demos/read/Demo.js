@@ -128,14 +128,14 @@ export default function ReadDemo(props) {
                       upperBound={passwordUpperBound}
                       setInputState={SetPasswordInput}
                       inputType={'password'}
-                      id={'password'}
+                      cySelector={'password'}
                       showInputError={passwordAtMaxLength || noPasswordEntered}
                       InputErrorWarning={InputErrorWarning}
                     />
                     <Button
                       {...readDemo.theme.form.savePasswordButton}
                       type={'submit'}
-                      id={'submit-password'}
+                      data-cy={'submit-password'}
                     />
                   </Container>
                 </form>
