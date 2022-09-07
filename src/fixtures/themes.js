@@ -110,8 +110,6 @@ export const Themes = (arch) => {
         width: '100px',
         height: '50px',
         cursor: 'pointer',
-        marginLeft: '2px',
-        marginTop: '32px',
       },
     },
     wrapper: {

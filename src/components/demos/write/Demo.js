@@ -26,7 +26,7 @@ export default function WriteDemo(props) {
 
   const [demoOutput, SetDemoOutput] = useState('')
 
-  const usernameUpperBound = 16
+  const usernameUpperBound = 24
   const passwordUpperBound = 16
   const [usernameInput, SetUsernameInput] = useState('')
   const [passwordInput, SetPasswordInput] = useState('')
