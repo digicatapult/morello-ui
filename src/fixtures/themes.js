@@ -113,15 +113,6 @@ export const Themes = (arch) => {
         marginLeft: '2px',
         marginTop: '32px',
       },
-      loginButton: {
-        fontFamily: isCheri ? '000' : 'Monaco',
-        fontSize: '16px',
-        width: '100px',
-        height: '50px',
-        cursor: 'pointer',
-        marginLeft: '2px',
-        marginTop: '32px',
-      },
     },
     wrapper: {
       backgroundImage: `url(${isCheri ? backgroundImgOsx : backgroundImg})`,

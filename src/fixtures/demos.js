@@ -85,7 +85,7 @@ export const demos = [
     link: 'https://www.arm.com/architecture/cpu/morello',
   },
   {
-    path: 'demo1-explainer',
+    path: 'read-demo-explainer',
     title: 'What is an Out of Bounds Read?',
     description:
       'Learn about Out of Bounds Read Exploits and How Morello Prevents Them',

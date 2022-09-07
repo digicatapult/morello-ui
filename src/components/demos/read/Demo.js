@@ -125,7 +125,7 @@ export default function ReadDemo(props) {
                     <Input
                       label={'insert your password'}
                       theme={readDemo.theme.form}
-                      upperBound={[passwordUpperBound]}
+                      upperBound={passwordUpperBound}
                       setInputState={SetPasswordInput}
                       inputType={'password'}
                       id={'password'}
