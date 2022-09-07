@@ -13,7 +13,18 @@ describe('Write Demo', () => {
     cy.get('[data-cy=main-menu-container]').should('exist')
   })
 
-  describe('If password entered is more than 16 chars', () => {
+  describe('If input entered is more than upper bound', () => {
+    it('Max length cuts off long username', () => {
+      // eslint-disable-next-line cypress/no-force
+      cy.get('[data-cy=username]', { maxlength: 24, force: true }).type(
+        'abcdefghijklmnopqrstuvwxyz',
+        { force: true }
+      )
+      cy.get('[data-cy=username]').should(
+        'have.value',
+        'abcdefghijklmnopqrstuvwx'
+      )
+    })
     it('Max length cuts off long passwords', () => {
       // eslint-disable-next-line cypress/no-force
       cy.get('[data-cy=password]', { maxlength: 16, force: true }).type(
