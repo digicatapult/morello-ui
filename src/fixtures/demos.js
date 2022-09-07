@@ -14,6 +14,9 @@ import DsbdQR from '../assets/images/dsbd-info-qr.svg'
 import DsbdScreenShotWebP from '../assets/images/dsbd-info-screenshot.webp'
 import DsbdScreenShotAvif from '../assets/images/dsbd-info-screenshot.avif'
 import DsbdScreenShotPng from '../assets/images/dsbd-info-screenshot.png'
+import Explainer from '../components/Explainer'
+
+import OutOfBoundsReadImages from '../assets/images/out-of-bounds-read-explainer/OutOfBoundsReadImages'
 
 export const demos = [
   {
@@ -22,7 +25,7 @@ export const demos = [
     // TODO group by A and B
     binaryName: 'out-of-bounds-readV2',
     title: 'Are your secrets really safe?',
-    description: 'Out of Bounds read. CWE Score 24.9',
+    description: 'Out of Bounds Read. CWE Score 24.9',
     color: '#384D6C',
     windowTitle: 'SUPER_SAFE_APP.EXE',
     modalTitle: 'hacker.app',
@@ -82,18 +85,24 @@ export const demos = [
     link: 'https://www.arm.com/architecture/cpu/morello',
   },
   {
-    path: 'demo5',
-    title: 'Do you believe your password is safe?',
-    description: 'Out of Bounds write / Out of Bounds read. CWE Score 65.93',
+    path: 'demo1-explainer',
+    title: 'What is an Out of Bounds Read?',
+    description:
+      'Learn about Out of Bounds Read Exploits and How Morello Prevents Them',
     color: '#D1B44E',
-    Element: () => <div>somee demo5 content</div>, // main element
+    Element: (props) => <Explainer {...props} />, // main element
+    images: OutOfBoundsReadImages,
+    nativeSize: {
+      width: 960,
+      height: 540,
+    },
   },
   {
     path: 'demo6',
     title: 'Do you believe your password is safe?',
     description: 'Out of Bounds write / Out of Bounds read. CWE Score 65.93',
-    color: '#959728',
-    Element: () => <div>somee demo6 content</div>, // main element
+    color: '#4F6C38',
+    Element: () => <div>somee demo7 content</div>, // main element
   },
   {
     path: 'demo7',

@@ -80,6 +80,8 @@ export const Themes = (arch) => {
       },
       warning: {
         fontFamily: isCheri ? '000' : 'Monaco',
+        fontStyle: 'normal',
+        fontWeight: '400',
         fontSize: '14px',
         color: '#f00',
         margin: '5px',
@@ -108,6 +110,17 @@ export const Themes = (arch) => {
         width: '100px',
         height: '50px',
         cursor: 'pointer',
+        marginLeft: '2px',
+        marginTop: '32px',
+      },
+      loginButton: {
+        fontFamily: isCheri ? '000' : 'Monaco',
+        fontSize: '16px',
+        width: '100px',
+        height: '50px',
+        cursor: 'pointer',
+        marginLeft: '2px',
+        marginTop: '32px',
       },
     },
     wrapper: {
