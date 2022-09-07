@@ -18,7 +18,11 @@ const Paper = styled.div`
   display: grid;
   grid-template-rows: 1fr auto auto;
   opacity: 1;
-  cursor: pointer;
+
+  @media screen and (hover: hover) {
+    cursor: pointer;
+  }
+
   padding: 10px 20px;
   background: ${(props) => props.color};
   transition: opacity 0.1s;
