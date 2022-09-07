@@ -1,18 +1,19 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import { Button, ButtonBasic } from './Buttons'
-import { Txt_Demo1A, Col, Row, renderTitle } from './Common'
+import { Button, ButtonBasic } from '../../shared/Buttons'
+import { DemoText, Col, Row } from '../../shared/Common'
+import Title from '../../shared/Title'
 
 const Window = styled.div(({ styles }) => styles)
 const Page = styled(Col)((props) => props)
 
-const renderActions = ({ update, demo1 }) => {
+const renderActions = ({ update, readDemo }) => {
   const handleNo = (e) => {
     e.preventDefault()
     update({
-      demo1: {
-        ...demo1,
+      readDemo: {
+        ...readDemo,
         renderModal: false,
         renderModalActions: true,
       },
@@ -22,8 +23,8 @@ const renderActions = ({ update, demo1 }) => {
   const handleYes = (e) => {
     e.preventDefault()
     update({
-      demo1: {
-        ...demo1,
+      readDemo: {
+        ...readDemo,
         renderModalActions: false,
         showHackingProgress: true,
       },
@@ -31,19 +32,19 @@ const renderActions = ({ update, demo1 }) => {
   }
 
   const btn = () =>
-    demo1.theme.name === 'Morello'
+    readDemo.theme.name === 'Morello'
       ? [
           <Button
-            key={'demo1-modal-btn-yes-1'}
-            data-cy={'demo1-modal-btn-yes-1'}
+            key={'read-demo-modal-btn-yes-1'}
+            data-cy={'read-demo-modal-btn-yes-1'}
             onClick={handleYes}
           >
             YES
           </Button>,
           <div key={'div-1'} style={{ width: '30px' }} />,
           <Button
-            key={'demo1-modal-btn-no-1'}
-            data-cy={'demo1-modal-btn-no-1'}
+            key={'read-demo-modal-btn-no-1'}
+            data-cy={'read-demo-modal-btn-no-1'}
             OnClick={handleNo}
           >
             NO
@@ -51,15 +52,15 @@ const renderActions = ({ update, demo1 }) => {
         ]
       : [
           <ButtonBasic
-            key={'demo1-modal-btn-yes-2'}
-            data-cy={'demo1-modal-btn-yes-2'}
+            key={'read-demo-modal-btn-yes-2'}
+            data-cy={'read-demo-modal-btn-yes-2'}
             onClick={handleYes}
           >
             YES
           </ButtonBasic>,
           <ButtonBasic
-            key={'demo1-modal-btn-no-2'}
-            data-cy={'demo1-modal-btn-no-2'}
+            key={'read-demo-modal-btn-no-2'}
+            data-cy={'read-demo-modal-btn-no-2'}
             onClick={handleNo}
           >
             NO
@@ -73,24 +74,24 @@ const renderActions = ({ update, demo1 }) => {
   )
 }
 
-export default function Modal({ update, demo1, ProgressBar }) {
-  const { theme, showHackingProgress, renderModalActions } = demo1
+export default function Modal({ update, readDemo, ProgressBar }) {
+  const { theme, showHackingProgress, renderModalActions } = readDemo
 
   return (
     <Window id={'hacker-app-modal'} styles={theme.modal.window}>
-      {renderTitle(demo1.modalTitle, theme.name)}
+      <Title title={readDemo.modalTitle} arch={theme.name} />
       <Row flex={'auto'}>
         <Page {...theme.modal.page}>
-          <Txt_Demo1A {...demo1.txt_col}>{demo1.modalText}</Txt_Demo1A>
+          <DemoText {...readDemo.txt_col}>{readDemo.modalText}</DemoText>
 
-          {renderModalActions && renderActions({ demo1, update })}
+          {renderModalActions && renderActions({ readDemo, update })}
           {showHackingProgress && (
             <Row height={'50px'} flex={'auto'} marginTop={'20px'}>
-              <ProgressBar demo1={demo1} update={update} />
+              <ProgressBar readDemo={readDemo} update={update} />
             </Row>
           )}
-          {demo1?.switchToMorello && (
-            <Button onClick={demo1.switchToMorello}>TRY</Button>
+          {readDemo?.switchToMorello && (
+            <Button onClick={readDemo.switchToMorello}>TRY</Button>
           )}
         </Page>
       </Row>

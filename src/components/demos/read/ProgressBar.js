@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import { Txt_Demo1A, Row } from './shared/Common'
+import { DemoText, Row } from '../../shared/Common'
 
 const Wrapper = styled.div((props) => props)
 const BarBackground = styled.div((props) => props)
@@ -19,9 +19,9 @@ const extractPassword = ({ output }) =>
     .pop()
     .trim()
 
-export default function ProgressBar({ update, demo1 }) {
+export default function ProgressBar({ update, readDemo }) {
   const [progress, setProgress] = React.useState(10)
-  const { theme } = demo1
+  const { theme } = readDemo
 
   async function fill() {
     for (let count = 0; count <= 98; count += 2) {
@@ -34,35 +34,38 @@ export default function ProgressBar({ update, demo1 }) {
     async function load() {
       const [, output] = await Promise.all([
         fill(),
-        demo1.execute(`${demo1.binaryName}-${theme.arch}`, demo1.password),
+        readDemo.execute(
+          `${readDemo.binaryName}-${theme.arch}`,
+          readDemo.password
+        ),
       ])
       update({
-        demo1: {
-          ...demo1,
+        readDemo: {
+          ...readDemo,
           output,
           showHackPopup: theme.name === 'Morello' ? false : true,
         },
       })
     }
-    if (!demo1.output) load()
+    if (!readDemo.output) load()
     else setProgress(100)
-  }, [demo1, theme, update])
+  }, [readDemo, theme, update])
 
   const showProgress = progress !== 100
 
   return showProgress ? (
-    <Wrapper id={'demo1-progress-bar'} {...theme.progressBar.wrapper}>
-      <Txt_Demo1A>{`hacking in progress ${progress}%`}</Txt_Demo1A>
+    <Wrapper id={'read-demo-progress-bar'} {...theme.progressBar.wrapper}>
+      <DemoText>{`hacking in progress ${progress}%`}</DemoText>
       <BarBackground {...theme.progressBar.background} />
       <Bar progress={progress} {...theme.progressBar.bar} />
     </Wrapper>
   ) : (
     <Row>
-      <Txt_Demo1A wordWrap={'break-word'}>
-        {demo1.output.status != 'success'
+      <DemoText wordWrap={'break-word'}>
+        {readDemo.output.status != 'success'
           ? 'FAILURE. The password could not be revealed. - Display output?'
-          : `Your password is ${extractPassword(demo1.output)}!`}
-      </Txt_Demo1A>
+          : `Your password is ${extractPassword(readDemo.output)}!`}
+      </DemoText>
     </Row>
   )
 }

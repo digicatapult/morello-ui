@@ -2,11 +2,16 @@ import React from 'react'
 import styled from 'styled-components'
 import { useNavigate } from 'react-router-dom'
 
-import { H1 } from './shared/Common'
-import closeIcon from '../assets/images/close-icon.png'
-import { Context } from '../utils/context'
+import { H1 } from './Common'
+import closeIcon from '../../assets/images/close-icon.png'
 
 const HeaderStyle = styled.div`
+  width: 100%;
+  grid-area: header;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 50px;
   ${(props) => props}
 `
 const CloseElement = styled.span({
@@ -17,17 +22,10 @@ const CloseElement = styled.span({
 })
 
 export default function Header(props) {
-  const {
-    demo1: { theme },
-  } = React.useContext(Context)
   const nav = useNavigate()
 
   return (
-    <HeaderStyle
-      data-cy={'header'}
-      {...theme.header}
-      backgroundColor={props.color || 'none'}
-    >
+    <HeaderStyle data-cy={'header'} backgroundColor={props.color || 'none'}>
       {props.title ? (
         <H1
           lineHeight={'58px'}

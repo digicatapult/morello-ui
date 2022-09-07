@@ -1,8 +1,8 @@
 import React from 'react'
 
 import { executeBinary } from '../utils/morello-api'
-import Demo from '../components/Demos/Demo1'
-import AccessDemo from '../components/AccessDemo'
+import ReadDemo from '../components/demos/read/Demo'
+import WriteDemo from '../components/demos/write/Demo'
 import Info from '../components/Info'
 
 import MorelloQR from '../assets/images/arm-morello-qr.svg'
@@ -20,7 +20,7 @@ import OutOfBoundsReadImages from '../assets/images/out-of-bounds-read-explainer
 
 export const demos = [
   {
-    path: 'demo1',
+    path: 'read-demo',
     isDemo: true,
     // TODO group by A and B
     binaryName: 'out-of-bounds-readV2',
@@ -33,7 +33,7 @@ export const demos = [
       'Would you like to break into the system and reveal the password?',
     hackingOkBody: 'The password is:',
     hackingOkTitle: 'Hacking completed.',
-    Element: (props) => <Demo {...props} showClose={true} />,
+    Element: (props) => <ReadDemo {...props} showClose={true} />,
     execute: async (executable, args) => {
       const params =
         args.length > 1 && typeof args !== 'string'
@@ -46,7 +46,7 @@ export const demos = [
     },
   },
   {
-    path: 'demo2',
+    path: 'write-demo',
     isDemo: true,
     binaryName: 'out-of-bounds-access',
     title: 'Is your password what you think it is?',
@@ -54,7 +54,7 @@ export const demos = [
     color: '#6C3838',
     windowTitle: 'SUPER_SAFE_APP.EXE',
     modalTitle: 'hacker.app',
-    Element: (props) => <AccessDemo {...props} />,
+    Element: (props) => <WriteDemo {...props} />,
   },
   {
     path: 'about-dsbd',

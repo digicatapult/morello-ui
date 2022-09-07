@@ -9,22 +9,13 @@ import lockIconImg from '../assets/images/lock.png'
 // LP TODO - a lot of properties are shared between morello and aarch64, abstract
 export const Themes = (arch) => {
   const isCheri = arch === 'Morello'
-  const backgroundImage = isCheri ? backgroundImgOsx : backgroundImg
-  const icon = isCheri ? iconOsx : iconImg
-  const lockIcon = isCheri ? lockIconOsx : lockIconImg
 
   return {
     name: arch,
+    font: isCheri
+      ? { fontFamily: 'AktivGrotesk', color: '#000' }
+      : { fontFamily: 'Monaco', color: '#fff' },
     arch: isCheri ? 'cheri' : 'aarch64',
-    header: {
-      backgroundColor: '#384D6C',
-      width: '100%',
-      gridArea: 'header',
-      display: 'flex',
-      justifyContent: 'space-between',
-      alignItems: 'center',
-      padding: '0px 50px',
-    },
     progressBar: {
       wrapper: {
         height: isCheri ? '12px' : '22px',
@@ -49,7 +40,10 @@ export const Themes = (arch) => {
       input: isCheri
         ? {
             width: '300px',
+            height: '60px',
             padding: '6px 12px',
+            fontFamily: '000',
+            fontStyle: 'normal',
             fontSize: '1.6em',
             color: '#787878',
             letterSpacing: '-0.02em',
@@ -68,16 +62,18 @@ export const Themes = (arch) => {
             border: '4px solid #FFFFFF',
             color: '#FFFFFF',
             height: '60px',
-            fontSize: '48px',
-            fontFamily: 'asterisk',
+            fontFamily: 'Monaco',
+            fontStyle: 'normal',
+            fontSize: '24px',
             speak: 'none',
-            borderRight: 'none',
           },
       label: {
         fontFamily: isCheri ? '000' : 'Monaco',
         fontStyle: 'normal',
         fontWeight: '600',
         fontSize: isCheri ? '16px' : '24px',
+        minHeight: '32px',
+        display: 'inline-block',
         lineHeight: '32px',
         htmlFor: 'Password',
         color: isCheri ? '#000' : '#fff',
@@ -86,38 +82,30 @@ export const Themes = (arch) => {
         fontFamily: isCheri ? '000' : 'Monaco',
         fontStyle: 'normal',
         fontWeight: '400',
-        fontSize: isCheri ? '16px' : '20px',
+        fontSize: '14px',
         color: '#f00',
+        margin: '5px',
+        minHeight: '30px',
       },
       button: {
-        width: '70px',
-        background: `url(${lockIcon})`,
+        width: '60px',
+        height: '60px',
+        background: `url(${isCheri ? lockIconOsx : lockIconImg})`,
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'right',
         backgroundSize: 'cover',
         border: '4px solid #FFFFFF',
-        borderLeft: 'none',
         cursor: 'pointer',
+        marginLeft: '2px',
+        marginTop: '32px',
       },
     },
     wrapper: {
-      backgroundImage: `url(${backgroundImage})`,
+      backgroundImage: `url(${isCheri ? backgroundImgOsx : backgroundImg})`,
       backgroundSize: 'cover',
     },
-    menuItemWrap: {
-      display: 'flex',
-      width: '300px',
-      padding: 2,
-    },
     icons: {
-      icon,
-      style: {
-        position: 'absolute',
-        left: '20px',
-        bottom: '100px',
-        width: '60px',
-        textAlign: 'center',
-      },
+      hackerIcon: isCheri ? iconOsx : iconImg,
     },
     modal: {
       button: isCheri
@@ -140,8 +128,8 @@ export const Themes = (arch) => {
             display: 'flex',
             flexDirection: 'column',
             position: 'absolute',
-            top: '40%',
-            left: '40%',
+            top: '50%',
+            left: '50%',
             width: '585px',
             height: '258px',
             maxHeight: '358px',
@@ -154,8 +142,8 @@ export const Themes = (arch) => {
             position: 'relative',
             flexDirection: 'column',
             position: 'absolute',
-            top: '40%',
-            left: '40%',
+            top: '50%',
+            left: '50%',
             width: '586px',
             height: '258px',
             background: '#CE1C1C',
@@ -163,7 +151,8 @@ export const Themes = (arch) => {
       page: isCheri
         ? {
             position: 'relative',
-            background: '#212124',
+            background: '#717171',
+            color: '#818181',
             outlineOffset: '-10px',
             padding: '5px;',
           }
