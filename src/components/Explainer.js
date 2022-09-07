@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import Header from './Header'
+import Header from './shared/Header'
 
 const ExplainerWrapper = styled.div`
   width: min(
