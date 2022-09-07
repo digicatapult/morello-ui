@@ -76,7 +76,8 @@ export default function WriteDemo(props) {
           ...writeDemo,
           usernamePasswordPairs: [
             ...writeDemo.usernamePasswordPairs,
-            [usernameInput, passwordInput],
+            usernameInput,
+            passwordInput,
           ],
         },
       })
