@@ -43,7 +43,7 @@ export default function ProgressBar({ update, readDemo }) {
         readDemo: {
           ...readDemo,
           output,
-          showHackPopup: theme.name === 'Morello' ? false : true,
+          showHackPopup: theme.name !== 'Morello',
         },
       })
     }

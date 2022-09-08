@@ -14,7 +14,6 @@ export const initState = {
   },
   writeDemo: {
     theme: Themes('Aarch64'),
-    usernamePasswordPairs: [],
   },
 }
 

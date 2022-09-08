@@ -20,11 +20,13 @@ const LoginAttemptText = styled.p((props) => props)
 
 export default function WriteDemo(props) {
   const state = React.useContext(Context)
-  const writeDemo = { ...state.writeDemo, ...props }
+  const { execute, binaryName } = props
   const { update } = state
-  const { theme } = writeDemo
+  const demoState = state.writeDemo
+  const { theme } = demoState
 
   const [demoOutput, SetDemoOutput] = useState('')
+  const [usernamePasswordPairs, SetUsernamePasswordPairs] = useState([])
 
   const usernameUpperBound = 24
   const passwordUpperBound = 16
@@ -65,24 +67,30 @@ export default function WriteDemo(props) {
     update(initState)
   }, [update])
 
-  const enterUsernameAndPassword = (e) => {
+  useEffect(() => {
+    const attemptLogin = async () => {
+      const output = await execute(
+        `${binaryName}-${theme.arch}`,
+        usernamePasswordPairs
+      )
+      console.log(output)
+      //SetDemoOutput(output)
+    }
+
+    attemptLogin()
+  }, [usernamePasswordPairs, execute, binaryName, theme])
+
+  const enterUsernameAndPassword = async (e) => {
     e.preventDefault()
     SetSomeUsernameTyped(true)
     SetSomePasswordTyped(true)
 
     if (usernameInput.length > 0 && passwordInput.length > 0) {
-      update({
-        writeDemo: {
-          ...writeDemo,
-          usernamePasswordPairs: [
-            ...writeDemo.usernamePasswordPairs,
-            usernameInput,
-            passwordInput,
-          ],
-        },
-      })
-      // TODO execute API
-      SetDemoOutput('***PARSED API OUTPUT***')
+      SetUsernamePasswordPairs((prev) => [
+        ...prev,
+        usernameInput,
+        passwordInput,
+      ])
     }
   }
 
@@ -90,12 +98,12 @@ export default function WriteDemo(props) {
     <>
       <Header {...props} showClose={true} />
       <Wrapper {...theme.wrapper}>
-        <Box {...writeDemo}>
+        <Box {...demoState}>
           <Container styles={{ height: '100%', paddingTop: '150px' }} size={10}>
             <form onSubmit={enterUsernameAndPassword}>
               <Input
                 label={'Username'}
-                theme={writeDemo.theme.form}
+                theme={demoState.theme.form}
                 setInputState={SetUsernameInput}
                 upperBound={usernameUpperBound}
                 showInputError={usernameAtMaxLength || noUsernameEntered}
@@ -104,7 +112,7 @@ export default function WriteDemo(props) {
               />
               <Input
                 label={'Password'}
-                theme={writeDemo.theme.form}
+                theme={demoState.theme.form}
                 setInputState={SetPasswordInput}
                 upperBound={passwordUpperBound}
                 inputType={'password'}
@@ -121,14 +129,14 @@ export default function WriteDemo(props) {
                 }}
               >
                 <Button
-                  {...writeDemo.theme.form.loginButton}
+                  {...demoState.theme.form.loginButton}
                   data-cy={'login'}
                   type={'submit'}
                 >
                   Login
                 </Button>
                 <LoginAttemptText
-                  {...writeDemo.theme.form.loginAttempt}
+                  {...demoState.theme.form.loginAttempt}
                   visibility={demoOutput ? 'visible' : 'hidden'}
                   data-cy={'login-attempt'}
                 >

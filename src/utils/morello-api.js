@@ -6,6 +6,7 @@ export async function executeBinary(name, params) {
   const url = `${DSBD_API_URL}/scenario/${name}`
 
   try {
+    console.log(`${url}?${queryString}`)
     const res = await fetch(`${url}?${queryString}`)
     return res.json()
   } catch (e) {
