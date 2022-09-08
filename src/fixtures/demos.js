@@ -55,12 +55,10 @@ export const demos = [
     windowTitle: 'SUPER_SAFE_APP.EXE',
     modalTitle: 'hacker.app',
     Element: (props) => <WriteDemo {...props} />,
-    execute: async (executable, args) => {
-      console.log(args)
-      const output = await executeBinary(executable, {
-        args,
+    execute: async (executable, params) => {
+      return await executeBinary(executable, {
+        params,
       })
-      return output
     },
   },
   {
