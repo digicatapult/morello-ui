@@ -24,14 +24,14 @@ export default function WriteDemo(props) {
   const { update } = state
   const { theme } = writeDemo
 
-  const [demoOutput, SetDemoOutput] = useState('')
+  const [demoOutput, setDemoOutput] = useState('')
 
   const usernameUpperBound = 24
   const passwordUpperBound = 16
-  const [usernameInput, SetUsernameInput] = useState('')
-  const [passwordInput, SetPasswordInput] = useState('')
-  const [someUsernameTyped, SetSomeUsernameTyped] = useState(false)
-  const [somePasswordTyped, SetSomePasswordTyped] = useState(false)
+  const [usernameInput, setUsernameInput] = useState('')
+  const [passwordInput, setPasswordInput] = useState('')
+  const [someUsernameTyped, setSomeUsernameTyped] = useState(false)
+  const [somePasswordTyped, setSomePasswordTyped] = useState(false)
 
   const noUsernameEntered = usernameInput.length === 0 && someUsernameTyped
   const usernameAtMaxLength = usernameInput.length === usernameUpperBound
@@ -54,10 +54,10 @@ export default function WriteDemo(props) {
 
   useEffect(() => {
     if (usernameInput.length > 0) {
-      SetSomeUsernameTyped(true)
+      setSomeUsernameTyped(true)
     }
     if (passwordInput.length > 0) {
-      SetSomePasswordTyped(true)
+      setSomePasswordTyped(true)
     }
   }, [usernameInput, passwordInput])
 
@@ -67,8 +67,8 @@ export default function WriteDemo(props) {
 
   const enterUsernameAndPassword = (e) => {
     e.preventDefault()
-    SetSomeUsernameTyped(true)
-    SetSomePasswordTyped(true)
+    setSomeUsernameTyped(true)
+    setSomePasswordTyped(true)
 
     if (usernameInput.length > 0 && passwordInput.length > 0) {
       update({
@@ -82,7 +82,7 @@ export default function WriteDemo(props) {
         },
       })
       // TODO execute API
-      SetDemoOutput('***PARSED API OUTPUT***')
+      setDemoOutput('***PARSED API OUTPUT***')
     }
   }
 
@@ -96,7 +96,7 @@ export default function WriteDemo(props) {
               <Input
                 label={'Username'}
                 theme={writeDemo.theme.form}
-                setInputState={SetUsernameInput}
+                setInputState={setUsernameInput}
                 upperBound={usernameUpperBound}
                 showInputError={usernameAtMaxLength || noUsernameEntered}
                 InputErrorWarning={UsernameErrorWarning}
@@ -105,7 +105,7 @@ export default function WriteDemo(props) {
               <Input
                 label={'Password'}
                 theme={writeDemo.theme.form}
-                setInputState={SetPasswordInput}
+                setInputState={setPasswordInput}
                 upperBound={passwordUpperBound}
                 inputType={'password'}
                 showInputError={passwordAtMaxLength || noPasswordEntered}
