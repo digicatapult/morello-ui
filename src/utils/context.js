@@ -11,6 +11,7 @@ export const initState = {
     renderModal: false,
     renderModalActions: true,
     showHackingProgress: false,
+    renderExplainer: false,
   },
 }
 

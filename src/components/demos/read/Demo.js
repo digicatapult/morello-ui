@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
-
+import { useNavigate } from 'react-router-dom'
 import Header from '../../shared/Header'
 import HackerApp from './HackerApp'
 import { Context, initState } from '../../../utils/context'
@@ -25,13 +25,15 @@ const Button = styled.button((props) => props)
 
 export default function ReadDemo(props) {
   const state = React.useContext(Context)
+
+  const nav = useNavigate()
   const [passwordInput, SetPasswordInput] = useState('')
   const [someInputTyped, SetSomeInputTyped] = useState(false)
   const passwordUpperBound = 16
   const readDemo = { ...state.readDemo, ...props }
 
   const { update } = state
-  const { theme } = readDemo
+  const { theme, renderExplainer } = readDemo
 
   const date = new Date().toDateString().slice(0, 10)
   const time = new Date().toLocaleTimeString()
@@ -95,6 +97,17 @@ export default function ReadDemo(props) {
         {readDemo.showHackPopup && (
           <ButtonSide {...readDemo} action={switchToMorello} />
         )}
+        {renderExplainer && (
+          <ButtonSide
+            {...readDemo}
+            action={(e) => {
+              nav('/demo1-explainer', { replace: false })
+              e.preventDefault()
+            }}
+          />
+        )}
+        {/* {readDemo.showHackPopup &&
+          readDemo.renderModal === true(<ButtonSide {...readDemo} />)} */}
         {readDemo.isPasswordSet && (
           <HackerApp imageSrc={theme.icons.hackerIcon} text={'hacker app'} />
         )}
