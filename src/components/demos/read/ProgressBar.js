@@ -56,7 +56,7 @@ export default function ProgressBar({ update, readDemo }) {
   const showProgress = progress !== 100
 
   return showProgress ? (
-    <Wrapper id={'read-demo-progress-bar'} {...theme.progressBar.wrapper}>
+    <Wrapper data-cy={'read-demo-progress-bar'} {...theme.progressBar.wrapper}>
       <DemoText>{`hacking in progress ${progress}%`}</DemoText>
       <BarBackground {...theme.progressBar.background} />
       <Bar progress={progress} {...theme.progressBar.bar} />

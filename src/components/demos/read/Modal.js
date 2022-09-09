@@ -78,7 +78,7 @@ export default function Modal({ update, readDemo, ProgressBar }) {
   const { theme, showHackingProgress, renderModalActions } = readDemo
 
   return (
-    <Window id={'hacker-app-modal'} styles={theme.modal.window}>
+    <Window data-cy={'hacker-app-modal'} styles={theme.modal.window}>
       <Title title={readDemo.modalTitle} arch={theme.name} />
       <Row flex={'auto'}>
         <Page {...theme.modal.page}>

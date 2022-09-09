@@ -69,6 +69,8 @@ export default function ReadDemo(props) {
 
   const enterPassword = (e) => {
     e.preventDefault()
+    setSomeInputTyped(true)
+
     if (passwordInput.length > 0) {
       update({
         readDemo: {
@@ -143,14 +145,16 @@ export default function ReadDemo(props) {
                       setInputState={setPasswordInput}
                       inputType={'password'}
                       upperBound={passwordUpperBound}
-                      id={'password'}
+                      setInputState={setPasswordInput}
+                      inputType={'password'}
+                      cySelector={'password'}
                       showInputError={passwordAtMaxLength || noPasswordEntered}
                       InputErrorWarning={InputErrorWarning}
                     />
                     <Button
-                      {...readDemo.theme.password.button}
+                      {...readDemo.theme.form.savePasswordButton}
                       type={'submit'}
-                      id={'submit-password'}
+                      data-cy={'submit-password'}
                     />
                   </Container>
                 </form>
