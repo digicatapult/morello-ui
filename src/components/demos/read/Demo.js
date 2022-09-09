@@ -108,7 +108,7 @@ export default function ReadDemo(props) {
             learnMore={true}
             {...readDemo}
             action={(e) => {
-              nav('/demo1-explainer', { replace: false })
+              nav('/read-demo-explainer', { replace: false })
               e.preventDefault()
               readDemo.renderExplainer = false
             }}
@@ -141,7 +141,7 @@ export default function ReadDemo(props) {
                   <Container size={10}>
                     <Input
                       label={'insert your password'}
-                      theme={readDemo.theme.password}
+                      theme={readDemo.theme.form}
                       setInputState={setPasswordInput}
                       inputType={'password'}
                       upperBound={passwordUpperBound}
