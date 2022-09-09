@@ -145,8 +145,6 @@ export default function ReadDemo(props) {
                       setInputState={setPasswordInput}
                       inputType={'password'}
                       upperBound={passwordUpperBound}
-                      setInputState={setPasswordInput}
-                      inputType={'password'}
                       cySelector={'password'}
                       showInputError={passwordAtMaxLength || noPasswordEntered}
                       InputErrorWarning={InputErrorWarning}
