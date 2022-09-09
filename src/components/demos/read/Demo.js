@@ -95,19 +95,23 @@ export default function ReadDemo(props) {
       <Header {...readDemo} />
       <Wrapper {...theme.wrapper}>
         {readDemo.showHackPopup && (
-          <ButtonSide {...readDemo} action={switchToMorello} />
+          <ButtonSide
+            {...readDemo}
+            learnMore={false}
+            action={switchToMorello}
+          />
         )}
         {renderExplainer && (
           <ButtonSide
+            learnMore={true}
             {...readDemo}
             action={(e) => {
               nav('/demo1-explainer', { replace: false })
               e.preventDefault()
+              readDemo.renderExplainer = false
             }}
           />
         )}
-        {/* {readDemo.showHackPopup &&
-          readDemo.renderModal === true(<ButtonSide {...readDemo} />)} */}
         {readDemo.isPasswordSet && (
           <HackerApp imageSrc={theme.icons.hackerIcon} text={'hacker app'} />
         )}
