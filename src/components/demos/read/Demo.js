@@ -27,8 +27,8 @@ export default function ReadDemo(props) {
   const state = React.useContext(Context)
 
   const nav = useNavigate()
-  const [passwordInput, SetPasswordInput] = useState('')
-  const [someInputTyped, SetSomeInputTyped] = useState(false)
+  const [passwordInput, setPasswordInput] = useState('')
+  const [someInputTyped, setSomeInputTyped] = useState(false)
   const passwordUpperBound = 16
   const readDemo = { ...state.readDemo, ...props }
 
@@ -82,7 +82,7 @@ export default function ReadDemo(props) {
 
   useEffect(() => {
     if (passwordInput.length > 0) {
-      SetSomeInputTyped(true)
+      setSomeInputTyped(true)
     }
   }, [passwordInput])
 
@@ -140,7 +140,7 @@ export default function ReadDemo(props) {
                     <Input
                       label={'insert your password'}
                       theme={readDemo.theme.password}
-                      setInputState={SetPasswordInput}
+                      setInputState={setPasswordInput}
                       inputType={'password'}
                       upperBound={passwordUpperBound}
                       id={'password'}
