@@ -108,7 +108,7 @@ export default function ReadDemo(props) {
             learnMore={true}
             {...readDemo}
             action={(e) => {
-              nav('/read-demo-explainer', { replace: false })
+              nav('/read-demo-explainer')
               e.preventDefault()
               readDemo.renderExplainer = false
             }}
