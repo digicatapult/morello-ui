@@ -27,7 +27,7 @@ export default function ReadDemo(props) {
   const state = React.useContext(Context)
 
   const nav = useNavigate()
-  const [passwordInput, SetPasswordInput] = useState('')
+  const [passwordInput, setPasswordInput] = useState('')
   const [someInputTyped, setSomeInputTyped] = useState(false)
   const passwordUpperBound = 16
   const readDemo = { ...state.readDemo, ...props }
@@ -69,6 +69,8 @@ export default function ReadDemo(props) {
 
   const enterPassword = (e) => {
     e.preventDefault()
+    setSomeInputTyped(true)
+
     if (passwordInput.length > 0) {
       update({
         readDemo: {
@@ -140,17 +142,17 @@ export default function ReadDemo(props) {
                     <Input
                       label={'insert your password'}
                       theme={readDemo.theme.password}
-                      setInputState={SetPasswordInput}
+                      setInputState={setPasswordInput}
                       inputType={'password'}
                       upperBound={passwordUpperBound}
-                      id={'password'}
+                      cySelector={'password'}
                       showInputError={passwordAtMaxLength || noPasswordEntered}
                       InputErrorWarning={InputErrorWarning}
                     />
                     <Button
-                      {...readDemo.theme.password.button}
+                      {...readDemo.theme.form.savePasswordButton}
                       type={'submit'}
-                      id={'submit-password'}
+                      data-cy={'submit-password'}
                     />
                   </Container>
                 </form>

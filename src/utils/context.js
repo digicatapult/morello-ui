@@ -13,6 +13,10 @@ export const initState = {
     showHackingProgress: false,
     renderExplainer: false,
   },
+  writeDemo: {
+    theme: Themes('Aarch64'),
+    usernamePasswordPairs: [],
+  },
 }
 
 // TODO this is more of an exammple how we can have a global
@@ -20,6 +24,7 @@ export const initState = {
 // this could be a single entity e.g. themeCtx
 export const Context = React.createContext({
   readDemo: {},
+  writeDemo: {},
   update: () => {},
 })
 

@@ -85,7 +85,7 @@ export const demos = [
     link: 'https://www.arm.com/architecture/cpu/morello',
   },
   {
-    path: 'demo1-explainer',
+    path: 'read-demo-explainer',
     title: 'What is an Out of Bounds Read?',
     description:
       'Learn about Out of Bounds Read Exploits and How Morello Prevents Them',
@@ -101,8 +101,8 @@ export const demos = [
     path: 'demo6',
     title: 'Do you believe your password is safe?',
     description: 'Out of Bounds write / Out of Bounds read. CWE Score 65.93',
-    color: '#4F6C38',
-    Element: () => <div>somee demo7 content</div>, // main element
+    color: '#959728',
+    Element: () => <div>somee demo6 content</div>, // main element
   },
   {
     path: 'demo7',
