@@ -26,7 +26,7 @@ export default function Hacker(props) {
   }
 
   return (
-    <IconWrapper id={'hacker-app'}>
+    <IconWrapper data-cy={'hacker-app'}>
       <img
         style={{ cursor: 'pointer' }}
         src={imageSrc}

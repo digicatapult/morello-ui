@@ -25,8 +25,8 @@ const Button = styled.button((props) => props)
 
 export default function ReadDemo(props) {
   const state = React.useContext(Context)
-  const [passwordInput, SetPasswordInput] = useState('')
-  const [someInputTyped, SetSomeInputTyped] = useState(false)
+  const [passwordInput, setPasswordInput] = useState('')
+  const [someInputTyped, setSomeInputTyped] = useState(false)
   const passwordUpperBound = 16
   const readDemo = { ...state.readDemo, ...props }
 
@@ -67,6 +67,8 @@ export default function ReadDemo(props) {
 
   const enterPassword = (e) => {
     e.preventDefault()
+    setSomeInputTyped(true)
+
     if (passwordInput.length > 0) {
       update({
         readDemo: {
@@ -80,7 +82,7 @@ export default function ReadDemo(props) {
 
   useEffect(() => {
     if (passwordInput.length > 0) {
-      SetSomeInputTyped(true)
+      setSomeInputTyped(true)
     }
   }, [passwordInput])
 
@@ -122,18 +124,18 @@ export default function ReadDemo(props) {
                   <Container size={10}>
                     <Input
                       label={'insert your password'}
-                      theme={readDemo.theme.password}
-                      setInputState={SetPasswordInput}
-                      inputType={'password'}
+                      theme={readDemo.theme.form}
                       upperBound={passwordUpperBound}
-                      id={'password'}
+                      setInputState={setPasswordInput}
+                      inputType={'password'}
+                      cySelector={'password'}
                       showInputError={passwordAtMaxLength || noPasswordEntered}
                       InputErrorWarning={InputErrorWarning}
                     />
                     <Button
-                      {...readDemo.theme.password.button}
+                      {...readDemo.theme.form.savePasswordButton}
                       type={'submit'}
-                      id={'submit-password'}
+                      data-cy={'submit-password'}
                     />
                   </Container>
                 </form>
