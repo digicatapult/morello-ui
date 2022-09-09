@@ -28,7 +28,7 @@ export default function ReadDemo(props) {
 
   const nav = useNavigate()
   const [passwordInput, SetPasswordInput] = useState('')
-  const [someInputTyped, SetSomeInputTyped] = useState(false)
+  const [someInputTyped, setSomeInputTyped] = useState(false)
   const passwordUpperBound = 16
   const readDemo = { ...state.readDemo, ...props }
 
@@ -82,7 +82,7 @@ export default function ReadDemo(props) {
 
   useEffect(() => {
     if (passwordInput.length > 0) {
-      SetSomeInputTyped(true)
+      setSomeInputTyped(true)
     }
   }, [passwordInput])
 
