@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
-
+import { useNavigate } from 'react-router-dom'
 import Header from '../../shared/Header'
 import HackerApp from './HackerApp'
 import { Context, initState } from '../../../utils/context'
@@ -25,13 +25,15 @@ const Button = styled.button((props) => props)
 
 export default function ReadDemo(props) {
   const state = React.useContext(Context)
+
+  const nav = useNavigate()
   const [passwordInput, setPasswordInput] = useState('')
   const [someInputTyped, setSomeInputTyped] = useState(false)
   const passwordUpperBound = 16
   const readDemo = { ...state.readDemo, ...props }
 
   const { update } = state
-  const { theme } = readDemo
+  const { theme, renderExplainer } = readDemo
 
   const date = new Date().toDateString().slice(0, 10)
   const time = new Date().toLocaleTimeString()
@@ -97,6 +99,17 @@ export default function ReadDemo(props) {
         {readDemo.showHackPopup && (
           <ButtonSide {...readDemo} action={switchToMorello} />
         )}
+        {renderExplainer && (
+          <ButtonSide
+            {...readDemo}
+            message={'Learn More'}
+            action={(e) => {
+              nav('/read-demo-explainer')
+              e.preventDefault()
+              readDemo.renderExplainer = false
+            }}
+          />
+        )}
         {readDemo.isPasswordSet && (
           <HackerApp imageSrc={theme.icons.hackerIcon} text={'hacker app'} />
         )}
@@ -125,9 +138,9 @@ export default function ReadDemo(props) {
                     <Input
                       label={'insert your password'}
                       theme={readDemo.theme.form}
-                      upperBound={passwordUpperBound}
                       setInputState={setPasswordInput}
                       inputType={'password'}
+                      upperBound={passwordUpperBound}
                       cySelector={'password'}
                       showInputError={passwordAtMaxLength || noPasswordEntered}
                       InputErrorWarning={InputErrorWarning}
