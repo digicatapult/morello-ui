@@ -8,7 +8,12 @@ const Wrapper = styled.div`
   display: flex;
   gap: 50px;
   position: relative;
-  bottom: 150px;
+  bottom: 250px;
+  background-color: rgba(0, 0, 0, 0.1);
+  width: 400px;
+  height: 300px;
+  justify-content: center;
+  align-items: center;
 `
 
 const IconWrapper = styled.div`
