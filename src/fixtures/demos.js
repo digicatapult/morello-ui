@@ -57,10 +57,16 @@ export const demos = [
     Element: (props) => <WriteDemo {...props} />,
   },
   {
+    path: '',
+    title: 'Placeholder Tile',
+    description: 'Remove me please I am a placeholder',
+    color: '#0C1B32',
+  },
+  {
     path: 'about-dsbd',
     title: 'About Digital Security by Design',
     description: 'About the Digital Security by Design ISCF Challenge',
-    color: '#0C1B32',
+    color: '#6C7076',
     Element: (props) => <Info {...props} />, // main element
     screenshot: {
       webp: DsbdScreenShotWebP,
@@ -69,20 +75,6 @@ export const demos = [
     },
     qrCode: DsbdQR,
     link: 'https://www.dsbd.tech/',
-  },
-  {
-    path: 'learn-morello',
-    title: 'Learn about the ARM Morello CPU',
-    description: 'Learn more about the ARM Morello CPU',
-    color: '#6C7076',
-    Element: (props) => <Info {...props} />, // main element
-    screenshot: {
-      webp: MorelloScreenShotWebP,
-      avif: MorelloScreenShotAvif,
-      png: MorelloScreenShotPng,
-    },
-    qrCode: MorelloQR,
-    link: 'https://www.arm.com/architecture/cpu/morello',
   },
   {
     path: 'read-demo-explainer',
@@ -98,24 +90,36 @@ export const demos = [
     },
   },
   {
-    path: 'demo6',
-    title: 'Do you believe your password is safe?',
-    description: 'Out of Bounds write / Out of Bounds read. CWE Score 65.93',
+    path: 'write-demo-explainer',
+    title: 'What is an Out of Bounds Write?',
+    description:
+      'Learn about Out of Bounds Write Exploits and How Morello Prevents Them',
     color: '#959728',
-    Element: () => <div>somee demo6 content</div>, // main element
+    Element: (props) => <Explainer {...props} />, // main element
+    images: [],
+    nativeSize: {
+      width: 960,
+      height: 540,
+    },
   },
   {
-    path: 'demo7',
-    title: 'Do you believe your password is safe?',
-    description: 'Out of Bounds write / Out of Bounds read. CWE Score 65.93',
+    path: '',
+    title: 'Placeholder Tile',
+    description: 'Remove me please I am a placeholder',
     color: '#4F6C38',
-    Element: () => <div>somee demo7 content</div>, // main element
   },
   {
-    path: 'demo8',
-    title: 'Do you believe your password is safe?',
-    description: '__description_placeholder',
+    path: 'learn-morello',
+    title: 'Learn about the ARM Morello CPU',
+    description: 'Learn more about the ARM Morello CPU',
     color: '#546278',
-    Element: () => <div>somee demo8 content</div>, // main element
+    Element: (props) => <Info {...props} />, // main element
+    screenshot: {
+      webp: MorelloScreenShotWebP,
+      avif: MorelloScreenShotAvif,
+      png: MorelloScreenShotPng,
+    },
+    qrCode: MorelloQR,
+    link: 'https://www.arm.com/architecture/cpu/morello',
   },
 ]
