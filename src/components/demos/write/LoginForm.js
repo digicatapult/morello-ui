@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 import Input from '../../shared/Input'
 import { Container, Spinner } from '../../shared/Common'
-import { extractLoginResult } from '../../../fixtures/write-demo-output'
+import { extractLoginResult } from '../../../utils/write-demo-output'
 
 const Button = styled.button((props) => props)
 const LoginAttemptText = styled.p((props) => props)

@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 
 import Header from '../../shared/Header'
 import { Context, initState } from '../../../utils/context'
-import { extractLoginResult } from '../../../fixtures/write-demo-output'
+import { extractLoginResult } from '../../../utils/write-demo-output'
 import Box from '../../shared/Box'
 import { Container } from '../../shared/Common'
 import { ButtonSide } from '../../shared/Buttons'
