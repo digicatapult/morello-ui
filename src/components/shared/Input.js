@@ -12,7 +12,7 @@ export default function Input({
   theme,
   setInputState,
   inputType = 'text',
-  upperBound = 16,
+  upperBound,
   cySelector,
   showInputError,
   InputErrorWarning,

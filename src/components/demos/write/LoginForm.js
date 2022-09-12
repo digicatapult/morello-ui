@@ -23,13 +23,13 @@ export default function LoginForm({
   const [someUsernameTyped, setSomeUsernameTyped] = useState(false)
   const [somePasswordTyped, setSomePasswordTyped] = useState(false)
 
-  const usernameUpperBound = 24
+  const usernameUpperBound = 16
   const passwordUpperBound = 16
 
   const noUsernameEntered = usernameInput.length === 0 && someUsernameTyped
-  const usernameAtMaxLength = usernameInput.length === usernameUpperBound
+  const usernameAtMaxLength = usernameInput.length >= usernameUpperBound
   const noPasswordEntered = passwordInput.length === 0 && somePasswordTyped
-  const passwordAtMaxLength = passwordInput.length === passwordUpperBound
+  const passwordAtMaxLength = passwordInput.length >= passwordUpperBound
 
   const enterUsernameAndPassword = async (e) => {
     setSomeUsernameTyped(true)
@@ -74,7 +74,6 @@ export default function LoginForm({
         label={'Username'}
         theme={demoState.theme.form}
         setInputState={setUsernameInput}
-        upperBound={usernameUpperBound}
         showInputError={usernameAtMaxLength || noUsernameEntered}
         InputErrorWarning={UsernameErrorWarning}
         cySelector={'username'}
@@ -115,7 +114,8 @@ export default function LoginForm({
           data-cy={'login-attempt'}
         >
           {failedLogin(apiOutput) && `Incorrect username or password`}
-          {loginError(apiOutput) && `Hack attempt detected - locked out!`}
+          {loginError(apiOutput) &&
+            `Suspicious activity detected - account locked`}
         </LoginAttemptText>
       </Container>
     </form>
