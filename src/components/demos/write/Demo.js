@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
+import { useNavigate } from 'react-router-dom'
 
 import Header from '../../shared/Header'
 import { Context, initState } from '../../../utils/context'
@@ -39,6 +40,7 @@ const loginError = (apiOutput) => extractLoginResult(apiOutput) === 'error'
 export default function WriteDemo(props) {
   const { execute, binaryName } = props
 
+  const nav = useNavigate()
   const state = React.useContext(Context)
   const { update, writeDemo: demoState } = state
   const { theme } = demoState
@@ -148,64 +150,75 @@ export default function WriteDemo(props) {
             {!isMorello && <ButtonSide action={switchToMorello} />}
           </>
         ) : (
-          <Box {...demoState}>
-            <Container
-              styles={{ height: '100%', paddingTop: '150px' }}
-              size={10}
-            >
-              <form onSubmit={enterUsernameAndPassword}>
-                <Input
-                  label={'Username'}
-                  theme={demoState.theme.form}
-                  setInputState={setUsernameInput}
-                  upperBound={usernameUpperBound}
-                  showInputError={usernameAtMaxLength || noUsernameEntered}
-                  InputErrorWarning={UsernameErrorWarning}
-                  cySelector={'username'}
-                />
-                <Input
-                  label={'Password'}
-                  theme={demoState.theme.form}
-                  setInputState={setPasswordInput}
-                  upperBound={passwordUpperBound}
-                  inputType={'password'}
-                  showInputError={passwordAtMaxLength || noPasswordEntered}
-                  InputErrorWarning={PasswordErrorWarning}
-                  cySelector={'password'}
-                />
-                <Container
-                  size={10}
-                  styles={{
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                    gap: '30px',
-                  }}
-                >
-                  <Button
-                    {...demoState.theme.form.loginButton}
-                    data-cy={'login'}
-                    type={'submit'}
-                    disabled={awaitingApi}
+          <>
+            <Box {...demoState}>
+              <Container
+                styles={{ height: '100%', paddingTop: '150px' }}
+                size={10}
+              >
+                <form onSubmit={enterUsernameAndPassword}>
+                  <Input
+                    label={'Username'}
+                    theme={demoState.theme.form}
+                    setInputState={setUsernameInput}
+                    upperBound={usernameUpperBound}
+                    showInputError={usernameAtMaxLength || noUsernameEntered}
+                    InputErrorWarning={UsernameErrorWarning}
+                    cySelector={'username'}
+                  />
+                  <Input
+                    label={'Password'}
+                    theme={demoState.theme.form}
+                    setInputState={setPasswordInput}
+                    upperBound={passwordUpperBound}
+                    inputType={'password'}
+                    showInputError={passwordAtMaxLength || noPasswordEntered}
+                    InputErrorWarning={PasswordErrorWarning}
+                    cySelector={'password'}
+                  />
+                  <Container
+                    size={10}
+                    styles={{
+                      flexDirection: 'column',
+                      alignItems: 'center',
+                      gap: '30px',
+                    }}
                   >
-                    {awaitingApi ? <Spinner /> : `Login`}
-                  </Button>
-                  <LoginAttemptText
-                    {...demoState.theme.form.loginAttempt}
-                    visibility={
-                      failedLogin(apiOutput) || loginError(apiOutput)
-                        ? 'visible'
-                        : 'hidden'
-                    }
-                    data-cy={'login-attempt'}
-                  >
-                    {failedLogin(apiOutput) && `Incorrect username or password`}
-                    {loginError(apiOutput) &&
-                      `Hack attempt detected - locked out!`}
-                  </LoginAttemptText>
-                </Container>
-              </form>
-            </Container>
-          </Box>
+                    <Button
+                      {...demoState.theme.form.loginButton}
+                      data-cy={'login'}
+                      type={'submit'}
+                      disabled={awaitingApi}
+                    >
+                      {awaitingApi ? <Spinner /> : `Login`}
+                    </Button>
+                    <LoginAttemptText
+                      {...demoState.theme.form.loginAttempt}
+                      visibility={
+                        failedLogin(apiOutput) || loginError(apiOutput)
+                          ? 'visible'
+                          : 'hidden'
+                      }
+                      data-cy={'login-attempt'}
+                    >
+                      {failedLogin(apiOutput) &&
+                        `Incorrect username or password`}
+                      {loginError(apiOutput) &&
+                        `Hack attempt detected - locked out!`}
+                    </LoginAttemptText>
+                  </Container>
+                </form>
+              </Container>
+            </Box>
+            {isMorello && apiOutput && (
+              <ButtonSide
+                message={'Learn More'}
+                action={() => {
+                  nav('/write-demo-explainer')
+                }}
+              />
+            )}
+          </>
         )}
       </Wrapper>
     </>
