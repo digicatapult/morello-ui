@@ -42,7 +42,7 @@ export const Themes = (arch) => {
             width: '300px',
             height: '60px',
             padding: '6px 12px',
-            fontFamily: '000',
+            fontFamily: 'AktivGrotesk',
             fontStyle: 'normal',
             fontSize: '1.6em',
             color: '#787878',
@@ -68,7 +68,7 @@ export const Themes = (arch) => {
             speak: 'none',
           },
       label: {
-        fontFamily: isCheri ? '000' : 'Monaco',
+        fontFamily: isCheri ? 'AktivGrotesk' : 'Monaco',
         fontStyle: 'normal',
         fontWeight: '600',
         fontSize: isCheri ? '16px' : '24px',
@@ -79,7 +79,7 @@ export const Themes = (arch) => {
         color: isCheri ? '#000' : '#fff',
       },
       warning: {
-        fontFamily: isCheri ? '000' : 'Monaco',
+        fontFamily: isCheri ? 'AktivGrotesk' : 'Monaco',
         fontStyle: 'normal',
         fontWeight: '400',
         fontSize: '14px',
@@ -88,7 +88,7 @@ export const Themes = (arch) => {
         minHeight: '30px',
       },
       loginAttempt: {
-        fontFamily: isCheri ? '000' : 'Monaco',
+        fontFamily: isCheri ? 'AktivGrotesk' : 'Monaco',
         fontSize: '14px',
         color: isCheri ? '#000' : '#fff',
       },
@@ -105,7 +105,7 @@ export const Themes = (arch) => {
         marginTop: '32px',
       },
       loginButton: {
-        fontFamily: isCheri ? '000' : 'Monaco',
+        fontFamily: isCheri ? 'AktivGrotesk' : 'Monaco',
         fontSize: '16px',
         width: '100px',
         height: '50px',
@@ -208,7 +208,6 @@ export const Themes = (arch) => {
             justifyContent: 'center',
             width: '100%',
             padding: '10px',
-            paddingTop: '40px',
             color: '#fff',
           }
         : {
