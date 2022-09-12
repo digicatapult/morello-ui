@@ -7,9 +7,7 @@ import fileIcon from '../../../assets/images/file-icon.png'
 const Wrapper = styled.div`
   display: flex;
   gap: 50px;
-  position: relative;
-  bottom: 250px;
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: rgba(0, 0, 0, 0.5);
   width: 400px;
   height: 300px;
   justify-content: center;
