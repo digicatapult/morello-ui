@@ -11,11 +11,7 @@ export const ButtonBasic = styled.button`
   border: 0;
 `
 
-export function ButtonSide({
-  action,
-  learnMore = false,
-  message = 'Learn More',
-}) {
+export function ButtonSide({ action, message = '' }) {
   const Arrow = styled.div`
     display: flex;
     flex-dirction: column;
@@ -70,7 +66,7 @@ export function ButtonSide({
     <div>
       <SideButton onClick={action}>
         <Arrow />
-        {learnMore && <LearnMessage>{message}</LearnMessage>}
+        {message && <LearnMessage>{message}</LearnMessage>}
       </SideButton>
     </div>
   )

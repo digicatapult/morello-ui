@@ -97,16 +97,12 @@ export default function ReadDemo(props) {
       <Header {...readDemo} />
       <Wrapper {...theme.wrapper}>
         {readDemo.showHackPopup && (
-          <ButtonSide
-            {...readDemo}
-            learnMore={false}
-            action={switchToMorello}
-          />
+          <ButtonSide {...readDemo} action={switchToMorello} />
         )}
         {renderExplainer && (
           <ButtonSide
-            learnMore={true}
             {...readDemo}
+            message={'Learn More'}
             action={(e) => {
               nav('/read-demo-explainer')
               e.preventDefault()
