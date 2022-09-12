@@ -90,7 +90,7 @@ export const Themes = (arch) => {
       loginAttempt: {
         fontFamily: isCheri ? '000' : 'Monaco',
         fontSize: '14px',
-        color: '#fff',
+        color: isCheri ? '#000' : '#fff',
       },
       savePasswordButton: {
         width: '60px',
@@ -110,6 +110,10 @@ export const Themes = (arch) => {
         width: '100px',
         height: '50px',
         cursor: 'pointer',
+        backgroundColor: '#FFFFFF',
+        justifyContent: 'center',
+        alignItems: 'center',
+        display: 'flex',
       },
     },
     wrapper: {

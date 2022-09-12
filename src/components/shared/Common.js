@@ -74,3 +74,21 @@ export const RowSpacer = styled.div(({ size = 1 }) => ({
   height: '100%',
   width: `${size * 10}%`,
 }))
+
+export const Spinner = styled.div`
+  @keyframes spinner {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  width: 20px;
+  height: 20px;
+  border: 3px solid #383636;
+  border-top: 3px solid #ffffff;
+  border-radius: 50%;
+  animation: spinner 1.5s linear infinite;
+`
