@@ -14,18 +14,14 @@ describe('Write Demo', () => {
   })
 
   describe('If input entered is more than upper bound', () => {
-    it('Max length cuts off long username', () => {
-      // eslint-disable-next-line cypress/no-force
-      cy.get('[data-cy=username]', { maxlength: 24, force: true }).type(
-        'abcdefghijklmnopqrstuvwxyz',
-        { force: true }
-      )
+    it(`Allows username longer than the upper bound`, () => {
+      cy.get('[data-cy=username]').type('abcdefghijklmnopqrstuvwxyz')
       cy.get('[data-cy=username]').should(
         'have.value',
-        'abcdefghijklmnopqrstuvwx'
+        'abcdefghijklmnopqrstuvwxyz'
       )
     })
-    it('Max length cuts off long passwords', () => {
+    it('Prevents passwords longer than the upper bound', () => {
       // eslint-disable-next-line cypress/no-force
       cy.get('[data-cy=password]', { maxlength: 16, force: true }).type(
         '12345678910111213141516',
