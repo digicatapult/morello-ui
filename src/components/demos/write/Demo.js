@@ -23,6 +23,7 @@ const Wrapper = styled.div`
 
 const successfulLogin = (apiOutput) =>
   extractLoginResult(apiOutput) === 'Login succeeded'
+const loginError = (apiOutput) => extractLoginResult(apiOutput) === 'error'
 
 export default function WriteDemo(props) {
   const { execute, binaryName } = props
@@ -79,26 +80,27 @@ export default function WriteDemo(props) {
       <Header {...props} showClose={true} />
       <Wrapper {...theme.wrapper}>
         {successfulLogin(apiOutput) ? (
-          <>
-            <SecretDesktop {...theme.font} />
-            {!isMorello && <ButtonSide action={switchToMorello} />}
-          </>
+          <SecretDesktop {...theme.font} />
         ) : (
-          <>
-            <Box {...demoState}>
-              <Container
-                styles={{ height: '100%', paddingTop: '150px' }}
-                size={10}
-              >
-                <LoginForm
-                  demoState={demoState}
-                  showSpinner={awaitingApi}
-                  setUsernamePasswordPairs={setUsernamePasswordPairs}
-                  apiOutput={apiOutput}
-                />
-              </Container>
-            </Box>
-            {isMorello && apiOutput && (
+          <Box {...demoState}>
+            <Container
+              styles={{ height: '100%', paddingTop: '150px' }}
+              size={10}
+            >
+              <LoginForm
+                demoState={demoState}
+                showSpinner={awaitingApi}
+                setUsernamePasswordPairs={setUsernamePasswordPairs}
+                apiOutput={apiOutput}
+              />
+            </Container>
+          </Box>
+        )}
+        {!isMorello
+          ? successfulLogin(apiOutput) && (
+              <ButtonSide action={switchToMorello} />
+            )
+          : (successfulLogin(apiOutput) || loginError(apiOutput)) && (
               <ButtonSide
                 message={'Learn More'}
                 action={() => {
@@ -106,8 +108,6 @@ export default function WriteDemo(props) {
                 }}
               />
             )}
-          </>
-        )}
       </Wrapper>
     </>
   )
