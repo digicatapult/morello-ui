@@ -25,7 +25,7 @@ const Text = styled.p`
 
 export default function SecretDesktop(theme) {
   return (
-    <Wrapper>
+    <Wrapper data-cy={'secret-desktop'}>
       <IconWrapper>
         <img style={{ cursor: 'pointer' }} src={directoryIcon} width={'80%'} />
         <Text {...theme}>Secrets</Text>

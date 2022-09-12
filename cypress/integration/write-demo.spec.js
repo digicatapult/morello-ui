@@ -35,19 +35,41 @@ describe('Write Demo', () => {
     })
   })
 
-  describe('Happy path', () => {
-    beforeEach(() => {
-      cy.get('[data-cy=username]').type('root')
-      cy.get('[data-cy=password]').type('password')
-      cy.get('[data-cy=login]').click()
-    })
+  it.skip('Shows login failed message after failed login', () => {
+    cy.get('[data-cy=username]').type('root')
+    cy.get('[data-cy=password]').type('bla')
+    cy.get('[data-cy=login]').click()
 
-    it('Renders success/fail message after login attempt', () => {
-      cy.get('[data-cy=login-attempt]').should('be.visible')
-    })
+    // TODO API
 
-    it.skip('Executes write demo binaries by calling an api', () => {
-      // TODO
-    })
+    cy.get('[data-cy=login-attempt]').should('be.visible')
+  })
+
+  it.skip('Shows secret desktop after successful login - no hacking', () => {
+    cy.get('[data-cy=username]').type('root')
+    cy.get('[data-cy=password]').type('password')
+    cy.get('[data-cy=login]').click()
+
+    // TODO API
+
+    cy.get('[data-cy=secret-desktop]').should('be.visible')
+  })
+
+  it.skip('Shows secret desktop after successful login - hacking', () => {
+    cy.get('[data-cy=username]').type('root------------123') // exploit out of bounds write
+    cy.get('[data-cy=password]').type('bla')
+    cy.get('[data-cy=login]').click()
+
+    cy.get('[data-cy=username]').type('root')
+    cy.get('[data-cy=password]').type('123')
+    cy.get('[data-cy=login]').click()
+
+    // TODO API
+
+    cy.get('[data-cy=secret-desktop]').should('be.visible')
+  })
+
+  it.skip('Stops hacking on Morello', () => {
+    //TODO
   })
 })
