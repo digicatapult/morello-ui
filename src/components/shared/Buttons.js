@@ -11,9 +11,10 @@ export const ButtonBasic = styled.button`
   border: 0;
 `
 
-export function ButtonSide({ action }) {
+export function ButtonSide({ action, message = '' }) {
   const Arrow = styled.div`
     display: flex;
+    flex-dirction: column;
     background-size: cover;
     background-image: url(${ArrowWhite});
     height: 33px;
@@ -49,12 +50,25 @@ export function ButtonSide({ action }) {
     width: auto;
     transition: all 0.6s;
     background-image: url(${backgroundImg});
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  `
+  const LearnMessage = styled.p`
+    color: rgba(255, 255, 255, 1);
+    font-size: 25px;
+    z-index: 50;
+    font-family: AktivGrotesk;
   `
 
   return (
-    <SideButton onClick={action}>
-      <Arrow />
-    </SideButton>
+    <div>
+      <SideButton onClick={action}>
+        <Arrow />
+        {message && <LearnMessage>{message}</LearnMessage>}
+      </SideButton>
+    </div>
   )
 }
 

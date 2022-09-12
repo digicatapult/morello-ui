@@ -42,6 +42,8 @@ export default function ProgressBar({ update, readDemo }) {
       update({
         readDemo: {
           ...readDemo,
+          renderExplainer:
+            !!readDemo?.output?.status != 'success' && theme.name === 'Morello',
           output,
           showHackPopup: theme.name !== 'Morello',
         },
