@@ -14,18 +14,14 @@ describe('Write Demo', () => {
   })
 
   describe('If input entered is more than upper bound', () => {
-    it('Max length cuts off long username', () => {
-      // eslint-disable-next-line cypress/no-force
-      cy.get('[data-cy=username]', { maxlength: 24, force: true }).type(
-        'abcdefghijklmnopqrstuvwxyz',
-        { force: true }
-      )
+    it(`Allows username longer than the upper bound`, () => {
+      cy.get('[data-cy=username]').type('abcdefghijklmnopqrstuvwxyz')
       cy.get('[data-cy=username]').should(
         'have.value',
-        'abcdefghijklmnopqrstuvwx'
+        'abcdefghijklmnopqrstuvwxyz'
       )
     })
-    it('Max length cuts off long passwords', () => {
+    it('Prevents passwords longer than the upper bound', () => {
       // eslint-disable-next-line cypress/no-force
       cy.get('[data-cy=password]', { maxlength: 16, force: true }).type(
         '12345678910111213141516',
@@ -35,19 +31,41 @@ describe('Write Demo', () => {
     })
   })
 
-  describe('Happy path', () => {
-    beforeEach(() => {
-      cy.get('[data-cy=username]').type('root')
-      cy.get('[data-cy=password]').type('password')
-      cy.get('[data-cy=login]').click()
-    })
+  it.skip('Shows login failed message after failed login', () => {
+    cy.get('[data-cy=username]').type('root')
+    cy.get('[data-cy=password]').type('bla')
+    cy.get('[data-cy=login]').click()
 
-    it('Renders success/fail message after login attempt', () => {
-      cy.get('[data-cy=login-attempt]').should('be.visible')
-    })
+    // TODO API
 
-    it.skip('Executes write demo binaries by calling an api', () => {
-      // TODO
-    })
+    cy.get('[data-cy=login-attempt]').should('be.visible')
+  })
+
+  it.skip('Shows secret desktop after successful login - no hacking', () => {
+    cy.get('[data-cy=username]').type('root')
+    cy.get('[data-cy=password]').type('password')
+    cy.get('[data-cy=login]').click()
+
+    // TODO API
+
+    cy.get('[data-cy=secret-desktop]').should('be.visible')
+  })
+
+  it.skip('Shows secret desktop after successful login - hacking', () => {
+    cy.get('[data-cy=username]').type('root------------123') // exploit out of bounds write
+    cy.get('[data-cy=password]').type('bla')
+    cy.get('[data-cy=login]').click()
+
+    cy.get('[data-cy=username]').type('root')
+    cy.get('[data-cy=password]').type('123')
+    cy.get('[data-cy=login]').click()
+
+    // TODO API
+
+    cy.get('[data-cy=secret-desktop]').should('be.visible')
+  })
+
+  it.skip('Stops hacking on Morello', () => {
+    //TODO
   })
 })

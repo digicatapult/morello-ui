@@ -1,11 +1,16 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
+import { useNavigate } from 'react-router-dom'
 
 import Header from '../../shared/Header'
 import { Context, initState } from '../../../utils/context'
-import Input from '../../shared/Input'
+import { extractLoginResult } from '../../../utils/write-demo-output'
 import Box from '../../shared/Box'
 import { Container } from '../../shared/Common'
+import { ButtonSide } from '../../shared/Buttons'
+import { Themes } from '../../../fixtures/themes'
+import SecretDesktop from './SecretDesktop'
+import LoginForm from './LoginForm'
 
 const Wrapper = styled.div`
   grid-area: body;
@@ -15,129 +20,94 @@ const Wrapper = styled.div`
   height: 100%;
   ${(props) => props}
 `
-const Button = styled.button((props) => props)
-const LoginAttemptText = styled.p((props) => props)
+
+const successfulLogin = (apiOutput) =>
+  extractLoginResult(apiOutput) === 'Login succeeded'
+const loginError = (apiOutput) => extractLoginResult(apiOutput) === 'error'
 
 export default function WriteDemo(props) {
+  const { execute, binaryName } = props
+
+  const nav = useNavigate()
   const state = React.useContext(Context)
-  const writeDemo = { ...state.writeDemo, ...props }
-  const { update } = state
-  const { theme } = writeDemo
+  const { update, writeDemo: demoState } = state
+  const { theme } = demoState
+  const isMorello = theme.name === 'Morello'
 
-  const [demoOutput, setDemoOutput] = useState('')
+  const [awaitingApi, setAwaitingApi] = useState(false)
+  const [apiOutput, setApiOutput] = useState('')
+  const [usernamePasswordPairs, setUsernamePasswordPairs] = useState([])
 
-  const usernameUpperBound = 24
-  const passwordUpperBound = 16
-  const [usernameInput, setUsernameInput] = useState('')
-  const [passwordInput, setPasswordInput] = useState('')
-  const [someUsernameTyped, setSomeUsernameTyped] = useState(false)
-  const [somePasswordTyped, setSomePasswordTyped] = useState(false)
+  const resetStates = () => {
+    setAwaitingApi(false)
+    setApiOutput('')
+    setUsernamePasswordPairs([])
+  }
 
-  const noUsernameEntered = usernameInput.length === 0 && someUsernameTyped
-  const usernameAtMaxLength = usernameInput.length === usernameUpperBound
-  const noPasswordEntered = passwordInput.length === 0 && somePasswordTyped
-  const passwordAtMaxLength = passwordInput.length === passwordUpperBound
-
-  const UsernameErrorWarning = () => (
-    <>
-      {noUsernameEntered && <>Cannot be empty</>}
-      {usernameAtMaxLength && <>Maximum length reached</>}
-    </>
-  )
-
-  const PasswordErrorWarning = () => (
-    <>
-      {noPasswordEntered && <>Cannot be empty</>}
-      {passwordAtMaxLength && <>Maximum length reached</>}
-    </>
-  )
-
-  useEffect(() => {
-    if (usernameInput.length > 0) {
-      setSomeUsernameTyped(true)
-    }
-    if (passwordInput.length > 0) {
-      setSomePasswordTyped(true)
-    }
-  }, [usernameInput, passwordInput])
+  const switchToMorello = (e) => {
+    e.preventDefault()
+    resetStates()
+    update({
+      writeDemo: {
+        ...demoState,
+        theme: Themes('Morello'),
+      },
+    })
+  }
 
   useEffect(() => {
     update(initState)
   }, [update])
 
-  const enterUsernameAndPassword = (e) => {
-    e.preventDefault()
-    setSomeUsernameTyped(true)
-    setSomePasswordTyped(true)
-
-    if (usernameInput.length > 0 && passwordInput.length > 0) {
-      update({
-        writeDemo: {
-          ...writeDemo,
-          usernamePasswordPairs: [
-            ...writeDemo.usernamePasswordPairs,
-            usernameInput,
-            passwordInput,
-          ],
-        },
-      })
-      // TODO execute API
-      setDemoOutput('***PARSED API OUTPUT***')
+  useEffect(() => {
+    const attemptLogin = async () => {
+      setAwaitingApi(true)
+      const output = await execute(
+        `${binaryName}-${theme.arch}`,
+        usernamePasswordPairs
+      )
+      setApiOutput(output)
+      setAwaitingApi(false)
     }
-  }
+
+    if (usernamePasswordPairs.length > 0) {
+      attemptLogin()
+    }
+  }, [usernamePasswordPairs, execute, binaryName, theme])
 
   return (
     <>
       <Header {...props} showClose={true} />
       <Wrapper {...theme.wrapper}>
-        <Box {...writeDemo}>
-          <Container styles={{ height: '100%', paddingTop: '150px' }} size={10}>
-            <form onSubmit={enterUsernameAndPassword}>
-              <Input
-                label={'Username'}
-                theme={writeDemo.theme.form}
-                setInputState={setUsernameInput}
-                upperBound={usernameUpperBound}
-                showInputError={usernameAtMaxLength || noUsernameEntered}
-                InputErrorWarning={UsernameErrorWarning}
-                cySelector={'username'}
+        {successfulLogin(apiOutput) ? (
+          <SecretDesktop {...theme.font} />
+        ) : (
+          <Box {...demoState}>
+            <Container
+              styles={{ height: '100%', paddingTop: '150px' }}
+              size={10}
+            >
+              <LoginForm
+                demoState={demoState}
+                showSpinner={awaitingApi}
+                setUsernamePasswordPairs={setUsernamePasswordPairs}
+                apiOutput={apiOutput}
               />
-              <Input
-                label={'Password'}
-                theme={writeDemo.theme.form}
-                setInputState={setPasswordInput}
-                upperBound={passwordUpperBound}
-                inputType={'password'}
-                showInputError={passwordAtMaxLength || noPasswordEntered}
-                InputErrorWarning={PasswordErrorWarning}
-                cySelector={'password'}
-              />
-              <Container
-                size={10}
-                styles={{
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                  gap: '30px',
+            </Container>
+          </Box>
+        )}
+        {!isMorello
+          ? successfulLogin(apiOutput) && (
+              <ButtonSide action={switchToMorello} />
+            )
+          : (successfulLogin(apiOutput) || loginError(apiOutput)) && (
+              <ButtonSide
+                message={'Learn More'}
+                action={() => {
+                  nav('/write-demo-explainer')
                 }}
-              >
-                <Button
-                  {...writeDemo.theme.form.loginButton}
-                  data-cy={'login'}
-                  type={'submit'}
-                >
-                  Login
-                </Button>
-                <LoginAttemptText
-                  {...writeDemo.theme.form.loginAttempt}
-                  visibility={demoOutput ? 'visible' : 'hidden'}
-                  data-cy={'login-attempt'}
-                >
-                  {demoOutput}
-                </LoginAttemptText>
-              </Container>
-            </form>
-          </Container>
-        </Box>
+              />
+            )}
       </Wrapper>
     </>
   )

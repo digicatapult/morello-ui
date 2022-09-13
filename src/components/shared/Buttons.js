@@ -14,7 +14,6 @@ export const ButtonBasic = styled.button`
 export function ButtonSide({ action, message = '' }) {
   const Arrow = styled.div`
     display: flex;
-    flex-dirction: column;
     background-size: cover;
     background-image: url(${ArrowWhite});
     height: 33px;

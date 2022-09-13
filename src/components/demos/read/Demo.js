@@ -118,7 +118,7 @@ export default function ReadDemo(props) {
             <>
               <Row
                 justifyContent={isMorello ? 'center' : 'flex-start'}
-                marginTop={isMorello ? '49px' : '0px'}
+                marginTop={isMorello ? '70px' : '0px'}
               >
                 {isMorello && <img src={KeychainIcon} />}
                 <DemoText {...theme.font}>
