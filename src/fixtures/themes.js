@@ -219,5 +219,8 @@ export const Themes = (arch) => {
             outlineOffset: '-10px',
           },
     },
+    help: {
+      background: isCheri ? '#fff' : '#343556',
+    },
   }
 }

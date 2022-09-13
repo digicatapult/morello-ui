@@ -11,6 +11,7 @@ import { ButtonSide } from '../../shared/Buttons'
 import { Themes } from '../../../fixtures/themes'
 import SecretDesktop from './SecretDesktop'
 import LoginForm from './LoginForm'
+import Help from '../../shared/Help'
 
 const Wrapper = styled.div`
   grid-area: body;
@@ -19,6 +20,13 @@ const Wrapper = styled.div`
   justify-content: center;
   height: 100%;
   ${(props) => props}
+`
+
+const helpContent = `
+  The username is root.
+  \nPassword can be changed by attempting to login with a username that is longer than 16 characters to perform an out of bounds write. 
+  The password will be replaced with the out of bounds characters. 
+  \ne.g. if 'root------------123' is attempted for a username, the password is now '123'.
 `
 
 const successfulLogin = (apiOutput) =>
@@ -34,11 +42,13 @@ export default function WriteDemo(props) {
   const { theme } = demoState
   const isMorello = theme.name === 'Morello'
 
+  const [showHelp, setShowHelp] = useState(false)
   const [awaitingApi, setAwaitingApi] = useState(false)
   const [apiOutput, setApiOutput] = useState('')
   const [usernamePasswordPairs, setUsernamePasswordPairs] = useState([])
 
   const resetStates = () => {
+    setShowHelp(false)
     setAwaitingApi(false)
     setApiOutput('')
     setUsernamePasswordPairs([])
@@ -108,6 +118,12 @@ export default function WriteDemo(props) {
                 }}
               />
             )}
+        <Help
+          theme={theme}
+          content={helpContent}
+          showContentState={showHelp}
+          setShowContentState={setShowHelp}
+        />
       </Wrapper>
     </>
   )
