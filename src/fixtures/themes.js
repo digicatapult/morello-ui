@@ -142,7 +142,7 @@ export const Themes = (arch) => {
             position: 'absolute',
             top: '50%',
             left: '50%',
-            width: '585px',
+            width: '615px',
             height: '258px',
             maxHeight: '358px',
             borderRadius: '6px',
