@@ -39,6 +39,7 @@ export default function ProgressBar({ update, readDemo }) {
           readDemo.password
         ),
       ])
+
       update({
         readDemo: {
           ...readDemo,
@@ -54,7 +55,6 @@ export default function ProgressBar({ update, readDemo }) {
   }, [readDemo, theme, update])
 
   const showProgress = progress !== 100
-
   return showProgress ? (
     <Wrapper data-cy={'read-demo-progress-bar'} {...theme.progressBar.wrapper}>
       <DemoText>{`hacking in progress ${progress}%`}</DemoText>
@@ -64,9 +64,16 @@ export default function ProgressBar({ update, readDemo }) {
   ) : (
     <Row>
       <DemoText wordWrap={'break-word'}>
-        {readDemo.output.status != 'success'
-          ? 'FAILURE. The password could not be revealed. - Display output?'
-          : `Your password is ${extractPassword(readDemo.output)}!`}
+        {readDemo.output.status != 'success' ? (
+          <div>
+            FAILURE. The password could not be revealed. Display output? <br />
+            <br />
+            <br />
+            <br />
+          </div>
+        ) : (
+          `Your password is ${extractPassword(readDemo.output)}`
+        )}
       </DemoText>
     </Row>
   )

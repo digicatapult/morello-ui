@@ -167,6 +167,7 @@ export const Themes = (arch) => {
             color: '#818181',
             outlineOffset: '-10px',
             padding: '5px;',
+            overflow: 'scroll',
           }
         : {
             padding: '10px',

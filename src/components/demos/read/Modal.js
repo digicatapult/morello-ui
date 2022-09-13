@@ -76,15 +76,15 @@ const renderActions = ({ update, readDemo }) => {
 
 export default function Modal({ update, readDemo, ProgressBar }) {
   const { theme, showHackingProgress, renderModalActions } = readDemo
-
   return (
     <Window data-cy={'hacker-app-modal'} styles={theme.modal.window}>
       <Title title={readDemo.modalTitle} arch={theme.name} />
       <Row flex={'auto'}>
-        <Page {...theme.modal.page}>
+        <Page {...theme.modal.page} style={{ overFlow: 'scroll' }}>
           <DemoText {...readDemo.txt_col}>{readDemo.modalText}</DemoText>
 
           {renderModalActions && renderActions({ readDemo, update })}
+
           {showHackingProgress && (
             <Row height={'50px'} flex={'auto'} marginTop={'20px'}>
               <ProgressBar readDemo={readDemo} update={update} />
@@ -92,6 +92,16 @@ export default function Modal({ update, readDemo, ProgressBar }) {
           )}
           {readDemo?.switchToMorello && (
             <Button onClick={readDemo.switchToMorello}>TRY</Button>
+          )}
+          {readDemo.output && readDemo.theme.name === 'Morello' && (
+            <DemoText
+              style={{
+                boxShadow: 'inset 0 0 10px #000000',
+                marginTop: '18px',
+              }}
+            >
+              {JSON.stringify(readDemo.output)}
+            </DemoText>
           )}
         </Page>
       </Row>
