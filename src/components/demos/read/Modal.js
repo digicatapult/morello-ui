@@ -7,7 +7,6 @@ import Title from '../../shared/Title'
 
 const Window = styled.div(({ styles }) => styles)
 const Page = styled(Col)((props) => props)
-
 const renderActions = ({ update, readDemo }) => {
   const handleNo = (e) => {
     e.preventDefault()
@@ -94,14 +93,16 @@ export default function Modal({ update, readDemo, ProgressBar }) {
             <Button onClick={readDemo.switchToMorello}>TRY</Button>
           )}
           {readDemo.output && readDemo.theme.name === 'Morello' && (
-            <DemoText
-              style={{
-                boxShadow: 'inset 0 0 10px #000000',
-                marginTop: '18px',
-              }}
-            >
-              {JSON.stringify(readDemo.output)}
-            </DemoText>
+            <>
+              <DemoText
+                style={{
+                  boxShadow: 'inset 0 0 10px #000000',
+                  marginTop: '18px',
+                }}
+              >
+                {JSON.stringify(readDemo.output)}
+              </DemoText>
+            </>
           )}
         </Page>
       </Row>
