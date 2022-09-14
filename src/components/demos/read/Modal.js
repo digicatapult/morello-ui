@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 
 import { Button, ButtonBasic } from '../../shared/Buttons'
-import { DemoText, Col, Row } from '../../shared/Common'
+import { DemoText, Col, Row, OutputText } from '../../shared/Common'
 import ProgressBar from './ProgressBar'
 import Title from '../../shared/Title'
 
@@ -82,16 +82,13 @@ export default function Modal({ update, readDemo }) {
     e.preventDefault()
     setShowOutput(!showOutput)
   }
-
   return (
     <Window data-cy={'hacker-app-modal'} styles={theme.modal.window}>
       <Title title={readDemo.modalTitle} arch={theme.name} />
       <Row flex={'auto'}>
         <Page {...theme.modal.page} style={{ overFlow: 'scroll' }}>
           <DemoText {...readDemo.txt_col}>{readDemo.modalText}</DemoText>
-
           {renderModalActions && renderActions({ readDemo, update })}
-
           {showHackingProgress && (
             <Row height={'50px'} flex={'auto'} marginTop={'20px'}>
               <ProgressBar readDemo={readDemo} update={update} />
@@ -100,16 +97,26 @@ export default function Modal({ update, readDemo }) {
           {readDemo?.switchToMorello && (
             <Button onClick={readDemo.switchToMorello}>TRY</Button>
           )}
-          {readDemo.output && <button onClick={handleDetails}>Details</button>}
-          {showOutput && (
-            <DemoText
-              style={{
-                boxShadow: 'inset 0 0 10px #000000',
-                marginTop: '18px',
-              }}
+
+          {readDemo.output && (
+            <ButtonBasic
+              style={{ height: '70px', margin: '20px', width: '90px' }}
+              onClick={handleDetails}
             >
+              Details
+            </ButtonBasic>
+          )}
+          {showOutput && (
+            <OutputText>
+              {readDemo.theme.name != 'Morello' &&
+                readDemo.binaryName +
+                  '-' +
+                  theme.arch +
+                  ' ' +
+                  readDemo.password}
+              <br />
               {JSON.stringify(readDemo.output)}
-            </DemoText>
+            </OutputText>
           )}
         </Page>
       </Row>

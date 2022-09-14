@@ -39,6 +39,19 @@ export const DemoText = styled.p((props) => ({
   ...props,
 }))
 
+export const OutputText = styled.p((props) => ({
+  fontFamily: 'Monaco',
+  fontSize: '18px',
+  fontWeight: '100',
+  margin: '0px',
+  marginTop: '18px',
+  background: 'black',
+  color: 'limegreen',
+  overflow: 'scroll',
+  maxHeight: '170px',
+  ...props,
+}))
+
 export const P1 = styled.p((props) => ({
   fontFamily: 'AktivGrotesk',
   fontSize: '9px',

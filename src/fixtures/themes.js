@@ -22,6 +22,7 @@ export const Themes = (arch) => {
         width: '100%',
         ...(isCheri ? { marginLeft: '3%' } : {}),
         padding: '0px 10px',
+        marginTop: '-20px',
       },
       background: {
         height: '50%',
@@ -144,7 +145,7 @@ export const Themes = (arch) => {
             left: '50%',
             width: '615px',
             height: '258px',
-            maxHeight: '358px',
+            maxHeight: '400px',
             borderRadius: '6px',
             border: '1px solid #818181',
             boxShadow: '0px 0px 4px #818181',
@@ -157,7 +158,7 @@ export const Themes = (arch) => {
             top: '50%',
             left: '50%',
             width: '586px',
-            height: '258px',
+            maxHeight: '400px',
             background: '#CE1C1C',
           },
       page: isCheri
@@ -166,8 +167,8 @@ export const Themes = (arch) => {
             background: '#717171',
             color: '#818181',
             outlineOffset: '-10px',
+            maxHeight: '450px',
             padding: '5px;',
-            overflow: 'scroll',
           }
         : {
             padding: '10px',
@@ -215,6 +216,7 @@ export const Themes = (arch) => {
             padding: '10px',
             outline: '2px solid #FFFFFF',
             outlineOffset: '-10px',
+            marginTop: '30px',
           },
     },
   }

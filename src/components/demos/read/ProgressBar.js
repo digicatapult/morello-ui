@@ -4,7 +4,11 @@ import styled from 'styled-components'
 import { DemoText, Row } from '../../shared/Common'
 
 const Wrapper = styled.div((props) => props)
-const BarBackground = styled.div((props) => props)
+
+const BarBackground = styled.div((props) => ({
+  ...props,
+}))
+
 const Bar = styled.div((props) => ({
   width: `${props.progress}%`,
   ...props,
@@ -29,7 +33,6 @@ export default function ProgressBar({ update, readDemo }) {
       await new Promise((r) => setTimeout(r, 20))
     }
   }
-
   React.useEffect(() => {
     async function load() {
       const [, output] = await Promise.all([
