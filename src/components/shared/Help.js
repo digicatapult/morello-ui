@@ -21,7 +21,7 @@ const ContentWrapper = styled.div`
   max-height: 400px;
   padding: 10px;
   background: ${(props) => props.background};
-  visibility: ${(props) => props.visibility};
+  display: ${(props) => props.display};
 `
 
 const ButtonText = styled.p`
@@ -56,7 +56,7 @@ export default function Help({
       </Button>
 
       <ContentWrapper
-        visibility={showContentState ? 'visible' : 'hidden'}
+        display={showContentState ? 'flex' : 'none'}
         background={theme.help.background}
       >
         <ContentText {...theme.font}>{content}</ContentText>
