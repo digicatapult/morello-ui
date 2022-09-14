@@ -104,4 +104,7 @@ export const IconButton = styled.div`
   align-items: center;
   cursor: pointer;
   background: ${(props) => props.background};
+  box-shadow: ${(props) => props.boxShadow};
+  border-radius: ${(props) => props.borderRadius};
+  border: ${(props) => props.border};
 `

@@ -15,6 +15,9 @@ const ContentWrapper = styled.div`
   padding: 10px;
   background: ${(props) => props.background};
   display: ${(props) => props.display};
+  box-shadow: ${(props) => props.boxShadow};
+  border-radius: ${(props) => props.borderRadius};
+  border: ${(props) => props.border};
 `
 
 const ButtonText = styled.p`
@@ -44,13 +47,22 @@ export default function Help({
 
   return (
     <Wrapper>
-      <IconButton background={theme.help.background} onClick={toggle}>
+      <IconButton
+        background={theme.help.background}
+        boxShadow={theme.help.boxShadow}
+        borderRadius={theme.help.borderRadius}
+        border={theme.help.border}
+        onClick={toggle}
+      >
         <ButtonText {...theme.font}>?</ButtonText>
       </IconButton>
 
       <ContentWrapper
         display={showContentState ? 'flex' : 'none'}
         background={theme.help.background}
+        boxShadow={theme.help.boxShadow}
+        borderRadius={theme.help.borderRadius}
+        border={theme.help.border}
       >
         <ContentText {...theme.font}>{content}</ContentText>
       </ContentWrapper>

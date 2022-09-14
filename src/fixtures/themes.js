@@ -198,7 +198,7 @@ export const Themes = (arch) => {
             flexDirection: 'column',
             width: '826px',
             height: '626px',
-            boxShadow: '24px 24px 1px rgba(0, 0, 0, 0.8)',
+            boxShadow: '12px 12px 1px rgba(0, 0, 0, 0.8)',
             background: '#343556',
           },
       windowBody: isCheri
@@ -219,8 +219,15 @@ export const Themes = (arch) => {
             outlineOffset: '-10px',
           },
     },
-    help: {
-      background: isCheri ? '#fff' : '#343556',
-    },
+    help: isCheri
+      ? {
+          background: '#fff',
+          borderRadius: '6px',
+          border: '1px solid #818181',
+        }
+      : {
+          background: '#343556',
+          boxShadow: '12px 12px 1px rgba(0, 0, 0, 0.8)',
+        },
   }
 }
