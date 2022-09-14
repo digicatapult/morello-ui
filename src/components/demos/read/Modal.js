@@ -3,6 +3,7 @@ import styled from 'styled-components'
 
 import { Button, ButtonBasic } from '../../shared/Buttons'
 import { DemoText, Col, Row } from '../../shared/Common'
+import ProgressBar from './ProgressBar'
 import Title from '../../shared/Title'
 
 const Window = styled.div(({ styles }) => styles)
@@ -73,13 +74,13 @@ const renderActions = ({ update, readDemo }) => {
   )
 }
 
-export default function Modal({ update, readDemo, ProgressBar }) {
+export default function Modal({ update, readDemo }) {
   const { theme, showHackingProgress, renderModalActions } = readDemo
 
   const [showOutput, setShowOutput] = useState(false)
   const handleDetails = (e) => {
     e.preventDefault()
-    setShowOutput(true)
+    setShowOutput(!showOutput)
   }
 
   return (

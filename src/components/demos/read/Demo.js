@@ -8,7 +8,7 @@ import Box from '../../shared/Box'
 import { ButtonSide } from '../../shared/Buttons'
 import { Col, Row, DemoText, Container } from '../../shared/Common'
 import Input from '../../shared/Input'
-import ProgressBar from './ProgressBar'
+
 import Modal from './Modal'
 import KeychainIcon from '../../../assets/images/keychain-strip.png'
 import { Themes } from '../../../fixtures/themes'
@@ -181,13 +181,7 @@ export default function ReadDemo(props) {
             </DemoText>
           )}
         </Box>
-        {readDemo.renderModal &&
-          Modal({
-            update,
-            readDemo,
-
-            ProgressBar: (props) => <ProgressBar {...props} />,
-          })}
+        {readDemo.renderModal && <Modal update={update} readDemo={readDemo} />}
       </Wrapper>
     </>
   )
