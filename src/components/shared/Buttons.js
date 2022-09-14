@@ -1,7 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import backgroundImg from '../../assets/images/osx-background.png'
 import ArrowWhite from '../../assets/images/arrow-white.png'
 
 export const ButtonBasic = styled.button`
@@ -11,63 +10,67 @@ export const ButtonBasic = styled.button`
   border: 0;
 `
 
-export function ButtonSide({ action, message = '' }) {
-  const Arrow = styled.div`
-    display: flex;
-    background-size: cover;
-    background-image: url(${ArrowWhite});
-    height: 33px;
-    width: 55px;
-    animation: stepIn 1.3s;
-    animation-iteration-count: infinite;
-    margin-right: 2vw;
+const Arrow = styled.div`
+  display: flex;
+  background-size: cover;
+  background-image: url(${ArrowWhite});
+  height: 33px;
+  width: 55px;
+  margin-left: 1vw;
+  margin-right: 1vw;
+`
 
-    @keyframes stepIn {
-      0% {
-        margin-left: 1vw;
-      }
-      30% {
-        margin-left: 4vw;
-      }
-      100% {
-        margin-left: 1vw;
-      }
+const SideButton = styled.div`
+  position: absolute;
+  display: flex;
+  z-index: 101;
+  cursor: pointer;
+  padding: 0px 20px;
+  align-items: center;
+  height: calc(100vh - 164px);
+  top: 164px;
+  right: 0px;
+  background-color: rgba(65, 106, 170, 0.6);
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+
+  animation: stepIn 1.3s;
+  animation-iteration-count: infinite;
+
+  @keyframes stepIn {
+    0% {
+      padding-left: 1vw;
+      padding-right: 1vw;
     }
-  `
+    30% {
+      padding-left: 2vw;
+      padding-right: 2vw;
+    }
+    100% {
+      padding-left: 1vw;
+      padding-right: 1vw;
+    }
+  }
+`
+const LearnMessage = styled.p`
+  color: rgba(255, 255, 255, 1);
+  font-size: 25px;
+  z-index: 50;
+  font-family: AktivGrotesk;
+  text-align: center;
+  width: 10vw;
+`
 
-  const SideButton = styled.div`
-    position: absolute;
-    display: flex;
-    z-index: 101;
-    cursor: pointer;
-    padding: 0px 20px;
-    align-items: center;
-    height: calc(100vh - 164px);
-    opacity: 0.6;
-    top: 164px;
-    right: 0px;
-    width: auto;
-    transition: all 0.6s;
-    background-image: url(${backgroundImg});
-    align-items: center;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-  `
-  const LearnMessage = styled.p`
-    color: rgba(255, 255, 255, 1);
-    font-size: 25px;
-    z-index: 50;
-    font-family: AktivGrotesk;
-  `
-
+export function ButtonSide({ action, message = '' }) {
   return (
-    <div>
+    <>
       <SideButton onClick={action}>
         <Arrow />
-        {message && <LearnMessage>{message}</LearnMessage>}
+        <LearnMessage>{message}</LearnMessage>
       </SideButton>
-    </div>
+    </>
   )
 }
 
