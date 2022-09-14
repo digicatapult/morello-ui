@@ -95,3 +95,13 @@ export const Button = styled.button`
     cursor: default;
   }
 `
+
+export const IconButton = styled.div`
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  background: ${(props) => props.background};
+`

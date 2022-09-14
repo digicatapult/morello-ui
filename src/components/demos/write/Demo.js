@@ -22,19 +22,12 @@ const Wrapper = styled.div`
   ${(props) => props}
 `
 
-const helpContent = `
-  The username is root.
-  \nPassword can be changed by attempting to login with a username that is longer than 16 characters to perform an out of bounds write. 
-  The password will be replaced with the out of bounds characters. 
-  \ne.g. if 'root------------123' is attempted for a username, the password is now '123'.
-`
-
 const successfulLogin = (apiOutput) =>
   extractLoginResult(apiOutput) === 'Login succeeded'
 const loginError = (apiOutput) => extractLoginResult(apiOutput) === 'error'
 
 export default function WriteDemo(props) {
-  const { execute, binaryName } = props
+  const { execute, binaryName, helpContent } = props
 
   const nav = useNavigate()
   const state = React.useContext(Context)

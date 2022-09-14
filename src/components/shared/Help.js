@@ -1,21 +1,14 @@
 import React from 'react'
 import styled from 'styled-components'
 
+import { IconButton } from './Buttons'
+
 const Wrapper = styled.div`
   position: absolute;
   top: 200px;
   left: 50px;
 `
 
-const Button = styled.div`
-  width: 60px;
-  height: 60px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  background: ${(props) => props.background};
-`
 const ContentWrapper = styled.div`
   max-width: 500px;
   max-height: 400px;
@@ -51,9 +44,9 @@ export default function Help({
 
   return (
     <Wrapper>
-      <Button background={theme.help.background} onClick={toggle}>
+      <IconButton background={theme.help.background} onClick={toggle}>
         <ButtonText {...theme.font}>?</ButtonText>
-      </Button>
+      </IconButton>
 
       <ContentWrapper
         display={showContentState ? 'flex' : 'none'}
