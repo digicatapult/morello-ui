@@ -67,7 +67,6 @@ export const demos = [
     title: 'Placeholder Tile',
     description: 'Remove me please I am a placeholder',
     color: '#0C1B32',
-    Element: () => <></>,
   },
   {
     path: 'about-dsbd',
@@ -114,7 +113,6 @@ export const demos = [
     title: 'Placeholder Tile',
     description: 'Remove me please I am a placeholder',
     color: '#4F6C38',
-    Element: () => <></>,
   },
   {
     path: 'learn-morello',
