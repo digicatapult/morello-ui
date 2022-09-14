@@ -63,12 +63,6 @@ export const demos = [
     },
   },
   {
-    path: '',
-    title: 'Placeholder Tile',
-    description: 'Remove me please I am a placeholder',
-    color: '#0C1B32',
-  },
-  {
     path: 'about-dsbd',
     title: 'About Digital Security by Design',
     description: 'About the Digital Security by Design ISCF Challenge',
@@ -107,12 +101,6 @@ export const demos = [
       width: 960,
       height: 540,
     },
-  },
-  {
-    path: '',
-    title: 'Placeholder Tile',
-    description: 'Remove me please I am a placeholder',
-    color: '#4F6C38',
   },
   {
     path: 'learn-morello',
