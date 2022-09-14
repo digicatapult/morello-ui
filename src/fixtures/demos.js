@@ -17,6 +17,7 @@ import DsbdScreenShotPng from '../assets/images/dsbd-info-screenshot.png'
 import Explainer from '../components/Explainer'
 
 import OutOfBoundsReadImages from '../assets/images/out-of-bounds-read-explainer/OutOfBoundsReadImages'
+import OutOfBoundsWriteImages from '../assets/images/out-of-bounds-write-explainer/OutOfBoundsWriteImages'
 
 export const demos = [
   {
@@ -102,7 +103,7 @@ export const demos = [
       'Learn about Out of Bounds Write Exploits and How Morello Prevents Them',
     color: '#959728',
     Element: (props) => <Explainer {...props} />, // main element
-    images: [],
+    images: OutOfBoundsWriteImages,
     nativeSize: {
       width: 960,
       height: 540,

@@ -1,7 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
+import { useNavigate } from 'react-router-dom'
 
 import Header from './shared/Header'
+import { ButtonSide } from './shared/Buttons'
 
 const ExplainerWrapper = styled.div`
   width: min(
@@ -25,6 +27,7 @@ const ExplainerImage = styled.img`
 export default function Explainer(props) {
   const { images, nativeSize } = props
   const [currentSlide, setCurrentSlide] = React.useState(0)
+  const nav = useNavigate()
 
   const imageCount = images.length
   const prevSlide = React.useCallback(() => {
@@ -55,6 +58,8 @@ export default function Explainer(props) {
     }
   }, [nextSlide, prevSlide])
 
+  const isLastSlide = currentSlide >= images.length - 1
+
   return (
     <>
       <Header {...props} showClose={true} />
@@ -66,6 +71,15 @@ export default function Explainer(props) {
           onClick={nextSlide}
         />
       </ExplainerWrapper>
+      {isLastSlide && (
+        <ButtonSide
+          message={'Back to Menu'}
+          action={(e) => {
+            nav('/')
+            e.preventDefault()
+          }}
+        />
+      )}
     </>
   )
 }

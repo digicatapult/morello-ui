@@ -43,7 +43,6 @@ const titleProps = {
     },
     bar: {
       paddingTop: '4px',
-      backgroundColor: '#343556',
     },
   },
   Morello: {
