@@ -4,7 +4,6 @@ import styled from 'styled-components'
 import { DemoText, Row } from '../../shared/Common'
 
 const Wrapper = styled.div((props) => props)
-
 const BarBackground = styled.div((props) => ({
   ...props,
 }))
