@@ -16,6 +16,7 @@ const Indicator = styled.div`
 
 const Paper = styled.div`
   display: grid;
+  height: 100%;
   grid-template-rows: 1fr auto auto;
   opacity: 1;
   cursor: pointer;
@@ -40,6 +41,11 @@ const Paper = styled.div`
   }
 `
 
+const SubTitle = styled(P1)`
+  min-height: 4ch;
+  margin-bottom: 0;
+`
+
 export default function Card(props) {
   const { title, description, isDemo } = props
 
@@ -49,10 +55,10 @@ export default function Card(props) {
         <img width={'21px'} height={'21px'} src={cardArrow} />
       </Indicator>
       <H1>{title}</H1>
-      <P1>
+      <SubTitle>
         {isDemo ? <b>Bug type: </b> : null}
         {description}
-      </P1>
+      </SubTitle>
     </Paper>
   )
 }
