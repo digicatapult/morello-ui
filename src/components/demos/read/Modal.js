@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 
 import { Button, ButtonBasic } from '../../shared/Buttons'
@@ -75,6 +75,13 @@ const renderActions = ({ update, readDemo }) => {
 
 export default function Modal({ update, readDemo, ProgressBar }) {
   const { theme, showHackingProgress, renderModalActions } = readDemo
+
+  const [showOutput, setShowOutput] = useState(false)
+  const handleDetails = (e) => {
+    e.preventDefault()
+    setShowOutput(true)
+  }
+
   return (
     <Window data-cy={'hacker-app-modal'} styles={theme.modal.window}>
       <Title title={readDemo.modalTitle} arch={theme.name} />
@@ -92,17 +99,16 @@ export default function Modal({ update, readDemo, ProgressBar }) {
           {readDemo?.switchToMorello && (
             <Button onClick={readDemo.switchToMorello}>TRY</Button>
           )}
-          {readDemo.output && readDemo.theme.name === 'Morello' && (
-            <>
-              <DemoText
-                style={{
-                  boxShadow: 'inset 0 0 10px #000000',
-                  marginTop: '18px',
-                }}
-              >
-                {JSON.stringify(readDemo.output)}
-              </DemoText>
-            </>
+          {readDemo.output && <button onClick={handleDetails}>Details</button>}
+          {showOutput && (
+            <DemoText
+              style={{
+                boxShadow: 'inset 0 0 10px #000000',
+                marginTop: '18px',
+              }}
+            >
+              {JSON.stringify(readDemo.output)}
+            </DemoText>
           )}
         </Page>
       </Row>

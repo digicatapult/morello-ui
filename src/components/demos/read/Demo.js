@@ -185,6 +185,7 @@ export default function ReadDemo(props) {
           Modal({
             update,
             readDemo,
+
             ProgressBar: (props) => <ProgressBar {...props} />,
           })}
       </Wrapper>
