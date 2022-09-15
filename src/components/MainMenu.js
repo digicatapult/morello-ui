@@ -5,7 +5,7 @@ import styled from 'styled-components'
 import { demos } from '../fixtures/demos'
 import Card from './shared/Card'
 import Header from './shared/Header'
-import dsbdLogo from '../assets/images/logo.png'
+import logo from '../assets/images/logo.svg'
 
 const headerHeight = '164px'
 const layoutPadding = '50px'
@@ -39,7 +39,7 @@ export default function MainMenu() {
 
   return (
     <>
-      <Header logo={dsbdLogo} showClose={false} />
+      <Header logo={logo} showClose={false} />
       <CardLayout data-cy={'main-menu-container'} demoCount={demoCount}>
         {demos.map((details) => (
           <ItemWrap

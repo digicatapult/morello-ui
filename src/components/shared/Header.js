@@ -37,7 +37,7 @@ export default function Header(props) {
           {props.title}
         </H1>
       ) : (
-        <img src={props.logo} width={'140px'} height={'38px'} />
+        <img src={props.logo} height={'130px'} />
       )}
 
       {props.showClose && (
