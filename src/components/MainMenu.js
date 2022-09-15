@@ -4,32 +4,43 @@ import styled from 'styled-components'
 
 import { demos } from '../fixtures/demos'
 import Card from './shared/Card'
-import { Container } from './shared/Common'
 import Header from './shared/Header'
 import dsbdLogo from '../assets/images/logo.png'
 
+const headerHeight = '164px'
+const layoutPadding = '50px'
+const gridGap = '10px'
+const cardArea = `(100vh - ${headerHeight} - ${layoutPadding} - ${gridGap})`
+
 const ItemWrap = styled.div`
-  display: flex;
-  flex-basis: 20%;
+  max-width: calc(${cardArea} / 2);
   min-width: 180px;
   background-color: ${(props) => props.color};
+  &:nth-child(3n) {
+    max-width: calc(${cardArea} * 1 / 3);
+    grid-column: 4;
+  }
 `
 
-const CardLayout = styled(Container)`
-  flex-flow: row wrap;
-  gap: 10px;
-  max-width: 1400px;
+const CardLayout = styled.div`
+  display: grid;
+  grid-template-columns: auto auto 1fr 2.5fr;
+  grid-template-rows: repeat(2, calc(${cardArea} / 2));
+  gap: ${gridGap};
+  max-width: 1350px;
   margin: 0 auto;
-  padding: 0px 50px 50px 50px;
+  padding: 0px ${layoutPadding} ${layoutPadding} ${layoutPadding};
 `
 
 export default function MainMenu() {
   const nav = useNavigate()
 
+  const demoCount = demos.length / 2 - 1
+
   return (
     <>
       <Header logo={dsbdLogo} showClose={false} />
-      <CardLayout data-cy={'main-menu-container'} size={10}>
+      <CardLayout data-cy={'main-menu-container'} demoCount={demoCount}>
         {demos.map((details) => (
           <ItemWrap
             styles={{}}

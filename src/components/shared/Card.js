@@ -2,13 +2,16 @@ import React from 'react'
 import styled from 'styled-components'
 
 import { H1, P1 } from './Common'
-import cardArrow from '../../assets/images/card-arrow.png'
 
 const Indicator = styled.div`
   display: flex;
-  opacity: 0;
+  opacity: 0.8;
+  @media screen and (hover: hover) {
+    opacity: 0.4;
+  }
   width: 100%;
   justify-content: flex-end;
+  align-items: start;
   flex-direction: row;
   margin-top: 10px;
   transition: all 0.5s;
@@ -16,6 +19,7 @@ const Indicator = styled.div`
 
 const Paper = styled.div`
   display: grid;
+  height: 100%;
   grid-template-rows: 1fr auto auto;
   opacity: 1;
   cursor: pointer;
@@ -35,24 +39,29 @@ const Paper = styled.div`
       0 6px 20px 0 rgba(0, 0, 0, 0.29);
     opacity: 0.6;
     ${Indicator} {
-      opacity: 0.6;
+      opacity: 1;
     }
   }
 `
 
+const SubTitle = styled(P1)`
+  min-height: 4ch;
+  margin-bottom: 0;
+`
+
 export default function Card(props) {
-  const { title, description, isDemo } = props
+  const { title, description, isDemo, icon } = props
 
   return (
     <Paper {...props}>
       <Indicator>
-        <img width={'21px'} height={'21px'} src={cardArrow} />
+        <img width={'64px'} height={'64px'} src={icon} />
       </Indicator>
       <H1>{title}</H1>
-      <P1>
+      <SubTitle>
         {isDemo ? <b>Bug type: </b> : null}
         {description}
-      </P1>
+      </SubTitle>
     </Paper>
   )
 }
