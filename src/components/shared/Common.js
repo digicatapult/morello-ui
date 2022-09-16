@@ -29,15 +29,15 @@ export const H2 = styled.p({
   lineHeight: '11.52px',
 })
 
-export const DemoText = styled.p((props) => ({
-  fontFamily: 'Monaco',
-  fontSize: '18px',
-  color: '#FFFFFF',
-  fontWeight: '100',
-  margin: '0px',
-  padding: '10px',
-  ...props,
-}))
+export const DemoText = styled.p`
+  font-family: Monaco;
+  font-size: 18px;
+  color: #ffffff;
+  font-weight: 100;
+  margin: 0px;
+  padding-bottom: 25px;
+  ${(props) => props}
+`
 
 export const P1 = styled.p((props) => ({
   fontFamily: 'AktivGrotesk',

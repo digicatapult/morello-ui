@@ -18,21 +18,27 @@ export const Themes = (arch) => {
     arch: isCheri ? 'cheri' : 'aarch64',
     progressBar: {
       wrapper: {
-        height: isCheri ? '12px' : '22px',
-        width: '100%',
-        ...(isCheri ? { marginLeft: '3%' } : {}),
-        padding: '0px 10px',
+        display: 'flex',
+        flexDirection: 'column',
+        '> *:first-child': isCheri
+          ? {
+              alignSelf: 'center',
+              paddingBottom: '10px',
+            }
+          : {},
+        width: isCheri ? '75%' : '100%',
+        ...(isCheri ? { marginLeft: 'auto', marginRight: 'auto' } : {}),
       },
       background: {
-        height: '50%',
+        height: isCheri ? '6px' : '11px',
         width: '100%',
         background: isCheri ? '#000' : '#979797',
         padding: '0px',
       },
       bar: {
         position: 'relative',
-        height: '50%',
-        top: '-50%',
+        top: isCheri ? '-6px' : '-11px',
+        height: isCheri ? '6px' : '11px',
         background: isCheri ? '#fff' : '#d9d9d9',
       },
     },
@@ -147,8 +153,6 @@ export const Themes = (arch) => {
             top: '50%',
             left: '50%',
             width: '585px',
-            height: '258px',
-            maxHeight: '358px',
             borderRadius: '6px',
             border: '1px solid #818181',
             boxShadow: '0px 0px 4px #818181',
@@ -161,7 +165,6 @@ export const Themes = (arch) => {
             top: '50%',
             left: '50%',
             width: '586px',
-            height: '258px',
             background: '#CE1C1C',
           },
       page: isCheri
@@ -170,10 +173,10 @@ export const Themes = (arch) => {
             background: '#717171',
             color: '#818181',
             outlineOffset: '-10px',
-            padding: '5px;',
+            padding: '30px 15px',
           }
         : {
-            padding: '10px',
+            padding: '20px',
             boxSizing: 'border-box',
             justifyContent: 'space-between',
             outline: '2px solid #ffffff',
@@ -203,14 +206,14 @@ export const Themes = (arch) => {
         ? {
             justifyContent: 'center',
             width: '100%',
-            padding: '10px',
+            padding: '20px',
             color: '#fff',
           }
         : {
             boxSizing: 'border-box',
             height: '100%',
             width: '100%',
-            padding: '10px',
+            padding: '20px',
             outline: '2px solid #FFFFFF',
             outlineOffset: '-10px',
           },
