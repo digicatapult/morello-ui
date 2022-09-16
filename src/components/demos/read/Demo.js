@@ -115,10 +115,10 @@ export default function ReadDemo(props) {
         )}
         <Box {...readDemo}>
           {!readDemo.isPasswordSet && (
-            <>
+            <Col size={10}>
               <Row
                 justifyContent={isMorello ? 'center' : 'flex-start'}
-                marginTop={isMorello ? '70px' : '0px'}
+                marginTop={isMorello ? '120px' : '0px'}
               >
                 {isMorello && <img src={KeychainIcon} />}
                 <DemoText {...theme.font}>
@@ -153,11 +153,11 @@ export default function ReadDemo(props) {
                   </Container>
                 </form>
               </Container>
-            </>
+            </Col>
           )}
           {readDemo.isPasswordSet && isMorello && (
             <Col size={10}>
-              <Row justifyContent={'center'} marginTop={'70px'}>
+              <Row justifyContent={'center'} marginTop={'120px'}>
                 <img src={KeychainIcon} />
                 <DemoText {...theme.font}>
                   This application will store your password securely.
@@ -165,11 +165,16 @@ export default function ReadDemo(props) {
                   Please input a keyword of choice.
                 </DemoText>
               </Row>
-              <Row justifyContent={'center'} marginTop={'100px'}>
+              <Container
+                styles={{
+                  marginTop: '100px',
+                }}
+                size={10}
+              >
                 <DemoText {...theme.font}>
                   Password has been submitted. Now you can attempt to hack
                 </DemoText>
-              </Row>
+              </Container>
             </Col>
           )}
           {readDemo.isPasswordSet && !isMorello && (
