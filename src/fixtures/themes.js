@@ -182,29 +182,25 @@ export const Themes = (arch) => {
           },
     },
     primary: {
-      windowCont: isCheri
+      window: isCheri
         ? {
             background: '#fff',
-            width: '826px',
-            height: '626px',
-            border: '1px solid #818181',
             borderRadius: '6px',
-            color: '#fff',
+            border: '1px solid #818181',
             boxShadow: '0px 0px 4px #818181',
           }
         : {
-            display: 'flex',
-            position: 'relative',
-            flexDirection: 'column',
-            width: '826px',
-            height: '626px',
-            boxShadow: '12px 12px 1px rgba(0, 0, 0, 0.8)',
             background: '#343556',
+            boxShadow: '12px 12px 1px rgba(0, 0, 0, 0.8)',
           },
+      demoWindow: {
+        width: '826px',
+        height: '626px',
+        display: 'flex',
+        flexDirection: 'column',
+      },
       windowBody: isCheri
         ? {
-            display: 'flex',
-            flexDirection: 'column',
             justifyContent: 'center',
             width: '100%',
             padding: '10px',
@@ -219,15 +215,5 @@ export const Themes = (arch) => {
             outlineOffset: '-10px',
           },
     },
-    help: isCheri
-      ? {
-          background: '#fff',
-          borderRadius: '6px',
-          border: '1px solid #818181',
-        }
-      : {
-          background: '#343556',
-          boxShadow: '12px 12px 1px rgba(0, 0, 0, 0.8)',
-        },
   }
 }

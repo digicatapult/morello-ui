@@ -48,10 +48,10 @@ export default function Help({
   return (
     <Wrapper>
       <IconButton
-        background={theme.help.background}
-        boxShadow={theme.help.boxShadow}
-        borderRadius={theme.help.borderRadius}
-        border={theme.help.border}
+        background={theme.primary.window.background}
+        boxShadow={theme.primary.window.boxShadow}
+        borderRadius={theme.primary.window.borderRadius}
+        border={theme.primary.window.border}
         onClick={toggle}
       >
         <ButtonText {...theme.font}>?</ButtonText>
@@ -59,10 +59,10 @@ export default function Help({
 
       <ContentWrapper
         display={showContentState ? 'flex' : 'none'}
-        background={theme.help.background}
-        boxShadow={theme.help.boxShadow}
-        borderRadius={theme.help.borderRadius}
-        border={theme.help.border}
+        background={theme.primary.window.background}
+        boxShadow={theme.primary.window.boxShadow}
+        borderRadius={theme.primary.window.borderRadius}
+        border={theme.primary.window.border}
       >
         <ContentText {...theme.font}>{content}</ContentText>
       </ContentWrapper>
