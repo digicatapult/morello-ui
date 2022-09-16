@@ -19,6 +19,10 @@ import Explainer from '../components/Explainer'
 import OutOfBoundsReadImages from '../assets/images/out-of-bounds-read-explainer/OutOfBoundsReadImages'
 import OutOfBoundsWriteImages from '../assets/images/out-of-bounds-write-explainer/OutOfBoundsWriteImages'
 
+import bugIcon from '../assets/images/bug-icon.svg'
+import learnIcon from '../assets/images/learn-icon.svg'
+import arrowIcon from '../assets/images/double-right-icon.svg'
+
 export const demos = [
   {
     path: 'read-demo',
@@ -28,6 +32,7 @@ export const demos = [
     title: 'Are your secrets really safe?',
     description: 'Out of Bounds Read. CWE Score 24.9',
     color: '#384D6C',
+    icon: bugIcon,
     windowTitle: 'SUPER_SAFE_APP.EXE',
     modalTitle: 'hacker.app',
     modalText:
@@ -53,6 +58,7 @@ export const demos = [
     title: 'Is your password what you think it is?',
     description: 'Out of Bounds write. CWE Score 65.93',
     color: '#6C3838',
+    icon: bugIcon,
     windowTitle: 'SUPER_SAFE_APP.EXE',
     modalTitle: 'hacker.app',
     helpContent: `
@@ -69,16 +75,11 @@ export const demos = [
     },
   },
   {
-    path: '',
-    title: 'Placeholder Tile',
-    description: 'Remove me please I am a placeholder',
-    color: '#0C1B32',
-  },
-  {
     path: 'about-dsbd',
     title: 'About Digital Security by Design',
     description: 'About the Digital Security by Design ISCF Challenge',
     color: '#6C7076',
+    icon: arrowIcon,
     Element: (props) => <Info {...props} />, // main element
     screenshot: {
       webp: DsbdScreenShotWebP,
@@ -94,6 +95,7 @@ export const demos = [
     description:
       'Learn about Out of Bounds Read Exploits and How Morello Prevents Them',
     color: '#D1B44E',
+    icon: learnIcon,
     Element: (props) => <Explainer {...props} />, // main element
     images: OutOfBoundsReadImages,
     nativeSize: {
@@ -107,6 +109,7 @@ export const demos = [
     description:
       'Learn about Out of Bounds Write Exploits and How Morello Prevents Them',
     color: '#959728',
+    icon: learnIcon,
     Element: (props) => <Explainer {...props} />, // main element
     images: OutOfBoundsWriteImages,
     nativeSize: {
@@ -115,16 +118,11 @@ export const demos = [
     },
   },
   {
-    path: '',
-    title: 'Placeholder Tile',
-    description: 'Remove me please I am a placeholder',
-    color: '#4F6C38',
-  },
-  {
     path: 'learn-morello',
     title: 'Learn about the ARM Morello CPU',
     description: 'Learn more about the ARM Morello CPU',
     color: '#546278',
+    icon: arrowIcon,
     Element: (props) => <Info {...props} />, // main element
     screenshot: {
       webp: MorelloScreenShotWebP,
