@@ -11,6 +11,7 @@ import { ButtonSide } from '../../shared/Buttons'
 import { Themes } from '../../../fixtures/themes'
 import SecretDesktop from './SecretDesktop'
 import LoginForm from './LoginForm'
+import Help from '../../shared/Help'
 
 const Wrapper = styled.div`
   grid-area: body;
@@ -26,7 +27,7 @@ const successfulLogin = (apiOutput) =>
 const loginError = (apiOutput) => extractLoginResult(apiOutput) === 'error'
 
 export default function WriteDemo(props) {
-  const { execute, binaryName } = props
+  const { execute, binaryName, helpContent } = props
 
   const nav = useNavigate()
   const state = React.useContext(Context)
@@ -34,11 +35,13 @@ export default function WriteDemo(props) {
   const { theme } = demoState
   const isMorello = theme.name === 'Morello'
 
+  const [showHelp, setShowHelp] = useState(false)
   const [awaitingApi, setAwaitingApi] = useState(false)
   const [apiOutput, setApiOutput] = useState('')
   const [usernamePasswordPairs, setUsernamePasswordPairs] = useState([])
 
   const resetStates = () => {
+    setShowHelp(false)
     setAwaitingApi(false)
     setApiOutput('')
     setUsernamePasswordPairs([])
@@ -108,6 +111,12 @@ export default function WriteDemo(props) {
                 }}
               />
             )}
+        <Help
+          theme={theme}
+          content={helpContent}
+          showContentState={showHelp}
+          setShowContentState={setShowHelp}
+        />
       </Wrapper>
     </>
   )
