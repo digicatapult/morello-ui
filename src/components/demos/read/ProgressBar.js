@@ -67,9 +67,13 @@ export default function ProgressBar({ update, readDemo, cyPrefix = '' }) {
         data-cy={`${cyPrefix}progress-bar-text`}
         wordWrap={'break-word'}
       >
-        {readDemo.output.status != 'success'
-          ? 'HACK FAILED. The password could not be revealed!?'
-          : <>Your password is <b>${extractPassword(readDemo.output)}</b>!</>}
+        {readDemo.output.status != 'success' ? (
+          'HACK FAILED. The password could not be revealed!?'
+        ) : (
+          <>
+            Your password is <b>${extractPassword(readDemo.output)}</b>!
+          </>
+        )}
       </DemoText>
     </Row>
   )
