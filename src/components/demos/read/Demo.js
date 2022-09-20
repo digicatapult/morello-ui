@@ -51,7 +51,8 @@ export default function ReadDemo(props) {
 
   const switchToMorello = (e) => {
     e.preventDefault()
-
+    setPasswordInput('')
+    setSomeInputTyped(false)
     update({
       readDemo: {
         ...readDemo,
