@@ -34,12 +34,12 @@ const renderActions = ({ update, readDemo }) => {
     })
   }
 
-  const btn = () =>
+  const btn = ({ cyPrefix = '' }) =>
     readDemo.theme.name === 'Morello'
       ? [
           <Button
             key={'read-demo-modal-btn-yes-1'}
-            data-cy={'read-demo-modal-btn-yes-1'}
+            data-cy={`${cyPrefix}modal-btn-yes-cheri`}
             onClick={handleYes}
           >
             YES
@@ -47,8 +47,8 @@ const renderActions = ({ update, readDemo }) => {
           <div key={'div-1'} style={{ width: '30px' }} />,
           <Button
             key={'read-demo-modal-btn-no-1'}
-            data-cy={'read-demo-modal-btn-no-1'}
-            OnClick={handleNo}
+            data-cy={`${cyPrefix}modal-btn-no-cheri`}
+            onClick={handleNo}
           >
             NO
           </Button>,
@@ -56,14 +56,14 @@ const renderActions = ({ update, readDemo }) => {
       : [
           <ButtonBasic
             key={'read-demo-modal-btn-yes-2'}
-            data-cy={'read-demo-modal-btn-yes-2'}
+            data-cy={`${cyPrefix}modal-btn-yes-aarch64`}
             onClick={handleYes}
           >
             YES
           </ButtonBasic>,
           <ButtonBasic
             key={'read-demo-modal-btn-no-2'}
-            data-cy={'read-demo-modal-btn-no-2'}
+            data-cy={`${cyPrefix}modal-btn-no-aarch64`}
             onClick={handleNo}
           >
             NO
@@ -72,7 +72,7 @@ const renderActions = ({ update, readDemo }) => {
 
   return (
     <Row justifyContent={'center'} padding={'10px'}>
-      {btn()}
+      {btn({})}
     </Row>
   )
 }
@@ -92,11 +92,13 @@ export default function Modal({ update, readDemo, ProgressBar }) {
   }`
 
   return (
-    <Window data-cy={'hacker-app-modal'} styles={theme.modal.window}>
+    <Window data-cy={'modal-main'} styles={theme.modal.window}>
       <Title title={readDemo.modalTitle} arch={theme.name} />
       <Row>
         <Page {...theme.modal.page}>
-          <DemoText {...readDemo.txt_col}>{readDemo.modalText}</DemoText>
+          <DemoText data-cy={'modal-main-text'} {...readDemo.txt_col}>
+            {readDemo.modalText}
+          </DemoText>
 
           {renderModalActions && renderActions({ readDemo, update })}
           {showHackingProgress && (
