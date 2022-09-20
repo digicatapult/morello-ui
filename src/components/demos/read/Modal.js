@@ -42,7 +42,7 @@ const renderActions = ({ update, readDemo }) => {
             data-cy={'read-demo-modal-btn-yes-1'}
             onClick={handleYes}
           >
-            <DemoText {...readDemo.theme.font} margin={'0'}>
+            <DemoText {...readDemo.theme.font} color={'#fff'} margin={'0'}>
               YES
             </DemoText>
           </Button>,
@@ -52,7 +52,7 @@ const renderActions = ({ update, readDemo }) => {
             data-cy={'read-demo-modal-btn-no-1'}
             OnClick={handleNo}
           >
-            <DemoText {...readDemo.theme.font} margin={'0'}>
+            <DemoText {...readDemo.theme.font} color={'#fff'} margin={'0'}>
               NO
             </DemoText>
           </Button>,
