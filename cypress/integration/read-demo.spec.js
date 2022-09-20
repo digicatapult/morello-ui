@@ -245,12 +245,12 @@ describe('Read Demo', () => {
             .and('include.text', 'hacking in progress 98%')
         })
 
-        it('renders FAILURE message with details button', () => {
+        it('renders HACK FAILED message with details button', () => {
           cy.wait(30000)
           cy.get('[data-cy=progress-bar-text]')
             .should(
               'include.text',
-              'FAILURE. The password could not be revealed. - Display output?'
+              'HACK FAILED. The password could not be revealed!?'
             )
             .and('not.include.text', secret)
         })
