@@ -57,7 +57,7 @@ const SideButton = styled.div`
     }
   }
 `
-const LearnMessage = styled.p`
+const SideButtonTxt = styled.p`
   color: rgba(255, 255, 255, 1);
   font-size: 25px;
   z-index: 50;
@@ -66,12 +66,16 @@ const LearnMessage = styled.p`
   width: 10vw;
 `
 
-export function ButtonSide({ action, message = '' }) {
+export function ButtonSide({ action, message = '', cyPrefix = '' }) {
   return (
     <>
-      <SideButton onClick={action}>
+      <SideButton data-cy={`${cyPrefix}button-side`} onClick={action}>
         <Arrow />
-        <LearnMessage>{message}</LearnMessage>
+        {message && (
+          <SideButtonTxt data-cy={`${cyPrefix}button-side-text`}>
+            {message}
+          </SideButtonTxt>
+        )}
       </SideButton>
     </>
   )

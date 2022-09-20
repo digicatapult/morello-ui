@@ -37,13 +37,16 @@ export default function Hacker(props) {
   return (
     <IconWrapper data-cy={'hacker-app'}>
       <img
+        data-cy={'hacker-app-icon'}
         style={{ cursor: 'pointer' }}
         src={imageSrc}
         width={'60px'}
         height={'60px'}
         onClick={(e) => renderModal(e, { readDemo, update })}
       />
-      <IconText {...font}>{text}</IconText>
+      <IconText {...font} data-cy={'hacker-app-icon-text'}>
+        {text}
+      </IconText>
     </IconWrapper>
   )
 }

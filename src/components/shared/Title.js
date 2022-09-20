@@ -82,7 +82,7 @@ export default function Title({ title, theme }) {
   return (
     <Row alignItems={'center'} {...props.bar}>
       {props.icons.map((icon) => icon)}
-      <TitleText {...theme.font} {...props.text}>
+      <TitleText data-cy={'title-bar'} {...theme.font} {...props.text}>
         {title}
       </TitleText>
     </Row>

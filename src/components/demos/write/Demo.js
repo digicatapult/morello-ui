@@ -6,10 +6,9 @@ import Header from '../../shared/Header'
 import { Context, initState } from '../../../utils/context'
 import { extractLoginResult } from '../../../utils/write-demo-output'
 import Box from '../../shared/Box'
-import { Container } from '../../shared/Common'
+import { Container, Col, H2 } from '../../shared/Common'
 import { ButtonSide } from '../../shared/Buttons'
 import { Themes } from '../../../fixtures/themes'
-import SecretDesktop from './SecretDesktop'
 import LoginForm from './LoginForm'
 import Help from '../../shared/Help'
 
@@ -22,9 +21,33 @@ const Wrapper = styled.div`
   ${(props) => props}
 `
 
+const IconWrapper = styled.div`
+  width: 100px;
+  overflow-wrap: break-word;
+  text-align: center;
+`
+
 const successfulLogin = (apiOutput) =>
   extractLoginResult(apiOutput) === 'Login succeeded'
 const loginError = (apiOutput) => extractLoginResult(apiOutput) === 'error'
+
+const SecretDesktop = ({ icons }) => {
+  return (
+    <Col styles={{ padding: '0px 10px', alignItems: 'flex-start' }}>
+      {icons.map((icon) => (
+        <IconWrapper key={icon.name}>
+          <img
+            src={icon.img}
+            style={{ cursor: 'pointer' }}
+            width={'60px'}
+            height={'60px'}
+          />
+          <H2>{icon.name}</H2>
+        </IconWrapper>
+      ))}
+    </Col>
+  )
+}
 
 export default function WriteDemo(props) {
   const { execute, binaryName, helpContent } = props
@@ -83,7 +106,7 @@ export default function WriteDemo(props) {
       <Header {...props} showClose={true} />
       <Wrapper {...theme.wrapper}>
         {successfulLogin(apiOutput) ? (
-          <SecretDesktop {...theme.font} />
+          <SecretDesktop icons={props.secretDesktop} />
         ) : (
           <Box {...demoState}>
             <Container
@@ -97,6 +120,12 @@ export default function WriteDemo(props) {
                 apiOutput={apiOutput}
               />
             </Container>
+            <Help
+              theme={theme}
+              content={helpContent}
+              showContentState={showHelp}
+              setShowContentState={setShowHelp}
+            />
           </Box>
         )}
         {!isMorello
@@ -111,12 +140,6 @@ export default function WriteDemo(props) {
                 }}
               />
             )}
-        <Help
-          theme={theme}
-          content={helpContent}
-          showContentState={showHelp}
-          setShowContentState={setShowHelp}
-        />
       </Wrapper>
     </>
   )
