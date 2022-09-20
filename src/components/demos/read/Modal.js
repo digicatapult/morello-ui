@@ -42,7 +42,9 @@ const renderActions = ({ update, readDemo }) => {
             data-cy={'read-demo-modal-btn-yes-1'}
             onClick={handleYes}
           >
-            YES
+            <DemoText {...readDemo.theme.font} margin={'0'}>
+              YES
+            </DemoText>
           </Button>,
           <div key={'div-1'} style={{ width: '30px' }} />,
           <Button
@@ -50,7 +52,9 @@ const renderActions = ({ update, readDemo }) => {
             data-cy={'read-demo-modal-btn-no-1'}
             OnClick={handleNo}
           >
-            NO
+            <DemoText {...readDemo.theme.font} margin={'0'}>
+              NO
+            </DemoText>
           </Button>,
         ]
       : [
@@ -59,14 +63,18 @@ const renderActions = ({ update, readDemo }) => {
             data-cy={'read-demo-modal-btn-yes-2'}
             onClick={handleYes}
           >
-            YES
+            <DemoText {...readDemo.theme.font} color={'#000'} margin={'0'}>
+              YES
+            </DemoText>
           </ButtonBasic>,
           <ButtonBasic
             key={'read-demo-modal-btn-no-2'}
             data-cy={'read-demo-modal-btn-no-2'}
             onClick={handleNo}
           >
-            NO
+            <DemoText {...readDemo.theme.font} color={'#000'} margin={'0'}>
+              NO
+            </DemoText>
           </ButtonBasic>,
         ]
 
@@ -93,10 +101,10 @@ export default function Modal({ update, readDemo, ProgressBar }) {
 
   return (
     <Window data-cy={'hacker-app-modal'} styles={theme.modal.window}>
-      <Title title={readDemo.modalTitle} arch={theme.name} />
+      <Title title={readDemo.modalTitle} theme={theme} />
       <Row>
         <Page {...theme.modal.page}>
-          <DemoText {...readDemo.txt_col}>{readDemo.modalText}</DemoText>
+          <DemoText {...readDemo.theme.font}>{readDemo.modalText}</DemoText>
 
           {renderModalActions && renderActions({ readDemo, update })}
           {showHackingProgress && (

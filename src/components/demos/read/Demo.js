@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import styled from 'styled-components'
+import styled, { ThemeContext } from 'styled-components'
 import { useNavigate } from 'react-router-dom'
 import Header from '../../shared/Header'
 import HackerApp from './HackerApp'
@@ -111,7 +111,11 @@ export default function ReadDemo(props) {
           />
         )}
         {readDemo.isPasswordSet && (
-          <HackerApp imageSrc={theme.icons.hackerIcon} text={'hacker app'} />
+          <HackerApp
+            imageSrc={theme.icons.hackerIcon}
+            text={'hacker app'}
+            font={theme.font}
+          />
         )}
         <Box {...readDemo}>
           {!readDemo.isPasswordSet && (

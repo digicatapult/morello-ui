@@ -1,7 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import { H2 } from '../../shared/Common'
 import { Context } from '../../../utils/context'
 
 const IconWrapper = styled.div`
@@ -11,9 +10,19 @@ const IconWrapper = styled.div`
   width: 60px;
   text-align: center;
 `
+
+const IconText = styled.p`
+  font-family: ${(props) => props.fontFamily};
+  color: ${(props) => props.color};
+  font-size: 16px;
+  margin: 10px auto;
+  color: #ffffff;
+  line-height: 14px;
+`
+
 export default function Hacker(props) {
   const { readDemo, update } = React.useContext(Context)
-  const { imageSrc, text } = props
+  const { imageSrc, text, font } = props
 
   const renderModal = (e, { readDemo, update }) => {
     e.preventDefault()
@@ -34,7 +43,7 @@ export default function Hacker(props) {
         height={'60px'}
         onClick={(e) => renderModal(e, { readDemo, update })}
       />
-      <H2>{text}</H2>
+      <IconText {...font}>{text}</IconText>
     </IconWrapper>
   )
 }

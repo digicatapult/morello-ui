@@ -8,6 +8,9 @@ export const ButtonBasic = styled.button`
   height: 50px;
   margin-left: 5px;
   border: 0;
+  align-items: center;
+  display: flex;
+  justify-content: center;
 `
 
 const Arrow = styled.div`
@@ -82,6 +85,9 @@ export const Button = styled.button`
   background-color: #000;
   box-shadow: 0px 0px 4px #212124;
   border: 1px solid #212124;
+  align-items: center;
+  display: flex;
+  justify-content: center
 
   border-radius: 6px;
 

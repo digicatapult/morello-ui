@@ -12,7 +12,7 @@ export default function Box(props) {
 
   return (
     <Window {...theme.primary.window} {...theme.primary.demoWindow}>
-      <Title title={props.windowTitle} arch={theme.name} />
+      <Title title={props.windowTitle} theme={theme} />
       <Row flex={'auto'}>
         <Body {...theme.primary.windowBody}>{props.children}</Body>
       </Row>
