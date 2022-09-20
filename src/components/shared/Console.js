@@ -38,7 +38,7 @@ export default function Console({ executable, output }) {
 
   return (
     <ConsoleWrapper>
-      <DemoText paddingBottom={'5px'} onClick={toggleDetails}>
+      <DemoText marginBottom={'5px'} onClick={toggleDetails}>
         Details {caret}
       </DemoText>
       <ConsoleWindow showConsole={showConsole}>

@@ -112,7 +112,11 @@ export default function ReadDemo(props) {
           />
         )}
         {readDemo.isPasswordSet && (
-          <HackerApp imageSrc={theme.icons.hackerIcon} text={'hacker app'} />
+          <HackerApp
+            imageSrc={theme.icons.hackerIcon}
+            text={'hacker app'}
+            font={theme.font}
+          />
         )}
         <Box {...readDemo}>
           {!readDemo.isPasswordSet && (

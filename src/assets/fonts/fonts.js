@@ -1,8 +1,8 @@
 import { createGlobalStyle } from 'styled-components'
 import AktivGroteskWoff from './AktivGrotesk.woff'
 import AktivGroteskWoff2 from './AktivGrotesk.woff2'
-import asterisk from './asterisk.woff'
-import asteriskWoff2 from './asterisk.woff2'
+import OpenSansWoff from './OpenSans.woff'
+import OpenSansWoff2 from './OpenSans.woff2'
 import Monaco from './Monaco.woff'
 
 export default createGlobalStyle`
@@ -14,11 +14,10 @@ export default createGlobalStyle`
         font-style: normal;
     }
     @font-face {
-        font-family: 'asterisk';
-        src: local('asterisk'),
-        url('${asteriskWoff2}') format('woff2'),
-        url('${asterisk}') format('woff');
-        font-weight: normal;
+        font-family: 'OpenSans';
+        src: local('OpenSans'), local('Open Sans'),
+        url(${OpenSansWoff2}) format('woff2'),
+        url(${OpenSansWoff}) format('woff');
         font-style: normal;
     }
     @font-face {

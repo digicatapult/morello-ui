@@ -6,7 +6,7 @@ import Header from '../../shared/Header'
 import { Context, initState } from '../../../utils/context'
 import { extractLoginResult } from '../../../utils/write-demo-output'
 import Box from '../../shared/Box'
-import { Container, Col, H2 } from '../../shared/Common'
+import { Container, Col, IconText } from '../../shared/Common'
 import { ButtonSide } from '../../shared/Buttons'
 import { Themes } from '../../../fixtures/themes'
 import LoginForm from './LoginForm'
@@ -42,7 +42,7 @@ const SecretDesktop = ({ icons }) => {
             width={'60px'}
             height={'60px'}
           />
-          <H2>{icon.name}</H2>
+          <IconText>{icon.name}</IconText>
         </IconWrapper>
       ))}
     </Col>
