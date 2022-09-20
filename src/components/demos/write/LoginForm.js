@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import Input from '../../shared/Input'
 import { Container, Spinner } from '../../shared/Common'
 import { extractLoginResult } from '../../../utils/write-demo-output'
+import { Context } from '../../../utils/context'
 
 const Button = styled.button((props) => props)
 const LoginAttemptText = styled.p((props) => props)
@@ -15,13 +16,12 @@ const loginError = (apiOutput) => extractLoginResult(apiOutput) === 'error'
 export default function LoginForm({
   demoState,
   showSpinner,
-  setUsernamePasswordPairs,
-  apiOutput,
 }) {
   const [usernameInput, setUsernameInput] = useState('')
   const [passwordInput, setPasswordInput] = useState('')
   const [someUsernameTyped, setSomeUsernameTyped] = useState(false)
   const [somePasswordTyped, setSomePasswordTyped] = useState(false)
+  const { update, response } = React.useContext(Context)
 
   const usernameUpperBound = 16
   const passwordUpperBound = 16
@@ -37,11 +37,16 @@ export default function LoginForm({
     e.preventDefault()
 
     if (usernameInput.length > 0 && passwordInput.length > 0) {
-      setUsernamePasswordPairs((prev) => [
-        ...prev,
-        usernameInput,
-        passwordInput,
-      ])
+      update({
+        writeDemo: {
+          ...demoState,
+          usernamePasswordPairs: [
+            ...demoState.usernamePasswordPairs,
+            usernameInput,
+            passwordInput
+          ]
+        }
+      })
     }
   }
 
@@ -107,7 +112,7 @@ export default function LoginForm({
         <LoginAttemptText
           {...demoState.theme.form.loginAttempt}
           visibility={
-            failedLogin(apiOutput) || loginError(apiOutput)
+            failedLogin(response) || loginError(response)
               ? 'visible'
               : 'hidden'
           }

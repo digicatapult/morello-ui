@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { useNavigate } from 'react-router-dom'
 
 import Header from '../../shared/Header'
-import { Context, initState } from '../../../utils/context'
+import { Context } from '../../../utils/context'
 import { extractLoginResult } from '../../../utils/write-demo-output'
 import Box from '../../shared/Box'
 import { Container } from '../../shared/Common'
@@ -31,46 +31,44 @@ export default function WriteDemo(props) {
 
   const nav = useNavigate()
   const state = React.useContext(Context)
-  const { update, writeDemo: demoState } = state
+  const { update, writeDemo: demoState, showHelp, fetching, usernamePasswordPairs } = state
   const { theme } = demoState
   const isMorello = theme.name === 'Morello'
 
-  const [showHelp, setShowHelp] = useState(false)
-  const [awaitingApi, setAwaitingApi] = useState(false)
-  const [apiOutput, setApiOutput] = useState('')
-  const [usernamePasswordPairs, setUsernamePasswordPairs] = useState([])
-
-  const resetStates = () => {
-    setShowHelp(false)
-    setAwaitingApi(false)
-    setApiOutput('')
-    setUsernamePasswordPairs([])
-  }
-
   const switchToMorello = (e) => {
     e.preventDefault()
-    resetStates()
     update({
       writeDemo: {
         ...demoState,
+        showHelp: false,
+        fetching: false,
+        response: undefined,
+        usernamePasswordPairs: [],
         theme: Themes('Morello'),
       },
     })
   }
 
   useEffect(() => {
-    update(initState)
-  }, [update])
-
-  useEffect(() => {
     const attemptLogin = async () => {
+      update({
+        writeDemo: {
+          ...demoState,
+          fetching: true,
+        }
+      })
       setAwaitingApi(true)
       const output = await execute(
         `${binaryName}-${theme.arch}`,
         usernamePasswordPairs
       )
-      setApiOutput(output)
-      setAwaitingApi(false)
+      update({
+        writeDemo: {
+          ...demoState,
+          fetching: false,
+          response: output,
+        }
+      })
     }
 
     if (usernamePasswordPairs.length > 0) {
@@ -92,8 +90,7 @@ export default function WriteDemo(props) {
             >
               <LoginForm
                 demoState={demoState}
-                showSpinner={awaitingApi}
-                setUsernamePasswordPairs={setUsernamePasswordPairs}
+                showSpinner={fetching}
                 apiOutput={apiOutput}
               />
             </Container>
