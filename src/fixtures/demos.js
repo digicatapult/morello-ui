@@ -66,9 +66,6 @@ export const demos = [
     title: 'Is your password what you think it is?',
     description: 'Out of Bounds write. CWE Score 65.93',
     color: '#6C3838',
-    icon: bugIcon,
-    windowTitle: 'SUPER_SAFE_APP.EXE',
-    modalTitle: 'hacker.app',
     secretDesktop: [
       {
         name: 'Documents',
