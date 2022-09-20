@@ -18,6 +18,7 @@ export const initState = {
     showHelp: false,
     fetching: false,
     usernamePasswordPairs: [],
+    showConsole: false,
   },
 }
 

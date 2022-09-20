@@ -1,13 +1,9 @@
 import React, { useState, useEffect } from 'react'
-import styled from 'styled-components'
 
 import Input from '../../shared/Input'
 import { Container, Spinner } from '../../shared/Common'
 import { extractLoginResult } from '../../../utils/write-demo-output'
 import { Context } from '../../../utils/context'
-
-const Button = styled.button((props) => props)
-const LoginAttemptText = styled.p((props) => props)
 
 const failedLogin = (apiOutput) =>
   extractLoginResult(apiOutput) === 'Login failed'
@@ -101,15 +97,15 @@ export default function LoginForm({
           gap: '30px',
         }}
       >
-        <Button
-          {...demoState.theme.form.loginButton}
+        <button
+          style={demoState.theme.form.loginButton}
           data-cy={'login'}
           type={'submit'}
           disabled={showSpinner}
         >
           {showSpinner ? <Spinner /> : `Login`}
-        </Button>
-        <LoginAttemptText
+        </button>
+        <p
           {...demoState.theme.form.loginAttempt}
           visibility={
             failedLogin(response) || loginError(response)
@@ -118,10 +114,10 @@ export default function LoginForm({
           }
           data-cy={'login-attempt'}
         >
-          {failedLogin(apiOutput) && `Incorrect username or password`}
-          {loginError(apiOutput) &&
+          {failedLogin(response) && `Incorrect username or password`}
+          {loginError(response) &&
             `Suspicious activity detected - account locked`}
-        </LoginAttemptText>
+        </p>
       </Container>
     </form>
   )

@@ -1,17 +1,20 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import { useNavigate } from 'react-router-dom'
 
 import Header from '../../shared/Header'
-import { Context } from '../../../utils/context'
+import { Context, initState } from '../../../utils/context'
 import { extractLoginResult } from '../../../utils/write-demo-output'
 import Box from '../../shared/Box'
-import { Container } from '../../shared/Common'
+import { Container, H2 } from '../../shared/Common'
 import { ButtonSide } from '../../shared/Buttons'
 import { Themes } from '../../../fixtures/themes'
 import SecretDesktop from './SecretDesktop'
 import LoginForm from './LoginForm'
 import Help from '../../shared/Help'
+
+import ConsoleIcon from '../../../assets/images/console-icon.png'
+import Console from '../../shared/Console'
 
 const Wrapper = styled.div`
   grid-area: body;
@@ -22,17 +25,51 @@ const Wrapper = styled.div`
   ${(props) => props}
 `
 
-const successfulLogin = (apiOutput) =>
-  extractLoginResult(apiOutput) === 'Login succeeded'
-const loginError = (apiOutput) => extractLoginResult(apiOutput) === 'error'
+const ConsoleButtonWrapper = styled.div`
+  position: absolute;
+  bottom: 100px;
+  right: 15%;
+  width: 100px;
+  overflow-wrap: break-word;
+  pointer: cursor;
+  text-align: center;
+`
+
+const ConsoleButton = ({ update, state }) => {
+  return (
+    <ConsoleButtonWrapper
+      onClick={(e) => {
+        e.preventDefault()
+        update({
+          writeDemo: {
+            ...state,
+            showConsole: true,
+          }
+        })
+      }}
+    >
+      <img
+        src={ConsoleIcon}
+        style={{ cursor: 'pointer' }}
+        width={'60px'}
+        height={'60px'}
+      />
+      <H2>Console</H2>
+    </ConsoleButtonWrapper>
+  )
+}
+
+const successfulLogin = (response) =>
+  extractLoginResult(response) === 'Login succeeded'
+const loginError = (response) => extractLoginResult(response) === 'error'
 
 export default function WriteDemo(props) {
   const { execute, binaryName, helpContent } = props
 
   const nav = useNavigate()
   const state = React.useContext(Context)
-  const { update, writeDemo: demoState, showHelp, fetching, usernamePasswordPairs } = state
-  const { theme } = demoState
+  const { update, writeDemo: demoState } = state
+  const { theme, showHelp, fetching, usernamePasswordPairs, response, showConsole } = demoState
   const isMorello = theme.name === 'Morello'
 
   const switchToMorello = (e) => {
@@ -43,6 +80,7 @@ export default function WriteDemo(props) {
         showHelp: false,
         fetching: false,
         response: undefined,
+        showConsole: false,
         usernamePasswordPairs: [],
         theme: Themes('Morello'),
       },
@@ -57,7 +95,6 @@ export default function WriteDemo(props) {
           fetching: true,
         }
       })
-      setAwaitingApi(true)
       const output = await execute(
         `${binaryName}-${theme.arch}`,
         usernamePasswordPairs
@@ -74,13 +111,17 @@ export default function WriteDemo(props) {
     if (usernamePasswordPairs.length > 0) {
       attemptLogin()
     }
-  }, [usernamePasswordPairs, execute, binaryName, theme])
+  }, [usernamePasswordPairs])
+
+  useEffect(() => {
+    update(initState)
+  }, [])
 
   return (
     <>
       <Header {...props} showClose={true} />
       <Wrapper {...theme.wrapper}>
-        {successfulLogin(apiOutput) ? (
+        {successfulLogin(response) ? (
           <SecretDesktop {...theme.font} />
         ) : (
           <Box {...demoState}>
@@ -91,29 +132,32 @@ export default function WriteDemo(props) {
               <LoginForm
                 demoState={demoState}
                 showSpinner={fetching}
-                apiOutput={apiOutput}
+                response={response}
               />
             </Container>
           </Box>
         )}
         {!isMorello
-          ? successfulLogin(apiOutput) && (
-              <ButtonSide action={switchToMorello} />
-            )
-          : (successfulLogin(apiOutput) || loginError(apiOutput)) && (
-              <ButtonSide
+          ? successfulLogin(response) && <ButtonSide action={switchToMorello} />
+          : (successfulLogin(response) || loginError(response)) && 
+              [<ButtonSide
                 message={'Learn More'}
                 action={() => {
                   nav('/write-demo-explainer')
                 }}
-              />
-            )}
+              />,
+              <ConsoleButton update={update} state={demoState} />
+              ]
+            }
         <Help
           theme={theme}
           content={helpContent}
           showContentState={showHelp}
-          setShowContentState={setShowHelp}
         />
+      {showConsole && <Console
+        executable={`${binaryName}-${theme.arch} ${usernamePasswordPairs.join(', ')}`}
+        output={response.output}
+      />}
       </Wrapper>
     </>
   )
