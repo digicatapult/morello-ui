@@ -6,10 +6,9 @@ import Header from '../../shared/Header'
 import { Context, initState } from '../../../utils/context'
 import { extractLoginResult } from '../../../utils/write-demo-output'
 import Box from '../../shared/Box'
-import { Container } from '../../shared/Common'
+import { Container, Row, Col, H1 } from '../../shared/Common'
 import { ButtonSide } from '../../shared/Buttons'
 import { Themes } from '../../../fixtures/themes'
-import SecretDesktop from './SecretDesktop'
 import LoginForm from './LoginForm'
 import Help from '../../shared/Help'
 
@@ -25,6 +24,17 @@ const Wrapper = styled.div`
 const successfulLogin = (apiOutput) =>
   extractLoginResult(apiOutput) === 'Login succeeded'
 const loginError = (apiOutput) => extractLoginResult(apiOutput) === 'error'
+
+const renderDesktopIcons = (icons) => {
+  return (
+      <Col>
+        {icons.map(icon => <Col>
+          <img src={icon.img} />
+          <H1>{icon.name}</H1>
+        </Col>)}
+      </Col>
+  )
+}
 
 export default function WriteDemo(props) {
   const { execute, binaryName, helpContent } = props
@@ -82,10 +92,9 @@ export default function WriteDemo(props) {
     <>
       <Header {...props} showClose={true} />
       <Wrapper {...theme.wrapper}>
-        {successfulLogin(apiOutput) ? (
-          <SecretDesktop {...theme.font} />
-        ) : (
-          <Box {...demoState}>
+        {successfulLogin(apiOutput)
+          ? renderDesktopIcons(demoState.icons)
+          : (<Box {...demoState}>
             <Container
               styles={{ height: '100%', paddingTop: '150px' }}
               size={10}

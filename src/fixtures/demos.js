@@ -23,6 +23,14 @@ import bugIcon from '../assets/images/bug-icon.svg'
 import learnIcon from '../assets/images/learn-icon.svg'
 import arrowIcon from '../assets/images/double-right-icon.svg'
 
+// demo 2 (write) desktop icons
+import MyDocumentsIcon from '../assets/images/my-documents.png'
+import MyDownloadsIcon from '../assets/images/my-downloads.png'
+import MyMusicIcon from '../assets/images/my-music.png'
+import MyVideosIcon from '../assets/images/my-videos.png'
+import TextIcon from '../assets/images/text-icon.png'
+import JpegIcon from '../assets/images/jpeg-icon.png'
+
 export const demos = [
   {
     path: 'read-demo',
@@ -61,6 +69,36 @@ export const demos = [
     icon: bugIcon,
     windowTitle: 'SUPER_SAFE_APP.EXE',
     modalTitle: 'hacker.app',
+    secretDesktop: [
+      {
+        name: 'My Documents',
+        img: MyDocumentsIcon,
+      },
+      {
+        name: 'My Downloads ',
+        img: MyDownloadsIcon,
+      },
+      {
+        name: 'My Music',
+        img: MyMusicIcon,
+      },
+      {
+        name: 'My Videos',
+        img: MyVideosIcon,
+      },
+      {
+        name: 'My Passwords.txt',
+        img: TextIcon,
+      },
+      {
+        name: 'BankingDetails_Secret.txt',
+        img: TextIcon,
+      },
+      {
+        name: 'SecretPhoto.jpg',
+        img: JpegIcon,
+      },
+    ],
     helpContent: `
       The username is root.
       \nPassword can be changed by attempting to login with a username that is longer than 16 characters to perform an out of bounds write. 
