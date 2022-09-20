@@ -101,7 +101,7 @@ export default function Modal({ update, readDemo, ProgressBar }) {
 
   return (
     <Window data-cy={'modal-main'} styles={theme.modal.window}>
-      <Title title={readDemo.modalTitle} arch={theme.name} />
+      <Title title={readDemo.modalTitle} theme={theme} />
       <Row>
         <Page {...theme.modal.page}>
           <DemoText data-cy={'modal-main-text'} {...readDemo.theme.font}>
