@@ -71,7 +71,7 @@ export default function ProgressBar({ update, readDemo, cyPrefix = '' }) {
           'HACK FAILED. The password could not be revealed!?'
         ) : (
           <>
-            Your password is <b>${extractPassword(readDemo.output)}</b>!
+            Your password is <b>{extractPassword(readDemo.output)}</b>!
           </>
         )}
       </DemoText>
