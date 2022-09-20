@@ -37,42 +37,46 @@ const renderActions = ({ update, readDemo }) => {
   const btn = ({ cyPrefix = '' }) =>
     readDemo.theme.name === 'Morello'
       ? [
-          <Button
-            key={'read-demo-modal-btn-yes-1'}
-            data-cy={`${cyPrefix}modal-btn-yes-cheri`}
-            onClick={handleYes}
-          >
-            <DemoText {...readDemo.theme.font} color={'#fff'} margin={'0'}>
+          <Button key={'read-demo-modal-btn-yes-1'} onClick={handleYes}>
+            <DemoText
+              data-cy={`${cyPrefix}modal-btn-yes-cheri`}
+              {...readDemo.theme.font}
+              color={'#fff'}
+              margin={'0'}
+            >
               YES
             </DemoText>
           </Button>,
           <div key={'div-1'} style={{ width: '30px' }} />,
-          <Button
-            key={'read-demo-modal-btn-no-1'}
-            data-cy={`${cyPrefix}modal-btn-no-cheri`}
-            onClick={handleNo}
-          >
-            <DemoText {...readDemo.theme.font} color={'#fff'} margin={'0'}>
+          <Button key={'read-demo-modal-btn-no-1'} onClick={handleNo}>
+            <DemoText
+              data-cy={`${cyPrefix}modal-btn-no-cheri`}
+              {...readDemo.theme.font}
+              color={'#fff'}
+              margin={'0'}
+            >
               NO
             </DemoText>
           </Button>,
         ]
       : [
-          <ButtonBasic
-            key={'read-demo-modal-btn-yes-2'}
-            data-cy={`${cyPrefix}modal-btn-yes-aarch64`}
-            onClick={handleYes}
-          >
-            <DemoText {...readDemo.theme.font} color={'#000'} margin={'0'}>
+          <ButtonBasic key={'read-demo-modal-btn-yes-2'} onClick={handleYes}>
+            <DemoText
+              data-cy={`${cyPrefix}modal-btn-yes-aarch64`}
+              {...readDemo.theme.font}
+              color={'#000'}
+              margin={'0'}
+            >
               YES
             </DemoText>
           </ButtonBasic>,
-          <ButtonBasic
-            key={'read-demo-modal-btn-no-2'}
-            data-cy={`${cyPrefix}modal-btn-no-aarch64`}
-            onClick={handleNo}
-          >
-            <DemoText {...readDemo.theme.font} color={'#000'} margin={'0'}>
+          <ButtonBasic key={'read-demo-modal-btn-no-2'} onClick={handleNo}>
+            <DemoText
+              data-cy={`${cyPrefix}modal-btn-no-aarch64`}
+              {...readDemo.theme.font}
+              color={'#000'}
+              margin={'0'}
+            >
               NO
             </DemoText>
           </ButtonBasic>,

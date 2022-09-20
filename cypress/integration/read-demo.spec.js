@@ -176,7 +176,7 @@ describe('Read Demo', { defaultCommandTimeout: 60000 }, () => {
             .and('to.be.ok')
           cy.get('[data-cy=hacker-app-icon-text]')
             .should('have.css', 'font-family')
-            .and('contain', 'Monaco')
+            .and('contain', 'OpenSans')
         })
 
         it('removes password input', () => {
