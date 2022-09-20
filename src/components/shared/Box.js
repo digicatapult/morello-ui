@@ -14,7 +14,7 @@ export default function Box(props) {
   const { theme } = props
 
   return (
-    <Window {...theme.primary.windowCont}>
+    <Window data-cy={'content-container'} {...theme.primary.windowCont}>
       <Title title={props.windowTitle} arch={theme.name} />
       <Row flex={'auto'}>
         <Body {...theme.primary.windowBody}>{props.children}</Body>
