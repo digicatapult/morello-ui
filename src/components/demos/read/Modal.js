@@ -4,9 +4,12 @@ import styled from 'styled-components'
 import { Button, ButtonBasic } from '../../shared/Buttons'
 import { DemoText, Col, Row } from '../../shared/Common'
 import Title from '../../shared/Title'
+import Console from '../../shared/Console'
 
 const Window = styled.div(({ styles }) => styles)
-const Page = styled(Col)((props) => props)
+const Page = styled(Col)`
+  ${(props) => props}
+`
 
 const renderActions = ({ update, readDemo }) => {
   const handleNo = (e) => {
@@ -75,12 +78,23 @@ const renderActions = ({ update, readDemo }) => {
 }
 
 export default function Modal({ update, readDemo, ProgressBar }) {
-  const { theme, showHackingProgress, renderModalActions } = readDemo
+  const {
+    theme,
+    showHackingProgress,
+    renderModalActions,
+    output,
+    binaryName,
+    password,
+  } = readDemo
+
+  const executableAndArgs = `${binaryName}-${theme.arch} ${password} -32 ${
+    -32 + password.length
+  }`
 
   return (
     <Window data-cy={'modal-main'} styles={theme.modal.window}>
       <Title title={readDemo.modalTitle} arch={theme.name} />
-      <Row flex={'auto'}>
+      <Row>
         <Page {...theme.modal.page}>
           <DemoText data-cy={'modal-main-text'} {...readDemo.txt_col}>
             {readDemo.modalText}
@@ -88,13 +102,14 @@ export default function Modal({ update, readDemo, ProgressBar }) {
 
           {renderModalActions && renderActions({ readDemo, update })}
           {showHackingProgress && (
-            <Row height={'50px'} flex={'auto'} marginTop={'20px'}>
-              <ProgressBar readDemo={readDemo} update={update} />
-            </Row>
+            <ProgressBar readDemo={readDemo} update={update} />
           )}
           {readDemo?.switchToMorello && (
             <Button onClick={readDemo.switchToMorello}>TRY</Button>
           )}
+          {output ? (
+            <Console executable={executableAndArgs} output={output.output} />
+          ) : null}
         </Page>
       </Row>
     </Window>

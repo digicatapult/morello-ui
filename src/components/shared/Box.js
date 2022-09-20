@@ -5,16 +5,13 @@ import { Row } from './Common'
 import Title from './Title'
 
 const Window = styled.div((props) => props)
-const Body = styled.div((props) => ({
-  width: '100%',
-  ...props,
-}))
+const Body = styled.div((props) => props)
 
 export default function Box(props) {
   const { theme } = props
 
   return (
-    <Window data-cy={'content-container'} {...theme.primary.windowCont}>
+    <Window data-cy={'content-container'} {...theme.primary.window} {...theme.primary.demoWindow}>
       <Title title={props.windowTitle} arch={theme.name} />
       <Row flex={'auto'}>
         <Body {...theme.primary.windowBody}>{props.children}</Body>

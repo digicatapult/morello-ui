@@ -17,14 +17,14 @@ export default createGlobalStyle`
         font-family: 'asterisk';
         src: local('asterisk'),
         url('${asteriskWoff2}') format('woff2'),
-        url('${asterisk}') format('woff'),
+        url('${asterisk}') format('woff');
         font-weight: normal;
         font-style: normal;
     }
     @font-face {
         font-family: 'Monaco';
         src: local('Monaco'), local('Monaco'),
-        url(${Monaco}) format('woff'),
+        url(${Monaco}) format('woff');
         font-style: normal;
     }
 `
