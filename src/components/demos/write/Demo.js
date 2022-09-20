@@ -33,8 +33,9 @@ const loginError = (apiOutput) => extractLoginResult(apiOutput) === 'error'
 
 const renderDesktopIcons = (icons) => {
   return (
-      <Col styles={{ padding: '0px 10px', alignItems: 'flex-start' }}>
-        {icons.map(icon => <IconWrapper>
+    <Col styles={{ padding: '0px 10px', alignItems: 'flex-start' }}>
+      {icons.map((icon) => (
+        <IconWrapper key={icon.name}>
           <img
             src={icon.img}
             style={{ cursor: 'pointer' }}
@@ -42,8 +43,9 @@ const renderDesktopIcons = (icons) => {
             height={'60px'}
           />
           <H2>{icon.name}</H2>
-        </IconWrapper>)}
-      </Col>
+        </IconWrapper>
+      ))}
+    </Col>
   )
 }
 
@@ -103,9 +105,10 @@ export default function WriteDemo(props) {
     <>
       <Header {...props} showClose={true} />
       <Wrapper {...theme.wrapper}>
-        {successfulLogin(apiOutput)
-          ? renderDesktopIcons(props.secretDesktop)
-          : (<Box {...demoState}>
+        {successfulLogin(apiOutput) ? (
+          renderDesktopIcons(props.secretDesktop)
+        ) : (
+          <Box {...demoState}>
             <Container
               styles={{ height: '100%', paddingTop: '150px' }}
               size={10}
