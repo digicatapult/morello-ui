@@ -71,27 +71,27 @@ export const demos = [
     modalTitle: 'hacker.app',
     secretDesktop: [
       {
-        name: 'My Documents',
+        name: 'Documents',
         img: MyDocumentsIcon,
       },
       {
-        name: 'My Downloads ',
+        name: 'Downloads ',
         img: MyDownloadsIcon,
       },
       {
-        name: 'My Music',
+        name: 'Music',
         img: MyMusicIcon,
       },
       {
-        name: 'My Videos',
+        name: 'Videos',
         img: MyVideosIcon,
       },
       {
-        name: 'My Passwords.txt',
+        name: 'passwords.txt',
         img: TextIcon,
       },
       {
-        name: 'BankingDetails_Secret.txt',
+        name: 'BankingDetails.txt',
         img: TextIcon,
       },
       {
