@@ -31,7 +31,7 @@ const successfulLogin = (apiOutput) =>
   extractLoginResult(apiOutput) === 'Login succeeded'
 const loginError = (apiOutput) => extractLoginResult(apiOutput) === 'error'
 
-const renderDesktopIcons = (icons) => {
+const SecretDesktop = ({ icons }) => {
   return (
     <Col styles={{ padding: '0px 10px', alignItems: 'flex-start' }}>
       {icons.map((icon) => (
@@ -106,7 +106,7 @@ export default function WriteDemo(props) {
       <Header {...props} showClose={true} />
       <Wrapper {...theme.wrapper}>
         {successfulLogin(apiOutput) ? (
-          renderDesktopIcons(props.secretDesktop)
+          <SecretDesktop icons={props.secretDesktop} />
         ) : (
           <Box {...demoState}>
             <Container
