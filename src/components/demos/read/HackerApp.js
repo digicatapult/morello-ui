@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 import { Context } from '../../../utils/context'
+import { IconText } from '../../shared/Common'
 
 const IconWrapper = styled.div`
   position: absolute;
@@ -9,15 +10,6 @@ const IconWrapper = styled.div`
   bottom: 100px;
   width: 60px;
   text-align: center;
-`
-
-const IconText = styled.p`
-  font-family: ${(props) => props.fontFamily};
-  color: ${(props) => props.color};
-  font-size: 16px;
-  margin: 10px auto;
-  color: #ffffff;
-  line-height: 14px;
 `
 
 export default function Hacker(props) {

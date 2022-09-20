@@ -20,6 +20,15 @@ export const H1 = styled.h1((props) => ({
   ...props,
 }))
 
+export const IconText = styled.p`
+  font-family: ${(props) => props.fontFamily};
+  color: ${(props) => props.color};
+  font-size: 16px;
+  margin: 10px auto;
+  color: #ffffff;
+  line-height: 16.52px;
+`
+
 export const DemoText = styled.p`
   font-family: Monaco;
   font-size: 18px;
