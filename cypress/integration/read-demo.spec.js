@@ -1,6 +1,5 @@
-describe('Read Demo', () => {
+describe('Read Demo', { defaultCommandTimeout: 60000 }, () => {
   const secret = 'shhh-secret'
-  const delay = 10000
 
   beforeEach(() => {
     cy.visit('/read-demo')
@@ -131,13 +130,11 @@ describe('Read Demo', () => {
           .and('include.text', 'hacking in progress 98%')
       })
 
-      it('displays user`s password', { defaultCommandTimeout: 60000 }, () => {
-        cy.wait(30000)
+      it('displays user`s password', () => {
         cy.get('[data-cy=progress-bar-text]').should('include.text', secret)
       })
 
       it('renders a side button for demo 1b', () => {
-        cy.wait(delay)
         cy.get('[data-cy=button-side]').should('exist').and('include.text', '')
       })
     })
@@ -148,8 +145,6 @@ describe('Read Demo', () => {
         cy.get('[data-cy=submit-password-btn]').click()
         cy.get('[data-cy=hacker-app]').click()
         cy.get('[data-cy=modal-btn-yes-aarch64]').click()
-        // TODO figure out a better way (quicker either to wrap in describe blocks or...)
-        cy.wait(delay)
         cy.get('[data-cy=button-side]').click()
       })
 
@@ -245,8 +240,7 @@ describe('Read Demo', () => {
             .and('include.text', 'hacking in progress 98%')
         })
 
-        it('renders HACK FAILED message with details button', () => {
-          cy.wait(30000)
+        it('renders HACK FAILED', () => {
           cy.get('[data-cy=progress-bar-text]')
             .should(
               'include.text',
@@ -260,7 +254,6 @@ describe('Read Demo', () => {
         })
 
         it('renders Learn More side button', () => {
-          cy.wait(delay)
           cy.get('[data-cy=button-side]')
             .should('exist')
             .and('include.text', 'Learn More')
