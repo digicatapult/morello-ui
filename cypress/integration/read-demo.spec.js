@@ -39,7 +39,7 @@ describe('Read Demo', () => {
         .and('contain', 'rgba(0, 0, 0, 0)')
     })
 
-    describe('Enters to long password', () => {
+    describe('Enters too long password', () => {
       it('cuts off long passwords', () => {
         // eslint-disable-next-line cypress/no-force
         cy.get('[data-cy=password-input-box]', {
