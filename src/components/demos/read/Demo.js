@@ -51,7 +51,8 @@ export default function ReadDemo(props) {
 
   const switchToMorello = (e) => {
     e.preventDefault()
-
+    setPasswordInput('')
+    setSomeInputTyped(false)
     update({
       readDemo: {
         ...readDemo,
@@ -141,14 +142,14 @@ export default function ReadDemo(props) {
                       setInputState={setPasswordInput}
                       inputType={'password'}
                       upperBound={passwordUpperBound}
-                      cySelector={'password'}
+                      cySelector={'password-input-box'}
                       showInputError={passwordAtMaxLength || noPasswordEntered}
                       InputErrorWarning={InputErrorWarning}
                     />
                     <Button
                       {...readDemo.theme.form.savePasswordButton}
                       type={'submit'}
-                      data-cy={'submit-password'}
+                      data-cy={'submit-password-btn'}
                     />
                   </Container>
                 </form>

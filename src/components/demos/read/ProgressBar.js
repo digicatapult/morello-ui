@@ -19,7 +19,7 @@ const extractPassword = ({ output }) =>
     .pop()
     .trim()
 
-export default function ProgressBar({ update, readDemo }) {
+export default function ProgressBar({ update, readDemo, cyPrefix = '' }) {
   const [progress, setProgress] = React.useState(10)
   const { theme } = readDemo
 
@@ -56,20 +56,25 @@ export default function ProgressBar({ update, readDemo }) {
   const showProgress = progress !== 100
 
   return showProgress ? (
-    <Wrapper data-cy={'read-demo-progress-bar'} {...theme.progressBar.wrapper}>
+    <Wrapper data-cy={`${cyPrefix}progress-bar`} {...theme.progressBar.wrapper}>
       <DemoText>{`hacking in progress ${progress}%`}</DemoText>
       <BarBackground {...theme.progressBar.background} />
       <Bar progress={progress} {...theme.progressBar.bar} />
     </Wrapper>
   ) : (
     <Row>
-      {readDemo.output.status != 'success' ? (
-        <DemoText>HACK FAILED. The password could not be revealed!?</DemoText>
-      ) : (
-        <DemoText>
-          Your password is <b>{extractPassword(readDemo.output)}</b>!
-        </DemoText>
-      )}
+      <DemoText
+        data-cy={`${cyPrefix}progress-bar-text`}
+        wordWrap={'break-word'}
+      >
+        {readDemo.output.status != 'success' ? (
+          'HACK FAILED. The password could not be revealed!?'
+        ) : (
+          <>
+            Your password is <b>{extractPassword(readDemo.output)}</b>!
+          </>
+        )}
+      </DemoText>
     </Row>
   )
 }
