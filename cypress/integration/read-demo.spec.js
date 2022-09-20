@@ -132,7 +132,7 @@ describe('Read Demo', () => {
       })
 
       it('displays user`s password', { defaultCommandTimeout: 60000 }, () => {
-        cy.wait(delay)
+        cy.wait(30000)
         cy.get('[data-cy=progress-bar-text]').should('include.text', secret)
       })
 
@@ -246,7 +246,7 @@ describe('Read Demo', () => {
         })
 
         it('renders FAILURE message with details button', () => {
-          cy.wait(delay)
+          cy.wait(30000)
           cy.get('[data-cy=progress-bar-text]')
             .should(
               'include.text',
