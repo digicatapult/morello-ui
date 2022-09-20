@@ -2,11 +2,15 @@ import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 
 import Input from '../../shared/Input'
-import { Container, Spinner } from '../../shared/Common'
+import { Spinner } from '../../shared/Common'
 import { extractLoginResult } from '../../../utils/write-demo-output'
 
 const Button = styled.button((props) => props)
 const LoginAttemptText = styled.p((props) => props)
+const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+`
 
 const failedLogin = (apiOutput) =>
   extractLoginResult(apiOutput) === 'Login failed'
@@ -17,6 +21,7 @@ export default function LoginForm({
   showSpinner,
   setUsernamePasswordPairs,
   apiOutput,
+  setApiOutput,
 }) {
   const [usernameInput, setUsernameInput] = useState('')
   const [passwordInput, setPasswordInput] = useState('')
@@ -32,6 +37,7 @@ export default function LoginForm({
   const passwordAtMaxLength = passwordInput.length >= passwordUpperBound
 
   const enterUsernameAndPassword = async (e) => {
+    setApiOutput('')
     setSomeUsernameTyped(true)
     setSomePasswordTyped(true)
     e.preventDefault()
@@ -68,8 +74,15 @@ export default function LoginForm({
     }
   }, [usernameInput, passwordInput])
 
+  useEffect(() => {
+    if (failedLogin(apiOutput) || loginError(apiOutput)) {
+      setPasswordInput('')
+      setSomePasswordTyped(false)
+    }
+  }, [apiOutput])
+
   return (
-    <form onSubmit={enterUsernameAndPassword}>
+    <Form onSubmit={enterUsernameAndPassword}>
       <Input
         label={'Username'}
         theme={demoState.theme.form}
@@ -77,47 +90,39 @@ export default function LoginForm({
         showInputError={usernameAtMaxLength || noUsernameEntered}
         InputErrorWarning={UsernameErrorWarning}
         cySelector={'username'}
+        style={{ alignSelf: 'center' }}
       />
       <Input
         label={'Password'}
         theme={demoState.theme.form}
+        value={passwordInput}
         setInputState={setPasswordInput}
         upperBound={passwordUpperBound}
         inputType={'password'}
         showInputError={passwordAtMaxLength || noPasswordEntered}
         InputErrorWarning={PasswordErrorWarning}
         cySelector={'password'}
+        style={{ alignSelf: 'center' }}
       />
-      <Container
-        size={10}
-        styles={{
-          flexDirection: 'column',
-          alignItems: 'center',
-          gap: '30px',
-        }}
+      <Button
+        {...demoState.theme.form.loginButton}
+        data-cy={'login'}
+        type={'submit'}
+        disabled={showSpinner}
       >
-        <Button
-          {...demoState.theme.form.loginButton}
-          data-cy={'login'}
-          type={'submit'}
-          disabled={showSpinner}
-        >
-          {showSpinner ? <Spinner /> : `Login`}
-        </Button>
-        <LoginAttemptText
-          {...demoState.theme.form.loginAttempt}
-          visibility={
-            failedLogin(apiOutput) || loginError(apiOutput)
-              ? 'visible'
-              : 'hidden'
-          }
-          data-cy={'login-attempt'}
-        >
-          {failedLogin(apiOutput) && `Incorrect username or password`}
-          {loginError(apiOutput) &&
-            `Suspicious activity detected - account locked`}
-        </LoginAttemptText>
-      </Container>
-    </form>
+        {showSpinner ? <Spinner /> : `Login`}
+      </Button>
+      <LoginAttemptText
+        {...demoState.theme.form.loginAttempt}
+        visibility={
+          failedLogin(apiOutput) || loginError(apiOutput) ? 'visible' : 'hidden'
+        }
+        data-cy={'login-attempt'}
+      >
+        {failedLogin(apiOutput) && `Incorrect username or password`}
+        {loginError(apiOutput) &&
+          `Suspicious activity detected - account locked`}
+      </LoginAttemptText>
+    </Form>
   )
 }

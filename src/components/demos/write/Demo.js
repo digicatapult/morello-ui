@@ -95,6 +95,7 @@ export default function WriteDemo(props) {
                 showSpinner={awaitingApi}
                 setUsernamePasswordPairs={setUsernamePasswordPairs}
                 apiOutput={apiOutput}
+                setApiOutput={setApiOutput}
               />
             </Container>
           </Box>

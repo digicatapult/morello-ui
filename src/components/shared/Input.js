@@ -10,15 +10,17 @@ const Warning = styled.p((props) => props)
 export default function Input({
   label,
   theme,
+  value,
   setInputState,
   inputType = 'text',
   upperBound,
   cySelector,
   showInputError,
   InputErrorWarning,
+  style,
 }) {
   return (
-    <div>
+    <div style={style}>
       <Label {...theme.label}>{label}</Label>
       <Row>
         <InputBox
@@ -26,6 +28,7 @@ export default function Input({
           data-cy={`${cySelector}`}
           type={inputType}
           maxLength={upperBound}
+          value={value}
           onChange={(e) => {
             setInputState(e.target.value)
           }}
