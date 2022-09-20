@@ -197,7 +197,7 @@ describe('Read Demo', { defaultCommandTimeout: 60000 }, () => {
             cy.get('[data-cy=modal-btn-no-cheri]').click()
           })
 
-          it('updates state so moddal is no longer rendered', () => {
+          it('updates state so modal is no longer rendered', () => {
             cy.get('[data-cy=modal-main]').should('not.exist')
           })
         })
@@ -214,12 +214,12 @@ describe('Read Demo', { defaultCommandTimeout: 60000 }, () => {
             .should('exist')
             .and('include.text', 'YES')
             .and('have.css', 'font-family')
-            .and('contain', 'Monaco')
+            .and('contain', 'OpenSans')
           cy.get('[data-cy=modal-btn-no-cheri]')
             .should('exist')
             .and('include.text', 'NO')
             .and('have.css', 'font-family')
-            .and('contain', 'Monaco')
+            .and('contain', 'OpenSans')
         })
       })
 
