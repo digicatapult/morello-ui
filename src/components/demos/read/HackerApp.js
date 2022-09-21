@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 
+import { H2 } from '../../shared/Common'
 import { Context } from '../../../utils/context'
-import { IconText } from '../../shared/Common'
 
 const IconWrapper = styled.div`
   position: absolute;
@@ -11,10 +11,9 @@ const IconWrapper = styled.div`
   width: 60px;
   text-align: center;
 `
-
 export default function Hacker(props) {
   const { readDemo, update } = React.useContext(Context)
-  const { imageSrc, text, font } = props
+  const { imageSrc, text } = props
 
   const renderModal = (e, { state, update }) => {
     e.preventDefault()
@@ -29,14 +28,13 @@ export default function Hacker(props) {
   return (
     <IconWrapper data-cy={'hacker-app'}>
       <img
-        data-cy={'hacker-app-icon'}
         style={{ cursor: 'pointer' }}
         src={imageSrc}
         width={'60px'}
         height={'60px'}
         onClick={(e) => renderModal(e, { type: 'readDemmo', state: readDemo, update })}
       />
-      <H2 data-cy={'hacker-app-icon-text'}>{text}</H2>
+      <H2>{text}</H2>
     </IconWrapper>
   )
 }
