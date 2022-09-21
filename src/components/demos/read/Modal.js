@@ -33,12 +33,12 @@ const renderActions = ({ update, type = 'readDemo', ...props }) => {
   }
 
   const btn = ({ cyPrefix = '' }) =>
-    readDemo.theme.name === 'Morello'
+    props.theme.name === 'Morello'
       ? [
           <Button key={'read-demo-modal-btn-yes-1'} onClick={handleYes}>
             <DemoText
               data-cy={`${cyPrefix}modal-btn-yes-cheri`}
-              {...readDemo.theme.font}
+              {...props.theme.font}
               color={'#fff'}
               margin={'0'}
             >
@@ -49,7 +49,7 @@ const renderActions = ({ update, type = 'readDemo', ...props }) => {
           <Button key={'read-demo-modal-btn-no-1'} onClick={handleNo}>
             <DemoText
               data-cy={`${cyPrefix}modal-btn-no-cheri`}
-              {...readDemo.theme.font}
+              {...props.theme.font}
               color={'#fff'}
               margin={'0'}
             >
@@ -61,7 +61,7 @@ const renderActions = ({ update, type = 'readDemo', ...props }) => {
           <ButtonBasic key={'read-demo-modal-btn-yes-2'} onClick={handleYes}>
             <DemoText
               data-cy={`${cyPrefix}modal-btn-yes-aarch64`}
-              {...readDemo.theme.font}
+              {...props.theme.font}
               color={'#000'}
               margin={'0'}
             >
@@ -71,7 +71,7 @@ const renderActions = ({ update, type = 'readDemo', ...props }) => {
           <ButtonBasic key={'read-demo-modal-btn-no-2'} onClick={handleNo}>
             <DemoText
               data-cy={`${cyPrefix}modal-btn-no-aarch64`}
-              {...readDemo.theme.font}
+              {...props.theme.font}
               color={'#000'}
               margin={'0'}
             >
@@ -86,7 +86,8 @@ const renderActions = ({ update, type = 'readDemo', ...props }) => {
   )
 }
 
-export default function Modal({ update, ...props }) {
+export default function Modal({ type, update, ...props }) {
+  console.log({props})
   const {
     theme,
     showHackingProgress,
@@ -107,9 +108,9 @@ export default function Modal({ update, ...props }) {
             {...props.theme.font}
             color={'#fff'}
           >
-            {messsage || props.modalText}
+            {message || props.modalText}
           </DemoText>
-          {renderModalActions && renderActions({ ...props, update, type: props.type })}
+          {renderModalActions && renderActions({ ...props, update, type })}
           {showHackingProgress && <ProgressBar readDemo={props} update={update} />}
           {response ? (
             <Console executable={props.args} output={response.output} show={props.show} />

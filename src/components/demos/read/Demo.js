@@ -191,13 +191,14 @@ export default function ReadDemo(props) {
           )}
         </Box>
         {state.renderModal &&
-          Modal({
-            update,
-            type: 'readDemo',
-            state,
-            args: `${state.binaryName}-${theme.arch} ${state.password} -32 ${-32 + state.password.length}`,
-            ProgressBar: (props) => <ProgressBar {...props} />,
-          })}
+          <Modal
+            type={'readDemo'}
+            update={update}
+            {...{
+              ...state,
+              ProgressBar: (props) => <ProgressBar {...props} />,
+            }}
+          />}
       </Wrapper>
     </>
   )

@@ -178,10 +178,14 @@ export default function WriteDemo(props) {
           showContentState={showHelp}
         />
       {showResponse && <Modal
-        type={'readDemo'}
-        message={'some msg...'}
+        type={'writeDemo'}
         update={update}
-        state={{...demoState, ...props, show: true }}
+        {...{
+          ...demoState,
+          ...props,
+          show: true,
+          message: 'Morellow authentication output'
+        }}
       />}
       </Wrapper>
     </>
