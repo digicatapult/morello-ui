@@ -7,7 +7,9 @@ import Title from '../../shared/Title'
 import Console from '../../shared/Console'
 
 const Window = styled.div(({ styles }) => styles)
-const Page = styled(Col)`${(props) => props}`
+const Page = styled(Col)`
+  ${(props) => props}
+`
 
 // giving default value to avoid bugs in case this is undefined
 const renderActions = ({ update, type = 'readDemo', ...props }) => {
@@ -81,40 +83,37 @@ const renderActions = ({ update, type = 'readDemo', ...props }) => {
         ]
   return (
     <Row justifyContent={'center'} padding={'10px'}>
-      {btn({})}
+      {btn({ cyPrefix: `${props.path}-` })}
     </Row>
   )
 }
 
 export default function Modal({ type, update, ...props }) {
-  console.log({props})
-  const {
-    theme,
-    showHackingProgress,
-    renderModalActions,
-    output: response,
-    message,
-    ProgressBar,
-    path
-  } = props
-  
+  const { theme, showHackingProgress, renderModalActions, ProgressBar } = props
+
   return (
-    <Window data-cy={`${path}-modal`} styles={theme.modal.window}>
+    <Window data-cy={`${props.path}-modal`} styles={theme.modal.window}>
       <Title title={props.modalTitle} theme={theme} />
       <Row>
         <Page {...theme.modal.page}>
           <DemoText
-            data-cy={'modal-main-text'}
+            data-cy={`${props.path}-modal-text`}
             {...props.theme.font}
             color={'#fff'}
           >
-            {message || props.modalText}
+            {props.message || props.modalText}
           </DemoText>
           {renderModalActions && renderActions({ ...props, update, type })}
-          {showHackingProgress && <ProgressBar readDemo={props} update={update} />}
-          {response ? (
-            <Console executable={props.args} output={response.output} show={props.show} />
-          ) : null}
+          {showHackingProgress && (
+            <ProgressBar readDemo={props} update={update} />
+          )}
+          {props.output && (
+            <Console
+              executable={props.args}
+              output={props.output.output}
+              show={props.show}
+            />
+          )}
         </Page>
       </Row>
     </Window>

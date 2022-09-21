@@ -6,7 +6,7 @@ import Header from '../../shared/Header'
 import { Context, initState } from '../../../utils/context'
 import { extractLoginResult } from '../../../utils/write-demo-output'
 import Box from '../../shared/Box'
-import { Container, Col, IconText, H1 as H2 } from '../../shared/Common'
+import { Container, Col, IconText } from '../../shared/Common'
 import { ButtonSide } from '../../shared/Buttons'
 import { Themes } from '../../../fixtures/themes'
 import LoginForm from './LoginForm'
@@ -40,8 +40,8 @@ const ConsoleButtonWrapper = styled.div`
   text-align: center;
 `
 
-
-const successfulLogin = (apiOutput) => extractLoginResult(apiOutput) === 'Login succeeded'
+const successfulLogin = (apiOutput) =>
+  extractLoginResult(apiOutput) === 'Login succeeded'
 const loginError = (apiOutput) => extractLoginResult(apiOutput) === 'error'
 
 const ConsoleButton = ({ update, state }) => {
@@ -53,7 +53,7 @@ const ConsoleButton = ({ update, state }) => {
           writeDemo: {
             ...state,
             showResponse: true,
-          }
+          },
         })
       }}
     >
@@ -92,8 +92,10 @@ export default function WriteDemo(props) {
   const nav = useNavigate()
   const state = React.useContext(Context)
   const { update, writeDemo: demoState } = state
-  const { theme, showHelp, usernamePasswordPairs, output, showResponse } = demoState
+  const { theme, showHelp, usernamePasswordPairs, output, showResponse } =
+    demoState
   const isMorello = theme.name === 'Morello'
+  const bin = `${binaryName}-${theme.arch}`
 
   const switchToMorello = (e) => {
     e.preventDefault()
@@ -116,29 +118,27 @@ export default function WriteDemo(props) {
         writeDemo: {
           ...demoState,
           fetching: true,
-        }
+        },
       })
-      const output = await execute(
-        `${binaryName}-${theme.arch}`,
-        usernamePasswordPairs
-      )
+      // TODO allow execute to handle states e.g. isFetching isError...
+      const output = await execute(bin, usernamePasswordPairs)
       update({
         writeDemo: {
           ...demoState,
           fetching: false,
           output,
-        }
+        },
       })
     }
 
     if (usernamePasswordPairs.length > 0) {
       attemptLogin()
     }
-  }, [usernamePasswordPairs])
+  }, [bin, demoState, execute, update, usernamePasswordPairs])
 
   useEffect(() => {
     update(initState)
-  }, [])
+  }, [update])
 
   return (
     <>
@@ -164,29 +164,33 @@ export default function WriteDemo(props) {
         {!isMorello
           ? successfulLogin(output) && <ButtonSide action={switchToMorello} />
           : (successfulLogin(output) || loginError(output)) && [
-            <ButtonSide
-              message={'Learn More'}
-              action={() => {
-                nav('/write-demo-explainer')
-              }}
-            />,
-            <ConsoleButton update={update} state={demoState} />
-          ]}
-        <Help
-          theme={theme}
-          content={helpContent}
-          showContentState={showHelp}
-        />
-      {showResponse && <Modal
-        type={'writeDemo'}
-        update={update}
-        {...{
-          ...demoState,
-          ...props,
-          show: true,
-          message: 'Morellow authentication output'
-        }}
-      />}
+              <ButtonSide
+                key={'write-demo-side-btn'}
+                message={'Learn More'}
+                action={() => {
+                  nav('/write-demo-explainer')
+                }}
+              />,
+              <ConsoleButton
+                key={'write-demo-console-icon'}
+                update={update}
+                state={demoState}
+              />,
+            ]}
+        <Help theme={theme} content={helpContent} showContentState={showHelp} />
+        {showResponse && (
+          <Modal
+            type={'writeDemo'}
+            update={update}
+            show={true}
+            message={'Morellow authentication output'}
+            args={`${binaryName}-${theme.arch} ${usernamePasswordPairs.join(
+              ', '
+            )}`}
+            {...demoState}
+            {...props}
+          />
+        )}
       </Wrapper>
     </>
   )

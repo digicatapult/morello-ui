@@ -190,7 +190,7 @@ export default function ReadDemo(props) {
             </DemoText>
           )}
         </Box>
-        {state.renderModal &&
+        {state.renderModal && (
           <Modal
             type={'readDemo'}
             update={update}
@@ -198,7 +198,8 @@ export default function ReadDemo(props) {
               ...state,
               ProgressBar: (props) => <ProgressBar {...props} />,
             }}
-          />}
+          />
+        )}
       </Wrapper>
     </>
   )

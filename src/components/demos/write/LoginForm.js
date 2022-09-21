@@ -14,7 +14,10 @@ export default function LoginForm({ demoState }) {
   const [passwordInput, setPasswordInput] = useState('')
   const [someUsernameTyped, setSomeUsernameTyped] = useState(false)
   const [somePasswordTyped, setSomePasswordTyped] = useState(false)
-  const { update, writeDemo: { output, fetching } } = React.useContext(Context)
+  const {
+    update,
+    writeDemo: { output, fetching },
+  } = React.useContext(Context)
 
   const usernameUpperBound = 16
   const passwordUpperBound = 16
@@ -36,9 +39,9 @@ export default function LoginForm({ demoState }) {
           usernamePasswordPairs: [
             ...demoState.usernamePasswordPairs,
             usernameInput,
-            passwordInput
-          ]
-        }
+            passwordInput,
+          ],
+        },
       })
     }
   }
@@ -105,9 +108,7 @@ export default function LoginForm({ demoState }) {
         <p
           {...demoState.theme.form.loginAttempt}
           visibility={
-            failedLogin(output) || loginError(output)
-              ? 'visible'
-              : 'hidden'
+            failedLogin(output) || loginError(output) ? 'visible' : 'hidden'
           }
           data-cy={'login-attempt'}
         >
