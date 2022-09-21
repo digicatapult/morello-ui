@@ -30,22 +30,22 @@ describe('Read Demo', { defaultCommandTimeout: 60000 }, () => {
       cy.get('[data-cy=content-container]')
         .should('have.css', 'background-color')
         .and('contain', 'rgb(52, 53, 86)')
-      cy.get('[data-cy=password-input-box]')
+      cy.get('[data-cy=secret-input-box]')
         .should('have.css', 'background-color')
         .and('contain', 'rgb(52, 53, 86)')
-      cy.get('[data-cy=submit-password-btn]')
+      cy.get('[data-cy=submit-secret-btn]')
         .should('have.css', 'background-color')
         .and('contain', 'rgba(0, 0, 0, 0)')
     })
 
-    describe('Enters too long password', () => {
-      it('cuts off long passwords', () => {
+    describe('Enters too long secret', () => {
+      it('cuts off long secrets', () => {
         // eslint-disable-next-line cypress/no-force
-        cy.get('[data-cy=password-input-box]', {
+        cy.get('[data-cy=secret-input-box]', {
           maxlength: 16,
           force: true,
         }).type('12345678910111213141516', { force: true })
-        cy.get('[data-cy=password-input-box]').should(
+        cy.get('[data-cy=secret-input-box]').should(
           'have.value',
           '1234567891011121'
         )
@@ -53,10 +53,10 @@ describe('Read Demo', { defaultCommandTimeout: 60000 }, () => {
       // TODO assert for error text
     })
 
-    describe('Submits password', () => {
+    describe('Submits secret', () => {
       beforeEach(() => {
-        cy.get('[data-cy=password-input-box]').type(secret)
-        cy.get('[data-cy=submit-password-btn]').click()
+        cy.get('[data-cy=secret-input-box]').type(secret)
+        cy.get('[data-cy=submit-secret-btn]').click()
       })
 
       it('renders hacker app', () => {
@@ -70,16 +70,16 @@ describe('Read Demo', { defaultCommandTimeout: 60000 }, () => {
           .and('contain', 'Monaco')
       })
 
-      it('removes password form', () => {
-        cy.get('[data-cy=password-input-box]').should('not.exist')
-        cy.get('[data-cy=submit-password-btn]').should('not.exist')
+      it('removes secret form', () => {
+        cy.get('[data-cy=secret-input-box]').should('not.exist')
+        cy.get('[data-cy=submit-secret-btn]').should('not.exist')
       })
     })
 
     describe('Opens hacker app', () => {
       beforeEach(() => {
-        cy.get('[data-cy=password-input-box]').type(secret)
-        cy.get('[data-cy=submit-password-btn]').click()
+        cy.get('[data-cy=secret-input-box]').type(secret)
+        cy.get('[data-cy=submit-secret-btn]').click()
         cy.get('[data-cy=hacker-app]').click()
       })
       describe('Selects [no] option', () => {
@@ -98,7 +98,7 @@ describe('Read Demo', { defaultCommandTimeout: 60000 }, () => {
           .should('exist')
           .should(
             'include.text',
-            'Would you like to break into the system and reveal the password?'
+            'Would you like to break into the system and reveal the secret?'
           )
         cy.get('[data-cy=modal-btn-yes-aarch64]')
           .should('exist')
@@ -115,8 +115,8 @@ describe('Read Demo', { defaultCommandTimeout: 60000 }, () => {
 
     describe('Initiates hacking', () => {
       beforeEach(() => {
-        cy.get('[data-cy=password-input-box]').type(secret)
-        cy.get('[data-cy=submit-password-btn]').click()
+        cy.get('[data-cy=secret-input-box]').type(secret)
+        cy.get('[data-cy=submit-secret-btn]').click()
         cy.get('[data-cy=hacker-app]').click()
         cy.get('[data-cy=modal-btn-yes-aarch64]').click()
       })
@@ -130,7 +130,7 @@ describe('Read Demo', { defaultCommandTimeout: 60000 }, () => {
           .and('include.text', 'hacking in progress 98%')
       })
 
-      it('displays user`s password', () => {
+      it('displays user`s secret', () => {
         cy.get('[data-cy=progress-bar-text]').should('include.text', secret)
       })
 
@@ -141,8 +141,8 @@ describe('Read Demo', { defaultCommandTimeout: 60000 }, () => {
 
     describe('Demo 1B', () => {
       beforeEach(() => {
-        cy.get('[data-cy=password-input-box]').type(secret)
-        cy.get('[data-cy=submit-password-btn]').click()
+        cy.get('[data-cy=secret-input-box]').type(secret)
+        cy.get('[data-cy=submit-secret-btn]').click()
         cy.get('[data-cy=hacker-app]').click()
         cy.get('[data-cy=modal-btn-yes-aarch64]').click()
         cy.get('[data-cy=button-side]').click()
@@ -153,18 +153,18 @@ describe('Read Demo', { defaultCommandTimeout: 60000 }, () => {
         cy.get('[data-cy=content-container]')
           .should('have.css', 'background-color')
           .and('contain', 'rgb(255, 255, 255)')
-        cy.get('[data-cy=password-input-box]')
+        cy.get('[data-cy=secret-input-box]')
           .should('have.css', 'background-color')
           .and('contain', 'rgb(255, 255, 255)')
-        cy.get('[data-cy=submit-password-btn]')
+        cy.get('[data-cy=submit-secret-btn]')
           .should('have.css', 'background-color')
           .and('contain', 'rgba(0, 0, 0, 0)')
       })
 
-      describe('Submits password', () => {
+      describe('Submits secret', () => {
         beforeEach(() => {
-          cy.get('[data-cy=password-input-box]').type(secret)
-          cy.get('[data-cy=submit-password-btn]').click()
+          cy.get('[data-cy=secret-input-box]').type(secret)
+          cy.get('[data-cy=submit-secret-btn]').click()
         })
 
         it('renders morello hacker app', () => {
@@ -179,16 +179,16 @@ describe('Read Demo', { defaultCommandTimeout: 60000 }, () => {
             .and('contain', 'OpenSans')
         })
 
-        it('removes password input', () => {
-          cy.get('[data-cy=password-input-box]').should('not.exist')
-          cy.get('[data-cy=submit-password-btn]').should('not.exist')
+        it('removes secret input', () => {
+          cy.get('[data-cy=secret-input-box]').should('not.exist')
+          cy.get('[data-cy=submit-secret-btn]').should('not.exist')
         })
       })
 
       describe('Opens hacker app', () => {
         beforeEach(() => {
-          cy.get('[data-cy=password-input-box]').type(secret)
-          cy.get('[data-cy=submit-password-btn]').click()
+          cy.get('[data-cy=secret-input-box]').type(secret)
+          cy.get('[data-cy=submit-secret-btn]').click()
           cy.get('[data-cy=hacker-app]').click()
         })
 
@@ -208,7 +208,7 @@ describe('Read Demo', { defaultCommandTimeout: 60000 }, () => {
             .should('exist')
             .should(
               'include.text',
-              'Would you like to break into the system and reveal the password?'
+              'Would you like to break into the system and reveal the secret?'
             )
           cy.get('[data-cy=modal-btn-yes-cheri]')
             .should('exist')
@@ -225,8 +225,8 @@ describe('Read Demo', { defaultCommandTimeout: 60000 }, () => {
 
       describe('Initiates hacking', () => {
         beforeEach(() => {
-          cy.get('[data-cy=password-input-box]').type(secret)
-          cy.get('[data-cy=submit-password-btn]').click()
+          cy.get('[data-cy=secret-input-box]').type(secret)
+          cy.get('[data-cy=submit-secret-btn]').click()
           cy.get('[data-cy=hacker-app]').click()
           cy.get('[data-cy=modal-btn-yes-cheri]').click()
         })
@@ -244,7 +244,7 @@ describe('Read Demo', { defaultCommandTimeout: 60000 }, () => {
           cy.get('[data-cy=progress-bar-text]')
             .should(
               'include.text',
-              'HACK FAILED. The password could not be revealed!?'
+              'HACK FAILED. The secret could not be revealed!?'
             )
             .and('not.include.text', secret)
         })
@@ -259,8 +259,8 @@ describe('Read Demo', { defaultCommandTimeout: 60000 }, () => {
             .and('include.text', 'Learn More')
           cy.get('[data-cy=button-side]').click()
           cy.get('[data-cy=content-container]').should('not.exist')
-          cy.get('[data-cy=password-input-box]').should('not.exist')
-          cy.get('[data-cy=submit-password-btn]').should('not.exist')
+          cy.get('[data-cy=secret-input-box]').should('not.exist')
+          cy.get('[data-cy=submit-secret-btn]').should('not.exist')
         })
       })
     })

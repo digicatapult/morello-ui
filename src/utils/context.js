@@ -5,9 +5,9 @@ import { Themes } from '../fixtures/themes'
 export const initState = {
   readDemo: {
     theme: Themes('Aarch64'),
-    password: '',
+    secret: '',
     showHackPopup: false,
-    isPasswordSet: false,
+    isSecretSet: false,
     renderModal: false,
     renderModalActions: true,
     showHackingProgress: false,

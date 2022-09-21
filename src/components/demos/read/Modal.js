@@ -96,11 +96,11 @@ export default function Modal({ update, readDemo, ProgressBar }) {
     renderModalActions,
     output,
     binaryName,
-    password,
+    secret,
   } = readDemo
 
-  const executableAndArgs = `${binaryName}-${theme.arch} ${password} -32 ${
-    -32 + password.length
+  const executableAndArgs = `${binaryName}-${theme.arch} ${secret} -32 ${
+    -32 + secret.length
   }`
 
   return (

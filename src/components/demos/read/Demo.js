@@ -27,9 +27,9 @@ export default function ReadDemo(props) {
   const state = React.useContext(Context)
 
   const nav = useNavigate()
-  const [passwordInput, setPasswordInput] = useState('')
+  const [secretInput, setSecretInput] = useState('')
   const [someInputTyped, setSomeInputTyped] = useState(false)
-  const passwordUpperBound = 16
+  const secretUpperBound = 16
   const readDemo = { ...state.readDemo, ...props }
 
   const { update } = state
@@ -39,28 +39,28 @@ export default function ReadDemo(props) {
   const time = new Date().toLocaleTimeString()
   const isMorello = theme.name === 'Morello'
 
-  const noPasswordEntered = passwordInput.length === 0 && someInputTyped
-  const passwordAtMaxLength = passwordInput.length === passwordUpperBound
+  const noSecretEntered = secretInput.length === 0 && someInputTyped
+  const secretAtMaxLength = secretInput.length === secretUpperBound
 
   const InputErrorWarning = () => (
     <>
-      {noPasswordEntered && <>Cannot be empty</>}
-      {passwordAtMaxLength && <>Maximum length reached</>}
+      {noSecretEntered && <>Cannot be empty</>}
+      {secretAtMaxLength && <>Maximum length reached</>}
     </>
   )
 
   const switchToMorello = (e) => {
     e.preventDefault()
-    setPasswordInput('')
+    setSecretInput('')
     setSomeInputTyped(false)
     update({
       readDemo: {
         ...readDemo,
         theme: Themes('Morello'),
         output: undefined,
-        password: '',
+        secret: '',
         showHackPopup: false,
-        isPasswordSet: false,
+        isSecretSet: false,
         renderModal: false,
         renderModalActions: true,
         showHackingProgress: false,
@@ -68,26 +68,26 @@ export default function ReadDemo(props) {
     })
   }
 
-  const enterPassword = (e) => {
+  const enterSecret = (e) => {
     e.preventDefault()
     setSomeInputTyped(true)
 
-    if (passwordInput.length > 0) {
+    if (secretInput.length > 0) {
       update({
         readDemo: {
           ...readDemo,
-          isPasswordSet: true,
-          password: passwordInput,
+          isSecretSet: true,
+          secret: secretInput,
         },
       })
     }
   }
 
   useEffect(() => {
-    if (passwordInput.length > 0) {
+    if (secretInput.length > 0) {
       setSomeInputTyped(true)
     }
-  }, [passwordInput])
+  }, [secretInput])
 
   useEffect(() => {
     update(initState)
@@ -111,7 +111,7 @@ export default function ReadDemo(props) {
             }}
           />
         )}
-        {readDemo.isPasswordSet && (
+        {readDemo.isSecretSet && (
           <HackerApp
             imageSrc={theme.icons.hackerIcon}
             text={'hacker app'}
@@ -119,7 +119,7 @@ export default function ReadDemo(props) {
           />
         )}
         <Box {...readDemo}>
-          {!readDemo.isPasswordSet && (
+          {!readDemo.isSecretSet && (
             <Col size={10}>
               <Row
                 justifyContent={isMorello ? 'center' : 'flex-start'}
@@ -127,7 +127,7 @@ export default function ReadDemo(props) {
               >
                 {isMorello && <img src={KeychainIcon} />}
                 <DemoText {...theme.font}>
-                  This application will store your password securely.
+                  This application will store your secret securely.
                   <br />
                   Please input a keyword of choice.
                 </DemoText>
@@ -138,34 +138,34 @@ export default function ReadDemo(props) {
                 }}
                 size={10}
               >
-                <form onSubmit={enterPassword}>
+                <form onSubmit={enterSecret}>
                   <Container size={10}>
                     <Input
-                      label={'insert your password'}
+                      label={'Insert your secret'}
                       theme={readDemo.theme.form}
-                      setInputState={setPasswordInput}
+                      setInputState={setSecretInput}
                       inputType={'password'}
-                      upperBound={passwordUpperBound}
-                      cySelector={'password-input-box'}
-                      showInputError={passwordAtMaxLength || noPasswordEntered}
+                      upperBound={secretUpperBound}
+                      cySelector={'secret-input-box'}
+                      showInputError={secretAtMaxLength || noSecretEntered}
                       InputErrorWarning={InputErrorWarning}
                     />
                     <Button
-                      {...readDemo.theme.form.savePasswordButton}
+                      {...readDemo.theme.form.saveSecretButton}
                       type={'submit'}
-                      data-cy={'submit-password-btn'}
+                      data-cy={'submit-secret-btn'}
                     />
                   </Container>
                 </form>
               </Container>
             </Col>
           )}
-          {readDemo.isPasswordSet && isMorello && (
+          {readDemo.isSecretSet && isMorello && (
             <Col size={10}>
               <Row justifyContent={'center'} marginTop={'120px'}>
                 <img src={KeychainIcon} />
                 <DemoText {...theme.font}>
-                  This application will store your password securely.
+                  This application will store your secret securely.
                   <br />
                   Please input a keyword of choice.
                 </DemoText>
@@ -177,17 +177,17 @@ export default function ReadDemo(props) {
                 size={10}
               >
                 <DemoText {...theme.font}>
-                  Password has been submitted. Now you can attempt to hack
+                  Your secret has been saved successfully!
                 </DemoText>
               </Container>
             </Col>
           )}
-          {readDemo.isPasswordSet && !isMorello && (
+          {readDemo.isSecretSet && !isMorello && (
             <DemoText {...theme.font}>
               last login: {date} {time}.
               <br />
               <br />
-              Password Stored Safely
+              Secret Stored Safely
             </DemoText>
           )}
         </Box>

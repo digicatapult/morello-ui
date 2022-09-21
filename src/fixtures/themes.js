@@ -77,7 +77,8 @@ export const Themes = (arch) => {
         fontFamily: isCheri ? 'OpenSans' : 'Monaco',
         fontStyle: 'normal',
         fontWeight: '600',
-        fontSize: isCheri ? '16px' : '24px',
+        textTransform: isCheri ? 'none' : 'lowercase',
+        fontSize: isCheri ? '18px' : '24px',
         minHeight: '32px',
         display: 'inline-block',
         lineHeight: '32px',
@@ -98,7 +99,7 @@ export const Themes = (arch) => {
         fontSize: '14px',
         color: isCheri ? '#000' : '#fff',
       },
-      savePasswordButton: {
+      saveSecretButton: {
         width: '60px',
         height: '60px',
         background: `url(${isCheri ? lockIconOsx : lockIconImg})`,
