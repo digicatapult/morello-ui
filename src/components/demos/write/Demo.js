@@ -6,7 +6,7 @@ import Header from '../../shared/Header'
 import { Context, initState } from '../../../utils/context'
 import { extractLoginResult } from '../../../utils/write-demo-output'
 import Box from '../../shared/Box'
-import { Container, Col, IconText } from '../../shared/Common'
+import { Container, Col, IconText, H1 as H2 } from '../../shared/Common'
 import { ButtonSide } from '../../shared/Buttons'
 import { Themes } from '../../../fixtures/themes'
 import LoginForm from './LoginForm'
@@ -14,6 +14,7 @@ import Help from '../../shared/Help'
 
 import ConsoleIcon from '../../../assets/images/console-icon.png'
 import Console from '../../shared/Console'
+import Modal from '../read/Modal'
 
 const Wrapper = styled.div`
   grid-area: body;
@@ -41,8 +42,7 @@ const ConsoleButtonWrapper = styled.div`
 `
 
 
-const successfulLogin = (apiOutput) =>
-  extractLoginResult(apiOutput) === 'Login succeeded'
+const successfulLogin = (apiOutput) => extractLoginResult(apiOutput) === 'Login succeeded'
 const loginError = (apiOutput) => extractLoginResult(apiOutput) === 'error'
 
 const ConsoleButton = ({ update, state }) => {
@@ -53,7 +53,7 @@ const ConsoleButton = ({ update, state }) => {
         update({
           writeDemo: {
             ...state,
-            showConsole: true,
+            showResponse: true,
           }
         })
       }}
@@ -64,8 +64,20 @@ const ConsoleButton = ({ update, state }) => {
         width={'60px'}
         height={'60px'}
       />
-      <H2>Console</H2>
+      <IconText>Console</IconText>
     </ConsoleButtonWrapper>
+  )
+}
+
+const ConsoleModal = ({ theme, binaryName, usernamePasswordPairs }) => {
+  return (
+    <Modal>
+      <Console
+          executable={`${binaryName}-${theme.arch} ${usernamePasswordPairs.join(', ')}`}
+          output={response.output}
+          show={true}
+        />
+    </Modal>
   )
 }
 
@@ -93,7 +105,7 @@ export default function WriteDemo(props) {
   const nav = useNavigate()
   const state = React.useContext(Context)
   const { update, writeDemo: demoState } = state
-  const { theme, showHelp, fetching, usernamePasswordPairs, response, showConsole } = demoState
+  const { theme, showHelp, fetching, usernamePasswordPairs, response, showResponse } = demoState
   const isMorello = theme.name === 'Morello'
 
   const switchToMorello = (e) => {
@@ -104,7 +116,7 @@ export default function WriteDemo(props) {
         showHelp: false,
         fetching: false,
         response: undefined,
-        showConsole: false,
+        showResponse: false,
         usernamePasswordPairs: [],
         theme: Themes('Morello'),
       },
@@ -145,7 +157,7 @@ export default function WriteDemo(props) {
     <>
       <Header {...props} showClose={true} />
       <Wrapper {...theme.wrapper}>
-        {successfulLogin(apiOutput) ? (
+        {successfulLogin(response) ? (
           <SecretDesktop icons={props.secretDesktop} />
         ) : (
           <Box {...demoState}>
@@ -163,31 +175,26 @@ export default function WriteDemo(props) {
               theme={theme}
               content={helpContent}
               showContentState={showHelp}
-              setShowContentState={setShowHelp}
             />
           </Box>
         )}
         {!isMorello
           ? successfulLogin(response) && <ButtonSide action={switchToMorello} />
-          : (successfulLogin(response) || loginError(response)) && 
-              [<ButtonSide
-                message={'Learn More'}
-                action={() => {
-                  nav('/write-demo-explainer')
-                }}
-              />,
-              <ConsoleButton update={update} state={demoState} />
-              ]
-            }
+          : (successfulLogin(response) || loginError(response)) && [
+            <ButtonSide
+              message={'Learn More'}
+              action={() => {
+                nav('/write-demo-explainer')
+              }}
+            />,
+            <ConsoleButton update={update} state={demoState} />
+          ]}
         <Help
           theme={theme}
           content={helpContent}
           showContentState={showHelp}
         />
-      {showConsole && <Console
-        executable={`${binaryName}-${theme.arch} ${usernamePasswordPairs.join(', ')}`}
-        output={response.output}
-      />}
+      {showResponse && <ConsoleModal {...props} />}
       </Wrapper>
     </>
   )

@@ -7,9 +7,7 @@ import Title from '../../shared/Title'
 import Console from '../../shared/Console'
 
 const Window = styled.div(({ styles }) => styles)
-const Page = styled(Col)`
-  ${(props) => props}
-`
+const Page = styled(Col)`${(props) => props}`
 
 const renderActions = ({ update, state, type }) => {
   const handleNo = (e) => {
