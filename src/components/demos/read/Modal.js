@@ -22,7 +22,6 @@ const renderActions = ({ update, state, type }) => {
       },
     })
   }
-
   const handleYes = (e) => {
     e.preventDefault()
     update({
