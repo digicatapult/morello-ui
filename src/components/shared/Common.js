@@ -26,7 +26,7 @@ export const H2 = styled.p({
   fontSize: '16px',
   margin: '10px auto',
   color: '#FFFFFF',
-  lineHeight: '11.52px',
+  lineHeight: '16.52px',
 })
 
 export const DemoText = styled.p`
