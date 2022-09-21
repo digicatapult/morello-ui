@@ -5,6 +5,7 @@ import lockIconOsx from '../assets/images/lock.png'
 import backgroundImg from '../assets/images/background.png'
 import iconImg from '../assets/images/hacker-app-icon.png'
 import lockIconImg from '../assets/images/lock.png'
+import { keyframes } from 'styled-components'
 
 // LP TODO - a lot of properties are shared between morello and aarch64, abstract
 export const Themes = (arch) => {

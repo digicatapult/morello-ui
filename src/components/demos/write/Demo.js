@@ -35,6 +35,7 @@ export default function WriteDemo(props) {
   const { theme } = demoState
   const isMorello = theme.name === 'Morello'
 
+  const [animateLoginFailed, setAnimateLoginFailed] = useState(false)
   const [showHelp, setShowHelp] = useState(false)
   const [awaitingApi, setAwaitingApi] = useState(false)
   const [apiOutput, setApiOutput] = useState('')
@@ -85,7 +86,7 @@ export default function WriteDemo(props) {
         {successfulLogin(apiOutput) ? (
           <SecretDesktop {...theme.font} />
         ) : (
-          <Box {...demoState}>
+          <Box {...demoState} animate={animateLoginFailed}>
             <Container
               styles={{ height: '100%', paddingTop: '150px' }}
               size={10}
@@ -96,6 +97,7 @@ export default function WriteDemo(props) {
                 setUsernamePasswordPairs={setUsernamePasswordPairs}
                 apiOutput={apiOutput}
                 setApiOutput={setApiOutput}
+                setAnimateLoginFailed={setAnimateLoginFailed}
               />
             </Container>
           </Box>
