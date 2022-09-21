@@ -9,15 +9,12 @@ const failedLogin = (apiOutput) =>
   extractLoginResult(apiOutput) === 'Login failed'
 const loginError = (apiOutput) => extractLoginResult(apiOutput) === 'error'
 
-export default function LoginForm({
-  demoState,
-  showSpinner,
-}) {
+export default function LoginForm({ demoState }) {
   const [usernameInput, setUsernameInput] = useState('')
   const [passwordInput, setPasswordInput] = useState('')
   const [someUsernameTyped, setSomeUsernameTyped] = useState(false)
   const [somePasswordTyped, setSomePasswordTyped] = useState(false)
-  const { update, response } = React.useContext(Context)
+  const { update, writeDemo: { output, fetching } } = React.useContext(Context)
 
   const usernameUpperBound = 16
   const passwordUpperBound = 16
@@ -101,21 +98,22 @@ export default function LoginForm({
           style={demoState.theme.form.loginButton}
           data-cy={'login'}
           type={'submit'}
-          disabled={showSpinner}
+          disabled={fetching}
         >
-          {showSpinner ? <Spinner /> : `Login`}
+          {fetching ? <Spinner /> : `Login`}
         </button>
         <p
           {...demoState.theme.form.loginAttempt}
           visibility={
-            failedLogin(response) || loginError(response)
+            failedLogin(output) || loginError(output)
               ? 'visible'
               : 'hidden'
           }
           data-cy={'login-attempt'}
         >
-          {failedLogin(response) && `Incorrect username or password`}
-          {loginError(response) &&
+          {/* TODO drop the below in use effect?*/}
+          {failedLogin(output) && `Incorrect username or password`}
+          {loginError(output) &&
             `Suspicious activity detected - account locked`}
         </p>
       </Container>

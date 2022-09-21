@@ -13,7 +13,6 @@ import LoginForm from './LoginForm'
 import Help from '../../shared/Help'
 
 import ConsoleIcon from '../../../assets/images/console-icon.png'
-import Console from '../../shared/Console'
 import Modal from '../read/Modal'
 
 const Wrapper = styled.div`
@@ -69,18 +68,6 @@ const ConsoleButton = ({ update, state }) => {
   )
 }
 
-const ConsoleModal = ({ theme, binaryName, usernamePasswordPairs }) => {
-  return (
-    <Modal>
-      <Console
-          executable={`${binaryName}-${theme.arch} ${usernamePasswordPairs.join(', ')}`}
-          output={response.output}
-          show={true}
-        />
-    </Modal>
-  )
-}
-
 const SecretDesktop = ({ icons }) => {
   return (
     <Col styles={{ padding: '0px 10px', alignItems: 'flex-start' }}>
@@ -105,7 +92,7 @@ export default function WriteDemo(props) {
   const nav = useNavigate()
   const state = React.useContext(Context)
   const { update, writeDemo: demoState } = state
-  const { theme, showHelp, fetching, usernamePasswordPairs, response, showResponse } = demoState
+  const { theme, showHelp, usernamePasswordPairs, output, showResponse } = demoState
   const isMorello = theme.name === 'Morello'
 
   const switchToMorello = (e) => {
@@ -115,7 +102,7 @@ export default function WriteDemo(props) {
         ...demoState,
         showHelp: false,
         fetching: false,
-        response: undefined,
+        output: undefined,
         showResponse: false,
         usernamePasswordPairs: [],
         theme: Themes('Morello'),
@@ -139,7 +126,7 @@ export default function WriteDemo(props) {
         writeDemo: {
           ...demoState,
           fetching: false,
-          response: output,
+          output,
         }
       })
     }
@@ -157,7 +144,7 @@ export default function WriteDemo(props) {
     <>
       <Header {...props} showClose={true} />
       <Wrapper {...theme.wrapper}>
-        {successfulLogin(response) ? (
+        {successfulLogin(output) ? (
           <SecretDesktop icons={props.secretDesktop} />
         ) : (
           <Box {...demoState}>
@@ -165,11 +152,7 @@ export default function WriteDemo(props) {
               styles={{ height: '100%', paddingTop: '150px' }}
               size={10}
             >
-              <LoginForm
-                demoState={demoState}
-                showSpinner={fetching}
-                response={response}
-              />
+              <LoginForm demoState={demoState} />
             </Container>
             <Help
               theme={theme}
@@ -179,8 +162,8 @@ export default function WriteDemo(props) {
           </Box>
         )}
         {!isMorello
-          ? successfulLogin(response) && <ButtonSide action={switchToMorello} />
-          : (successfulLogin(response) || loginError(response)) && [
+          ? successfulLogin(output) && <ButtonSide action={switchToMorello} />
+          : (successfulLogin(output) || loginError(output)) && [
             <ButtonSide
               message={'Learn More'}
               action={() => {
@@ -194,7 +177,12 @@ export default function WriteDemo(props) {
           content={helpContent}
           showContentState={showHelp}
         />
-      {showResponse && <ConsoleModal {...props} />}
+      {showResponse && <Modal
+        type={'readDemo'}
+        message={'some msg...'}
+        update={update}
+        state={{...demoState, ...props, show: true }}
+      />}
       </Wrapper>
     </>
   )

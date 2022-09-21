@@ -195,6 +195,7 @@ export default function ReadDemo(props) {
             update,
             type: 'readDemo',
             state,
+            args: `${state.binaryName}-${theme.arch} ${state.password} -32 ${-32 + state.password.length}`,
             ProgressBar: (props) => <ProgressBar {...props} />,
           })}
       </Wrapper>

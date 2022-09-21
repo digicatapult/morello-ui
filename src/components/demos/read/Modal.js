@@ -9,12 +9,13 @@ import Console from '../../shared/Console'
 const Window = styled.div(({ styles }) => styles)
 const Page = styled(Col)`${(props) => props}`
 
-const renderActions = ({ update, state, type }) => {
+// giving default value to avoid bugs in case this is undefined
+const renderActions = ({ update, type = 'readDemo', ...props }) => {
   const handleNo = (e) => {
     e.preventDefault()
     update({
       [type]: {
-        ...state,
+        ...props,
         renderModal: false,
         renderModalActions: true,
       },
@@ -24,7 +25,7 @@ const renderActions = ({ update, state, type }) => {
     e.preventDefault()
     update({
       [type]: {
-        ...state,
+        ...props,
         renderModalActions: false,
         showHackingProgress: true,
       },
@@ -85,35 +86,33 @@ const renderActions = ({ update, state, type }) => {
   )
 }
 
-export default function Modal({ type, update, state, ProgressBar, messsage = undefined }) {
+export default function Modal({ update, ...props }) {
   const {
     theme,
     showHackingProgress,
     renderModalActions,
-    output,
-    binaryName,
-    password,
+    output: response,
+    message,
+    ProgressBar,
     path
-  } = state
-
-  const executableAndArgs = `${binaryName}-${theme.arch} ${password} -32 ${-32 + password.length}`
-
+  } = props
+  
   return (
     <Window data-cy={`${path}-modal`} styles={theme.modal.window}>
-      <Title title={readDemo.modalTitle} theme={theme} />
+      <Title title={props.modalTitle} theme={theme} />
       <Row>
         <Page {...theme.modal.page}>
           <DemoText
             data-cy={'modal-main-text'}
-            {...readDemo.theme.font}
+            {...props.theme.font}
             color={'#fff'}
           >
-            {messsage || state.modalText}
+            {messsage || props.modalText}
           </DemoText>
-          {renderModalActions && renderActions({ state, update, type })}
-          {showHackingProgress && <ProgressBar readDemo={state} update={update} />}
-          {output ? (
-            <Console executable={executableAndArgs} output={output.output} />
+          {renderModalActions && renderActions({ ...props, update, type: props.type })}
+          {showHackingProgress && <ProgressBar readDemo={props} update={update} />}
+          {response ? (
+            <Console executable={props.args} output={response.output} show={props.show} />
           ) : null}
         </Page>
       </Row>
