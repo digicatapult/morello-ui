@@ -1,9 +1,9 @@
 import backgroundImgOsx from '../assets/images/osx-background.png'
-import iconOsx from '../assets/images/hacker-app-icon-morello.png'
-import lockIconOsx from '../assets/images/lock.png'
+import hackerIconOsx from '../assets/images/unlock.svg'
+import lockIconOsx from '../assets/images/cloud-upload-alt.svg'
 
 import backgroundImg from '../assets/images/background.png'
-import iconImg from '../assets/images/hacker-app-icon.png'
+import hackerIconImg from '../assets/images/hacker-app-icon.png'
 import lockIconImg from '../assets/images/lock.png'
 
 // LP TODO - a lot of properties are shared between morello and aarch64, abstract
@@ -128,7 +128,7 @@ export const Themes = (arch) => {
       backgroundSize: 'cover',
     },
     icons: {
-      hackerIcon: isCheri ? iconOsx : iconImg,
+      hackerIcon: isCheri ? hackerIconOsx : hackerIconImg,
     },
     modal: {
       button: isCheri
