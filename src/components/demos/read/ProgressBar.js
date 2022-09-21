@@ -10,7 +10,7 @@ const Bar = styled.div((props) => ({
   ...props,
 }))
 
-const extractPassword = ({ output }) =>
+const extractSecret = ({ output }) =>
   output
     .split('\n')
     .filter((x) => !!x)
@@ -36,7 +36,7 @@ export default function ProgressBar({ update, readDemo, cyPrefix = '' }) {
         fill(),
         readDemo.execute(
           `${readDemo.binaryName}-${theme.arch}`,
-          readDemo.password
+          readDemo.secret
         ),
       ])
       update({
@@ -68,10 +68,10 @@ export default function ProgressBar({ update, readDemo, cyPrefix = '' }) {
         wordWrap={'break-word'}
       >
         {readDemo.output.status != 'success' ? (
-          'HACK FAILED. The password could not be revealed!?'
+          'HACK FAILED. The secret could not be revealed!?'
         ) : (
           <>
-            Your password is <b>{extractPassword(readDemo.output)}</b>!
+            Your secret is <b>{extractSecret(readDemo.output)}</b>!
           </>
         )}
       </DemoText>
