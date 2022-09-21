@@ -10,7 +10,7 @@ import { Col, Row, DemoText, Container } from '../../shared/Common'
 import Input from '../../shared/Input'
 import ProgressBar from './ProgressBar'
 import Modal from './Modal'
-import KeychainIcon from '../../../assets/images/keychain-strip.png'
+import KeyIcon from '../../../assets/images/key.svg'
 import { Themes } from '../../../fixtures/themes'
 
 const Wrapper = styled.div`
@@ -22,6 +22,10 @@ const Wrapper = styled.div`
   ${(props) => props}
 `
 const Button = styled.button((props) => props)
+
+const Key = styled.img`
+  margin: 0px 25px 25px 0px;
+`
 
 export default function ReadDemo(props) {
   const state = React.useContext(Context)
@@ -125,7 +129,7 @@ export default function ReadDemo(props) {
                 justifyContent={isMorello ? 'center' : 'flex-start'}
                 marginTop={isMorello ? '120px' : '0px'}
               >
-                {isMorello && <img src={KeychainIcon} />}
+                {isMorello && <Key width={'50px'} src={KeyIcon} />}
                 <DemoText {...theme.font}>
                   This application will store your secret securely.
                   <br />
@@ -163,7 +167,7 @@ export default function ReadDemo(props) {
           {readDemo.isSecretSet && isMorello && (
             <Col size={10}>
               <Row justifyContent={'center'} marginTop={'120px'}>
-                <img src={KeychainIcon} />
+                <Key width={'50px'} src={KeyIcon} />
                 <DemoText {...theme.font}>
                   This application will store your secret securely.
                   <br />
