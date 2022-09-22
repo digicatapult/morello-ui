@@ -33,7 +33,7 @@ const CardLayout = styled.div`
 `
 
 const PackageVersion = styled.h2`
-  float: right;
+  text-align: right;
   padding-right: 30px;
   padding-bottom: 0px;
   font-family: 'AktivGrotesk';
@@ -62,9 +62,8 @@ export default function MainMenu() {
           </ItemWrap>
         ))}
       </CardLayout>
-      <div>
-        <PackageVersion>{VERSION}</PackageVersion>
-      </div>
+
+      <PackageVersion>v{VERSION}</PackageVersion>
     </>
   )
 }
