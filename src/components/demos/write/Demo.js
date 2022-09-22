@@ -118,26 +118,28 @@ export default function WriteDemo(props) {
         {successfulLogin(apiOutput) ? (
           <SecretDesktop icons={props.secretDesktop} />
         ) : (
-          <Box {...demoState} animate={animateLoginFailed}>
-            <Container
-              styles={{ height: '100%', paddingTop: '150px' }}
-              size={10}
-            >
-              <LoginForm
-                demoState={demoState}
-                showSpinner={awaitingApi}
-                setUsernamePasswordPairs={setUsernamePasswordPairs}
-                apiOutput={apiOutput}
-                setApiOutput={setApiOutput}
-              />
-            </Container>
+          <>
             <Help
               theme={theme}
               content={helpContent}
               showContentState={showHelp}
               setShowContentState={setShowHelp}
             />
-          </Box>
+            <Box {...demoState} animate={animateLoginFailed}>
+              <Container
+                styles={{ height: '100%', paddingTop: '150px' }}
+                size={10}
+              >
+                <LoginForm
+                  demoState={demoState}
+                  showSpinner={awaitingApi}
+                  setUsernamePasswordPairs={setUsernamePasswordPairs}
+                  apiOutput={apiOutput}
+                  setApiOutput={setApiOutput}
+                />
+              </Container>
+            </Box>
+          </>
         )}
         {!isMorello
           ? successfulLogin(apiOutput) && (
