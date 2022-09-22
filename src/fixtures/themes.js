@@ -96,7 +96,7 @@ export const Themes = (arch) => {
       loginAttempt: {
         fontFamily: isCheri ? 'OpenSans' : 'Monaco',
         fontSize: '18px',
-        color: isCheri ? '#000' : '#f00',
+        color: '#f00',
         alignSelf: 'center',
       },
       saveSecretButton: {

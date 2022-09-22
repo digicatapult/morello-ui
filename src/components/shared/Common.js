@@ -95,12 +95,12 @@ export const Spinner = styled.div`
 const shake = keyframes`
   15%,
   60% {
-    transform: translate3d(-4px, 0, 0);
+    transform: translate3d(-5px, 0, 0);
   }
 
   40%,
   85% {
-    transform: translate3d(4px, 0, 0);
+    transform: translate3d(5px, 0, 0);
   }
 `
 const shakeAnimation = css`
