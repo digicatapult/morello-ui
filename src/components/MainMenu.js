@@ -38,6 +38,7 @@ const PackageVersion = styled.h2`
   padding-bottom: 0px;
   font-family: 'AktivGrotesk';
   margin-bottom: 0px;
+  font-size: 16px;
 `
 
 export default function MainMenu() {
