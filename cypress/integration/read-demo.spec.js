@@ -1,51 +1,268 @@
-describe('Read Demo', () => {
+describe('Read Demo', { defaultCommandTimeout: 60000 }, () => {
+  const secret = 'shhh-secret'
+
   beforeEach(() => {
     cy.visit('/read-demo')
   })
 
-  // TODO use data= property for getting DOM elements
-  it('Renders login box', () => {
-    cy.get('[data-cy=password]').should('exist')
-  })
+  describe('Header', () => {
+    it('renders read demo header', () => {
+      cy.get('[data-cy=header]')
+        .should('include.text', 'Are your secrets really safe?')
+        .should('have.css', 'background-color')
+        .and('contain', 'rgb(56, 77, 108)')
 
-  it('Returns to main menu and confirm that menu container has been rendered', () => {
-    cy.get('[data-cy=header-close-btn]').click()
-    cy.get('[data-cy=main-menu-container]').should('exist')
-  })
+      cy.get('[data-cy=header-close-btn]')
+        .should('exist')
+        .and('include.text', 'Close')
+    })
 
-  describe('If password entered is more than 16 chars', () => {
-    it('Max length cuts off long passwords', () => {
-      // eslint-disable-next-line cypress/no-force
-      cy.get('[data-cy=password]', { maxlength: 16, force: true }).type(
-        '12345678910111213141516',
-        { force: true }
-      )
-      cy.get('[data-cy=password]').should('have.value', '1234567891011121')
+    it('clicking on close button takes to the main menu', () => {
+      cy.get('[data-cy=header-close-btn]').click()
+      cy.get('[data-cy=main-menu-container]').should('exist')
     })
   })
 
   describe('Happy path', () => {
-    beforeEach(() => {
-      cy.get('[data-cy=password]').type('password')
-      cy.get('[data-cy=submit-password]').click()
-      cy.get('[data-cy=hacker-app]').click()
-      cy.get('[data-cy=read-demo-modal-btn-yes-2]').click()
+    it('confirms styling and DOM elements Demo 1A', () => {
+      // TODO expand by creating an object of props from (theme.js)
+      // and asserting each of mmain components
+      cy.get('[data-cy=content-container]')
+        .should('have.css', 'background-color')
+        .and('contain', 'rgb(52, 53, 86)')
+      cy.get('[data-cy=secret-input-box]')
+        .should('have.css', 'background-color')
+        .and('contain', 'rgb(52, 53, 86)')
+      cy.get('[data-cy=submit-secret-btn]')
+        .should('have.css', 'background-color')
+        .and('contain', 'rgba(0, 0, 0, 0)')
     })
 
-    it('Renders Hacker App after submitting a password', () => {
-      cy.get('[data-cy=hacker-app]').should('exist')
+    describe('Enters too long secret', () => {
+      it('cuts off long secrets', () => {
+        // eslint-disable-next-line cypress/no-force
+        cy.get('[data-cy=secret-input-box]', {
+          maxlength: 16,
+          force: true,
+        }).type('12345678910111213141516', { force: true })
+        cy.get('[data-cy=secret-input-box]').should(
+          'have.value',
+          '1234567891011121'
+        )
+      })
+      // TODO assert for error text
     })
 
-    it('Renders modal after clicking on Hacker App', () => {
-      cy.get('[data-cy=hacker-app-modal]').should('exist')
+    describe('Submits secret', () => {
+      beforeEach(() => {
+        cy.get('[data-cy=secret-input-box]').type(secret)
+        cy.get('[data-cy=submit-secret-btn]').click()
+      })
+
+      it('renders hacker app', () => {
+        cy.get('[data-cy=hacker-app]').should('exist')
+        cy.get('[data-cy=hacker-app-icon]')
+          .should('exist')
+          .and('have.css', 'background-image')
+          .and('to.be.ok')
+        cy.get('[data-cy=hacker-app-icon-text]')
+          .should('have.css', 'font-family')
+          .and('contain', 'Monaco')
+      })
+
+      it('removes secret form', () => {
+        cy.get('[data-cy=secret-input-box]').should('not.exist')
+        cy.get('[data-cy=submit-secret-btn]').should('not.exist')
+      })
     })
 
-    it('Renders progress bar after clicking <YES>', () => {
-      cy.get('[data-cy=read-demo-progress-bar]').should('exist')
+    describe('Opens hacker app', () => {
+      beforeEach(() => {
+        cy.get('[data-cy=secret-input-box]').type(secret)
+        cy.get('[data-cy=submit-secret-btn]').click()
+        cy.get('[data-cy=hacker-app]').click()
+      })
+      describe('Selects [no] option', () => {
+        beforeEach(() => {
+          cy.get('[data-cy=modal-btn-no-aarch64]').click()
+        })
+
+        it('updates state so modal is no longer rendered', () => {
+          cy.get('[data-cy=modal-main]').should('not.exist')
+        })
+      })
+
+      it('renders modal with yes/no option', () => {
+        cy.get('[data-cy=modal-main]').should('exist')
+        cy.get('[data-cy=modal-main-text]')
+          .should('exist')
+          .should(
+            'include.text',
+            'Would you like to break into the system and reveal the secret?'
+          )
+        cy.get('[data-cy=modal-btn-yes-aarch64]')
+          .should('exist')
+          .and('include.text', 'YES')
+          .and('have.css', 'font-family')
+          .and('contain', 'Monaco')
+        cy.get('[data-cy=modal-btn-no-aarch64]')
+          .should('exist')
+          .and('include.text', 'NO')
+          .and('have.css', 'font-family')
+          .and('contain', 'Monaco')
+      })
     })
 
-    it.skip('Executes read demo binaries by calling an api', () => {
-      // TODO
+    describe('Initiates hacking', () => {
+      beforeEach(() => {
+        cy.get('[data-cy=secret-input-box]').type(secret)
+        cy.get('[data-cy=submit-secret-btn]').click()
+        cy.get('[data-cy=hacker-app]').click()
+        cy.get('[data-cy=modal-btn-yes-aarch64]').click()
+      })
+
+      it('renders progress animation', () => {
+        cy.get('[data-cy=progress-bar]')
+          .should('exist')
+          .and('include.text', 'hacking in progress')
+        cy.get('[data-cy=progress-bar]')
+          .should('exist')
+          .and('include.text', 'hacking in progress 98%')
+      })
+
+      it('displays user`s secret', () => {
+        cy.get('[data-cy=progress-bar-text]').should('include.text', secret)
+      })
+
+      it('renders a side button for demo 1b', () => {
+        cy.get('[data-cy=button-side]').should('exist').and('include.text', '')
+      })
+    })
+
+    describe('Demo 1B', () => {
+      beforeEach(() => {
+        cy.get('[data-cy=secret-input-box]').type(secret)
+        cy.get('[data-cy=submit-secret-btn]').click()
+        cy.get('[data-cy=hacker-app]').click()
+        cy.get('[data-cy=modal-btn-yes-aarch64]').click()
+        cy.get('[data-cy=button-side]').click()
+      })
+
+      it('confirms styling and DOM elements of Demo 1B', () => {
+        // TODO refer to demo 1a it block
+        cy.get('[data-cy=content-container]')
+          .should('have.css', 'background-color')
+          .and('contain', 'rgb(255, 255, 255)')
+        cy.get('[data-cy=secret-input-box]')
+          .should('have.css', 'background-color')
+          .and('contain', 'rgb(255, 255, 255)')
+        cy.get('[data-cy=submit-secret-btn]')
+          .should('have.css', 'background-color')
+          .and('contain', 'rgba(0, 0, 0, 0)')
+      })
+
+      describe('Submits secret', () => {
+        beforeEach(() => {
+          cy.get('[data-cy=secret-input-box]').type(secret)
+          cy.get('[data-cy=submit-secret-btn]').click()
+        })
+
+        it('renders morello hacker app', () => {
+          // TODO assert that it's morello icon?
+          cy.get('[data-cy=hacker-app]').should('exist')
+          cy.get('[data-cy=hacker-app-icon]')
+            .should('exist')
+            .and('have.css', 'background-image')
+            .and('to.be.ok')
+          cy.get('[data-cy=hacker-app-icon-text]')
+            .should('have.css', 'font-family')
+            .and('contain', 'OpenSans')
+        })
+
+        it('removes secret input', () => {
+          cy.get('[data-cy=secret-input-box]').should('not.exist')
+          cy.get('[data-cy=submit-secret-btn]').should('not.exist')
+        })
+      })
+
+      describe('Opens hacker app', () => {
+        beforeEach(() => {
+          cy.get('[data-cy=secret-input-box]').type(secret)
+          cy.get('[data-cy=submit-secret-btn]').click()
+          cy.get('[data-cy=hacker-app]').click()
+        })
+
+        describe('Selects [no] option', () => {
+          beforeEach(() => {
+            cy.get('[data-cy=modal-btn-no-cheri]').click()
+          })
+
+          it('updates state so modal is no longer rendered', () => {
+            cy.get('[data-cy=modal-main]').should('not.exist')
+          })
+        })
+
+        it('renders modal with yes/no option', () => {
+          cy.get('[data-cy=modal-main]').should('exist')
+          cy.get('[data-cy=modal-main-text]')
+            .should('exist')
+            .should(
+              'include.text',
+              'Would you like to break into the system and reveal the secret?'
+            )
+          cy.get('[data-cy=modal-btn-yes-cheri]')
+            .should('exist')
+            .and('include.text', 'YES')
+            .and('have.css', 'font-family')
+            .and('contain', 'OpenSans')
+          cy.get('[data-cy=modal-btn-no-cheri]')
+            .should('exist')
+            .and('include.text', 'NO')
+            .and('have.css', 'font-family')
+            .and('contain', 'OpenSans')
+        })
+      })
+
+      describe('Initiates hacking', () => {
+        beforeEach(() => {
+          cy.get('[data-cy=secret-input-box]').type(secret)
+          cy.get('[data-cy=submit-secret-btn]').click()
+          cy.get('[data-cy=hacker-app]').click()
+          cy.get('[data-cy=modal-btn-yes-cheri]').click()
+        })
+
+        it('renders progress animation', () => {
+          cy.get('[data-cy=progress-bar]')
+            .should('exist')
+            .and('include.text', 'hacking in progress')
+          cy.get('[data-cy=progress-bar]')
+            .should('exist')
+            .and('include.text', 'hacking in progress 98%')
+        })
+
+        it('renders HACK FAILED', () => {
+          cy.get('[data-cy=progress-bar-text]')
+            .should(
+              'include.text',
+              'HACK FAILED. The secret could not be revealed!?'
+            )
+            .and('not.include.text', secret)
+        })
+
+        it.skip('details button renders a concole with all output', () => {
+          // TOOD implement once merged
+        })
+
+        it('renders Learn More side button', () => {
+          cy.get('[data-cy=button-side]')
+            .should('exist')
+            .and('include.text', 'Learn More')
+          cy.get('[data-cy=button-side]').click()
+          cy.get('[data-cy=content-container]').should('not.exist')
+          cy.get('[data-cy=secret-input-box]').should('not.exist')
+          cy.get('[data-cy=submit-secret-btn]').should('not.exist')
+        })
+      })
     })
   })
 })

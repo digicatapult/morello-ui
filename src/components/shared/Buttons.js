@@ -8,6 +8,9 @@ export const ButtonBasic = styled.button`
   height: 50px;
   margin-left: 5px;
   border: 0;
+  align-items: center;
+  display: flex;
+  justify-content: center;
 `
 
 const Arrow = styled.div`
@@ -54,7 +57,7 @@ const SideButton = styled.div`
     }
   }
 `
-const LearnMessage = styled.p`
+const SideButtonTxt = styled.p`
   color: rgba(255, 255, 255, 1);
   font-size: 25px;
   z-index: 50;
@@ -63,12 +66,16 @@ const LearnMessage = styled.p`
   width: 10vw;
 `
 
-export function ButtonSide({ action, message = '' }) {
+export function ButtonSide({ action, message = '', cyPrefix = '' }) {
   return (
     <>
-      <SideButton onClick={action}>
+      <SideButton data-cy={`${cyPrefix}button-side`} onClick={action}>
         <Arrow />
-        <LearnMessage>{message}</LearnMessage>
+        {message && (
+          <SideButtonTxt data-cy={`${cyPrefix}button-side-text`}>
+            {message}
+          </SideButtonTxt>
+        )}
       </SideButton>
     </>
   )
@@ -82,11 +89,14 @@ export const Button = styled.button`
   background-color: #000;
   box-shadow: 0px 0px 4px #212124;
   border: 1px solid #212124;
+  align-items: center;
+  display: flex;
+  justify-content: center
 
   border-radius: 6px;
 
   &:hover {
-    backgroundcolor: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.5);
   }
 
   &:disabled {

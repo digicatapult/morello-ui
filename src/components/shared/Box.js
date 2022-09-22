@@ -16,7 +16,7 @@ export default function Box(props) {
         animationPlayState: props.animate ? 'running' : 'paused',
       }}
     >
-      <Title title={props.windowTitle} arch={theme.name} />
+      <Title title={props.windowTitle} theme={theme} />
       <Row flex={'auto'}>
         <div style={theme.primary.windowBody}>{props.children}</div>
       </Row>

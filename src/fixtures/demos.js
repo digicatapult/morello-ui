@@ -23,6 +23,14 @@ import bugIcon from '../assets/images/bug-icon.svg'
 import learnIcon from '../assets/images/learn-icon.svg'
 import arrowIcon from '../assets/images/double-right-icon.svg'
 
+// demo 2 (write) desktop icons
+import MyDocumentsIcon from '../assets/images/my-documents.png'
+import MyDownloadsIcon from '../assets/images/my-downloads.png'
+import MyMusicIcon from '../assets/images/my-music.png'
+import MyVideosIcon from '../assets/images/my-videos.png'
+import TextIcon from '../assets/images/text-icon.png'
+import JpegIcon from '../assets/images/jpeg-icon.png'
+
 export const demos = [
   {
     path: 'read-demo',
@@ -35,9 +43,8 @@ export const demos = [
     icon: bugIcon,
     windowTitle: 'SUPER_SAFE_APP.EXE',
     modalTitle: 'hacker.app',
-    modalText:
-      'Would you like to break into the system and reveal the password?',
-    hackingOkBody: 'The password is:',
+    modalText: 'Would you like to break into the system and reveal the secret?',
+    hackingOkBody: 'The secret is:',
     hackingOkTitle: 'Hacking completed.',
     Element: (props) => <ReadDemo {...props} showClose={true} />,
     execute: async (executable, args) => {
@@ -59,12 +66,40 @@ export const demos = [
     description: 'Out of Bounds write. CWE Score 65.93',
     color: '#6C3838',
     icon: bugIcon,
-    windowTitle: 'SUPER_SAFE_APP.EXE',
-    modalTitle: 'hacker.app',
+    secretDesktop: [
+      {
+        name: 'Documents',
+        img: MyDocumentsIcon,
+      },
+      {
+        name: 'Downloads ',
+        img: MyDownloadsIcon,
+      },
+      {
+        name: 'Music',
+        img: MyMusicIcon,
+      },
+      {
+        name: 'Videos',
+        img: MyVideosIcon,
+      },
+      {
+        name: 'passwords.txt',
+        img: TextIcon,
+      },
+      {
+        name: 'BankingDetails.txt',
+        img: TextIcon,
+      },
+      {
+        name: 'SecretPhoto.jpg',
+        img: JpegIcon,
+      },
+    ],
     helpContent: `
       The username is root.
-      \nPassword can be changed by attempting to login with a username that is longer than 16 characters to perform an out of bounds write. 
-      The password will be replaced with the out of bounds characters. 
+      \nPassword can be changed by attempting to login with a username that is longer than 16 characters to perform an out of bounds write.
+      The password will be replaced with the out of bounds characters.
       \ne.g. if 'root------------123' is attempted for a username, the password is now '123'.
     `,
     Element: (props) => <WriteDemo {...props} />,
