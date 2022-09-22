@@ -16,15 +16,16 @@ var now = new Date()
 var millisecondsUntil5 =
   new Date(now.getFullYear(), now.getMonth(), now.getDate(), 5, 0, 0, 0) - now
 if (millisecondsUntil5 < 0) {
-  millisecondsUntil5 += 86400000 // it's after 10am, try 10am tomorrow.
+  millisecondsUntil5 += 86400000 // it after 5am, try again at 5am tomorrow.
 }
 
-// console.log(millisecondsUntil5)
-
-// setTimeout(() => {
-//   location.href = '/'
-//   console.log('Hello World!')
-// }, 10000)
+setTimeout(() => {
+  location.href = '/'
+  if (location.href === '/') {
+    //The if statement stops other pages reloading before redirecting
+    location.reload()
+  }
+}, millisecondsUntil5)
 
 export default function App() {
   return (

@@ -29,7 +29,15 @@ const CardLayout = styled.div`
   gap: ${gridGap};
   max-width: 1350px;
   margin: 0 auto;
-  padding: 0px ${layoutPadding} ${layoutPadding} ${layoutPadding};
+  padding: 0px ${layoutPadding} 0px ${layoutPadding};
+`
+
+const PackageVersion = styled.h2`
+  float: right;
+  padding-right: 30px;
+  padding-bottom: 0px;
+  font-family: 'AktivGrotesk';
+  margin-bottom: 0px;
 `
 
 export default function MainMenu() {
@@ -55,7 +63,7 @@ export default function MainMenu() {
         ))}
       </CardLayout>
       <div>
-        <h2>Version</h2>
+        <PackageVersion>{VERSION}</PackageVersion>
       </div>
     </>
   )
