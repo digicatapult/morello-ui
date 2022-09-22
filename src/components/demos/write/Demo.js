@@ -24,6 +24,8 @@ const Wrapper = styled.div`
 
 const successfulLogin = (apiOutput) =>
   extractLoginResult(apiOutput) === 'Login succeeded'
+const failedLogin = (apiOutput) =>
+  extractLoginResult(apiOutput) === 'Login failed'
 const loginError = (apiOutput) => extractLoginResult(apiOutput) === 'error'
 
 export default function WriteDemo(props) {
@@ -79,6 +81,13 @@ export default function WriteDemo(props) {
     }
   }, [usernamePasswordPairs, execute, binaryName, theme])
 
+  useEffect(() => {
+    if (isMorello && (failedLogin(apiOutput) || loginError(apiOutput))) {
+      setAnimateLoginFailed(true)
+      setTimeout(() => setAnimateLoginFailed(false), 1000)
+    }
+  }, [apiOutput, isMorello, setAnimateLoginFailed])
+
   return (
     <>
       <Header {...props} showClose={true} />
@@ -97,7 +106,6 @@ export default function WriteDemo(props) {
                 setUsernamePasswordPairs={setUsernamePasswordPairs}
                 apiOutput={apiOutput}
                 setApiOutput={setApiOutput}
-                setAnimateLoginFailed={setAnimateLoginFailed}
               />
             </Container>
           </Box>

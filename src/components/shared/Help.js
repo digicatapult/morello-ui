@@ -10,8 +10,8 @@ const Wrapper = styled.div`
 `
 
 const ContentWrapper = styled.div`
-  max-width: 500px;
-  max-height: 400px;
+  max-width: 20vw;
+  max-height: 60vh;
   padding: 10px;
   background: ${(props) => props.background};
   display: ${(props) => props.display};
@@ -44,7 +44,6 @@ export default function Help({
   const toggle = () => {
     setShowContentState(!showContentState)
   }
-
   return (
     <Wrapper>
       <IconButton

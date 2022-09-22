@@ -22,7 +22,6 @@ export default function LoginForm({
   setUsernamePasswordPairs,
   apiOutput,
   setApiOutput,
-  setAnimateLoginFailed,
 }) {
   const [usernameInput, setUsernameInput] = useState('')
   const [passwordInput, setPasswordInput] = useState('')
@@ -79,10 +78,8 @@ export default function LoginForm({
     if (failedLogin(apiOutput) || loginError(apiOutput)) {
       setPasswordInput('')
       setSomePasswordTyped(false)
-      setAnimateLoginFailed(true)
-      setTimeout(() => setAnimateLoginFailed(false), 1000)
     }
-  }, [apiOutput, setAnimateLoginFailed])
+  }, [apiOutput])
 
   return (
     <Form onSubmit={enterUsernameAndPassword}>
