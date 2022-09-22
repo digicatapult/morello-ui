@@ -54,6 +54,9 @@ export default function MainMenu() {
           </ItemWrap>
         ))}
       </CardLayout>
+      <div>
+        <h2>Version</h2>
+      </div>
     </>
   )
 }
