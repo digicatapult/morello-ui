@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { css, keyframes } from 'styled-components'
 
 const params = {
   screen: {
@@ -90,4 +90,23 @@ export const Spinner = styled.div`
   border-top: 3px solid #ffffff;
   border-radius: 50%;
   animation: spinner 1.5s linear infinite;
+`
+
+const shake = keyframes`
+  15%,
+  60% {
+    transform: translate3d(-5px, 0, 0);
+  }
+
+  40%,
+  85% {
+    transform: translate3d(5px, 0, 0);
+  }
+`
+const shakeAnimation = css`
+  ${shake} 0.8s linear infinite;
+`
+
+export const Window = styled.div`
+  animation: ${shakeAnimation};
 `

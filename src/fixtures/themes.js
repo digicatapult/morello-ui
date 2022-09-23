@@ -60,7 +60,6 @@ export const Themes = (arch) => {
             background: '-moz-linear-gradient(top,  #e0e0e0,  #ffffff)',
             borderRadius: '3px',
             border: '1px solid #717171',
-            marginRight: '20px',
           }
         : {
             width: '350px',
@@ -96,8 +95,9 @@ export const Themes = (arch) => {
       },
       loginAttempt: {
         fontFamily: isCheri ? 'OpenSans' : 'Monaco',
-        fontSize: '14px',
-        color: isCheri ? '#000' : '#fff',
+        fontSize: '18px',
+        color: '#f00',
+        alignSelf: 'center',
       },
       saveSecretButton: {
         width: '60px',
@@ -121,6 +121,8 @@ export const Themes = (arch) => {
         justifyContent: 'center',
         alignItems: 'center',
         display: 'flex',
+        marginBottom: '20px',
+        alignSelf: 'center',
       },
     },
     wrapper: {

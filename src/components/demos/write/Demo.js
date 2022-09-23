@@ -29,6 +29,8 @@ const IconWrapper = styled.div`
 
 const successfulLogin = (apiOutput) =>
   extractLoginResult(apiOutput) === 'Login succeeded'
+const failedLogin = (apiOutput) =>
+  extractLoginResult(apiOutput) === 'Login failed'
 const loginError = (apiOutput) => extractLoginResult(apiOutput) === 'error'
 
 const SecretDesktop = ({ icons }) => {
@@ -58,6 +60,7 @@ export default function WriteDemo(props) {
   const { theme } = demoState
   const isMorello = theme.name === 'Morello'
 
+  const [animateLoginFailed, setAnimateLoginFailed] = useState(false)
   const [showHelp, setShowHelp] = useState(false)
   const [awaitingApi, setAwaitingApi] = useState(false)
   const [apiOutput, setApiOutput] = useState('')
@@ -101,6 +104,13 @@ export default function WriteDemo(props) {
     }
   }, [usernamePasswordPairs, execute, binaryName, theme])
 
+  useEffect(() => {
+    if (isMorello && (failedLogin(apiOutput) || loginError(apiOutput))) {
+      setAnimateLoginFailed(true)
+      setTimeout(() => setAnimateLoginFailed(false), 1000)
+    }
+  }, [apiOutput, isMorello, setAnimateLoginFailed])
+
   return (
     <>
       <Header {...props} showClose={true} />
@@ -108,25 +118,28 @@ export default function WriteDemo(props) {
         {successfulLogin(apiOutput) ? (
           <SecretDesktop icons={props.secretDesktop} />
         ) : (
-          <Box {...demoState}>
-            <Container
-              styles={{ height: '100%', paddingTop: '150px' }}
-              size={10}
-            >
-              <LoginForm
-                demoState={demoState}
-                showSpinner={awaitingApi}
-                setUsernamePasswordPairs={setUsernamePasswordPairs}
-                apiOutput={apiOutput}
-              />
-            </Container>
+          <>
             <Help
               theme={theme}
               content={helpContent}
               showContentState={showHelp}
               setShowContentState={setShowHelp}
             />
-          </Box>
+            <Box {...demoState} animate={animateLoginFailed}>
+              <Container
+                styles={{ height: '100%', paddingTop: '150px' }}
+                size={10}
+              >
+                <LoginForm
+                  demoState={demoState}
+                  showSpinner={awaitingApi}
+                  setUsernamePasswordPairs={setUsernamePasswordPairs}
+                  apiOutput={apiOutput}
+                  setApiOutput={setApiOutput}
+                />
+              </Container>
+            </Box>
+          </>
         )}
         {!isMorello
           ? successfulLogin(apiOutput) && (

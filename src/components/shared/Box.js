@@ -1,11 +1,8 @@
 import React from 'react'
-import styled from 'styled-components'
 
 import { Row } from './Common'
 import Title from './Title'
-
-const Window = styled.div((props) => props)
-const Body = styled.div((props) => props)
+import { Window } from './Common'
 
 export default function Box(props) {
   const { theme } = props
@@ -13,12 +10,15 @@ export default function Box(props) {
   return (
     <Window
       data-cy={'content-container'}
-      {...theme.primary.window}
-      {...theme.primary.demoWindow}
+      style={{
+        ...theme.primary.window,
+        ...theme.primary.demoWindow,
+        animationPlayState: props.animate ? 'running' : 'paused',
+      }}
     >
       <Title title={props.windowTitle} theme={theme} />
       <Row flex={'auto'}>
-        <Body {...theme.primary.windowBody}>{props.children}</Body>
+        <div style={theme.primary.windowBody}>{props.children}</div>
       </Row>
     </Window>
   )
