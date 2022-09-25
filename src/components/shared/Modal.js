@@ -1,10 +1,10 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import { Button, ButtonBasic } from '../../shared/Buttons'
-import { DemoText, Col, Row } from '../../shared/Common'
-import Title from '../../shared/Title'
-import Console from '../../shared/Console'
+import { Button, ButtonBasic } from './Buttons'
+import { DemoText, Col, Row } from './Common'
+import Title from './Title'
+import Console from './Console'
 
 const Window = styled.div(({ styles }) => styles)
 const Page = styled(Col)`
@@ -88,8 +88,8 @@ const renderActions = ({ update, type = 'readDemo', ...props }) => {
   )
 }
 
-export default function Modal({ update, readDemo, ProgressBar }) {
-  const { theme, showHackingProgress, renderModalActions } = readDemo
+export default function Modal({ update, ProgressBar, ...props }) {
+  const { theme, showHackingProgress, renderModalActions } = props
 
   return (
     <Window data-cy={`${props.path}-modal`} styles={theme.modal.window}>

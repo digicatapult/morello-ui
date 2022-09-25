@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 
 import Input from '../../shared/Input'
+import styled from 'styled-components'
 import { Spinner } from '../../shared/Common'
 import { extractLoginResult } from '../../../utils/write-demo-output'
 import { Context } from '../../../utils/context'
@@ -35,7 +36,6 @@ export default function LoginForm({ demoState }) {
   const passwordAtMaxLength = passwordInput.length >= passwordUpperBound
 
   const enterUsernameAndPassword = async (e) => {
-    setApiOutput('')
     setSomeUsernameTyped(true)
     setSomePasswordTyped(true)
     e.preventDefault()
@@ -78,11 +78,11 @@ export default function LoginForm({ demoState }) {
   }, [usernameInput, passwordInput])
 
   useEffect(() => {
-    if (failedLogin(apiOutput) || loginError(apiOutput)) {
+    if (failedLogin(output) || loginError(output)) {
       setPasswordInput('')
       setSomePasswordTyped(false)
     }
-  }, [apiOutput])
+  }, [output])
 
   return (
     <Form onSubmit={enterUsernameAndPassword}>
@@ -123,8 +123,7 @@ export default function LoginForm({ demoState }) {
         data-cy={'login-attempt'}
       >
         {failedLogin(output) && `Incorrect username or password`}
-        {loginError(output) &&
-          `Suspicious activity detected - account locked`}
+        {loginError(output) && `Suspicious activity detected - account locked`}
       </LoginAttemptText>
     </Form>
   )

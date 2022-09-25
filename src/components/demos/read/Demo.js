@@ -9,7 +9,7 @@ import { ButtonSide } from '../../shared/Buttons'
 import { Col, Row, DemoText, Container } from '../../shared/Common'
 import Input from '../../shared/Input'
 import ProgressBar from './ProgressBar'
-import Modal from './Modal'
+import Modal from '../../shared/Modal'
 import KeyIcon from '../../../assets/images/key.svg'
 import { Themes } from '../../../fixtures/themes'
 
@@ -200,7 +200,9 @@ export default function ReadDemo(props) {
             update={update}
             {...{
               ...state,
-              ProgressBar: (props) => <ProgressBar {...props} />,
+              ProgressBar: ({ update, readDemo }) => (
+                <ProgressBar update={update} readDemo={readDemo} />
+              ),
             }}
           />
         )}
