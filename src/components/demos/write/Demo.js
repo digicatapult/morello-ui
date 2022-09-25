@@ -62,7 +62,7 @@ export default function WriteDemo(props) {
     const attemptLogin = async () => {
       update({
         writeDemo: {
-          ...writeDemo,
+          ...demoState,
           fetching: true,
         },
       })
@@ -70,7 +70,7 @@ export default function WriteDemo(props) {
       const output = await execute(bin, usernamePasswordPairs)
       update({
         writeDemo: {
-          ...emoState,
+          ...demoState,
           fetching: false,
           output,
         },
@@ -80,7 +80,8 @@ export default function WriteDemo(props) {
     if (usernamePasswordPairs.length > 0) {
       attemptLogin()
     }
-  }, [bin, writeDemo, execute, update, usernamePasswordPairs])
+    // TODO address demoState dependency, gets trapped in re-rendering state
+  }, [bin, execute, update, usernamePasswordPairs])
 
   useEffect(() => {
     update(initState)
