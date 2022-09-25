@@ -103,7 +103,7 @@ export default function Modal({ update, ProgressBar, ...props }) {
           >
             {props.message || props.modalText}
           </DemoText>
-          {renderModalActions && renderActions({ ...props, update, type })}
+          {renderModalActions && renderActions({ ...props, update })}
           {showHackingProgress && (
             <ProgressBar readDemo={props} update={update} />
           )}
