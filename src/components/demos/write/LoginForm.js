@@ -1,9 +1,16 @@
 import React, { useState, useEffect } from 'react'
 
 import Input from '../../shared/Input'
-import { Container, Spinner } from '../../shared/Common'
+import { Spinner } from '../../shared/Common'
 import { extractLoginResult } from '../../../utils/write-demo-output'
 import { Context } from '../../../utils/context'
+
+const Button = styled.button((props) => props)
+const LoginAttemptText = styled.p((props) => props)
+const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+`
 
 const failedLogin = (apiOutput) =>
   extractLoginResult(apiOutput) === 'Login failed'
@@ -28,6 +35,7 @@ export default function LoginForm({ demoState }) {
   const passwordAtMaxLength = passwordInput.length >= passwordUpperBound
 
   const enterUsernameAndPassword = async (e) => {
+    setApiOutput('')
     setSomeUsernameTyped(true)
     setSomePasswordTyped(true)
     e.preventDefault()
@@ -69,8 +77,15 @@ export default function LoginForm({ demoState }) {
     }
   }, [usernameInput, passwordInput])
 
+  useEffect(() => {
+    if (failedLogin(apiOutput) || loginError(apiOutput)) {
+      setPasswordInput('')
+      setSomePasswordTyped(false)
+    }
+  }, [apiOutput])
+
   return (
-    <form onSubmit={enterUsernameAndPassword}>
+    <Form onSubmit={enterUsernameAndPassword}>
       <Input
         label={'Username'}
         theme={demoState.theme.form}
@@ -78,46 +93,39 @@ export default function LoginForm({ demoState }) {
         showInputError={usernameAtMaxLength || noUsernameEntered}
         InputErrorWarning={UsernameErrorWarning}
         cySelector={'username'}
+        style={{ alignSelf: 'center' }}
       />
       <Input
         label={'Password'}
         theme={demoState.theme.form}
+        value={passwordInput}
         setInputState={setPasswordInput}
         upperBound={passwordUpperBound}
         inputType={'password'}
         showInputError={passwordAtMaxLength || noPasswordEntered}
         InputErrorWarning={PasswordErrorWarning}
         cySelector={'password'}
+        style={{ alignSelf: 'center' }}
       />
-      <Container
-        size={10}
-        styles={{
-          flexDirection: 'column',
-          alignItems: 'center',
-          gap: '30px',
-        }}
+      <Button
+        {...demoState.theme.form.loginButton}
+        data-cy={'login'}
+        type={'submit'}
+        disabled={fetching}
       >
-        <button
-          style={demoState.theme.form.loginButton}
-          data-cy={'login'}
-          type={'submit'}
-          disabled={fetching}
-        >
-          {fetching ? <Spinner /> : `Login`}
-        </button>
-        <p
-          {...demoState.theme.form.loginAttempt}
-          visibility={
-            failedLogin(output) || loginError(output) ? 'visible' : 'hidden'
-          }
-          data-cy={'login-attempt'}
-        >
-          {/* TODO drop the below in use effect?*/}
-          {failedLogin(output) && `Incorrect username or password`}
-          {loginError(output) &&
-            `Suspicious activity detected - account locked`}
-        </p>
-      </Container>
-    </form>
+        {fetching ? <Spinner /> : `Login`}
+      </Button>
+      <LoginAttemptText
+        {...demoState.theme.form.loginAttempt}
+        visibility={
+          failedLogin(output) || loginError(output) ? 'visible' : 'hidden'
+        }
+        data-cy={'login-attempt'}
+      >
+        {failedLogin(output) && `Incorrect username or password`}
+        {loginError(output) &&
+          `Suspicious activity detected - account locked`}
+      </LoginAttemptText>
+    </Form>
   )
 }

@@ -4,14 +4,13 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { DefinePlugin } = require('webpack')
 const CopyPlugin = require('copy-webpack-plugin')
 
-
 module.exports = (vars) => {
   const env = {
     ...vars,
-    ...dotenv.config({ path: path.join(__dirname, '.env') }).parsed
+    ...dotenv.config({ path: path.join(__dirname, '.env') }).parsed,
   }
 
-  return ({
+  return {
     entry: './src/index.js',
     output: {
       path: path.join(__dirname, '/build'),
@@ -54,14 +53,17 @@ module.exports = (vars) => {
           return out
         }, {}),
       }),
+      new DefinePlugin({
+        VERSION: JSON.stringify(require('./package.json').version),
+      }),
       new HtmlWebpackPlugin({
         template: 'src/index.html',
       }),
       new CopyPlugin({
         patterns: [
-          { from: path.resolve(__dirname, "public", "*"), to: '[name][ext]' }
+          { from: path.resolve(__dirname, 'public', '*'), to: '[name][ext]' },
         ],
       }),
     ],
-  })
+  }
 }

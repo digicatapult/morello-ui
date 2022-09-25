@@ -42,6 +42,8 @@ const ConsoleButtonWrapper = styled.div`
 
 const successfulLogin = (apiOutput) =>
   extractLoginResult(apiOutput) === 'Login succeeded'
+const failedLogin = (apiOutput) =>
+  extractLoginResult(apiOutput) === 'Login failed'
 const loginError = (apiOutput) => extractLoginResult(apiOutput) === 'error'
 
 const ConsoleButton = ({ update, state }) => {
@@ -96,6 +98,7 @@ export default function WriteDemo(props) {
     demoState
   const isMorello = theme.name === 'Morello'
   const bin = `${binaryName}-${theme.arch}`
+  const [animateLoginFailed, setAnimateLoginFailed] = useState(false)
 
   const switchToMorello = (e) => {
     e.preventDefault()
@@ -140,6 +143,13 @@ export default function WriteDemo(props) {
     update(initState)
   }, [update])
 
+  useEffect(() => {
+    if (isMorello && (failedLogin(apiOutput) || loginError(apiOutput))) {
+      setAnimateLoginFailed(true)
+      setTimeout(() => setAnimateLoginFailed(false), 1000)
+    }
+  }, [apiOutput, isMorello, setAnimateLoginFailed])
+
   return (
     <>
       <Header {...props} showClose={true} />
@@ -159,7 +169,21 @@ export default function WriteDemo(props) {
               content={helpContent}
               showContentState={showHelp}
             />
-          </Box>
+            <Box {...demoState} animate={animateLoginFailed}>
+              <Container
+                styles={{ height: '100%', paddingTop: '150px' }}
+                size={10}
+              >
+                <LoginForm
+                  demoState={demoState}
+                  showSpinner={awaitingApi}
+                  setUsernamePasswordPairs={setUsernamePasswordPairs}
+                  apiOutput={apiOutput}
+                  setApiOutput={setApiOutput}
+                />
+              </Container>
+            </Box>
+          </>
         )}
         {!isMorello
           ? successfulLogin(output) && <ButtonSide action={switchToMorello} />
