@@ -154,7 +154,7 @@ export default function ReadDemo(props) {
                       InputErrorWarning={InputErrorWarning}
                     />
                     <Button
-                      {...state.theme.form.savePasswordButton}
+                      {...state.theme.form.saveSecretButton}
                       type={'submit'}
                       data-cy={'submit-secret-btn'}
                     />
