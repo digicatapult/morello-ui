@@ -21,7 +21,7 @@ const ConsoleButtonWrapper = styled.div`
   text-align: center;
 `
 
-export const SecretDesktop = ({ icons }) => {
+export const SecretDesktop = ({ icons, font = {} }) => {
   return (
     <Col styles={{ padding: '0px 10px', alignItems: 'flex-start' }}>
       {icons.map((icon) => (
@@ -32,14 +32,14 @@ export const SecretDesktop = ({ icons }) => {
             width={'60px'}
             height={'60px'}
           />
-          <IconText>{icon.name}</IconText>
+          <IconText {...font}>{icon.name}</IconText>
         </IconWrapper>
       ))}
     </Col>
   )
 }
 
-export const ConsoleButton = ({ update, state }) => {
+export const ConsoleButton = ({ update, state, font }) => {
   return (
     <ConsoleButtonWrapper
       onClick={(e) => {
@@ -58,7 +58,7 @@ export const ConsoleButton = ({ update, state }) => {
         width={'60px'}
         height={'60px'}
       />
-      <IconText>Console</IconText>
+      <IconText {...font}>Console</IconText>
     </ConsoleButtonWrapper>
   )
 }

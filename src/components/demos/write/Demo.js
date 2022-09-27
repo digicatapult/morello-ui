@@ -99,7 +99,7 @@ export default function WriteDemo(props) {
       <Header {...props} showClose={true} />
       <Wrapper {...theme.wrapper}>
         {successfulLogin(output) ? (
-          <SecretDesktop icons={props.secretDesktop} />
+          <SecretDesktop font={theme.font} icons={props.secretDesktop} />
         ) : (
           <Box {...demoState} animate={animateLoginFailed}>
             <Container
@@ -124,6 +124,7 @@ export default function WriteDemo(props) {
                 key={'write-demo-console-icon'}
                 update={update}
                 state={demoState}
+                font={theme.font}
               />,
             ]}
         <Help theme={theme} content={helpContent} showContentState={showHelp} />
