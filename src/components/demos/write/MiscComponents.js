@@ -47,7 +47,7 @@ export const ConsoleButton = ({ update, state, font }) => {
         update({
           writeDemo: {
             ...state,
-            showResponse: true,
+            showConsole: true,
           },
         })
       }}

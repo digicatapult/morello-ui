@@ -36,7 +36,7 @@ export default function WriteDemo(props) {
   const nav = useNavigate()
   const state = React.useContext(Context)
   const { update, writeDemo } = state
-  const { theme, showHelp, usernamePasswordPairs, output, showResponse } =
+  const { theme, showHelp, usernamePasswordPairs, output, showConsole } =
     writeDemo
   const demoState = { ...props, ...writeDemo }
   const isMorello = theme.name === 'Morello'
@@ -51,7 +51,7 @@ export default function WriteDemo(props) {
         showHelp: false,
         fetching: false,
         output: undefined,
-        showResponse: false,
+        showConsole: false,
         usernamePasswordPairs: [],
         theme: Themes('Morello'),
       },
@@ -129,12 +129,12 @@ export default function WriteDemo(props) {
               />,
             ]}
         <Help theme={theme} content={helpContent} showContentState={showHelp} />
-        {showResponse && (
+        {showConsole && (
           <Modal
             type={'writeDemo'}
             update={update}
             show={true}
-            message={'Morellos authentication output'}
+            message={'Morello authentication output'}
             args={`${binaryName}-${theme.arch} ${usernamePasswordPairs.join(
               ', '
             )}`}
