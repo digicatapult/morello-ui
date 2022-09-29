@@ -36,11 +36,7 @@ const ContentText = styled.p`
   margin: 0;
 `
 
-export default function Help({
-  theme,
-  content,
-  showContentState,
-}) {
+export default function Help({ theme, content, showContentState }) {
   const { update, writeDemo: state } = React.useContext(Context)
 
   const toggle = () => {
@@ -48,7 +44,7 @@ export default function Help({
       writeDemo: {
         ...state,
         showHelp: !state.showHelp,
-      }
+      },
     })
   }
   return (

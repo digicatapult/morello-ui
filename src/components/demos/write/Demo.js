@@ -63,7 +63,6 @@ export default function WriteDemo(props) {
       update({
         writeDemo: {
           ...demoState,
-          output: undefined,
           fetching: true,
         },
       })
@@ -73,6 +72,7 @@ export default function WriteDemo(props) {
         writeDemo: {
           ...demoState,
           fetching: false,
+          usernamePasswordPairs: [],
           output,
         },
       })
