@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { Context } from '../../utils/context'
 
 import { IconButton } from './Buttons'
 
@@ -39,10 +40,16 @@ export default function Help({
   theme,
   content,
   showContentState,
-  setShowContentState,
 }) {
+  const { update, writeDemo: state } = React.useContext(Context)
+
   const toggle = () => {
-    setShowContentState(!showContentState)
+    update({
+      writeDemo: {
+        ...state,
+        showHelp: !state.showHelp,
+      }
+    })
   }
   return (
     <Wrapper>

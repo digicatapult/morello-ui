@@ -19,6 +19,7 @@ export const initState = {
     fetching: false,
     usernamePasswordPairs: [],
     showConsole: false,
+    output: '',
   },
 }
 

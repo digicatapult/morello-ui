@@ -33,6 +33,9 @@ describe('Read Demo', { defaultCommandTimeout: 60000 }, () => {
       cy.get('[data-cy=secret-input-box]')
         .should('have.css', 'background-color')
         .and('contain', 'rgb(52, 53, 86)')
+      cy.get('[data-cy=submit-secret-btn]')
+        .should('have.css', 'background-color')
+        .and('contain', 'rgba(0, 0, 0, 0)')
     })
 
     describe('Enters too long secret', () => {
@@ -153,6 +156,9 @@ describe('Read Demo', { defaultCommandTimeout: 60000 }, () => {
         cy.get('[data-cy=secret-input-box]')
           .should('have.css', 'background-color')
           .and('contain', 'rgb(255, 255, 255)')
+        cy.get('[data-cy=submit-secret-btn]')
+          .should('have.css', 'background-color')
+          .and('contain', 'rgba(0, 0, 0, 0)')
       })
 
       describe('Submits secret', () => {

@@ -35,7 +35,7 @@ export default function Hacker(props) {
         width={'60px'}
         height={'60px'}
         onClick={(e) =>
-          renderModal(e, { type: 'readDemmo', state: readDemo, update })
+          renderModal(e, { type: 'readDemo', state: readDemo, update })
         }
       />
       <IconText {...font} data-cy={'hacker-app-icon-text'}>
