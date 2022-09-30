@@ -49,7 +49,6 @@ export default function WriteDemo(props) {
       writeDemo: {
         ...demoState,
         showHelp: false,
-        fetching: false,
         output: undefined,
         showConsole: false,
         usernamePasswordPairs: [],
@@ -60,18 +59,14 @@ export default function WriteDemo(props) {
 
   useEffect(() => {
     const attemptLogin = async () => {
-      update({
-        writeDemo: {
-          ...demoState,
-          fetching: true,
-        },
-      })
-      // TODO allow execute to handle states e.g. isFetching isError...
+      update({ isFetching: true })
       const output = await execute(bin, usernamePasswordPairs)
       update({
+        isFetching: false,
         writeDemo: {
-          ...demoState,
-          fetching: false,
+          theme,
+          showHelp: false,
+          showConsole: false,
           usernamePasswordPairs: [],
           output,
         },

@@ -24,7 +24,8 @@ export default function LoginForm({ demoState }) {
   const [somePasswordTyped, setSomePasswordTyped] = useState(false)
   const {
     update,
-    writeDemo: { output, fetching },
+    writeDemo: { output },
+    isFetching,
   } = React.useContext(Context)
 
   const usernameUpperBound = 16
@@ -111,9 +112,9 @@ export default function LoginForm({ demoState }) {
         {...demoState.theme.form.loginButton}
         data-cy={'login'}
         type={'submit'}
-        disabled={fetching}
+        disabled={isFetching}
       >
-        {fetching ? <Spinner /> : `Login`}
+        {isFetching ? <Spinner /> : `Login`}
       </Button>
       <LoginAttemptText
         {...demoState.theme.form.loginAttempt}
