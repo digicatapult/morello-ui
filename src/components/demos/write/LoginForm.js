@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react'
-import styled from 'styled-components'
 
 import Input from '../../shared/Input'
+import styled from 'styled-components'
 import { Spinner } from '../../shared/Common'
 import { extractLoginResult } from '../../../utils/write-demo-output'
+import { Context } from '../../../utils/context'
 
 const Button = styled.button((props) => props)
 const LoginAttemptText = styled.p((props) => props)
@@ -16,17 +17,16 @@ const failedLogin = (apiOutput) =>
   extractLoginResult(apiOutput) === 'Login failed'
 const loginError = (apiOutput) => extractLoginResult(apiOutput) === 'error'
 
-export default function LoginForm({
-  demoState,
-  showSpinner,
-  setUsernamePasswordPairs,
-  apiOutput,
-  setApiOutput,
-}) {
+export default function LoginForm({ demoState }) {
   const [usernameInput, setUsernameInput] = useState('')
   const [passwordInput, setPasswordInput] = useState('')
   const [someUsernameTyped, setSomeUsernameTyped] = useState(false)
   const [somePasswordTyped, setSomePasswordTyped] = useState(false)
+  const {
+    update,
+    writeDemo: { output },
+    isFetching,
+  } = React.useContext(Context)
 
   const usernameUpperBound = 16
   const passwordUpperBound = 16
@@ -37,17 +37,22 @@ export default function LoginForm({
   const passwordAtMaxLength = passwordInput.length >= passwordUpperBound
 
   const enterUsernameAndPassword = async (e) => {
-    setApiOutput('')
     setSomeUsernameTyped(true)
     setSomePasswordTyped(true)
     e.preventDefault()
 
     if (usernameInput.length > 0 && passwordInput.length > 0) {
-      setUsernamePasswordPairs((prev) => [
-        ...prev,
-        usernameInput,
-        passwordInput,
-      ])
+      update({
+        isFetching: true,
+        writeDemo: {
+          ...demoState,
+          usernamePasswordPairs: [
+            ...demoState.usernamePasswordPairs,
+            usernameInput,
+            passwordInput,
+          ],
+        },
+      })
     }
   }
 
@@ -75,11 +80,11 @@ export default function LoginForm({
   }, [usernameInput, passwordInput])
 
   useEffect(() => {
-    if (failedLogin(apiOutput) || loginError(apiOutput)) {
+    if (failedLogin(output) || loginError(output)) {
       setPasswordInput('')
       setSomePasswordTyped(false)
     }
-  }, [apiOutput])
+  }, [output])
 
   return (
     <Form onSubmit={enterUsernameAndPassword}>
@@ -108,20 +113,19 @@ export default function LoginForm({
         {...demoState.theme.form.loginButton}
         data-cy={'login'}
         type={'submit'}
-        disabled={showSpinner}
+        disabled={isFetching}
       >
-        {showSpinner ? <Spinner /> : `Login`}
+        {isFetching ? <Spinner /> : `Login`}
       </Button>
       <LoginAttemptText
         {...demoState.theme.form.loginAttempt}
         visibility={
-          failedLogin(apiOutput) || loginError(apiOutput) ? 'visible' : 'hidden'
+          failedLogin(output) || loginError(output) ? 'visible' : 'hidden'
         }
         data-cy={'login-attempt'}
       >
-        {failedLogin(apiOutput) && `Incorrect username or password`}
-        {loginError(apiOutput) &&
-          `Suspicious activity detected - account locked`}
+        {failedLogin(output) && `Incorrect username or password`}
+        {loginError(output) && `Suspicious activity detected - account locked`}
       </LoginAttemptText>
     </Form>
   )

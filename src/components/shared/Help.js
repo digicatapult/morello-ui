@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { Context } from '../../utils/context'
 
 import { IconButton } from './Buttons'
 
@@ -35,14 +36,16 @@ const ContentText = styled.p`
   margin: 0;
 `
 
-export default function Help({
-  theme,
-  content,
-  showContentState,
-  setShowContentState,
-}) {
+export default function Help({ theme, content, showContentState }) {
+  const { update, writeDemo: state } = React.useContext(Context)
+
   const toggle = () => {
-    setShowContentState(!showContentState)
+    update({
+      writeDemo: {
+        ...state,
+        showHelp: !state.showHelp,
+      },
+    })
   }
   return (
     <Wrapper>

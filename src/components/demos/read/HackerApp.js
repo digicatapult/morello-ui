@@ -16,11 +16,11 @@ export default function Hacker(props) {
   const { readDemo, update } = React.useContext(Context)
   const { imageSrc, text, font } = props
 
-  const renderModal = (e, { readDemo, update }) => {
+  const renderModal = (e, { state, update }) => {
     e.preventDefault()
     update({
       readDemo: {
-        ...readDemo,
+        ...state,
         renderModal: true,
       },
     })
@@ -34,7 +34,9 @@ export default function Hacker(props) {
         src={imageSrc}
         width={'60px'}
         height={'60px'}
-        onClick={(e) => renderModal(e, { readDemo, update })}
+        onClick={(e) =>
+          renderModal(e, { type: 'readDemo', state: readDemo, update })
+        }
       />
       <IconText {...font} data-cy={'hacker-app-icon-text'}>
         {text}

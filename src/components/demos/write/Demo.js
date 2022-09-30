@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import { useNavigate } from 'react-router-dom'
 
@@ -6,11 +6,14 @@ import Header from '../../shared/Header'
 import { Context, initState } from '../../../utils/context'
 import { extractLoginResult } from '../../../utils/write-demo-output'
 import Box from '../../shared/Box'
-import { Container, Col, IconText } from '../../shared/Common'
+import { Container } from '../../shared/Common'
 import { ButtonSide } from '../../shared/Buttons'
 import { Themes } from '../../../fixtures/themes'
 import LoginForm from './LoginForm'
+import { ConsoleButton, SecretDesktop } from './MiscComponents'
 import Help from '../../shared/Help'
+
+import Modal from '../../shared/Modal'
 
 const Wrapper = styled.div`
   grid-area: body;
@@ -21,138 +24,115 @@ const Wrapper = styled.div`
   ${(props) => props}
 `
 
-const IconWrapper = styled.div`
-  width: 100px;
-  overflow-wrap: break-word;
-  text-align: center;
-`
-
 const successfulLogin = (apiOutput) =>
   extractLoginResult(apiOutput) === 'Login succeeded'
 const failedLogin = (apiOutput) =>
   extractLoginResult(apiOutput) === 'Login failed'
 const loginError = (apiOutput) => extractLoginResult(apiOutput) === 'error'
 
-const SecretDesktop = ({ icons }) => {
-  return (
-    <Col styles={{ padding: '0px 10px', alignItems: 'flex-start' }}>
-      {icons.map((icon) => (
-        <IconWrapper key={icon.name}>
-          <img
-            src={icon.img}
-            style={{ cursor: 'pointer' }}
-            width={'60px'}
-            height={'60px'}
-          />
-          <IconText>{icon.name}</IconText>
-        </IconWrapper>
-      ))}
-    </Col>
-  )
-}
-
 export default function WriteDemo(props) {
   const { execute, binaryName, helpContent } = props
 
   const nav = useNavigate()
   const state = React.useContext(Context)
-  const { update, writeDemo: demoState } = state
-  const { theme } = demoState
+  const { update, writeDemo } = state
+  const { theme, showHelp, usernamePasswordPairs, output, showConsole } =
+    writeDemo
+  const demoState = { ...props, ...writeDemo }
   const isMorello = theme.name === 'Morello'
-
-  const [animateLoginFailed, setAnimateLoginFailed] = useState(false)
-  const [showHelp, setShowHelp] = useState(false)
-  const [awaitingApi, setAwaitingApi] = useState(false)
-  const [apiOutput, setApiOutput] = useState('')
-  const [usernamePasswordPairs, setUsernamePasswordPairs] = useState([])
-
-  const resetStates = () => {
-    setShowHelp(false)
-    setAwaitingApi(false)
-    setApiOutput('')
-    setUsernamePasswordPairs([])
-  }
+  const bin = `${binaryName}-${theme.arch}`
+  const [animateLoginFailed, setAnimateLoginFailed] = React.useState(false)
 
   const switchToMorello = (e) => {
     e.preventDefault()
-    resetStates()
     update({
       writeDemo: {
-        ...demoState,
+        ...writeDemo,
+        showHelp: false,
+        output: undefined,
+        showConsole: false,
+        usernamePasswordPairs: [],
         theme: Themes('Morello'),
       },
     })
   }
 
   useEffect(() => {
-    update(initState)
-  }, [update])
-
-  useEffect(() => {
     const attemptLogin = async () => {
-      setAwaitingApi(true)
-      const output = await execute(
-        `${binaryName}-${theme.arch}`,
-        usernamePasswordPairs
-      )
-      setApiOutput(output)
-      setAwaitingApi(false)
+      const output = await execute(bin, usernamePasswordPairs)
+      update({
+        isFetching: false,
+        writeDemo: {
+          ...writeDemo,
+          usernamePasswordPairs: [],
+          output,
+        },
+      })
     }
 
     if (usernamePasswordPairs.length > 0) {
       attemptLogin()
     }
-  }, [usernamePasswordPairs, execute, binaryName, theme])
+    // TODO address demoState dependency, gets trapped in re-rendering state
+  }, [bin, execute, writeDemo, update, usernamePasswordPairs])
 
   useEffect(() => {
-    if (isMorello && (failedLogin(apiOutput) || loginError(apiOutput))) {
+    update(initState)
+  }, [update])
+
+  useEffect(() => {
+    if (isMorello && (failedLogin(output) || loginError(output))) {
       setAnimateLoginFailed(true)
       setTimeout(() => setAnimateLoginFailed(false), 1000)
     }
-  }, [apiOutput, isMorello, setAnimateLoginFailed])
+  }, [output, isMorello, setAnimateLoginFailed])
 
   return (
     <>
       <Header {...props} showClose={true} />
       <Wrapper {...theme.wrapper}>
-        {successfulLogin(apiOutput) ? (
-          <SecretDesktop icons={props.secretDesktop} />
+        {successfulLogin(output) ? (
+          <SecretDesktop font={theme.font} icons={props.secretDesktop} />
         ) : (
-          <>
-            <Help
-              theme={theme}
-              content={helpContent}
-              showContentState={showHelp}
-              setShowContentState={setShowHelp}
-            />
-            <Box {...demoState} animate={animateLoginFailed}>
-              <Container
-                styles={{ height: '100%', paddingTop: '150px' }}
-                size={10}
-              >
-                <LoginForm
-                  demoState={demoState}
-                  showSpinner={awaitingApi}
-                  setUsernamePasswordPairs={setUsernamePasswordPairs}
-                  apiOutput={apiOutput}
-                  setApiOutput={setApiOutput}
-                />
-              </Container>
-            </Box>
-          </>
+          <Box {...demoState} animate={animateLoginFailed}>
+            <Container
+              styles={{ height: '100%', paddingTop: '150px' }}
+              size={10}
+            >
+              <LoginForm demoState={demoState} />
+            </Container>
+          </Box>
         )}
         {!isMorello
-          ? successfulLogin(apiOutput) && (
-              <ButtonSide action={switchToMorello} />
-            )
-          : (successfulLogin(apiOutput) || loginError(apiOutput)) && (
+          ? successfulLogin(output) && <ButtonSide action={switchToMorello} />
+          : (successfulLogin(output) || loginError(output)) && [
               <ButtonSide
+                key={'write-demo-side-btn'}
                 message={'Learn More'}
                 action={() => {
                   nav('/write-demo-explainer')
                 }}
-              />
-            )}
+              />,
+              <ConsoleButton
+                key={'write-demo-console-icon'}
+                update={update}
+                state={demoState}
+                font={theme.font}
+              />,
+            ]}
+        <Help theme={theme} content={helpContent} showContentState={showHelp} />
+        {showConsole && (
+          <Modal
+            type={'writeDemo'}
+            update={update}
+            show={true}
+            message={'Morello authentication output'}
+            args={`${binaryName}-${theme.arch} ${usernamePasswordPairs.join(
+              ', '
+            )}`}
+            {...demoState}
+          />
+        )}
       </Wrapper>
     </>
   )

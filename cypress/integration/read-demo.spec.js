@@ -84,28 +84,28 @@ describe('Read Demo', { defaultCommandTimeout: 60000 }, () => {
       })
       describe('Selects [no] option', () => {
         beforeEach(() => {
-          cy.get('[data-cy=modal-btn-no-aarch64]').click()
+          cy.get('[data-cy=read-demo-modal-btn-no-aarch64]').click()
         })
 
         it('updates state so modal is no longer rendered', () => {
-          cy.get('[data-cy=modal-main]').should('not.exist')
+          cy.get('[data-cy=read-demo-modal]').should('not.exist')
         })
       })
 
       it('renders modal with yes/no option', () => {
-        cy.get('[data-cy=modal-main]').should('exist')
-        cy.get('[data-cy=modal-main-text]')
+        cy.get('[data-cy=read-demo-modal]').should('exist')
+        cy.get('[data-cy=read-demo-modal-text]')
           .should('exist')
           .should(
             'include.text',
             'Would you like to break into the system and reveal the secret?'
           )
-        cy.get('[data-cy=modal-btn-yes-aarch64]')
+        cy.get('[data-cy=read-demo-modal-btn-yes-aarch64]')
           .should('exist')
           .and('include.text', 'YES')
           .and('have.css', 'font-family')
           .and('contain', 'Monaco')
-        cy.get('[data-cy=modal-btn-no-aarch64]')
+        cy.get('[data-cy=read-demo-modal-btn-no-aarch64]')
           .should('exist')
           .and('include.text', 'NO')
           .and('have.css', 'font-family')
@@ -118,7 +118,7 @@ describe('Read Demo', { defaultCommandTimeout: 60000 }, () => {
         cy.get('[data-cy=secret-input-box]').type(secret)
         cy.get('[data-cy=submit-secret-btn]').click()
         cy.get('[data-cy=hacker-app]').click()
-        cy.get('[data-cy=modal-btn-yes-aarch64]').click()
+        cy.get('[data-cy=read-demo-modal-btn-yes-aarch64]').click()
       })
 
       it('renders progress animation', () => {
@@ -144,7 +144,7 @@ describe('Read Demo', { defaultCommandTimeout: 60000 }, () => {
         cy.get('[data-cy=secret-input-box]').type(secret)
         cy.get('[data-cy=submit-secret-btn]').click()
         cy.get('[data-cy=hacker-app]').click()
-        cy.get('[data-cy=modal-btn-yes-aarch64]').click()
+        cy.get('[data-cy=read-demo-modal-btn-yes-aarch64]').click()
         cy.get('[data-cy=button-side]').click()
       })
 
@@ -194,28 +194,28 @@ describe('Read Demo', { defaultCommandTimeout: 60000 }, () => {
 
         describe('Selects [no] option', () => {
           beforeEach(() => {
-            cy.get('[data-cy=modal-btn-no-cheri]').click()
+            cy.get('[data-cy=read-demo-modal-btn-no-cheri]').click()
           })
 
           it('updates state so modal is no longer rendered', () => {
-            cy.get('[data-cy=modal-main]').should('not.exist')
+            cy.get('[data-cy=read-demo-modal-main]').should('not.exist')
           })
         })
 
         it('renders modal with yes/no option', () => {
-          cy.get('[data-cy=modal-main]').should('exist')
-          cy.get('[data-cy=modal-main-text]')
+          cy.get('[data-cy=read-demo-modal]').should('exist')
+          cy.get('[data-cy=read-demo-modal-text]')
             .should('exist')
             .should(
               'include.text',
               'Would you like to break into the system and reveal the secret?'
             )
-          cy.get('[data-cy=modal-btn-yes-cheri]')
+          cy.get('[data-cy=read-demo-modal-btn-yes-cheri]')
             .should('exist')
             .and('include.text', 'YES')
             .and('have.css', 'font-family')
             .and('contain', 'OpenSans')
-          cy.get('[data-cy=modal-btn-no-cheri]')
+          cy.get('[data-cy=read-demo-modal-btn-no-cheri]')
             .should('exist')
             .and('include.text', 'NO')
             .and('have.css', 'font-family')
@@ -228,7 +228,7 @@ describe('Read Demo', { defaultCommandTimeout: 60000 }, () => {
           cy.get('[data-cy=secret-input-box]').type(secret)
           cy.get('[data-cy=submit-secret-btn]').click()
           cy.get('[data-cy=hacker-app]').click()
-          cy.get('[data-cy=modal-btn-yes-cheri]').click()
+          cy.get('[data-cy=read-demo-modal-btn-yes-cheri]').click()
         })
 
         it('renders progress animation', () => {

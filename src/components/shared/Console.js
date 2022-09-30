@@ -29,8 +29,8 @@ const OutputTest = styled.p`
   white-space: pre-line;
 `
 
-export default function Console({ executable, output }) {
-  const [showConsole, setShowConsole] = useState(false)
+export default function Console({ executable, output, show = false }) {
+  const [showConsole, setShowConsole] = useState(show)
 
   const toggleDetails = () => setShowConsole(!showConsole)
 
