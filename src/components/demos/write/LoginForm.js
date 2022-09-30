@@ -43,6 +43,7 @@ export default function LoginForm({ demoState }) {
 
     if (usernameInput.length > 0 && passwordInput.length > 0) {
       update({
+        isFetching: true,
         writeDemo: {
           ...demoState,
           usernamePasswordPairs: [

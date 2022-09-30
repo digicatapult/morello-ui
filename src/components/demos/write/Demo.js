@@ -47,7 +47,7 @@ export default function WriteDemo(props) {
     e.preventDefault()
     update({
       writeDemo: {
-        ...demoState,
+        ...writeDemo,
         showHelp: false,
         output: undefined,
         showConsole: false,
@@ -59,14 +59,11 @@ export default function WriteDemo(props) {
 
   useEffect(() => {
     const attemptLogin = async () => {
-      update({ isFetching: true })
       const output = await execute(bin, usernamePasswordPairs)
       update({
         isFetching: false,
         writeDemo: {
-          theme,
-          showHelp: false,
-          showConsole: false,
+          ...writeDemo,
           usernamePasswordPairs: [],
           output,
         },
@@ -77,7 +74,7 @@ export default function WriteDemo(props) {
       attemptLogin()
     }
     // TODO address demoState dependency, gets trapped in re-rendering state
-  }, [bin, execute, update, usernamePasswordPairs])
+  }, [bin, execute, writeDemo, update, usernamePasswordPairs])
 
   useEffect(() => {
     update(initState)
